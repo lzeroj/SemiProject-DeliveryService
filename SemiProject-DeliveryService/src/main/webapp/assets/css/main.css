@@ -2449,23 +2449,17 @@ a.cart-btn i {
   font-size: 22px;
   font-weight: 600;
 }
-
+.single-product-content p {  font-size: 15px;  color: #555;  line-height: 1.8;}
 p.single-product-pricing span {
-  font-size: 18px;
+  font-size: 22px;
   display: block;
   opacity: 0.8;
   margin-bottom: 10px;
   font-weight: 400;
 }
 
-.single-product-content p {
-  font-size: 15px;
-  color: #555;
-  line-height: 1.8;
-}
-
 .single-product-content p.single-product-pricing {
-  font-size: 32px;
+  font-size: 22px;
   font-weight: 700;
   margin-bottom: 10px;
   color: #051922;
