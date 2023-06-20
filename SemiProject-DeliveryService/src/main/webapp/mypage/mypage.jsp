@@ -414,12 +414,12 @@
 							<a href="javascript:UI.layerPopUp({selId:'#pop-order-info'});"
 								class="btn-type4-brd4">이용안내</a>
 						</div>
-						<div class="tab-type6">
-						</div>
+						<div class="tab-type6"></div>
 						<div class="order-list">
 							<div class="no-data">주문내역이 없습니다.</div>
 							<div class="btn-wrap">
-								<a href="index.jsp" class="btn-type v3">지금 주문하러 가기</a> <a href="cart.jsp" class="btn-type v4">장바구니 보러가기</a>
+								<a href="index.jsp" class="btn-type v3">지금 주문하러 가기</a> <a
+									href="cart.jsp" class="btn-type v4">장바구니 보러가기</a>
 							</div>
 						</div>
 					</article>
