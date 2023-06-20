@@ -86,7 +86,7 @@
 				<div class="col-lg-3 col-md-6 text-center">
 					<div class="single-product-item">
 						<div class="product-image">
-							<a href="single-product.jsp"><img
+							<a href="shop.jsp"><img
 								src="assets/img/음식카테고리/한식.png" alt=""></a>
 						</div>
 						<h3>한식</h3>
@@ -95,7 +95,7 @@
 				<div class="col-lg-3 col-md-6 text-center">
 					<div class="single-product-item">
 						<div class="product-image">
-							<a href="single-product.jsp"><img
+							<a href="shop.jsp"><img
 								src="assets/img/음식카테고리/중식.png" alt=""></a>
 						</div>
 						<h3>중식</h3>
@@ -104,7 +104,7 @@
 				<div class="col-lg-3 col-md-6 offset-md-3 offset-lg-0 text-center">
 					<div class="single-product-item">
 						<div class="product-image">
-							<a href="single-product.jsp"><img
+							<a href="shop.jsp"><img
 								src="assets/img/음식카테고리/일식.png" alt=""></a>
 						</div>
 						<h3>일식</h3>
@@ -113,7 +113,7 @@
 				<div class="col-lg-3 col-md-6 offset-md-3 offset-lg-0 text-center">
 					<div class="single-product-item">
 						<div class="product-image">
-							<a href="single-product.jsp"><img
+							<a href="shop.jsp"><img
 								src="assets/img/음식카테고리/양식.png" alt=""></a>
 						</div>
 						<h3>양식</h3>
@@ -122,7 +122,7 @@
 				<div class="col-lg-3 col-md-6 offset-md-3 offset-lg-0 text-center">
 					<div class="single-product-item">
 						<div class="product-image">
-							<a href="single-product.jsp"><img
+							<a href="shop.jsp"><img
 								src="assets/img/음식카테고리/치킨.png" alt=""></a>
 						</div>
 						<h3>치킨</h3>
@@ -131,7 +131,7 @@
 				<div class="col-lg-3 col-md-6 offset-md-3 offset-lg-0 text-center">
 					<div class="single-product-item">
 						<div class="product-image">
-							<a href="single-product.jsp"><img
+							<a href="shop.jsp"><img
 								src="assets/img/음식카테고리/피자.png" alt=""></a>
 						</div>
 						<h3>피자</h3>
@@ -140,7 +140,7 @@
 				<div class="col-lg-3 col-md-6 offset-md-3 offset-lg-0 text-center">
 					<div class="single-product-item">
 						<div class="product-image">
-							<a href="single-product.jsp"><img
+							<a href="shop.jsp"><img
 								src="assets/img/음식카테고리/패스트푸드.png" alt=""></a>
 						</div>
 						<h3>패스트푸드</h3>
@@ -149,7 +149,7 @@
 				<div class="col-lg-3 col-md-6 offset-md-3 offset-lg-0 text-center">
 					<div class="single-product-item">
 						<div class="product-image">
-							<a href="single-product.jsp"><img
+							<a href="shop.jsp"><img
 								src="assets/img/음식카테고리/카페.png" alt=""></a>
 						</div>
 						<h3>카페</h3>
@@ -160,56 +160,8 @@
 	</div>
 	<!-- end product section -->
 
-	<!-- footer -->
-	<div class="footer-area">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-3 col-md-6">
-					<div class="footer-box about-widget">
-						<h2 class="widget-title">About us</h2>
-						<p>Ut enim ad minim veniam perspiciatis unde omnis iste natus
-							error sit voluptatem accusantium doloremque laudantium, totam rem
-							aperiam, eaque ipsa quae.</p>
-					</div>
-				</div>
-				<div class="col-lg-3 col-md-6">
-					<div class="footer-box get-in-touch">
-						<h2 class="widget-title">Get in Touch</h2>
-						<ul>
-							<li>34/8, East Hukupara, Gifirtok, Sadan.</li>
-							<li>support@fruitkha.com</li>
-							<li>+00 111 222 3333</li>
-						</ul>
-					</div>
-				</div>
-				<div class="col-lg-3 col-md-6">
-					<div class="footer-box pages">
-						<h2 class="widget-title">Pages</h2>
-						<ul>
-							<li><a href="index.jsp">Home</a></li>
-							<li><a href="about.jsp">About</a></li>
-							<li><a href="services.jsp">Shop</a></li>
-							<li><a href="news.jsp">News</a></li>
-							<li><a href="contact.jsp">Contact</a></li>
-						</ul>
-					</div>
-				</div>
-				<div class="col-lg-3 col-md-6">
-					<div class="footer-box subscribe">
-						<h2 class="widget-title">Subscribe</h2>
-						<p>Subscribe to our mailing list to get the latest updates.</p>
-						<form action="index.jsp">
-							<input type="email" placeholder="Email">
-							<button type="submit">
-								<i class="fas fa-paper-plane"></i>
-							</button>
-						</form>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- end footer -->
+	<%-- 하단 메뉴 공통 부분 --%>
+	<c:import url="webpagefooter.jsp"></c:import>
 
 	<!-- copyright -->
 	<div class="copyright">

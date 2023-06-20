@@ -17,28 +17,7 @@
 
 						<!-- menu start -->
 						<nav class="main-menu">
-							<ul>
-								<li class="current-list-item"><a href="index.jsp">Home</a>
-								<li><a href="#">Pages</a>
-									<ul class="sub-menu">
-										<li><a href="404.jsp">404 page</a></li>
-										<li><a href="about.jsp">About</a></li>
-										<li><a href="cart.jsp">Cart</a></li>
-										<li><a href="checkout.jsp">Check Out</a></li>
-										<li><a href="contact.jsp">Contact</a></li>
-										<li><a href="news.jsp">News</a></li>
-										<li><a href="shop.jsp">Shop</a></li>
-									</ul>
-								</li>
-								<li><a href="contact.jsp">Contact</a></li>
-								<li><a href="shop.jsp">Shop</a>
-									<ul class="sub-menu">
-										<li><a href="shop.jsp">Shop</a></li>
-										<li><a href="checkout.jsp">Check Out</a></li>
-										<li><a href="single-product.jsp">Single Product</a></li>
-										<li><a href="cart.jsp">Cart</a></li>
-									</ul>
-								</li>
+							<ul>								
 								<li>
 									<div class="header-icons">
 										<a class="shopping-cart" href="cart.jsp"><i class="fas fa-shopping-cart"></i></a>
