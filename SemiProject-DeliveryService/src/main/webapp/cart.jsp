@@ -9,7 +9,7 @@
 	<meta name="description" content="Responsive Bootstrap4 Shop Template, Created by Imran Hossain from https://imransdesign.com/">
 
 	<!-- title -->
-	<title>Cart</title>
+	<title>장바구니</title>
 
 	<!-- favicon -->
 	<link rel="shortcut icon" type="image/png" href="assets/img/favicon.png">
@@ -53,8 +53,8 @@
 			<div class="row">
 				<div class="col-lg-8 offset-lg-2 text-center">
 					<div class="breadcrumb-text">
-						<p>Fresh and Organic</p>
-						<h1>Cart</h1>
+						<p>무료 배달 서비스</p>
+						<h1>장바구니</h1>
 					</div>
 				</div>
 			</div>
@@ -71,17 +71,17 @@
 						<table class="cart-table">
 							<thead class="cart-table-head">
 								<tr class="table-head-row">
-									<th class="product-remove"></th>
-									<th class="product-image">Product Image</th>
-									<th class="product-name">Name</th>
-									<th class="product-price">Price</th>
-									<th class="product-quantity">Quantity</th>
-									<th class="product-total">Total</th>
+									<th class="product-remove">번호</th>
+									<th class="product-image">가게명</th>
+									<th class="product-name">메뉴</th>
+									<th class="product-price">금액</th>
+									<th class="product-quantity">수량</th>
+									<th class="product-total">총 금액</th>
 								</tr>
 							</thead>
 							<tbody>
 								<tr class="table-body-row">
-									<td class="product-remove"><a href="#"><i class="far fa-window-close"></i></a></td>
+									<td class="product-remove"><a href="#">1</a></td>
 									<td class="product-image"><img src="assets/img/products/product-img-1.jpg" alt=""></td>
 									<td class="product-name">Strawberry</td>
 									<td class="product-price">$85</td>
@@ -89,7 +89,7 @@
 									<td class="product-total">1</td>
 								</tr>
 								<tr class="table-body-row">
-									<td class="product-remove"><a href="#"><i class="far fa-window-close"></i></a></td>
+									<td class="product-remove"><a href="#">2</a></td>
 									<td class="product-image"><img src="assets/img/products/product-img-2.jpg" alt=""></td>
 									<td class="product-name">Berry</td>
 									<td class="product-price">$70</td>
@@ -97,7 +97,7 @@
 									<td class="product-total">1</td>
 								</tr>
 								<tr class="table-body-row">
-									<td class="product-remove"><a href="#"><i class="far fa-window-close"></i></a></td>
+									<td class="product-remove"><a href="#">3</a></td>
 									<td class="product-image"><img src="assets/img/products/product-img-3.jpg" alt=""></td>
 									<td class="product-name">Lemon</td>
 									<td class="product-price">$35</td>
@@ -134,18 +134,8 @@
 							</tbody>
 						</table>
 						<div class="cart-buttons">
-							<a href="cart.html" class="boxed-btn">Update Cart</a>
-							<a href="checkout.html" class="boxed-btn black">Check Out</a>
-						</div>
-					</div>
-
-					<div class="coupon-section">
-						<h3>Apply Coupon</h3>
-						<div class="coupon-form-wrap">
-							<form action="index.html">
-								<p><input type="text" placeholder="Coupon"></p>
-								<p><input type="submit" value="Apply"></p>
-							</form>
+							<a href="cart.html" class="boxed-btn">장바구니 업데이트</a>
+							<a href="checkout.html" class="boxed-btn black">주문하기</a>
 						</div>
 					</div>
 				</div>
@@ -153,34 +143,6 @@
 		</div>
 	</div>
 	<!-- end cart -->
-
-	<!-- logo carousel -->
-	<div class="logo-carousel-section">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-12">
-					<div class="logo-carousel-inner">
-						<div class="single-logo-item">
-							<img src="assets/img/company-logos/1.png" alt="">
-						</div>
-						<div class="single-logo-item">
-							<img src="assets/img/company-logos/2.png" alt="">
-						</div>
-						<div class="single-logo-item">
-							<img src="assets/img/company-logos/3.png" alt="">
-						</div>
-						<div class="single-logo-item">
-							<img src="assets/img/company-logos/4.png" alt="">
-						</div>
-						<div class="single-logo-item">
-							<img src="assets/img/company-logos/5.png" alt="">
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- end logo carousel -->
 
 	<%-- 하단 메뉴 공통 부분 --%>
 	<c:import url="webpagefooter.jsp"></c:import>
