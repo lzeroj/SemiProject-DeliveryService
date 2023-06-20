@@ -77,6 +77,7 @@
 									<th class="product-price">금액</th>
 									<th class="product-quantity">수량</th>
 									<th class="product-total">총 금액</th>
+									<th class="product-total">주문취소</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -87,6 +88,7 @@
 									<td class="product-price">$85</td>
 									<td class="product-quantity"><input type="number" placeholder="0"></td>
 									<td class="product-total">1</td>
+									<td class="product-total"><button>x</button></td>
 								</tr>
 								<tr class="table-body-row">
 									<td class="product-remove"><a href="#">2</a></td>
@@ -95,6 +97,7 @@
 									<td class="product-price">$70</td>
 									<td class="product-quantity"><input type="number" placeholder="0"></td>
 									<td class="product-total">1</td>
+									<td class="product-total"><button>x</button></td>
 								</tr>
 								<tr class="table-body-row">
 									<td class="product-remove"><a href="#">3</a></td>
@@ -103,6 +106,7 @@
 									<td class="product-price">$35</td>
 									<td class="product-quantity"><input type="number" placeholder="0"></td>
 									<td class="product-total">1</td>
+									<td class="product-total"><button>x</button></td>
 								</tr>
 							</tbody>
 						</table>
