@@ -17,10 +17,6 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Sunflower:wght@300&display=swap" rel="stylesheet">	<link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
-	<!-- fontawesome -->
-	<link rel="stylesheet" href="assets/css/all.min.css">
-	<!-- bootstrap -->
-	<link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
 	<!-- owl carousel -->
 	<link rel="stylesheet" href="assets/css/owl.carousel.css">
 	<!-- magnific popup -->
@@ -75,7 +71,7 @@
 			<div class="row">
 				<div class="col-lg-8 offset-lg-2 text-center">
 					<div class="section-title">	
-						<h3><span class="orange-text">Our</span> Products</h3>
+						<h3><span class="orange-text">음식</span> 카테고리</h3>
 					</div>
 				</div>
 			</div>
@@ -83,65 +79,65 @@
 				<div class="col-lg-3 col-md-6 text-center">
 					<div class="single-product-item">
 						<div class="product-image">
-							<a href="single-product.jsp"><img src="assets/img/products/product-img-1.jpg" alt=""></a>
+							<a href="single-product.jsp"><img src="assets/img/음식카테고리/한식.png" alt=""></a>
 						</div>
-						<h3>Strawberry</h3>
+						<h3>한식</h3>
 					</div>
 				</div>
 				<div class="col-lg-3 col-md-6 text-center">
 					<div class="single-product-item">
 						<div class="product-image">
-							<a href="single-product.jsp"><img src="assets/img/products/product-img-2.jpg" alt=""></a>
+							<a href="single-product.jsp"><img src="assets/img/음식카테고리/중식.png" alt=""></a>
 						</div>
-						<h3>Berry</h3>
+						<h3>중식</h3>
 					</div>
 				</div>
 				<div class="col-lg-3 col-md-6 offset-md-3 offset-lg-0 text-center">
 					<div class="single-product-item">
 						<div class="product-image">
-							<a href="single-product.jsp"><img src="assets/img/products/product-img-3.jpg" alt=""></a>
+							<a href="single-product.jsp"><img src="assets/img/음식카테고리/일식.png" alt=""></a>
 						</div>
-						<h3>Lemon</h3>
+						<h3>일식</h3>
 					</div>
 				</div>
 				<div class="col-lg-3 col-md-6 offset-md-3 offset-lg-0 text-center">
 					<div class="single-product-item">
 						<div class="product-image">
-							<a href="single-product.jsp"><img src="assets/img/products/product-img-3.jpg" alt=""></a>
+							<a href="single-product.jsp"><img src="assets/img/음식카테고리/양식.png" alt=""></a>
 						</div>
-						<h3>Lemon</h3>
+						<h3>양식</h3>
 					</div>
 				</div>
 				<div class="col-lg-3 col-md-6 offset-md-3 offset-lg-0 text-center">
 					<div class="single-product-item">
 						<div class="product-image">
-							<a href="single-product.jsp"><img src="assets/img/products/product-img-3.jpg" alt=""></a>
+							<a href="single-product.jsp"><img src="assets/img/음식카테고리/치킨.png" alt=""></a>
 						</div>
-						<h3>Lemon</h3>
+						<h3>치킨</h3>
 					</div>
 				</div>
 				<div class="col-lg-3 col-md-6 offset-md-3 offset-lg-0 text-center">
 					<div class="single-product-item">
 						<div class="product-image">
-							<a href="single-product.jsp"><img src="assets/img/products/product-img-3.jpg" alt=""></a>
+							<a href="single-product.jsp"><img src="assets/img/음식카테고리/피자.png" alt=""></a>
 						</div>
-						<h3>Lemon</h3>
+						<h3>피자</h3>
 					</div>
 				</div>
 				<div class="col-lg-3 col-md-6 offset-md-3 offset-lg-0 text-center">
 					<div class="single-product-item">
 						<div class="product-image">
-							<a href="single-product.jsp"><img src="assets/img/products/product-img-3.jpg" alt=""></a>
+							<a href="single-product.jsp"><img src="assets/img/음식카테고리/패스트푸드.png" alt=""></a>
 						</div>
-						<h3>Lemon</h3>
+						<h3>패스트푸드</h3>
 					</div>
 				</div>
 				<div class="col-lg-3 col-md-6 offset-md-3 offset-lg-0 text-center">
 					<div class="single-product-item">
 						<div class="product-image">
-							<a href="single-product.jsp"><img src="assets/img/products/product-img-3.jpg" alt=""></a>
+							<a href="single-product.jsp"><img src="assets/img/음식카테고리/카페.png" alt=""></a>
 						</div>
-						<h3>Lemon</h3>
+						<h3>카페</h3>
 					</div>
 				</div>
 			</div>
