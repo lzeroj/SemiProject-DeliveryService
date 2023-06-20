@@ -10,7 +10,7 @@
 						<!-- logo -->
 						<div class="site-logo">
 							<a href="index.jsp">
-								<img src="assets/img/duck.png" alt="오리사진">
+								<img src="assets/img/duck.png" style="width:50px" alt="오리사진">
 							</a>
 						</div>
 						<!-- logo -->
@@ -42,7 +42,7 @@
 								<li>
 									<div class="header-icons">
 										<a class="shopping-cart" href="cart.jsp"><i class="fas fa-shopping-cart"></i></a>
-										<a href="">로그인</a>
+										<a href="login.jsp">로그인</a> <%--login.jsp --%>
 									</div>
 								</li>
 							</ul>
