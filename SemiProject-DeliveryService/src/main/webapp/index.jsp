@@ -82,7 +82,7 @@
 				<div class="col-lg-3 col-md-6 text-center">
 					<div class="single-product-item">
 						<div class="product-image">
-							<a href="single-product.jsp"><img src="assets/img/products/product-img-1.jpg" alt=""></a>
+							<a href="single-product.jsp"><img src="assets/img/products/중국집.jpg" alt=""></a>
 						</div>
 						<h3>Strawberry</h3>
 					</div>
@@ -90,7 +90,7 @@
 				<div class="col-lg-3 col-md-6 text-center">
 					<div class="single-product-item">
 						<div class="product-image">
-							<a href="single-product.jsp"><img src="assets/img/products/product-img-2.jpg" alt=""></a>
+							<a href="single-product.jsp"><img src="assets/img/products/분식집.png" alt=""></a>
 						</div>
 						<h3>Berry</h3>
 					</div>
