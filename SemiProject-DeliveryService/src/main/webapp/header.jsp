@@ -10,7 +10,7 @@
 						<!-- logo -->
 						<div class="site-logo">
 							<a href="index.jsp">
-								<img src="assets/img/duck.png" style="width:50px" alt="오리사진">
+								<img src="assets/img/oh2km.png" alt="오리사진">
 							</a>
 						</div>
 						<!-- logo -->
@@ -20,8 +20,8 @@
 							<ul>								
 								<li>
 									<div class="header-icons">
+										<a href="login.jsp"><i class="bi bi-person-circle"></i></a><%--login.jsp --%>
 										<a class="shopping-cart" href="cart.jsp"><i class="fas fa-shopping-cart"></i></a>
-										<a href="login.jsp">로그인</a> <%--login.jsp --%>
 									</div>
 								</li>
 							</ul>
