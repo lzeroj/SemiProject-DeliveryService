@@ -10,7 +10,7 @@
 						<!-- logo -->
 						<div class="site-logo">
 							<a href="index.jsp">
-								<img src="assets/img/duck.png" style="width:50px" alt="오리사진">
+								<img src="assets/img/oh2km.png" alt="오리사진">
 							</a>
 						</div>
 						<!-- logo -->
