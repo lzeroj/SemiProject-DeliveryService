@@ -23,7 +23,7 @@
 	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
-<title>오,2km</title>
+<title>오, 2km</title>
 
 <link rel="stylesheet" type="text/css"
 	href="https://cdn.dominos.co.kr/domino/asset/css/font.css">
@@ -351,7 +351,7 @@
 	</div>
 
 	<!-- main 1dep menu -->
-	<!-- 			<div id="gnb" class="gnb-wrap">
+	<!--		<div id="gnb" class="gnb-wrap">
 				<div class="gnb-inner">
 					<ul>
 						<li class="active">
@@ -372,11 +372,11 @@
 						<li>
 							<a href="/company/contents/chainstore1"><span>가맹점 모집</span></a>
 						</li>
-					</ul> <a href="javascript:void(0);" class="snb-more">더보기</a>-->
+					</ul> <a href="javascript:void(0);" class="snb-more">더보기</a>
 	</div>
-	</div>
+	</div> -->
 	<!-- //main 1dep menu -->
-	</header>
+
 	<!-- //header -->
 	<!-- container -->
 	<div id="container">
