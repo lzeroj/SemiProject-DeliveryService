@@ -7,18 +7,16 @@
 			<div class="row">
 				<div class="col-lg-3 col-md-6">
 					<div class="footer-box about-widget">
-						<h2 class="widget-title">About us</h2>
-						<p>Ut enim ad minim veniam perspiciatis unde omnis iste natus
-							error sit voluptatem accusantium doloremque laudantium, totam rem
-							aperiam, eaque ipsa quae.</p>
+						<h2 class="widget-title">오, 2km는..?!</h2>
+						<p>저희 ‘오, 2키로?!’ 는 비싸도 너무 비싼 고가의 배달비 세상에서, 고객이 자신의 동네에서 만큼은 무료로 배달서비스를 제공받고자 기획되었습니다.</p>
 					</div>
 				</div>
 				<div class="col-lg-3 col-md-6">
 					<div class="footer-box get-in-touch">
-						<h2 class="widget-title">Get in Touch</h2>
+						<h2 class="widget-title">주식회사 오리날다</h2>
 						<ul>
-							<li>34/8, East Hukupara, Gifirtok, Sadan.</li>
-							<li>support@fruitkha.com</li>
+							<li>경기도 성남시 분당구 성남대로 지하55 (구미동)</li>
+							<li>flyinDuck0830@google.com</li>
 							<li>+00 111 222 3333</li>
 						</ul>
 					</div>
@@ -33,8 +31,8 @@
 				</div>
 				<div class="col-lg-3 col-md-6">
 					<div class="footer-box subscribe">
-						<h2 class="widget-title">Subscribe</h2>
-						<p>Subscribe to our mailing list to get the latest updates.</p>
+						<h2 class="widget-title">구독하기</h2>
+						<p>구독을 통해 더많은 혜택을 누려보세요!</p>
 						<form action="index.jsp">
 							<input type="email" placeholder="Email">
 							<button type="submit">
