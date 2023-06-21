@@ -32,6 +32,7 @@
 	<link rel="stylesheet" href="assets/css/main.css">
 	<!-- responsive -->
 	<link rel="stylesheet" href="assets/css/responsive.css">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
 
 </head>
 <body>
@@ -73,40 +74,28 @@
 								<tr class="table-head-row">
 									<th class="product-remove">번호</th>
 									<th class="product-image">가게명</th>
+									<th class="product-image">메뉴사진</th>
 									<th class="product-name">메뉴</th>
 									<th class="product-price">금액</th>
 									<th class="product-quantity">수량</th>
-									<th class="product-total">총 금액</th>
+									<th class="product-total">합계</th>
 									<th class="product-total">주문취소</th>
 								</tr>
 							</thead>
 							<tbody>
 								<tr class="table-body-row">
 									<td class="product-remove"><a href="#">1</a></td>
-									<td class="product-image"><img src="assets/img/products/product-img-1.jpg" alt=""></td>
-									<td class="product-name">Strawberry</td>
-									<td class="product-price">$85</td>
-									<td class="product-quantity"><input type="number" placeholder="0"></td>
-									<td class="product-total">1</td>
-									<td class="product-total"><button>x</button></td>
-								</tr>
-								<tr class="table-body-row">
-									<td class="product-remove"><a href="#">2</a></td>
-									<td class="product-image"><img src="assets/img/products/product-img-2.jpg" alt=""></td>
-									<td class="product-name">Berry</td>
-									<td class="product-price">$70</td>
-									<td class="product-quantity"><input type="number" placeholder="0"></td>
-									<td class="product-total">1</td>
-									<td class="product-total"><button>x</button></td>
-								</tr>
-								<tr class="table-body-row">
-									<td class="product-remove"><a href="#">3</a></td>
-									<td class="product-image"><img src="assets/img/products/product-img-3.jpg" alt=""></td>
-									<td class="product-name">Lemon</td>
-									<td class="product-price">$35</td>
-									<td class="product-quantity"><input type="number" placeholder="0"></td>
-									<td class="product-total">1</td>
-									<td class="product-total"><button>x</button></td>
+									<td class="product-remove"><a href="#">한식당</a></td>
+									<td class="product-image"><img src="assets/img/음식카테고리/한식.png" alt=""></td>
+									<td class="product-name">비빔밥</td>
+									<td class="product-price">8,000원</td>
+									<td>
+									<button id="decreaseButton" class="btn btn-secondary">-</button>
+									<input type="text" placeholder="0" style="width : 30px">
+									<button id="increaseButton" class="btn btn-secondary">+</button>
+									</td>
+									<td class="product-total">8,000원</td>
+									<td class="product-total"><button type="button" class="btn btn-link">삭제</button></td>
 								</tr>
 							</tbody>
 						</table>
@@ -118,27 +107,16 @@
 						<table class="total-table">
 							<thead class="total-table-head">
 								<tr class="table-total-row">
-									<th>Total</th>
-									<th>Price</th>
+									<th>합계</th>
 								</tr>
 							</thead>
 							<tbody>
 								<tr class="total-data">
-									<td><strong>Subtotal: </strong></td>
-									<td>$500</td>
-								</tr>
-								<tr class="total-data">
-									<td><strong>Shipping: </strong></td>
-									<td>$45</td>
-								</tr>
-								<tr class="total-data">
-									<td><strong>Total: </strong></td>
-									<td>$545</td>
+									<td><strong>8,000원 </strong></td>
 								</tr>
 							</tbody>
 						</table>
 						<div class="cart-buttons">
-							<a href="cart.html" class="boxed-btn">장바구니 업데이트</a>
 							<a href="checkout.html" class="boxed-btn black">주문하기</a>
 						</div>
 					</div>

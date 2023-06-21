@@ -6,10 +6,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Responsive Bootstrap4 Shop Template, Created by Imran Hossain from https://imransdesign.com/">
+	<meta name="description" content="Responsive Bootstrap4 Shop Template, Created by Imran Hossain from https://imransdesign.com/">
 
 	<!-- title -->
-	<title>Shop</title>
+	<title>Check Out</title>
 
 	<!-- favicon -->
 	<link rel="shortcut icon" type="image/png" href="assets/img/favicon.png">
@@ -47,15 +47,34 @@
 	
 	<%-- 상단 메뉴 공통 부분 --%>
 	<c:import url="header.jsp"></c:import>
-
+	
+	<!-- search area -->
+	<div class="search-area">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<span class="close-btn"><i class="fas fa-window-close"></i></span>
+					<div class="search-bar">
+						<div class="search-bar-tablecell">
+							<h3>Search For:</h3>
+							<input type="text" placeholder="Keywords">
+							<button type="submit">Search <i class="fas fa-search"></i></button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end search arewa -->
+	
 	<!-- breadcrumb-section -->
 	<div class="breadcrumb-section breadcrumb-bg">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-8 offset-lg-2 text-center">
 					<div class="breadcrumb-text">
-						<p>Fresh and Organic</p>
-						<h1>Shop</h1>
+						<p>무료 배달 서비스</p>
+						<h1>주문하기</h1>
 					</div>
 				</div>
 			</div>
@@ -63,102 +82,55 @@
 	</div>
 	<!-- end breadcrumb section -->
 
-	<!-- products -->
-	<div class="product-section mt-150 mb-150">
+	<!-- check out section -->
+	<div class="checkout-section mt-150 mb-150">
 		<div class="container">
-
 			<div class="row">
-                <div class="col-md-12">
-                    <div class="product-filters">
-                        <ul>
-                            <li class="active" data-filter="*">All</li>
-                            <li data-filter=".strawberry">한식</li>
-                            <li data-filter=".berry">중식</li>
-                            <li data-filter=".lemon">일식</li>
-                            <li data-filter=".strawberry">양식</li>
-                            <li data-filter=".berry">피자</li>
-                            <li data-filter=".lemon">치킨</li>
-                            <li data-filter=".strawberry">패스트푸드</li>
-                            <li data-filter=".berry">카페</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+				<div class="col-lg-8">
+					<div class="checkout-accordion-wrap">
+						<div class="accordion" id="accordionExample">
+						  <div class="card single-accordion">
+						    <div class="card-header" id="headingOne">
+						      <h5 class="mb-0">
+						        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+						          회원 정보
+						        </button>
+						      </h5>
+						    </div>
 
-			<div class="row product-lists">
-				<div class="col-lg-3 col-md-6 text-center strawberry">
-					<div class="single-product-item">
-						<div class="product-image">
-							<a href="single-product.jsp"><img src="assets/img/products/product-img-1.jpg" alt=""></a>
+						    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+						      <div class="card-body">
+						        <div class="billing-address-form">
+						        	<form action="index.html">
+						        		<p><input type="text" placeholder="Name"></p>
+						        		<p><input type="email" placeholder="Email"></p>
+						        		<p><input type="text" placeholder="Address"></p>
+						        		<p><input type="tel" placeholder="Phone"></p>
+						        	</form>
+						        </div>
+						      </div>
+						    </div>
+						  </div>
 						</div>
-						<h3>Strawberry</h3>
-						<a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
 					</div>
 				</div>
-				<div class="col-lg-3 col-md-6 text-center berry">
-					<div class="single-product-item">
-						<div class="product-image">
-							<a href="single-product.jsp"><img src="assets/img/products/product-img-2.jpg" alt=""></a>
-						</div>
-						<h3>Berry</h3>
-						<a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
-					</div>
-				</div>
-				<div class="col-lg-3 col-md-6 text-center lemon">
-					<div class="single-product-item">
-						<div class="product-image">
-							<a href="single-product.jsp"><img src="assets/img/products/product-img-3.jpg" alt=""></a>
-						</div>
-						<h3>Lemon</h3>
-						<a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
-					</div>
-				</div>
-				<div class="col-lg-3 col-md-6 text-center">
-					<div class="single-product-item">
-						<div class="product-image">
-							<a href="single-product.jsp"><img src="assets/img/products/product-img-4.jpg" alt=""></a>
-						</div>
-						<h3>Avocado</h3>
-						<a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
-					</div>
-				</div>
-				<div class="col-lg-3 col-md-6 text-center">
-					<div class="single-product-item">
-						<div class="product-image">
-							<a href="single-product.jsp"><img src="assets/img/products/product-img-5.jpg" alt=""></a>
-						</div>
-						<h3>Green Apple</h3>
-						<a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
-					</div>
-				</div>
-				<div class="col-lg-3 col-md-6 text-center strawberry">
-					<div class="single-product-item">
-						<div class="product-image">
-							<a href="single-product.jsp"><img src="assets/img/products/product-img-6.jpg" alt=""></a>
-						</div>
-						<h3>Strawberry</h3>
-						<a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
-					</div>
-				</div>
-			</div>
-
-			<div class="row">
-				<div class="col-lg-12 text-center">
-					<div class="pagination-wrap">
-						<ul>
-							<li><a href="#">Prev</a></li>
-							<li><a href="#">1</a></li>
-							<li><a class="active" href="#">2</a></li>
-							<li><a href="#">3</a></li>
-							<li><a href="#">Next</a></li>
-						</ul>
+				<div class="col-lg-4">
+					<div class="order-details-wrap">
+						<table class="order-details">
+							<thead>
+								<tr>
+									<th><strong>합계</strong></th>
+									<th><strong>$240</strong></th>
+								</tr>
+							</thead>
+						</table>
+						<a href="#" class="boxed-btn">주문하기</a>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-	<!-- end products -->
-
+	<!-- end check out section -->
 
 	<%-- 하단 메뉴 공통 부분 --%>
 	<c:import url="webpagefooter.jsp"></c:import>

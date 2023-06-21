@@ -715,7 +715,7 @@ nav.main-menu li a {
 }
 
 .sticky-wrapper.is-sticky .top-header-area {
-  background-color: #051922;
+  background-color: #374b56;
   padding: 15px 0;
 }
 
@@ -2475,7 +2475,7 @@ input[type="number"] {
 }
 
 .single-product-form a.cart-btn {
-  margin-bottom: 15px;
+  margin-bottom: 40px;  margin-top: 10px;
 }
 
 .single-product-content h4 {
