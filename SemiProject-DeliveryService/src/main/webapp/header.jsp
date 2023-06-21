@@ -21,7 +21,7 @@
 								<li>
 									<div class="header-icons">
 										<a href="login.jsp"><i class="bi bi-person-circle"></i></a><%--login.jsp --%>
-										<a class="shopping-cart" href="cart.jsp"><i class="fas fa-shopping-cart"></i></a>
+										<a class="shopping-cart" href="cart.jsp"><i class="bi bi-cart"></i></a>
 									</div>
 								</li>
 							</ul>
