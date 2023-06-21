@@ -9,7 +9,7 @@
 	<meta name="description" content="Responsive Bootstrap4 Shop Template, Created by Imran Hossain from https://imransdesign.com/">
 
 	<!-- title -->
-	<title>장바구니</title>
+	<title>Check Out</title>
 
 	<!-- favicon -->
 	<link rel="shortcut icon" type="image/png" href="assets/img/favicon.png">
@@ -46,7 +46,26 @@
 	
 	<%-- 상단 메뉴 공통 부분 --%>
 	<c:import url="header.jsp"></c:import>
-
+	
+	<!-- search area -->
+	<div class="search-area">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<span class="close-btn"><i class="fas fa-window-close"></i></span>
+					<div class="search-bar">
+						<div class="search-bar-tablecell">
+							<h3>Search For:</h3>
+							<input type="text" placeholder="Keywords">
+							<button type="submit">Search <i class="fas fa-search"></i></button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end search arewa -->
+	
 	<!-- breadcrumb-section -->
 	<div class="breadcrumb-section breadcrumb-bg">
 		<div class="container">
@@ -54,7 +73,7 @@
 				<div class="col-lg-8 offset-lg-2 text-center">
 					<div class="breadcrumb-text">
 						<p>무료 배달 서비스</p>
-						<h1>장바구니</h1>
+						<h1>주문하기</h1>
 					</div>
 				</div>
 			</div>
@@ -62,68 +81,55 @@
 	</div>
 	<!-- end breadcrumb section -->
 
-	<!-- cart -->
-	<div class="cart-section mt-150 mb-150">
+	<!-- check out section -->
+	<div class="checkout-section mt-150 mb-150">
 		<div class="container">
 			<div class="row">
-				<div class="col-lg-8 col-md-12">
-					<div class="cart-table-wrap">
-						<table class="cart-table">
-							<thead class="cart-table-head">
-								<tr class="table-head-row">
-									<th class="product-remove">번호</th>
-									<th class="product-image">가게명</th>
-									<th class="product-image">메뉴사진</th>
-									<th class="product-name">메뉴</th>
-									<th class="product-price">금액</th>
-									<th class="product-quantity">수량</th>
-									<th class="product-total">합계</th>
-									<th class="product-total">주문취소</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr class="table-body-row">
-									<td class="product-remove"><a href="#">1</a></td>
-									<td class="product-remove"><a href="#">한식당</a></td>
-									<td class="product-image"><img src="assets/img/음식카테고리/한식.png" alt=""></td>
-									<td class="product-name">비빔밥</td>
-									<td class="product-price">8,000원</td>
-									<td>
-									<button id="decreaseButton" class="btn btn-secondary">-</button>
-									<input type="text" placeholder="0" style="width : 30px">
-									<button id="increaseButton" class="btn btn-secondary">+</button>
-									</td>
-									<td class="product-total">8,000원</td>
-									<td class="product-total"><button type="button" class="btn btn-link">삭제</button></td>
-								</tr>
-							</tbody>
-						</table>
+				<div class="col-lg-8">
+					<div class="checkout-accordion-wrap">
+						<div class="accordion" id="accordionExample">
+						  <div class="card single-accordion">
+						    <div class="card-header" id="headingOne">
+						      <h5 class="mb-0">
+						        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+						          회원 정보
+						        </button>
+						      </h5>
+						    </div>
+
+						    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+						      <div class="card-body">
+						        <div class="billing-address-form">
+						        	<form action="index.html">
+						        		<p><input type="text" placeholder="Name"></p>
+						        		<p><input type="email" placeholder="Email"></p>
+						        		<p><input type="text" placeholder="Address"></p>
+						        		<p><input type="tel" placeholder="Phone"></p>
+						        	</form>
+						        </div>
+						      </div>
+						    </div>
+						  </div>
+						</div>
 					</div>
 				</div>
-
 				<div class="col-lg-4">
-					<div class="total-section">
-						<table class="total-table">
-							<thead class="total-table-head">
-								<tr class="table-total-row">
-									<th>합계</th>
+					<div class="order-details-wrap">
+						<table class="order-details">
+							<thead>
+								<tr>
+									<th><strong>합계</strong></th>
+									<th><strong>$240</strong></th>
 								</tr>
 							</thead>
-							<tbody>
-								<tr class="total-data">
-									<td><strong>8,000원 </strong></td>
-								</tr>
-							</tbody>
 						</table>
-						<div class="cart-buttons">
-							<a href="checkout.html" class="boxed-btn black">주문하기</a>
-						</div>
+						<a href="#" class="boxed-btn">주문하기</a>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-	<!-- end cart -->
+	<!-- end check out section -->
 
 	<%-- 하단 메뉴 공통 부분 --%>
 	<c:import url="webpagefooter.jsp"></c:import>
