@@ -1,0 +1,12 @@
+@charset "UTF-8";
+
+.container {
+  padding-top: 20px;
+}
+
+.mypage .updateInfo .info-wrap {
+    position: relative;
+    padding: 67px 80px;
+    background: #111;
+    color: #fff;
+}

@@ -3,22 +3,54 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Bootstrap Example</title>
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+
 <link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<title>My page</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
-  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.slim.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
-  
-</head>		
-<script src="http://code.jquery.com/jquery-latest.js"></script>
+	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+<script
+	src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.slim.min.js"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<link rel="stylesheet" type="text/css"
+	href="https://cdn.dominos.co.kr/domino/asset/css/font.css">
+<link rel="stylesheet" type="text/css"
+	href="https://cdn.dominos.co.kr/domino/pc/css/common.css">
+<link rel="stylesheet" type="text/css" href="/resources/css/ol.css">
+<link rel="stylesheet" type="text/css"
+	href="https://cdn.dominos.co.kr/domino/pc/css/sub.css">
+
+</head>
+<body>
+	<br>
+	<div class="container">
+		<h2>나의 정보</h2>
+		<br>
+		<!-- Nav tabs -->
+		<ul class="nav nav-tabs" role="tablist">
+			<li class="nav-item"><a class="nav-link active"
+				data-toggle="tab" href="updateInfo">회원정보수정</a></li>
+			<li class="nav-item"><a class="nav-link" data-toggle="tab"
+				href="myOrderList">주문내역보기</a></li>
+			<li class="nav-item"><a class="nav-link" data-toggle="tab"
+				href="myQna">1:1 문의</a></li>
+			<li class="nav-item"><a class="nav-link" data-toggle="tab"
+				href="myReview">내가 쓴 리뷰 보기</a></li>
+			<li class="nav-item"><a class="nav-link" data-toggle="tab"
+				href="myStore">찜한 가게</a></li>
+		</ul>
+
+		<div class="info-wrap">
+			<div class="user">개인정보 확인</div>
+			<div class="text-type">회원정보를 정확히 기입하시면 다양한 서비스를 원활하게 이용할 수
+				있습니다.</div>
+		</div>
+		
 <!-- 
 	회원정보수정
 	주문내역보기
@@ -26,7 +58,8 @@
 	내가 쓴 리뷰 보기
 	찜한 가게
 -->
-<script>
+
+		<script>
 	$(function(){
 		if(${msg ne null}){
 			alert('${msg}');
@@ -49,21 +82,7 @@
 		}));
 	})
 </script>
-<body>
-	<div class="container">
-		<h2>나의 정보</h2>
-		<!--  <p>Basic horizontal menu:</p> -->
-		<ul class="nav">
-			<li class="nav-item"><a class="nav-link" href="page-title">회원정보수정</a></li>
-			<li class="nav-item"><a class="nav-link" href="/mypage/myOrderList">주문내역보기</a></li>
-			<li class="nav-item"><a class="nav-link" href="#">1:1 문의</a></li>
-			<li class="nav-item"><a class="nav-link" href="#">내가 쓴 리뷰 보기</a></li>
-			<li class="nav-item"><a class="nav-link" href="#">찜한 가게</a></li>
-			<li class="nav-item"><a class="nav-link disabled" href="#">Disabled</a>
-			</li>
-		</ul>
-	</div>
-	<div class="w3-content w3-container w3-margin-top">
+		<%-- 	<div class="w3-content w3-container w3-margin-top">
 		<div class="w3-container w3-card-4">
 			<div class="w3-center w3-large w3-margin-top">
 				<h3>My Page</h3>
@@ -107,6 +126,7 @@
 				</form>
 			</div>
 		</div>
+		 --%>
 	</div>
 </body>
 </html>
