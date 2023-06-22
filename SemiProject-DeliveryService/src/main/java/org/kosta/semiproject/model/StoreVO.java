@@ -1,7 +1,7 @@
 package org.kosta.semiproject.model;
 
 public class StoreVO {
-	private long storeNumber;
+	private int storeNumber;
 	private String storeName;
 	private String storeLocation;
 	private String storeCategory;
@@ -10,7 +10,7 @@ public class StoreVO {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public StoreVO(long storeNumber, String storeName, String storeLocation, String storeCategory,
+	public StoreVO(int storeNumber, String storeName, String storeLocation, String storeCategory,
 			String storePhoneNumber) {
 		super();
 		this.storeNumber = storeNumber;
@@ -22,7 +22,7 @@ public class StoreVO {
 	public long getStoreNumber() {
 		return storeNumber;
 	}
-	public void setStoreNumber(long storeNumber) {
+	public void setStoreNumber(int storeNumber) {
 		this.storeNumber = storeNumber;
 	}
 	public String getStoreName() {
