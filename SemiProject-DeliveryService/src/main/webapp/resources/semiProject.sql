@@ -71,7 +71,7 @@ CREATE TABLE cart(
  	userid VARCHAR2(100) NOT NULL,
  	food_name VARCHAR2(100) NOT NULL,
 	quantity NUMBER NOT NULL DEFAULT 1 CHECK (quantity > 0),  -- 최소 수량 1
-	totalmenu_price NUMBER NOT NULL
+	totalmenu_price NUMBER NOT NULL,
 	CONSTRAINT cart_pk PRIMARY KEY(userid,food_name),
 	CONSTRAINT cart_userid_fk FOREIGN KEY(userid) 
 	REFERENCES member(userid) ON DELETE CASCADE,      -- 부모테이블 삭제 시 같이 삭제
