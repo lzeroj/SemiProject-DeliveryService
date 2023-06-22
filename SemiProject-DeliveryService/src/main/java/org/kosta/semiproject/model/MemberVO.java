@@ -7,7 +7,7 @@ public class MemberVO {
 	private String email;
 	private String address;
 	private String add_detail;
-	private String user_phone;
+	private long user_phone;
 	private String user_birth;
 	private String user_type;
 
@@ -17,7 +17,7 @@ public class MemberVO {
 	}
 
 	public MemberVO(String user_id, String password, String user_name, String email, String address, String add_detail,
-			String user_phone, String user_birth, String user_type) {
+			long user_phone, String user_birth, String user_type) {
 		super();
 		this.user_id = user_id;
 		this.password = password;
@@ -78,11 +78,11 @@ public class MemberVO {
 		this.add_detail = add_detail;
 	}
 
-	public String getUser_phone() {
+	public long getUser_phone() {
 		return user_phone;
 	}
 
-	public void setUser_phone(String user_phone) {
+	public void setUser_phone(long user_phone) {
 		this.user_phone = user_phone;
 	}
 
@@ -108,5 +108,4 @@ public class MemberVO {
 				+ email + ", address=" + address + ", add_detail=" + add_detail + ", user_phone=" + user_phone
 				+ ", user_birth=" + user_birth + ", user_type=" + user_type + "]";
 	}
-
 }
