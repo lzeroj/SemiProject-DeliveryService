@@ -331,24 +331,24 @@
 		</div>
 	</div> -->
 	<!-- //top_event_bnr -->
-	<div id="wrap">
+<!-- 	<div id="wrap">
 		<header id="header" style="transform: translateY(0px);">
 
-			<!-- <div class="top-wrap">
+			<div class="top-wrap">
 				<div class="inner-box" id="tip-box-top">
 					<a href="/main" class="btn-logo"> <i class="oh2km-logo"></i>
 						<h1 class="hidden">오,2km</h1>
-					</a> -->
+					</a>
 
 			<div class="util-nav">
 				<a href="/logout">로그아웃</a> <a href="/mypage/myInfo">나의 정보</a> <a
 					href="javascript:goCart();" class="btn-cart"> <i
 					class="ico-cart"></i> <span class="hidden ">장바구니</span> <strong
-					class="cart_count"></strong> <!-- count -->
+					class="cart_count"></strong> count
 				</a>
 			</div>
 		</header>
-	</div>
+	</div> -->
 
 	<!-- main 1dep menu -->
 	<!--		<div id="gnb" class="gnb-wrap">
@@ -463,7 +463,7 @@
 
 	<script type="text/javascript">
 	$(document).ready(function(){
-		// 박스 위치 잡기
+		// 박스 위치 잡기				
 		// 2020-01-06 수정
 		$('.tip-box2').each(function() {
 			var boxWidth = 0;
