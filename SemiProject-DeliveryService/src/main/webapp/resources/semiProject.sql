@@ -62,28 +62,19 @@ CREATE TABLE STORE_FOOD(
 SELECT * FROM STORE_FOOD;
 ----------------------------------------------------------------------------
 -- **장바구니 테이블 **
-CREATE TABLE cart( 
-	user_id VARCHAR2(100) NOT NULL,
-	food_name VARCHAR2(100) NOT NULL,
-	quantity NUMBER NOT NULL CHECK (quantity > 0),
-	totalmenu_price NUMBER NOT NULL,
-	CONSTRAINT cart_pk PRIMARY KEY(food_name),
-	CONSTRAINT cart_user_id_fk FOREIGN KEY(food_name) REFERENCES STORE_FOOD(food_name) ON DELETE CASCADE
-);
 
 CREATE TABLE cart( 
    user_id VARCHAR2(100) NOT NULL,
    food_name VARCHAR2(100) NOT NULL,
    quantity NUMBER NOT NULL CHECK (quantity > 0),
-   totalmenu_price NUMBER NOT NULL,
    CONSTRAINT cart_pk PRIMARY KEY(user_id, food_name),
    CONSTRAINT cart_user_id_fk FOREIGN KEY(user_id) REFERENCES MEMBER(user_id) ON DELETE CASCADE,     
    CONSTRAINT cart_food_name_fk FOREIGN KEY(food_name) REFERENCES STORE_FOOD(food_name) ON DELETE CASCADE    
 );
 
 commit
-	drop table cart
-	select * from cart
+
+select * from cart
 	
 	
 -- INSERT 구문 ( TEST 데이터 삽입 ) 
@@ -102,19 +93,29 @@ commit
 	
 -- 가게별음식테이블	
 INSERT INTO STORE_FOOD(food_name,store_number,food_price,food_picture_path) VALUES('순대국',1,11000,'');	
-INSERT INTO STORE_FOOD(food_name,store_number,food_price,food_picture_path) VALUES('육개장',1,11000,'');	
-INSERT INTO STORE_FOOD(food_name,store_number,food_price,food_picture_path) VALUES('연어',2,20000,'');	
-INSERT INTO STORE_FOOD(food_name,store_number,food_price,food_picture_path) VALUES('광어회',2,15000,'');	
-INSERT INTO STORE_FOOD(food_name,store_number,food_price,food_picture_path) VALUES('삼겹살',3,14000,'');	
-INSERT INTO STORE_FOOD(food_name,store_number,food_price,food_picture_path) VALUES('돼지갈비',3,15000,'');	
-
-
+select * from store_food
 -- 장바구니
-INSERT INTO cart(user_id,food_name,quantity,totalmenu_price) VALUES('test1','순대국',1,11000);
-INSERT INTO cart(user_id,food_name,quantity,totalmenu_price) VALUES('test2','연어',1,20000);
-INSERT INTO cart(user_id,food_name,quantity,totalmenu_price) VALUES('test3','삼겹살',3,42000);
+INSERT INTO cart(user_id,food_name,quantity) VALUES('test1','순대국',1);
+INSERT INTO cart(user_id,food_name,quantity) VALUES('test1','삼겹살',2);
+INSERT INTO cart(user_id,food_name,quantity) VALUES('test1','우동',3);
+INSERT INTO cart(user_id,food_name,quantity) VALUES('test2','갈비',4);
+INSERT INTO cart(user_id,food_name,quantity) VALUES('test2','규카츠',1);
+INSERT INTO cart(user_id,food_name,quantity) VALUES('test3','육개장',2);
+INSERT INTO cart(user_id,food_name) VALUES('test3','김치볶음밥');
 
 --주문테이블
 INSERT INTO order_food(order_no,total_price,order_success,order_date,order_location,user_id,food_name) VALUES(order_no_seq.nextval,11000,'Y',sysdate,'위치미정','test1','순대국');
-INSERT INTO order_food(order_no,total_price,order_success,order_date,order_location,user_id,food_name) VALUES(order_no_seq.nextval,20000,'Y',sysdate,'위치미정','test2','연어');
-INSERT INTO order_food(order_no,total_price,order_success,order_date,order_location,user_id,food_name) VALUES(order_no_seq.nextval,42000,'Y',sysdate,'위치미정','test3','삼겹살');
+
+select * from store -- 짬뽕지존, 열방 , 초이반점
+INSERT INTO STORE_FOOD(food_name,store_number,food_price,food_picture_path) VALUES('짬뽕',8,12000,'china_jjambbong.png');	
+INSERT INTO STORE_FOOD(food_name,store_number,food_price,food_picture_path) VALUES('잡채밥',8,13000,'china_jabchaebap.png');	
+INSERT INTO STORE_FOOD(food_name,store_number,food_price,food_picture_path) VALUES('칠리새우',8,28000,'china_chilisaewoo.png');	
+INSERT INTO STORE_FOOD(food_name,store_number,food_price,food_picture_path) VALUES('군만두',8,8000,'china_gunmandu.png');	
+INSERT INTO STORE_FOOD(food_name,store_number,food_price,food_picture_path) VALUES('마라탕',9,11000,'china_maratang.png');	
+INSERT INTO STORE_FOOD(food_name,store_number,food_price,food_picture_path) VALUES('마라샹궈',9,13000,'china_malashanguo.png');	
+INSERT INTO STORE_FOOD(food_name,store_number,food_price,food_picture_path) VALUES('꿔바로우',9,18000,'china_gguobaorou.png');	
+INSERT INTO STORE_FOOD(food_name,store_number,food_price,food_picture_path) VALUES('볶음밥',9,11000,'china_bokkeumbap.png');	
+INSERT INTO STORE_FOOD(food_name,store_number,food_price,food_picture_path) VALUES('짜장면',10,7000,'china_jajangmyeon.png');	
+INSERT INTO STORE_FOOD(food_name,store_number,food_price,food_picture_path) VALUES('탕수육',10,15000,'china_tangsuyuk.png');	
+INSERT INTO STORE_FOOD(food_name,store_number,food_price,food_picture_path) VALUES('팔보채',10,23000,'china_palbochae.png');	
+INSERT INTO STORE_FOOD(food_name,store_number,food_price,food_picture_path) VALUES('양장피',10,27000,'china_yangjangpi.png');	
