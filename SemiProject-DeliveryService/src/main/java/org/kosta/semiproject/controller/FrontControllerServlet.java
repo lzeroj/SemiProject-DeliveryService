@@ -33,7 +33,7 @@ public class FrontControllerServlet extends HttpServlet {
 			}
 		} catch (Throwable e) {
 			e.printStackTrace();
-			response.sendRedirect("error.jsp");
+			response.sendRedirect("404error.jsp");
 		}
 	}
 

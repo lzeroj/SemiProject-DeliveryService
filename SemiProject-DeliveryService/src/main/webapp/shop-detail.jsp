@@ -61,7 +61,7 @@
 				<div class="col-lg-8 offset-lg-2 text-center">
 					<div class="breadcrumb-text">
 						<p>상세보기</p>
-						<h1>카테고리 : 한식</h1>
+						<h1>카테고리 : ${storeInfo.storeCategory}</h1>
 					</div>
 				</div>
 			</div>
@@ -75,24 +75,20 @@
 			<div class="row">
 				<div class="col-md-5">
 					<div class="single-product-img">
-						<img src="assets/img/store/korea_sundae_store.png" alt="">
+						<img src="assets/img/store/${storeInfo.storePicturePath}" alt="">
 					</div>
 				</div>
 				<div class="col-md-7">
 					<div class="single-product-content">
-						<h2>순이네 순대국</h2><br>
-						<span class="store_detail_css"><strong>최소주문금액</strong> : 10000원</span><br>
-						<span class="store_detail_css"><strong>배달거리</strong> : 1.5km</span><br><br>
+						<h2>${storeInfo.storeName}</h2><br>
+						<span class="store_detail_css"><strong>최소주문금액</strong> : ${storeInfo.storeMinimumOrderAmount}</span><br>
+						<span class="store_detail_css"><strong>배달거리</strong> : </span><br><br>
 						<textarea class="form-control" id="store-detail" rows="6" readonly="readonly">
-영업시간	10:30 - 20:30
-전화번호	050712999284 (요기요 제공 번호)
-주소	경기도 용인시 수지구 죽전동 1177-1 진성프라자 1177-1 진성프라자 106, 107호
-상호명	큰맘할매순대국용인죽전점 
-사업자등록번호	713-69-00160
+${storeInfo.storeInfo}
 						</textarea>
 						<div class="single-product-form">
 <!-- 							<a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a> -->
-							<br><p><strong>카테고리: </strong>한식</p>
+<!-- 							<br><p><strong>카테고리: </strong>한식</p> -->
 						</div>
 					</div>
 				</div>
@@ -113,36 +109,39 @@
 				</div>
 			</div>
 			<div class="row">
+				<c:forEach items="${foodInfo}" var="foodInfo">
 				<div class="col-lg-4 col-md-6 text-center">
 					<div class="single-product-item">
 						<div class="product-image">
-							<a href="single-product.html"><img src="assets/img/food/korea_sundae_food.png" alt=""></a>
+							<a href="StoFindFoodDetailByFoodName.do?foodname=${foodInfo.foodName}"><img src="assets/img/food/${foodInfo.foodPicturePath}" alt=""></a>
 						</div>
-						<h3>순대국</h3>
-						<p class="product-price"><span>가격</span> 8000원 </p>
-						<a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> 주문하기</a>
+						<h3>${foodInfo.foodName}</h3>
+						<p class="product-price"><span>가격</span> ${foodInfo.foodPrice}원 </p>
+						<a href="StoFindFoodDetailByFoodName.do?foodname=${foodInfo.foodName}" class="cart-btn"><i class="fas fa-shopping-cart"></i> 주문하기</a>
 					</div>
 				</div>
-				<div class="col-lg-4 col-md-6 text-center">
-					<div class="single-product-item">
-						<div class="product-image">
-							<a href="single-product.html"><img src="assets/img/food/galbi2.png" alt=""></a>
-						</div>
-						<h3>갈비탕</h3>
-						<p class="product-price"><span>가격</span> 11000원 </p>
-						<a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> 주문하기</a>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-6 offset-lg-0 offset-md-3 text-center">
-					<div class="single-product-item">
-						<div class="product-image">
-							<a href="single-product.html"><img src="assets/img/food/seasoup.png" alt=""></a>
-						</div>
-						<h3>해물탕</h3>
-						<p class="product-price"><span>가격</span> 9000원 </p>
-						<a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> 주문하기</a>
-					</div>
-				</div>
+				</c:forEach>
+				
+<!-- 				<div class="col-lg-4 col-md-6 text-center"> -->
+<!-- 					<div class="single-product-item"> -->
+<!-- 						<div class="product-image"> -->
+<!-- 							<a href="single-product.html"><img src="assets/img/food/galbi2.png" alt=""></a> -->
+<!-- 						</div> -->
+<!-- 						<h3>갈비탕</h3> -->
+<!-- 						<p class="product-price"><span>가격</span> 11000원 </p> -->
+<!-- 						<a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> 주문하기</a> -->
+<!-- 					</div> -->
+<!-- 				</div> -->
+<!-- 				<div class="col-lg-4 col-md-6 offset-lg-0 offset-md-3 text-center"> -->
+<!-- 					<div class="single-product-item"> -->
+<!-- 						<div class="product-image"> -->
+<!-- 							<a href="single-product.html"><img src="assets/img/food/seasoup.png" alt=""></a> -->
+<!-- 						</div> -->
+<!-- 						<h3>해물탕</h3> -->
+<!-- 						<p class="product-price"><span>가격</span> 9000원 </p> -->
+<!-- 						<a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> 주문하기</a> -->
+<!-- 					</div> -->
+<!-- 				</div> -->
 			</div>
 		</div>
 	</div>

@@ -41,6 +41,7 @@ public class StoreDAO {
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
 				StoreVO svo = new StoreVO();
+				svo.setStoreNumber(rs.getInt("STORE_NUMBER"));
 				svo.setStoreName(rs.getString("STORE_NAME"));
 				svo.setStoreLocation(rs.getString("STORE_LOCATION"));
 				svo.setStoreCategory(rs.getString("STORE_CATEGORY"));
@@ -56,7 +57,6 @@ public class StoreDAO {
 		return list;
 	}
 
-	
 	public ArrayList<StoreVO> findStoreListByCategory(String category) throws SQLException{
 		ArrayList<StoreVO> list = new ArrayList<StoreVO>();
 		Connection con=null;
@@ -70,6 +70,7 @@ public class StoreDAO {
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
 				StoreVO svo = new StoreVO();
+				svo.setStoreNumber(rs.getInt("STORE_NUMBER"));
 				svo.setStoreName(rs.getString("STORE_NAME"));
 				svo.setStoreLocation(rs.getString("STORE_LOCATION"));
 				svo.setStoreCategory(rs.getString("STORE_CATEGORY"));
@@ -84,5 +85,38 @@ public class StoreDAO {
 		}
 		return list;
 	}
-
+	
+	public StoreVO findStoreDetailByStoreNumber(int storenumber) throws SQLException {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		StoreVO svo = null;
+		try {
+//			SELECT * 
+//			FROM STORE S, STORE_FOOD SF
+//			WHERE S.STORE_NUMBER = SF.STORE_NUMBER 
+//			AND STORE_NAME = '소담하다'
+			String sql = "SELECT * FROM STORE WHERE STORE_NUMBER = ?";
+			con = dataSource.getConnection();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, storenumber);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				svo = new StoreVO();
+				svo.setStoreNumber(rs.getInt("STORE_NUMBER"));
+				svo.setStoreName(rs.getString("STORE_NAME"));
+				svo.setStoreLocation(rs.getString("STORE_LOCATION"));
+				svo.setStoreCategory(rs.getString("STORE_CATEGORY"));
+				svo.setStorePhoneNumber(rs.getString("STORE_PHONENUMBER"));
+				svo.setStoreMinimumOrderAmount(rs.getString("STORE_MINIMUMORDERAMOUNT"));
+				svo.setStoreInfo(rs.getString("STORE_INFO"));
+				svo.setStorePicturePath(rs.getString("STORE_PICTURE_PATH"));
+				
+			}
+		}finally {
+			closeAll(rs,pstmt,con);
+		}
+		return svo;
+	}
+	
 }

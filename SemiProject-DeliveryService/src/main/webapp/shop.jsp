@@ -84,7 +84,7 @@
                             <li class="active" data-filter=".한식">한식</li>
                             <li data-filter=".중식">중식</li>
                             <li data-filter=".일식">일식</li>
-                            <li data-filter=".strawberry">양식</li>
+                            <li data-filter=".양식">양식</li>
                             <li data-filter=".berry">피자</li>
                             <li data-filter=".lemon">치킨</li>
                             <li data-filter=".strawberry">패스트푸드</li>
@@ -99,10 +99,10 @@
         		<div class="col-lg-3 col-md-6 text-center ${stolist.storeCategory}">
 					<div class="single-product-item" data-chk="${stolist.storeCategory}">
 						<div class="product-image">
-							<a href="single-product.jsp"><img src="assets/img/store/${stolist.storePicturePath}" alt=""></a>
+							<a href="StoFindStoreAndFoodListDetailByStoreName.do?storenumber=${stolist.storeNumber}"><img src="assets/img/store/${stolist.storePicturePath}" alt=""></a>
 						</div>
 						<h3>${stolist.storeName}</h3>
-						<a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> 주문하러가기</a>
+						<a href="StoFindStoreAndFoodListDetailByStoreName.do?storenumber=${stolist.storeNumber}" class="cart-btn"><i class="fas fa-shopping-cart"></i> 주문하러가기</a>
 					</div>
 				</div>
 				</c:forEach>
