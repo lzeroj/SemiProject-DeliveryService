@@ -93,27 +93,27 @@
 					</div>
 				</div>
 				<div class="col-lg-3 col-md-6 text-center">
-					<div class="single-product-item">
+					<div class="single-product-item" data-type="중식">
 						<div class="product-image">
-							<a href="shop.jsp"><img
+							<a href="StoFindStoreListAll.do?category=중식"><img
 								src="assets/img/음식카테고리/중식.png" alt=""></a>
 						</div>
 						<h3>중식</h3>
 					</div>
 				</div>
 				<div class="col-lg-3 col-md-6 offset-md-3 offset-lg-0 text-center">
-					<div class="single-product-item">
+					<div class="single-product-item" data-type="일식">
 						<div class="product-image">
-							<a href="shop.jsp"><img
+							<a href="StoFindStoreListAll.do?category=일식"><img
 								src="assets/img/음식카테고리/일식.png" alt=""></a>
 						</div>
 						<h3>일식</h3>
 					</div>
 				</div>
 				<div class="col-lg-3 col-md-6 offset-md-3 offset-lg-0 text-center">
-					<div class="single-product-item">
+					<div class="single-product-item" data-type="양식">
 						<div class="product-image">
-							<a href="shop.jsp"><img
+							<a href="StoFindStoreListAll.do?category=양식"><img
 								src="assets/img/음식카테고리/양식.png" alt=""></a>
 						</div>
 						<h3>양식</h3>
