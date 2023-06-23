@@ -34,6 +34,8 @@
 	<link rel="stylesheet" href="assets/css/responsive.css">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=87599c2f74b02fcf28a9638597678071&libraries=services"></script>
+
 </head>
 <body>
 <script type="text/javascript">
@@ -101,11 +103,103 @@
 						<div class="product-image">
 							<a href="StoFindStoreAndFoodListDetailByStoreName.do?storenumber=${stolist.storeNumber}"><img src="assets/img/store/${stolist.storePicturePath}" alt=""></a>
 						</div>
+					    <script>
+        					console.log("${stolist.storeLocation}");
+    					</script>
 						<h3>${stolist.storeName}</h3>
+						<input type="hidden" id="location" value="${stolist.storeLocation}"/>
+						<p id="result-${stolist.storeNumber}"></p>
 						<a href="StoFindStoreAndFoodListDetailByStoreName.do?storenumber=${stolist.storeNumber}" class="cart-btn"><i class="fas fa-shopping-cart"></i> 주문하러가기</a>
 					</div>
 				</div>
 				</c:forEach>
+<script type="text/javascript">
+    $(function() {
+        $(".product-lists .single-product-item").each(function(index) {
+            var startaddress = "<c:out value='${address}' />";
+            var arriveaddress = $(this).find("input#location").val();
+            console.log("arriveaddress: "+arriveaddress);
+        	var resultId = "result-" + $(this).index();
+
+            // JavaScript 함수 실행
+            getCoordinates(startaddress, arriveaddress, resultId, index);
+        });
+    });
+
+    function getCoordinates(startaddress, arriveaddress, resultId, index) {
+
+        var geocoder = new kakao.maps.services.Geocoder();
+
+        var polyline = null;
+        var startlatitude = null;
+        var startlongitude = null;
+        var arrivelatitude = null;
+        var arrivelongitude = null;
+
+        geocoder.addressSearch(startaddress, function(result, status) {
+            if (status === kakao.maps.services.Status.OK) {
+                startlatitude = result[0].y;
+                startlongitude = result[0].x;
+                console.log("출발위도:"+startlatitude);
+                console.log("출발경도:"+startlongitude);
+
+                if (startlatitude && startlongitude && arrivelatitude && arrivelongitude) {
+                    calculateDistance(resultId, index);
+                }
+            } else {
+                alert("출발 주소를 찾을 수 없습니다.");
+            }
+        });
+
+        geocoder.addressSearch(arriveaddress, function(result, status) {
+            if (status === kakao.maps.services.Status.OK) {
+                arrivelatitude = result[0].y;
+                arrivelongitude = result[0].x;
+                console.log("도착위도:"+arrivelatitude);
+                console.log("도착경도:"+arrivelongitude);
+
+                if (startlatitude && startlongitude && arrivelatitude && arrivelongitude) {
+                    calculateDistance(resultId, index);
+                }
+            } else {
+                alert("도착 주소를 찾을 수 없습니다.");
+            }
+        });
+
+        function calculateDistance(resultId, index) {
+            polyline = new daum.maps.Polyline({
+                path: [
+                    new daum.maps.LatLng(startlatitude, startlongitude),
+                    new daum.maps.LatLng(arrivelatitude, arrivelongitude)
+                ],
+            });
+
+            var distance = polyline.getLength();
+            console.log("distance:"+distance);
+            resultId = "result-" + index;
+            $("#" + resultId).html(distance / 1000);
+            
+            
+            nextFunction(index);
+        }
+        
+        function nextFunction(index) {
+            console.log("다음 함수 실행. Index: " + index);
+            // 결과를 웹 페이지에 표시할 HTML 요소를 선택합니다.
+            resultId = "result-" + index;
+            console.log("nextFunction-resultId:"+resultId)
+            var resultElement = document.getElementById(resultId);
+
+            // 거리를 표시할 HTML 요소를 생성하거나 업데이트합니다.
+            if (resultElement) {
+              resultElement.innerHTML = distance / 1000; // 거리를 킬로미터로 표시하도록 조정할 수 있습니다.
+              console.log(distance / 1000);
+            }
+        }
+
+    }
+    
+</script>
 			</div>
 
 			<div class="row">
@@ -175,6 +269,7 @@
 	<script src="assets/js/sticker.js"></script>
 	<!-- main js -->
 	<script src="assets/js/main.js"></script>
+	
 
 </body>
 </html>

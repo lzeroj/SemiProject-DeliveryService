@@ -16,6 +16,7 @@ public class StoFindStoreListAllController implements Controller {
 		String category = request.getParameter("category");
 		String address = request.getParameter("address");
 		ArrayList<StoreVO> list = StoreDAO.getInstance().findStoreListAll();
+		
 		HttpSession session = request.getSession();
 		session.setAttribute("address", address);
 		System.out.println(session.getAttribute("address"));
