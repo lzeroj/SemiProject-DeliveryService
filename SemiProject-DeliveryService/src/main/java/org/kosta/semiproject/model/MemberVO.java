@@ -1,5 +1,4 @@
 package org.kosta.semiproject.model;
-
 public class MemberVO {
 	private String userId;
 	private String userPassword;
@@ -103,9 +102,9 @@ public class MemberVO {
 	}
 
 	@Override
-	public String toString() {
-		return "MemberVO [userId=" + userId + ", userPassword=" + userPassword + ", userName=" + userName
-				+ ", userEmail=" + userEmail + ", userAddress=" + userAddress + ", userAddDetail=" + userAddDetail
-				+ ", userPhone=" + userPhone + ", userBirth=" + userBirth + ", userType=" + userType + "]";
-	}
+   public String toString() {
+      return "MemberVO [userId=" + userId + ", userPassword=" + userPassword + ", userName=" + userName
+            + ", userEmail=" + userEmail + ", userAddress=" + userAddress + ", userAddDetail=" + userAddDetail
+            + ", userPhone=" + userPhone + ", userBirth=" + userBirth + ", userType=" + userType + "]";
+   }
 }

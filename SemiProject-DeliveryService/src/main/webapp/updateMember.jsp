@@ -8,29 +8,29 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="assets/css/register.css">
 <script
 	src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.slim.min.js"></script>
 <script
 	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
-<script
-	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<link rel="stylesheet" href="assets/css/register.css">
-<title>회원가입</title>
+<title>회원 수정</title>
 </head>
 <body>
 	<div class="container">
 		<div class="input-form-backgroud row">
 			<div class="input-form col-md-12 mx-auto" id="form">
 				<div class="txt_field">
-					<h1 class="mb-3">회원가입</h1>
+					<h1 class="mb-3">회원 수정</h1>
 				</div>
-				<form class="validation-form" method="post" action="RegisterMember.do">
+				<form class="validation-form" method="post"
+					action="RegisterMember.do">
 					<div class="row">
 						<div class="col-md-6 mb-3">
-							<label for="name">아이디</label> 
-							<input class="form-control" type="text" name="user_id" placeholder="ori123" required="required">
+							<label for="name">아이디</label> <input class="form-control"
+								type="text" name="user_id" placeholder="ori123"
+								required="required">
 						</div>
 						<div class="col-md-6 mb-3">
 							<label for="nickname">비밀번호</label> <input type="password"
@@ -40,8 +40,8 @@
 					<div class="row">
 						<div class="col-md-6 mb-3">
 							<label for="name">전화번호</label> <input type="text"
-								class="form-control" name="user_phone" placeholder="010-xxxx-xxxx"
-								required>
+								class="form-control" name="user_phone"
+								placeholder="010-xxxx-xxxx" required>
 						</div>
 						<div class="col-md-6 mb-3">
 							<label for="nickname">생년월일</label> <input type="text"
@@ -74,8 +74,8 @@
 						<div class="col-md-12" id="address1">
 							<label for="address">주소</label>
 							<div class="input-group">
-								<input type="text" class="form-control"  name="address"id="address"
-									placeholder="주소를 입력해주세요" required>
+								<input type="text" class="form-control" name="address"
+									id="address" placeholder="주소를 입력해주세요" required>
 								<div class="input-group-append">
 									<button class="btn btn-outline-secondary" type="button"
 										onclick="findAddress()" id="addressSearchButton">주소검색</button>
@@ -91,14 +91,9 @@
 						</div>
 					</div>
 					<hr class="mb-4">
-					<div class="custom-control custom-checkbox">
-						<input type="checkbox" class="custom-control-input" id="aggrement"
-							required> <label class="custom-control-label"
-							for="aggrement">개인정보 수집 및 이용에 동의합니다.</label>
-					</div>
 					<div class="mb-4"></div>
 					<button class="btn btn-primary btn-lg btn-block" type="submit"
-						id="btn-submit">가입 완료</button>
+						id="btn-submit">수정완료</button>
 				</form>
 				<c:import url="footer.jsp"></c:import>
 			</div>

@@ -331,7 +331,7 @@
 		</div>
 	</div> -->
 	<!-- //top_event_bnr -->
-<!-- 	<div id="wrap">
+	<!-- 	<div id="wrap">
 		<header id="header" style="transform: translateY(0px);">
 
 			<div class="top-wrap">
@@ -387,8 +387,7 @@
 						<h2 class="page-title">나의 정보</h2>
 						<div class="depth-area">
 							<ol>
-								<li><a href="/main">홈</a></li>
-								<li><a href="/mypage/myOrderList">나의 정보</a></li>
+								<li><a href="../index.jsp">홈</a></li>
 								<li><strong>주문내역</strong></li>
 							</ol>
 						</div>
@@ -396,30 +395,82 @@
 					<article class="mypage-wrap mypage-grade">
 						<div class="menu-nav-wrap">
 							<div class="menu-nav">
-								<ul>
-									<li><a href="/mypage/myLevel">내 프로필</a></li>
-									<li class="active"><a href="/mypage/myOrderList">주문내역</a></li>
-									<li><a href="/mypage/myCoupon">배송지관리</a></li>
-									<li><a href="/mypage/myMoneyVoucher">내가 쓴 리뷰</a></li>
-									<li><a href="/mypage/qustionList">1:1문의/칭찬</a></li>
-									<li><a href="/member/userinfoConfirm">정보수정</a></li>
+								<ul class="nav nav-tabs" role="tablist" style="background: none">
+									<li class="nav-item"><a class="nav-link active"
+										data-toggle="tab" href="#" style="margin-top: 15px"
+										onclick="updateMember()">회원정보수정</a></li>
+
+
+									<li class="nav-item"><a class="nav-link" data-toggle="tab"
+										href="myOrderList">주문내역보기</a></li>
+									<!-- 									<li class="nav-item"><a class="nav-link" data-toggle="tab"
+										href="myQna">1:1 문의</a></li>
+									<li class="nav-item"><a class="nav-link" data-toggle="tab"
+										href="myReview">내가 쓴 리뷰 보기</a></li> -->
 								</ul>
+
 							</div>
 						</div>
 						<div class="info-wrap">
-							<div class="user">
-								<span>"${sessionScope.userName}"</span>님이 주문하신 내역입니다.
-							</div>
+							<c:choose>
+								<c:when test="${sessionScope.member!=null}">
+									<div class="user">
+										<span>${member.userName}</span>님이 주문하신 내역입니다.
+									</div>
+								</c:when>
+							</c:choose>
 							<div class="text-type">주문을 취소하시려면 고객센터로 문의하시기 바랍니다.</div>
-							<a href="javascript:UI.layerPopUp({selId:'#pop-order-info'});"
-								class="btn-type4-brd4">이용안내</a>
 						</div>
 						<div class="tab-type6"></div>
 						<div class="order-list">
 							<div class="no-data">주문내역이 없습니다.</div>
+							<div class="cart-section mt-150 mb-150">
+								<div class="container">
+									<div class="row">
+										<div class="col-lg-8 col-md-12">
+											<div class="cart-table-wrap">
+												<table class="cart-table" style="align-items: center">
+													<thead class="cart-table-head">
+														<tr class="table-head-row">
+															<th class="product-remove">번호</th>
+															<th class="product-image">가게명</th>
+															<th class="product-image">메뉴사진</th>
+															<th class="product-name">메뉴</th>
+															<th class="product-price">금액</th>
+															<th class="product-quantity">수량</th>
+															<th class="product-total">합계</th>
+															<th class="product-total">주문취소</th>
+														</tr>
+													</thead>
+													<tbody>
+														<tr class="table-body-row">
+															<td class="product-remove"><a href="#">1</a></td>
+															<td class="product-remove"><a href="#">한식당</a></td>
+															<td class="product-image"><img
+																src="assets/img/음식카테고리/한식.png" alt=""></td>
+															<td class="product-name">비빔밥</td>
+															<td class="product-price">8,000원</td>
+															<td>
+																<button id="decreaseButton" class="btn btn-secondary">-</button>
+																<input type="text" placeholder="0" style="width: 30px">
+																<button id="increaseButton" class="btn btn-secondary">+</button>
+															</td>
+															<td class="product-total">8,000원</td>
+															<td class="product-total"><button type="button"
+																	class="btn btn-link">삭제</button></td>
+														</tr>
+													</tbody>
+												</table>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
 							<div class="btn-wrap">
-								<a href="index.jsp" class="btn-type v3">지금 주문하러 가기</a> <a
-									href="cart.jsp" class="btn-type v4">장바구니 보러가기</a>
+								<a href="${pageContext.request.contextPath}/index.jsp"
+									class="btn-type v3" style="border-radius: 5%">지금 주문하러 가기</a> <a
+									href="${pageContext.request.contextPath}/cart.jsp"
+									class="btn-type v4" style="border-radius: 5%">장바구니 보러가기</a>
 							</div>
 						</div>
 					</article>
@@ -462,6 +513,13 @@
 	</form>
 
 	<script type="text/javascript">
+	//updateMember로 이동
+    function updateMember() {
+        var contextPath = "${pageContext.request.contextPath}";
+        var updateMemberURL = contextPath + "/updateMember.jsp";
+        window.location.href = updateMemberURL;
+    }	
+	
 	$(document).ready(function(){
 		// 박스 위치 잡기				
 		// 2020-01-06 수정
