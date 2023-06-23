@@ -20,12 +20,12 @@
 <body>
 	<div class="center  ">
 		<h1>Login</h1>
-		<form method="post"> <%--form action으로  loginController에다 보내야함  --%>
+		<form method="post" action="Login.do"> <%--form action으로  loginController에다 보내야함  --%>
 			<div class="txt_field">
-				<input type="text" required> <span></span> <label>아이디</label>
+				<input type="text" name="user_id" required> <span></span> <label>아이디</label>
 			</div>
 			<div class="txt_field">
-				<input type="password" required> <span></span> <label>비밀번호</label>
+				<input type="password" name="password" required> <span></span> <label>비밀번호</label>
 			</div>
 			<button class="login-button" type="submit">Login</button>
 			<div class="signup_link">

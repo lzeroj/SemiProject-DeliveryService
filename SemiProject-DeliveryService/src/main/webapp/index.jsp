@@ -106,7 +106,7 @@
 						<div class="product-image">
 							<a href="StoFindStoreListAll.do?category=일식"><img
 								src="assets/img/음식카테고리/일식.png" alt=""></a>
-						</div>
+						</div>x
 						<h3>일식</h3>
 					</div>
 				</div>
