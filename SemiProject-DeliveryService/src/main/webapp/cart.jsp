@@ -56,6 +56,7 @@
 					<div class="breadcrumb-text">
 						<p>무료 배달 서비스</p>
 						<h1>장바구니</h1>
+						<a href="${pageContext.request.contextPath}/FindCartListByIdAndFoodName.do">테스트</a>
 					</div>
 				</div>
 			</div>
@@ -83,20 +84,27 @@
 								</tr>
 							</thead>
 							<tbody>
+							<c:forEach items="${cartList}" var="list">
+							
 								<tr class="table-body-row">
-									<td class="product-remove"><a href="#">1</a></td>
-									<td class="product-remove"><a href="#">한식당</a></td>
-									<td class="product-image"><img src="assets/img/음식카테고리/한식.png" alt=""></td>
-									<td class="product-name">비빔밥</td>
-									<td class="product-price">8,000원</td>
+								
+									<%-- 번호 자동부여 테스트 필요 --%>
+									<td class="product-remove"><span id="number">1</span></td>
+									<td class="product-remove">${list.foodVO.storeVO.storeName}</td>
+									<td class="product-image" id="img-path"></td>
+									<td class="product-name">${list.foodVO.foodName}</td>
+									<td class="product-price">${list.foodVO.foodPrice}</td>
 									<td>
 									<button id="decreaseButton" class="btn btn-secondary">-</button>
-									<input type="text" placeholder="0" style="width : 30px">
+									<span id="quantitu"><strong>${list.quantity}</strong></span>
 									<button id="increaseButton" class="btn btn-secondary">+</button>
 									</td>
-									<td class="product-total">8,000원</td>
+								
+									<%-- 합계 테스트 필요--%>
+									<td class="product-total"><span id=totalPrice>${list.foodVO.foodPrice * list.quantity}</span></td>
 									<td class="product-total"><button type="button" class="btn btn-link">삭제</button></td>
 								</tr>
+								</c:forEach>
 							</tbody>
 						</table>
 					</div>
@@ -112,12 +120,13 @@
 							</thead>
 							<tbody>
 								<tr class="total-data">
-									<td><strong>8,000원 </strong></td>
+								<%-- 총금액 계산방법 테스트 --%>
+									<td><strong><span id="totalSum">총금액</span></strong></td>
 								</tr>
 							</tbody>
 						</table>
 						<div class="cart-buttons">
-							<a href="checkout.html" class="boxed-btn black">주문하기</a>
+							<a href="checkout.jsp" class="boxed-btn black">주문하기</a>
 						</div>
 					</div>
 				</div>
@@ -125,7 +134,7 @@
 		</div>
 	</div>
 	<!-- end cart -->
-
+	
 	<%-- 하단 메뉴 공통 부분 --%>
 	<c:import url="webpagefooter.jsp"></c:import>
 	
@@ -153,7 +162,22 @@
 		</div>
 	</div>
 	<!-- end copyright -->
+				<script type="text/javascript">
+				let tdElement = document.getElementById("img-path");
+				tdElement.innerHTML = "Dynamic content";
+				</script>
+	<!-- cart javascript 구현 -->
+	<script type="text/javascript">
+		$(function() {
+			$("#img-path").append("테스트입니다.");
+			/*
+			${list.foodVO.foodPicturePath}
+			*/
+		});
+	</script>
 	
+	
+		
 	<!-- jquery -->
 	<script src="assets/js/jquery-1.11.3.min.js"></script>
 	<!-- bootstrap -->
