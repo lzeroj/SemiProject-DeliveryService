@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.sql.DataSource;
 
@@ -117,6 +119,38 @@ public class StoreDAO {
 			closeAll(rs,pstmt,con);
 		}
 		return svo;
+	}
+	
+	public HashMap<Integer, Object> findStoreAddressByStoreNumber(int storenumber) throws SQLException {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		HashMap<Integer, Object> map = new HashMap<Integer, Object>();
+		try {
+			String sql = "SELECT STORE_NUMBER, STORE_LOCATION FROM STORE WHERE STORE_NUMBER = ?";
+			con = dataSource.getConnection();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, storenumber);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				map.put(rs.getInt("STORE_NUMBER"), rs.getString("STORE_LOCATION"));
+			}
+		}finally {
+			closeAll(rs,pstmt,con);
+		}
+		return map;
+	}
+	
+	public void insertDistanceCalculator(Map<Integer, Object> map) throws SQLException {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		try {
+			
+			
+			
+		}finally {
+			closeAll(pstmt,con);
+		}
 	}
 	
 }

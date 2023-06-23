@@ -83,7 +83,28 @@
 							<form action="index.html">
 								<input type="number" placeholder="0">
 							</form>
-							<a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> 장바구니 추가</a>
+							
+							<%-- *********************** 임영준 장바구니 추가 기능  --%>
+							<button class="cart-btn" type="button" onclick="insertCart()" >
+							<i class="fas fa-shopping-cart"></i>장바구니 추가</button>
+								
+							<script type="text/javascript">
+								function insertCart() {
+									if(confirm("장바구니에 추가하시겠습니까?")){
+										xhr = new XMLHttpRequest();
+										xhr.onreadystatechange = function() {
+											if(xhr.readyState==4&&xhr.status==200){
+												alert("장바구니에 추가되었습니다.");
+											}
+										}
+										xhr.open("post","CartAjaxInsertFood.do");
+										xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+										xhr.send("foodname="+${foodinfo.foodName});
+									}							
+								}
+							</script>								
+							<%--*********************** 장바구니 추가 기능 End --%>
+							
 							<a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> 주문하기 </a>
 <!-- 							<br><p><strong>카테고리: </strong>한식</p> -->
 						</div>

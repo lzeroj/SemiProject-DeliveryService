@@ -21,5 +21,4 @@ public class StoFindStoreAndFoodListDetailByStoreNameController implements Contr
 		request.setAttribute("foodInfo", list);
 		return "shop-detail.jsp";
 	}
-
 }
