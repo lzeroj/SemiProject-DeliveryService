@@ -119,19 +119,13 @@
 									<%-- 합계 테스트 필요--%>
 									<td class="product-total" id="eachFoodTotalPrice"><fmt:formatNumber value="${list.foodVO.foodPrice * list.quantity}" pattern="#,###"></fmt:formatNumber></td>
 									
+									<%-- 삭제하시겠습니까? 알림띄우기 --%>
 									<td class="product-total">
 									<form method="post" action="CartDeleteFoodMenuByIdAndByFoodName.do" id="deleteForm">
-									<button type="button" class="btn btn-link" onclick="deleteCartMenu()">삭제</button>
+									<button type="submit" class="btn btn-link">삭제</button>
 									<input type="hidden" name=user_id value="${list.memberVO.userId}">
 									<input type="hidden" name=food_name value="${list.foodVO.foodName}">
 									</form>
-									<script type="text/javascript">
-										function deleteCartMenu() {
-											if(confirm("삭제하시겠습니까?")){
-												document.getElementById("deleteForm").submit();
-											}
-										}
-									</script>
 									</td>
 								</tr>
 								</c:forEach>
