@@ -33,10 +33,20 @@
 	<!-- responsive -->
 	<link rel="stylesheet" href="assets/css/responsive.css">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
-
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 <body>
-	
+<script type="text/javascript">
+	$(function() {
+		const queryString = window.location.search;
+		const urlParams = new URLSearchParams(queryString);
+		const value = "."+urlParams.get('category');
+        console.log("value:"+value);
+        $(".product-lists").isotope({
+                filter: value,
+        });
+	});
+</script>
 	<!--PreLoader-->
     <div class="loader">
         <div class="loader-inner">
@@ -66,15 +76,14 @@
 	<!-- products -->
 	<div class="product-section mt-150 mb-150">
 		<div class="container">
-
 			<div class="row">
                 <div class="col-md-12">
                     <div class="product-filters">
                         <ul>
-                            <li class="active" data-filter="*">All</li>
-                            <li data-filter=".strawberry">한식</li>
-                            <li data-filter=".berry">중식</li>
-                            <li data-filter=".lemon">일식</li>
+                            <li data-filter="*">All</li>
+                            <li class="active" data-filter=".한식">한식</li>
+                            <li data-filter=".중식">중식</li>
+                            <li data-filter=".일식">일식</li>
                             <li data-filter=".strawberry">양식</li>
                             <li data-filter=".berry">피자</li>
                             <li data-filter=".lemon">치킨</li>
@@ -86,60 +95,17 @@
             </div>
 
 			<div class="row product-lists">
-				<div class="col-lg-3 col-md-6 text-center strawberry">
-					<div class="single-product-item">
+				<c:forEach items="${stolist}" var="stolist">
+        		<div class="col-lg-3 col-md-6 text-center ${stolist.storeCategory}">
+					<div class="single-product-item" data-chk="${stolist.storeCategory}">
 						<div class="product-image">
-							<a href="single-product.jsp"><img src="assets/img/products/product-img-1.jpg" alt=""></a>
+							<a href="single-product.jsp"><img src="assets/img/store/${stolist.storePicturePath}" alt=""></a>
 						</div>
-						<h3>Strawberry</h3>
-						<a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+						<h3>${stolist.storeName}</h3>
+						<a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> 주문하러가기</a>
 					</div>
 				</div>
-				<div class="col-lg-3 col-md-6 text-center berry">
-					<div class="single-product-item">
-						<div class="product-image">
-							<a href="single-product.jsp"><img src="assets/img/products/product-img-2.jpg" alt=""></a>
-						</div>
-						<h3>Berry</h3>
-						<a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
-					</div>
-				</div>
-				<div class="col-lg-3 col-md-6 text-center lemon">
-					<div class="single-product-item">
-						<div class="product-image">
-							<a href="single-product.jsp"><img src="assets/img/products/product-img-3.jpg" alt=""></a>
-						</div>
-						<h3>Lemon</h3>
-						<a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
-					</div>
-				</div>
-				<div class="col-lg-3 col-md-6 text-center">
-					<div class="single-product-item">
-						<div class="product-image">
-							<a href="single-product.jsp"><img src="assets/img/products/product-img-4.jpg" alt=""></a>
-						</div>
-						<h3>Avocado</h3>
-						<a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
-					</div>
-				</div>
-				<div class="col-lg-3 col-md-6 text-center">
-					<div class="single-product-item">
-						<div class="product-image">
-							<a href="single-product.jsp"><img src="assets/img/products/product-img-5.jpg" alt=""></a>
-						</div>
-						<h3>Green Apple</h3>
-						<a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
-					</div>
-				</div>
-				<div class="col-lg-3 col-md-6 text-center strawberry">
-					<div class="single-product-item">
-						<div class="product-image">
-							<a href="single-product.jsp"><img src="assets/img/products/product-img-6.jpg" alt=""></a>
-						</div>
-						<h3>Strawberry</h3>
-						<a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
-					</div>
-				</div>
+				</c:forEach>
 			</div>
 
 			<div class="row">
@@ -189,6 +155,7 @@
 	<!-- end copyright -->
 	
 	<!-- jquery -->
+	
 	<script src="assets/js/jquery-1.11.3.min.js"></script>
 	<!-- bootstrap -->
 	<script src="assets/bootstrap/js/bootstrap.min.js"></script>
