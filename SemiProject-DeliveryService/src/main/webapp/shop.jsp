@@ -192,8 +192,8 @@
 
             // 거리를 표시할 HTML 요소를 생성하거나 업데이트합니다.
             if (resultElement) {
-              resultElement.innerHTML = distance / 1000; // 거리를 킬로미터로 표시하도록 조정할 수 있습니다.
-              console.log(distance / 1000);
+//               resultElement.innerHTML = distance / 1000; // 거리를 킬로미터로 표시하도록 조정할 수 있습니다.
+//               console.log(distance / 1000);
             }
         }
 
