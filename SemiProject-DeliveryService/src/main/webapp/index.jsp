@@ -58,8 +58,8 @@
 							<p class="subtitle">무료 배달 서비스</p>
 							<h1>오, 2키로?</h1>
 							<div class="hero-btns">
-								<input type="text" placeholder="주소" size="60" id="address"
-									onclick="findAddress()"> <a href="shop.jsp"
+								<input type="text" placeholder="주소" size="60" id="address" name="address"
+									onclick="findAddress()"><a href="shop.jsp"
 									class="boxed-btn">검색</a>
 							</div>
 						</div>
@@ -84,9 +84,9 @@
 			</div>
 			<div class="row">
 				<div class="col-lg-3 col-md-6 text-center">
-					<div class="single-product-item" data-type="한식">
+					<div class="single-category-item" data-type="한식">
 						<div class="product-image" >
-							<a href="StoFindStoreListAll.do?category=한식" id="hasik"><img
+							<a href="#"><img
 								src="assets/img/음식카테고리/한식.png" alt=""></a>
 						</div>
 						<h3>한식</h3>

@@ -74,6 +74,43 @@
                 }
             }
         });
+        
+        $(".single-category-item").on('click', function(){
+			var address = $("#address").val();
+			var category = $(".single-category-item").data("type");
+			console.log("category: "+category);
+			console.log("address: "+address);
+
+			alert(address);
+
+			if($("#address").val()==""){
+				
+				alert("주소를 선택해주세요");
+				return false;
+			}
+			// 폼 생성 및 데이터 전송
+			var form = $('<form>').attr({
+				method: 'GET',
+				action: 'StoFindStoreListAll.do'  // 컨트롤러 URL을 입력해주세요
+			});
+			  
+			// 주소 값을 히든 필드로 추가
+			$('<input>').attr({
+				type: 'hidden',
+				name: 'address',
+				value: address
+			}).appendTo(form);
+			
+			$('<input>').attr({
+				type: 'hidden',
+				name: 'category',
+				value: category
+			}).appendTo(form);
+
+			  
+			// 폼 전송
+			form.appendTo('body').submit();
+		});
 
         // count down
         if($('.time-countdown').length){  
