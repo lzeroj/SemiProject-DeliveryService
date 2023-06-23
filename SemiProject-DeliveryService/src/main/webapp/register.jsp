@@ -24,6 +24,7 @@
 		<div class="input-form-backgroud row">
 			<div class="input-form col-md-12 mx-auto" id="form">
 				<div class="txt_field">
+					<a href="RegisterMember.do"></a>
 					<h1 class="mb-3">회원가입</h1>
 				</div>
 				<form class="validation-form" novalidate>
@@ -41,8 +42,7 @@
 					<div class="row">
 						<div class="col-md-6 mb-3">
 							<label for="email">이름</label> <input type="email"
-								class="form-control" id="email" placeholder="이름을 적으세요"
-								required>
+								class="form-control" id="email" placeholder="이름을 적으세요" required>
 						</div>
 						<div class="col-md-6 mb-3">
 							<label for="email">이메일</label> <input type="email"
@@ -90,7 +90,7 @@
 					<button class="btn btn-primary btn-lg btn-block" type="submit"
 						id="btn-submit">가입 완료</button>
 				</form>
-			<c:import url="footer.jsp"></c:import>
+				<c:import url="footer.jsp"></c:import>
 			</div>
 		</div>
 	</div>

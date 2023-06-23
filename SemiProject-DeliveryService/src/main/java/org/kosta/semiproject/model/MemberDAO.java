@@ -31,28 +31,28 @@ public class MemberDAO {
 			rs.close();
 		closeAll(pstmt, con);
 	}
-	
+
 	public void register(MemberVO memberVO) throws SQLException {
-	    Connection con = null;
-	    PreparedStatement pstmt = null;
-	    try {
-	        con = dataSource.getConnection();
-	        String sql = "insert into member(user_id, password, user_name, email, address, add_detail, user_phone, user_birth, user_type) values(?,?,?,?,?,?,?,?,?)";
-	        pstmt = con.prepareStatement(sql);
-	        pstmt.setString(1, memberVO.getUserId());
-	        pstmt.setString(2, memberVO.getUserPassword());
-	        pstmt.setString(3, memberVO.getUserName());
-	        pstmt.setString(4, memberVO.getUserEmail());
-	        pstmt.setString(5, memberVO.getUserAddress());
-	        pstmt.setString(6, memberVO.getUserAddDetail());
-	        pstmt.setString(7, memberVO.getUserPhone());
-	        pstmt.setString(8, memberVO.getUserBirth());
-	        pstmt.setInt(9, memberVO.getUserType());
-	        int result = pstmt.executeUpdate();
-	        System.out.println("register member insert row count: " + result);
-	    } finally {
-	        closeAll(pstmt, con);
-	    }
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		try {
+			con = dataSource.getConnection();
+			String sql = "insert into member(user_id, password, user_name, email, address, add_detail, user_phone, user_birth, user_type) values(?,?,?,?,?,?,?,?,?)";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, memberVO.getUserId());
+			pstmt.setString(2, memberVO.getUserPassword());
+			pstmt.setString(3, memberVO.getUserName());
+			pstmt.setString(4, memberVO.getUserEmail());
+			pstmt.setString(5, memberVO.getUserAddress());
+			pstmt.setString(6, memberVO.getUserAddDetail());
+			pstmt.setString(7, memberVO.getUserPhone());
+			pstmt.setString(8, memberVO.getUserBirth());
+			pstmt.setInt(9, memberVO.getUserType());
+			int result = pstmt.executeUpdate();
+			System.out.println("register member insert row count: " + result);
+		} finally {
+			closeAll(pstmt, con);
+		}
 	}
 
 	public MemberVO login(String id, String password) throws SQLException {
