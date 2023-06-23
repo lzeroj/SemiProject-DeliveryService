@@ -73,7 +73,6 @@
 						<table class="cart-table">
 							<thead class="cart-table-head">
 								<tr class="table-head-row">
-									<th class="product-remove">번호</th>
 									<th class="product-image">가게명</th>
 									<th class="product-image">메뉴사진</th>
 									<th class="product-name">메뉴</th>
@@ -84,41 +83,37 @@
 								</tr>
 							</thead>
 							<tbody>
-							<c:forEach items="${cartList}" var="list" varStatus="number">
-
-								<tr class="table-body-row">
-								
-									<%-- 번호 자동부여 테스트 필요 --%>
-									<td class="product-remove">${number.count}</td>
+							<c:forEach items="${cartList}" var="list">
+								<tr class="table-body-row">					
 									<td class="product-remove">${list.foodVO.storeVO.storeName}</td>
 									<td class="product-image"><img src="assets/img/food/${list.foodVO.foodPicturePath}" alt="Food Image"></td>
 									<td class="product-name">${list.foodVO.foodName}</td>
 									<td class="product-price"><fmt:formatNumber value="${list.foodVO.foodPrice}" pattern="#,###"></fmt:formatNumber></td>
 									<td style="display: flex; justify-content: center;">
 									<%-- 마이너스 버튼 폼 --%>
-									<form method="post" id="decrease" action="CartFoodMenuUpdateMinus.do">
+									<form method="post" action="CartFoodMenuUpdateMinus.do">
 									<c:choose>
 										<c:when test="${list.quantity eq 1}">
-											<button id="decreaseButton" class="btn btn-secondary" type="submit" disabled>-</button>
+											<button id="decreaseButton" class="btn btn-secondary" type="button" disabled>-</button>
 										</c:when>	
 										<c:otherwise>
 											<button id="decreaseButton" class="btn btn-secondary" type="submit">-</button>
-											<input type="hidden" name=user_id value="${list.memberVO.user_id}">
+											<input type="hidden" name=user_id value="${list.memberVO.userId}">
 											<input type="hidden" name=food_name value="${list.foodVO.foodName}">						
 										</c:otherwise>
 									</c:choose>
 									</form>
 									
 									<form style="margin-left: 5px; margin-right: 5px;">		
-									<span id="quantity"><strong>${list.quantity}</strong></span>							
+									<strong><span id="quantity">${list.quantity}</span></strong>					
 									</form>
 									
 									<%-- 플러스 버튼 폼 --%>
-									<form method="post" action="CartFoodMenuUpdatePlus.do">
+									<form method="post" action="CartFoodMenuUpdatePlus.do">							
 									<button id="increaseButton" class="btn btn-secondary" type="submit">+</button>
-									<input type="hidden" name=user_id value="${list.memberVO.user_id}">
+									<input type="hidden" name=user_id value="${list.memberVO.userId}">
 									<input type="hidden" name=food_name value="${list.foodVO.foodName}">
-									</form>
+									</form>	
 									</td>
 									
 									<%-- 합계 테스트 필요--%>
@@ -127,7 +122,7 @@
 									<td class="product-total">
 									<form method="post" action="CartDeleteFoodMenuByIdAndByFoodName.do" id="deleteForm">
 									<button type="button" class="btn btn-link" onclick="deleteCartMenu()">삭제</button>
-									<input type="hidden" name=user_id value="${list.memberVO.user_id}">
+									<input type="hidden" name=user_id value="${list.memberVO.userId}">
 									<input type="hidden" name=food_name value="${list.foodVO.foodName}">
 									</form>
 									<script type="text/javascript">
@@ -138,7 +133,6 @@
 										}
 									</script>
 									</td>
-									
 								</tr>
 								</c:forEach>
 							</tbody>
@@ -160,11 +154,9 @@
 								<c:forEach items="${cartList}" var="list">
 									<c:set var ="totalSum" value="${totalSum+list.foodVO.foodPrice * list.quantity}"></c:set>														
 								</c:forEach>
-								<td><strong><fmt:formatNumber value="${totalSum}" pattern="#,###"></fmt:formatNumber>원</strong></td>	
-								
+								<td><strong><fmt:formatNumber value="${totalSum}" pattern="#,###"></fmt:formatNumber>원</strong></td>							
 								</tr>
-							</tbody>
-							
+							</tbody>							
 						</table>
 						<div class="cart-buttons">
 							<a href="checkout.jsp" class="boxed-btn black">주문하기</a>

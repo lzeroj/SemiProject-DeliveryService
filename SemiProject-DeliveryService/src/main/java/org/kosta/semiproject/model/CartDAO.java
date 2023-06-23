@@ -121,4 +121,19 @@ public class CartDAO {
 			closeAll(pstmt, con);
 		}		
 	}
+
+	public void insertCart(String user_id, String food_name) throws SQLException {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		try {
+			con = dataSource.getConnection();
+			String sql = "INSERT INTO cart(user_id,food_name,quantity) VALUES(?,?,1);";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, user_id);
+			pstmt.setString(2, food_name);
+			pstmt.executeUpdate();
+		}finally {
+			closeAll(pstmt, con);
+		}		
+	}
 }
