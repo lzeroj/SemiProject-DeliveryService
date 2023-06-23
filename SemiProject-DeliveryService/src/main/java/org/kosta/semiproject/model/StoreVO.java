@@ -13,8 +13,8 @@ public class StoreVO {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public StoreVO(String storeName, String storeLocation, String storeCategory,
-			String storePhoneNumber, String storeMinimumOrderAmount, String storeInfo, String storePicturePath) {
+	public StoreVO(String storeName, String storeLocation, String storeCategory, String storePhoneNumber,
+			String storeMinimumOrderAmount, String storeInfo, String storePicturePath) {
 		super();
 		this.storeName = storeName;
 		this.storeLocation = storeLocation;
@@ -24,6 +24,19 @@ public class StoreVO {
 		this.storeInfo = storeInfo;
 		this.storePicturePath = storePicturePath;
 	}
+	public StoreVO(int storeNumber, String storeName, String storeLocation, String storeCategory,
+			String storePhoneNumber, String storeMinimumOrderAmount, String storeInfo, String storePicturePath) {
+		super();
+		this.storeNumber = storeNumber;
+		this.storeName = storeName;
+		this.storeLocation = storeLocation;
+		this.storeCategory = storeCategory;
+		this.storePhoneNumber = storePhoneNumber;
+		this.storeMinimumOrderAmount = storeMinimumOrderAmount;
+		this.storeInfo = storeInfo;
+		this.storePicturePath = storePicturePath;
+	}
+
 	public int getStoreNumber() {
 		return storeNumber;
 	}

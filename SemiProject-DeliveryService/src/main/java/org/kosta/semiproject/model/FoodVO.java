@@ -9,6 +9,12 @@ public class FoodVO {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	public FoodVO(String foodName, int foodPrice, String foodPicturePath) {
+		super();
+		this.foodName = foodName;
+		this.foodPrice = foodPrice;
+		this.foodPicturePath = foodPicturePath;
+	}
 	public FoodVO(String foodName, int foodPrice, String foodPicturePath, StoreVO storeVO) {
 		super();
 		this.foodName = foodName;

@@ -71,20 +71,21 @@
 			<div class="row">
 				<div class="col-md-5">
 					<div class="single-product-img">
-						<img src="assets/img/products/product-img-5.jpg" alt="">
+						<img src="assets/img/food/${foodinfo.foodPicturePath}" alt="">
 					</div>
 				</div>
 				<div class="col-md-7">
 					<div class="single-product-content">
-						<h2><strong>순대국</strong></h2><br><br>
-						<p class="single-product-pricing"> 11000원</p>
-			<!-- chk --><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta sint dignissimos, rem commodi cum voluptatem quae reprehenderit repudiandae ea tempora incidunt ipsa, quisquam animi perferendis eos eum modi! Tempora, earum.</p>
+						<h2><strong>${foodinfo.foodName}</strong></h2><br><br>
+						<p class="single-product-pricing"> ${foodinfo.foodPrice}원</p>
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta sint dignissimos, rem commodi cum voluptatem quae reprehenderit repudiandae ea tempora incidunt ipsa, quisquam animi perferendis eos eum modi! Tempora, earum.</p>
 						<div class="single-product-form">
 							<form action="index.html">
 								<input type="number" placeholder="0">
 							</form>
 							<a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> 장바구니 추가</a>
-							<br><p><strong>카테고리: </strong>한식</p>
+							<a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> 주문하기 </a>
+<!-- 							<br><p><strong>카테고리: </strong>한식</p> -->
 						</div>
 					</div>
 				</div>
