@@ -104,7 +104,6 @@ INSERT INTO cart(user_id,food_name,quantity) VALUES('test1','우동',3);
 INSERT INTO cart(user_id,food_name,quantity) VALUES('test2','갈비',4);
 INSERT INTO cart(user_id,food_name,quantity) VALUES('test2','규카츠',1);
 INSERT INTO cart(user_id,food_name,quantity) VALUES('test3','육개장',2);
-INSERT INTO cart(user_id,food_name) VALUES('test3','김치볶음밥');
 
 --주문테이블
 INSERT INTO order_food(order_no,total_price,order_success,order_date,order_location,user_id,food_name) VALUES(order_no_seq.nextval,11000,'Y',sysdate,'위치미정','test1','순대국');
