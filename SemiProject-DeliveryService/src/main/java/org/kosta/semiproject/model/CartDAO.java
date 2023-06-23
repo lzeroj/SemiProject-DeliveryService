@@ -58,7 +58,7 @@ public class CartDAO {
 			while (rs.next()) {
 				CartVO cartVO = new CartVO();			
 				 MemberVO memberVO = new MemberVO(); 
-				 memberVO.setUser_id(rs.getString("user_id"));
+				 memberVO.setUserId(rs.getString("user_id"));
 				 cartVO.setMemberVO(memberVO);				 						 
 				 FoodVO foodVO = new FoodVO(); 
 				 foodVO.setFoodName(rs.getString("food_name"));
