@@ -4,19 +4,17 @@ public class CartVO {
 	private MemberVO memberVO;
 	private FoodVO foodVO;
 	private int quantity;
-	private int totalMenuPrice;
 	
 	public CartVO() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public CartVO(MemberVO memberVO, FoodVO foodVO, int quantity, int totalMenuPrice) {
+	public CartVO(MemberVO memberVO, FoodVO foodVO, int quantity) {
 		super();
 		this.memberVO = memberVO;
 		this.foodVO = foodVO;
 		this.quantity = quantity;
-		this.totalMenuPrice = totalMenuPrice;
 	}
 
 	public MemberVO getMemberVO() {
@@ -43,18 +41,8 @@ public class CartVO {
 		this.quantity = quantity;
 	}
 
-	public int getTotalMenuPrice() {
-		return totalMenuPrice;
-	}
-
-	public void setTotalMenuPrice(int totalMenuPrice) {
-		this.totalMenuPrice = totalMenuPrice;
-	}
-
 	@Override
 	public String toString() {
-		return "CartVO [memberVO=" + memberVO + ", quantity=" + quantity + ", totalMenuPrice=" + totalMenuPrice + "]";
+		return "CartVO [memberVO=" + memberVO + ", quantity=" + quantity + "]";
 	}
-	
-	
 }

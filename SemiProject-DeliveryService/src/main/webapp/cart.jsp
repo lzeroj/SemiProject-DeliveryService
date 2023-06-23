@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -83,25 +84,67 @@
 								</tr>
 							</thead>
 							<tbody>
+							<c:forEach items="${cartList}" var="list" varStatus="number">
+
 								<tr class="table-body-row">
-									<td class="product-remove"><a href="#">1</a></td>
-									<td class="product-remove"><a href="#">한식당</a></td>
-									<td class="product-image"><img src="assets/img/음식카테고리/한식.png" alt=""></td>
-									<td class="product-name">비빔밥</td>
-									<td class="product-price">8,000원</td>
-									<td>
-									<button id="decreaseButton" class="btn btn-secondary">-</button>
-									<input type="text" placeholder="0" style="width : 30px">
-									<button id="increaseButton" class="btn btn-secondary">+</button>
+								
+									<%-- 번호 자동부여 테스트 필요 --%>
+									<td class="product-remove">${number.count}</td>
+									<td class="product-remove">${list.foodVO.storeVO.storeName}</td>
+									<td class="product-image"><img src="assets/img/food/${list.foodVO.foodPicturePath}" alt="Food Image"></td>
+									<td class="product-name">${list.foodVO.foodName}</td>
+									<td class="product-price"><fmt:formatNumber value="${list.foodVO.foodPrice}" pattern="#,###"></fmt:formatNumber></td>
+									<td style="display: flex; justify-content: center;">
+									<%-- 마이너스 버튼 폼 --%>
+									<form method="post" id="decrease" action="CartFoodMenuUpdateMinus.do">
+									<c:choose>
+										<c:when test="${list.quantity eq 1}">
+											<button id="decreaseButton" class="btn btn-secondary" type="submit" disabled>-</button>
+										</c:when>	
+										<c:otherwise>
+											<button id="decreaseButton" class="btn btn-secondary" type="submit">-</button>
+											<input type="hidden" name=user_id value="${list.memberVO.user_id}">
+											<input type="hidden" name=food_name value="${list.foodVO.foodName}">						
+										</c:otherwise>
+									</c:choose>
+									</form>
+									
+									<form style="margin-left: 5px; margin-right: 5px;">		
+									<span id="quantity"><strong>${list.quantity}</strong></span>							
+									</form>
+									
+									<%-- 플러스 버튼 폼 --%>
+									<form method="post" action="CartFoodMenuUpdatePlus.do">
+									<button id="increaseButton" class="btn btn-secondary" type="submit">+</button>
+									<input type="hidden" name=user_id value="${list.memberVO.user_id}">
+									<input type="hidden" name=food_name value="${list.foodVO.foodName}">
+									</form>
 									</td>
-									<td class="product-total">8,000원</td>
-									<td class="product-total"><button type="button" class="btn btn-link">삭제</button></td>
+									
+									<%-- 합계 테스트 필요--%>
+									<td class="product-total" id="eachFoodTotalPrice"><fmt:formatNumber value="${list.foodVO.foodPrice * list.quantity}" pattern="#,###"></fmt:formatNumber></td>
+									
+									<td class="product-total">
+									<form method="post" action="CartDeleteFoodMenuByIdAndByFoodName.do" id="deleteForm">
+									<button type="button" class="btn btn-link" onclick="deleteCartMenu()">삭제</button>
+									<input type="hidden" name=user_id value="${list.memberVO.user_id}">
+									<input type="hidden" name=food_name value="${list.foodVO.foodName}">
+									</form>
+									<script type="text/javascript">
+										function deleteCartMenu() {
+											if(confirm("삭제하시겠습니까?")){
+												document.getElementById("deleteForm").submit();
+											}
+										}
+									</script>
+									</td>
+									
 								</tr>
+								</c:forEach>
 							</tbody>
 						</table>
 					</div>
 				</div>
-
 				<div class="col-lg-4">
 					<div class="total-section">
 						<table class="total-table">
@@ -110,14 +153,21 @@
 									<th>합계</th>
 								</tr>
 							</thead>
+							
 							<tbody>
 								<tr class="total-data">
-									<td><strong>8,000원 </strong></td>
+								<%-- 총금액 계산방법 테스트 --%>				
+								<c:forEach items="${cartList}" var="list">
+									<c:set var ="totalSum" value="${totalSum+list.foodVO.foodPrice * list.quantity}"></c:set>														
+								</c:forEach>
+								<td><strong><fmt:formatNumber value="${totalSum}" pattern="#,###"></fmt:formatNumber>원</strong></td>	
+								
 								</tr>
 							</tbody>
+							
 						</table>
 						<div class="cart-buttons">
-							<a href="checkout.html" class="boxed-btn black">주문하기</a>
+							<a href="checkout.jsp" class="boxed-btn black">주문하기</a>
 						</div>
 					</div>
 				</div>
