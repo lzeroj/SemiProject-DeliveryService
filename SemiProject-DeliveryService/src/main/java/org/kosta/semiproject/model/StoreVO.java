@@ -1,28 +1,33 @@
 package org.kosta.semiproject.model;
 
 public class StoreVO {
-	private long storeNumber;
+	private int storeNumber;
 	private String storeName;
 	private String storeLocation;
 	private String storeCategory;
 	private String storePhoneNumber;
+	private String storeMinimumOrderAmount;
+	private String storeInfo;
+	private String storePicturePath;
 	public StoreVO() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public StoreVO(long storeNumber, String storeName, String storeLocation, String storeCategory,
-			String storePhoneNumber) {
+	public StoreVO(String storeName, String storeLocation, String storeCategory,
+			String storePhoneNumber, String storeMinimumOrderAmount, String storeInfo, String storePicturePath) {
 		super();
-		this.storeNumber = storeNumber;
 		this.storeName = storeName;
 		this.storeLocation = storeLocation;
 		this.storeCategory = storeCategory;
 		this.storePhoneNumber = storePhoneNumber;
+		this.storeMinimumOrderAmount = storeMinimumOrderAmount;
+		this.storeInfo = storeInfo;
+		this.storePicturePath = storePicturePath;
 	}
-	public long getStoreNumber() {
+	public int getStoreNumber() {
 		return storeNumber;
 	}
-	public void setStoreNumber(long storeNumber) {
+	public void setStoreNumber(int storeNumber) {
 		this.storeNumber = storeNumber;
 	}
 	public String getStoreName() {
@@ -49,9 +54,30 @@ public class StoreVO {
 	public void setStorePhoneNumber(String storePhoneNumber) {
 		this.storePhoneNumber = storePhoneNumber;
 	}
+	public String getStoreMinimumOrderAmount() {
+		return storeMinimumOrderAmount;
+	}
+	public void setStoreMinimumOrderAmount(String storeMinimumOrderAmount) {
+		this.storeMinimumOrderAmount = storeMinimumOrderAmount;
+	}
+	public String getStoreInfo() {
+		return storeInfo;
+	}
+	public void setStoreInfo(String storeInfo) {
+		this.storeInfo = storeInfo;
+	}
+	public String getStorePicturePath() {
+		return storePicturePath;
+	}
+	public void setStorePicturePath(String storePicturePath) {
+		this.storePicturePath = storePicturePath;
+	}
 	@Override
 	public String toString() {
 		return "StoreVO [storeNumber=" + storeNumber + ", storeName=" + storeName + ", storeLocation=" + storeLocation
-				+ ", storeCategory=" + storeCategory + ", storePhoneNumber=" + storePhoneNumber + "]";
+				+ ", storeCategory=" + storeCategory + ", storePhoneNumber=" + storePhoneNumber
+				+ ", storeMinimumOrderAmount=" + storeMinimumOrderAmount + ", storeInfo=" + storeInfo
+				+ ", storePicturePath=" + storePicturePath + "]";
 	}
+	
 }

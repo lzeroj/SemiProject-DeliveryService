@@ -18,9 +18,9 @@ public class DataSourceManager {
 		//apache tomcat에서 제공하는 dhcp를 사용한다
 		BasicDataSource dbcp = new BasicDataSource();	
 		dbcp.setDriverClassName("oracle.jdbc.OracleDriver");
-		dbcp.setUrl("jdbc:oracle:thin:@52.79.227.103:1521:xe");
-		dbcp.setUsername("scott");
-		dbcp.setPassword("tiger");
+		dbcp.setUrl("jdbc:oracle:thin:@54.180.83.218:1521:xe");
+		dbcp.setUsername("duck");
+		dbcp.setPassword("fly");
 		this.dataSource=dbcp;
 	}
 	public static DataSourceManager getInstance() {

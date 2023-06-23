@@ -84,7 +84,7 @@
             });
          });
         }
-
+        
         // projects filters isotop
         $(".product-filters li").on('click', function () {
             
@@ -92,6 +92,19 @@
             $(this).addClass("active");
 
             var selector = $(this).attr('data-filter');
+//            var chek1 = $("#item").data("chk");
+//
+//            var chek = $(".product-filters ul li").data("filters");
+//            console.log("chek:"+chek);
+//            console.log("chek1:"+chek1);
+//
+//            console.log("selector:"+selector);
+//            
+//            if(chek!=selector){
+//				$(".single-product-item").hide();
+//			}else{
+//				$(".single-product-item").show();
+//			}
 
             $(".product-lists").isotope({
                 filter: selector,

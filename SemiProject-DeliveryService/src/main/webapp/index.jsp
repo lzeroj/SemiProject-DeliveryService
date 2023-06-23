@@ -84,9 +84,9 @@
 			</div>
 			<div class="row">
 				<div class="col-lg-3 col-md-6 text-center">
-					<div class="single-product-item">
-						<div class="product-image">
-							<a href="shop.jsp"><img
+					<div class="single-product-item" data-type="한식">
+						<div class="product-image" >
+							<a href="StoFindStoreListAll.do?category=한식" id="hasik"><img
 								src="assets/img/음식카테고리/한식.png" alt=""></a>
 						</div>
 						<h3>한식</h3>

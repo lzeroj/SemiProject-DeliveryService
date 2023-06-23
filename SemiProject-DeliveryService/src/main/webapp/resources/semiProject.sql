@@ -1,6 +1,6 @@
 -- **회원 테이블**
 CREATE TABLE MEMBER (
-	user_id VARCHAR2(100) PRIMARY KEY ,
+	user_id VARCHAR2(100) PRIMARY KEY,
 	password VARCHAR2(100) NOT NULL,
 	user_name VARCHAR2(20) NOT NULL,
 	email VARCHAR2(100) NOT NULL,
@@ -10,26 +10,22 @@ CREATE TABLE MEMBER (
 	user_birth DATE NOT NULL,
 	user_type NUMBER NOT NULL CHECK (user_type IN ('1', '2', '3'))
 )
-
+drop table member
 ----------------------------------------------------------------------------
 -- **주문 테이블**
-CREATE TABLE ORDER (
+CREATE TABLE ORDER_FOOD (
     order_no NUMBER PRIMARY KEY,
-    order_id VARCHAR2(100) NOT NULL,
     total_price NUMBER NOT NULL,
-    order_price NUMBER NOT NULL,  
-    order_success CHAR(1) NOT NULL CHECK (ORDER IN ('Y', 'N')),
+    order_success CHAR(1) NOT NULL CHECK (order_success IN ('Y', 'N')), 
     order_date DATE NOT NULL,
     order_location VARCHAR2(100) NOT NULL,
     user_id VARCHAR2(100) NOT NULL,
     food_name VARCHAR2(100) NOT NULL,
-    CONSTRAINT fk_user_id FOREIGN KEY (user_id) REFERENCES cart(user_id),
-		CONSTRAINT fk_food_name FOREIGN KEY (food_name) REFERENCES cart(food_name)
+    CONSTRAINT fk_user_id FOREIGN KEY (user_id,food_name) REFERENCES cart(user_id,food_name)
 );
-
+drop table order_food
 -- 주문 시퀀스 생성 
-CREATE SEQUENCE order_no_seq NOCACHE; 
-
+CREATE SEQUENCE order_no_seq NOCACHE;
 ----------------------------------------------------------------------------
 -- **가게테이블**
 
@@ -58,23 +54,68 @@ CREATE TABLE STORE_FOOD(
 	food_name VARCHAR2(100) NOT NULL,
 	store_number NUMBER NOT NULL,
 	food_price NUMBER NOT NULL,
-	
 	food_picture_path VARCHAR2(100) NULL,
-	CONSTRAINT food_pk PRIMARY KEY (food_name,store_number),
+	CONSTRAINT food_pk PRIMARY KEY (food_name),
 	CONSTRAINT food_fk FOREIGN KEY(store_number) REFERENCES STORE(store_number) ON DELETE CASCADE
 )
 -- 음식전체조회
 SELECT * FROM STORE_FOOD;
 ----------------------------------------------------------------------------
 -- **장바구니 테이블 **
+
 CREATE TABLE cart( 
- 	userid VARCHAR2(100) NOT NULL,
- 	food_name VARCHAR2(100) NOT NULL,
-	quantity NUMBER NOT NULL DEFAULT 1 CHECK (quantity > 0),  -- 최소 수량 1
-	totalmenu_price NUMBER NOT NULL
-	CONSTRAINT cart_pk PRIMARY KEY(userid,food_name),
-	CONSTRAINT cart_userid_fk FOREIGN KEY(userid) 
-	REFERENCES member(userid) ON DELETE CASCADE,      -- 부모테이블 삭제 시 같이 삭제
-	CONSTRAINT cart_food_name_fk FOREIGN KEY(food_name) 
-	REFERENCES menu(food_name) ON DELETE CASCADE      -- 부모테이블 삭제 시 같이 삭제
-	);
+   user_id VARCHAR2(100) NOT NULL,
+   food_name VARCHAR2(100) NOT NULL,
+   quantity NUMBER NOT NULL CHECK (quantity > 0),
+   CONSTRAINT cart_pk PRIMARY KEY(user_id, food_name),
+   CONSTRAINT cart_user_id_fk FOREIGN KEY(user_id) REFERENCES MEMBER(user_id) ON DELETE CASCADE,     
+   CONSTRAINT cart_food_name_fk FOREIGN KEY(food_name) REFERENCES STORE_FOOD(food_name) ON DELETE CASCADE    
+);
+
+commit
+
+select * from cart
+	
+	
+-- INSERT 구문 ( TEST 데이터 삽입 ) 
+
+-- MEMBER
+	INSERT INTO member(user_id,password,user_name,email,address,add_detail,user_phone,user_birth,user_type)
+	VALUES('test1','a','테스트1','aaa@naver.com','경기도 성남시 분당구 성남대로 34','하나프라자 6층','01012341234',to_date('2023-1-11','YYYY-MM-DD'),1);
+	
+	INSERT INTO member(user_id,password,user_name,email,address,add_detail,user_phone,user_birth,user_type)
+	VALUES('test2','a','테스트2','bbb@naver.com','경기 성남시 분당구 구미로 8','분당M타워 102호','01012341234',to_date('2023-2-22','YYYY-MM-DD'),1);
+	
+	INSERT INTO member(user_id,password,user_name,email,address,add_detail,user_phone,user_birth,user_type)
+	VALUES('test3','a','테스트3','ccc@naver.com','경기 용인시 수지구 용구대로2771번길 88','8층','01012341234',to_date('2023-3-23','YYYY-MM-DD'),1);
+	
+	select * from store;
+	
+-- 가게별음식테이블	
+INSERT INTO STORE_FOOD(food_name,store_number,food_price,food_picture_path) VALUES('순대국',1,11000,'');	
+select * from store_food
+-- 장바구니
+INSERT INTO cart(user_id,food_name,quantity) VALUES('test1','순대국',1);
+INSERT INTO cart(user_id,food_name,quantity) VALUES('test1','삼겹살',2);
+INSERT INTO cart(user_id,food_name,quantity) VALUES('test1','우동',3);
+INSERT INTO cart(user_id,food_name,quantity) VALUES('test2','갈비',4);
+INSERT INTO cart(user_id,food_name,quantity) VALUES('test2','규카츠',1);
+INSERT INTO cart(user_id,food_name,quantity) VALUES('test3','육개장',2);
+INSERT INTO cart(user_id,food_name) VALUES('test3','김치볶음밥');
+
+--주문테이블
+INSERT INTO order_food(order_no,total_price,order_success,order_date,order_location,user_id,food_name) VALUES(order_no_seq.nextval,11000,'Y',sysdate,'위치미정','test1','순대국');
+
+select * from store -- 짬뽕지존, 열방 , 초이반점
+INSERT INTO STORE_FOOD(food_name,store_number,food_price,food_picture_path) VALUES('짬뽕',8,12000,'china_jjambbong.png');	
+INSERT INTO STORE_FOOD(food_name,store_number,food_price,food_picture_path) VALUES('잡채밥',8,13000,'china_jabchaebap.png');	
+INSERT INTO STORE_FOOD(food_name,store_number,food_price,food_picture_path) VALUES('칠리새우',8,28000,'china_chilisaewoo.png');	
+INSERT INTO STORE_FOOD(food_name,store_number,food_price,food_picture_path) VALUES('군만두',8,8000,'china_gunmandu.png');	
+INSERT INTO STORE_FOOD(food_name,store_number,food_price,food_picture_path) VALUES('마라탕',9,11000,'china_maratang.png');	
+INSERT INTO STORE_FOOD(food_name,store_number,food_price,food_picture_path) VALUES('마라샹궈',9,13000,'china_malashanguo.png');	
+INSERT INTO STORE_FOOD(food_name,store_number,food_price,food_picture_path) VALUES('꿔바로우',9,18000,'china_gguobaorou.png');	
+INSERT INTO STORE_FOOD(food_name,store_number,food_price,food_picture_path) VALUES('볶음밥',9,11000,'china_bokkeumbap.png');	
+INSERT INTO STORE_FOOD(food_name,store_number,food_price,food_picture_path) VALUES('짜장면',10,7000,'china_jajangmyeon.png');	
+INSERT INTO STORE_FOOD(food_name,store_number,food_price,food_picture_path) VALUES('탕수육',10,15000,'china_tangsuyuk.png');	
+INSERT INTO STORE_FOOD(food_name,store_number,food_price,food_picture_path) VALUES('팔보채',10,23000,'china_palbochae.png');	
+INSERT INTO STORE_FOOD(food_name,store_number,food_price,food_picture_path) VALUES('양장피',10,27000,'china_yangjangpi.png');	
