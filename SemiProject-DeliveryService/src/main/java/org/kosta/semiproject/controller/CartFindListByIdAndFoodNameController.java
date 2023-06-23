@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.kosta.semiproject.model.CartDAO;
 import org.kosta.semiproject.model.CartVO;
 
-public class FindCartListByIdAndFoodNameController implements Controller{
+public class CartFindListByIdAndFoodNameController implements Controller{
 
 	@Override
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {

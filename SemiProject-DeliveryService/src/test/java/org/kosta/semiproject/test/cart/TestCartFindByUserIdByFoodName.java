@@ -1,4 +1,4 @@
-package org.kosta.semiproject.test.step1;
+package org.kosta.semiproject.test.cart;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import org.kosta.semiproject.model.CartDAO;
 import org.kosta.semiproject.model.CartVO;
 
-public class CartFindByUserIdByFoodNametest {
+public class TestCartFindByUserIdByFoodName {
 	public static void main(String[] args) {
 		ArrayList<CartVO> list = new ArrayList<>();
 		try {

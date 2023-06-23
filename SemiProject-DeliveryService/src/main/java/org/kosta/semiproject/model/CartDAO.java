@@ -76,4 +76,49 @@ public class CartDAO {
 		}
 		return list;
 	}
+
+	public void updateCartMenuPlus(String user_id, String food_name) throws SQLException {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		try {
+			con = dataSource.getConnection();
+			String sql = "UPDATE cart SET quantity=quantity+1 WHERE user_id=? AND food_name=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, user_id);
+			pstmt.setString(2, food_name);
+			pstmt.executeUpdate();
+		}finally {
+			closeAll(pstmt, con);
+		}
+	}
+
+	public void updateCartMenuMinus(String user_id, String food_name) throws SQLException {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		try {
+			con = dataSource.getConnection();
+			String sql = "UPDATE cart SET quantity=quantity-1 WHERE user_id=? AND food_name=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, user_id);
+			pstmt.setString(2, food_name);
+			pstmt.executeUpdate();
+		}finally {
+			closeAll(pstmt, con);
+		}	
+	}
+
+	public void deleteCartMenu(String user_id, String food_name) throws SQLException {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		try {
+			con = dataSource.getConnection();
+			String sql = "DELETE FROM cart WHERE user_id=? AND food_name=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, user_id);
+			pstmt.setString(2, food_name);
+			pstmt.executeUpdate();
+		}finally {
+			closeAll(pstmt, con);
+		}		
+	}
 }
