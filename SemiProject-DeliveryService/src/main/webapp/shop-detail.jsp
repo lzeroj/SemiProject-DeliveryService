@@ -267,6 +267,7 @@ ${storeInfo.storeInfo}
 	<script src="assets/js/sticker.js"></script>
 	<!-- main js -->
 	<script src="assets/js/main.js"></script>
+	
 
 </body>
 </html>
