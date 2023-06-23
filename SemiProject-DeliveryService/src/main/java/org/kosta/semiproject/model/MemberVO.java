@@ -1,91 +1,111 @@
 package org.kosta.semiproject.model;
 
 public class MemberVO {
-	private String user_id;
-	private String password;
-	private String user_name;
-	private String email;
-	private String address;
-	private String add_detail;
-	private int user_phone;
-	private String user_birth;
-	private int user_type;
+	private String userId;
+	private String userPassword;
+	private String userName;
+	private String userEmail;
+	private String userAddress;
+	private String userAddDetail;
+	private int userPhone;
+	private String userBirth;
+	private int userType;
+
 	public MemberVO() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public MemberVO(String user_id, String password, String user_name, String email, String address, String add_detail,
-			int user_phone, String user_birth, int user_type) {
+
+	public MemberVO(String userId, String userPassword, String userName, String userEmail, String userAddress,
+			String userAddDetail, int userPhone, String userBirth, int userType) {
 		super();
-		this.user_id = user_id;
-		this.password = password;
-		this.user_name = user_name;
-		this.email = email;
-		this.address = address;
-		this.add_detail = add_detail;
-		this.user_phone = user_phone;
-		this.user_birth = user_birth;
-		this.user_type = user_type;
-	}
-	public String getUser_id() {
-		return user_id;
-	}
-	public void setUser_id(String user_id) {
-		this.user_id = user_id;
-	}
-	public String getPassword() {
-		return password;
-	}
-	public void setPassword(String password) {
-		this.password = password;
-	}
-	public String getUser_name() {
-		return user_name;
-	}
-	public void setUser_name(String user_name) {
-		this.user_name = user_name;
-	}
-	public String getEmail() {
-		return email;
-	}
-	public void setEmail(String email) {
-		this.email = email;
-	}
-	public String getAddress() {
-		return address;
-	}
-	public void setAddress(String address) {
-		this.address = address;
-	}
-	public String getAdd_detail() {
-		return add_detail;
-	}
-	public void setAdd_detail(String add_detail) {
-		this.add_detail = add_detail;
-	}
-	public int getUser_phone() {
-		return user_phone;
-	}
-	public void setUser_phone(int user_phone) {
-		this.user_phone = user_phone;
-	}
-	public String getUser_birth() {
-		return user_birth;
-	}
-	public void setUser_birth(String user_birth) {
-		this.user_birth = user_birth;
-	}
-	public int getUser_type() {
-		return user_type;
-	}
-	public void setUser_type(int user_type) {
-		this.user_type = user_type;
-	}
-	@Override
-	public String toString() {
-		return "MemberVO [user_id=" + user_id + ", password=" + password + ", user_name=" + user_name + ", email="
-				+ email + ", address=" + address + ", add_detail=" + add_detail + ", user_phone=" + user_phone
-				+ ", user_birth=" + user_birth + ", user_type=" + user_type + "]";
+		this.userId = userId;
+		this.userPassword = userPassword;
+		this.userName = userName;
+		this.userEmail = userEmail;
+		this.userAddress = userAddress;
+		this.userAddDetail = userAddDetail;
+		this.userPhone = userPhone;
+		this.userBirth = userBirth;
+		this.userType = userType;
 	}
 
+	public String getUserId() {
+		return userId;
+	}
+
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+
+	public String getUserPassword() {
+		return userPassword;
+	}
+
+	public void setUserPassword(String userPassword) {
+		this.userPassword = userPassword;
+	}
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	public String getUserEmail() {
+		return userEmail;
+	}
+
+	public void setUserEmail(String userEmail) {
+		this.userEmail = userEmail;
+	}
+
+	public String getUserAddress() {
+		return userAddress;
+	}
+
+	public void setUserAddress(String userAddress) {
+		this.userAddress = userAddress;
+	}
+
+	public String getUserAddDetail() {
+		return userAddDetail;
+	}
+
+	public void setUserAddDetail(String userAddDetail) {
+		this.userAddDetail = userAddDetail;
+	}
+
+	public int getUserPhone() {
+		return userPhone;
+	}
+
+	public void setUserPhone(int userPhone) {
+		this.userPhone = userPhone;
+	}
+
+	public String getUserBirth() {
+		return userBirth;
+	}
+
+	public void setUserBirth(String userBirth) {
+		this.userBirth = userBirth;
+	}
+
+	public int getUserType() {
+		return userType;
+	}
+
+	public void setUserType(int userType) {
+		this.userType = userType;
+	}
+
+	@Override
+	public String toString() {
+		return "MemberVO [userId=" + userId + ", userPassword=" + userPassword + ", userName=" + userName
+				+ ", userEmail=" + userEmail + ", userAddress=" + userAddress + ", userAddDetail=" + userAddDetail
+				+ ", userPhone=" + userPhone + ", userBirth=" + userBirth + ", userType=" + userType + "]";
+	}
 }
