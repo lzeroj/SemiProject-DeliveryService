@@ -11,6 +11,9 @@ CREATE TABLE MEMBER (
 	user_type NUMBER NOT NULL CHECK (user_type IN ('1', '2', '3'))
 )
 drop table member
+-- 회원 전체조회
+SELECT * FROM member;
+
 ----------------------------------------------------------------------------
 -- **주문 테이블**
 CREATE TABLE ORDER_FOOD (
@@ -119,3 +122,4 @@ INSERT INTO STORE_FOOD(food_name,store_number,food_price,food_picture_path) VALU
 INSERT INTO STORE_FOOD(food_name,store_number,food_price,food_picture_path) VALUES('탕수육',10,15000,'china_tangsuyuk.png');	
 INSERT INTO STORE_FOOD(food_name,store_number,food_price,food_picture_path) VALUES('팔보채',10,23000,'china_palbochae.png');	
 INSERT INTO STORE_FOOD(food_name,store_number,food_price,food_picture_path) VALUES('양장피',10,27000,'china_yangjangpi.png');	
+
