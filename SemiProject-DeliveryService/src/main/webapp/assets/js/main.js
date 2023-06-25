@@ -81,12 +81,10 @@
 			console.log("category: "+category);
 			console.log("address: "+address);
 
-			//alert(address);
-
 			if($("#address").val()==""){
 				
-				//alert("주소를 선택해주세요");
-				//return false;
+				alert("주소를 선택해주세요");
+				return;
 			}
 			// 폼 생성 및 데이터 전송
 			var form = $('<form>').attr({
@@ -107,7 +105,6 @@
 				value: category
 			}).appendTo(form);
 
-			  
 			// 폼 전송
 			form.appendTo('body').submit();
 		});

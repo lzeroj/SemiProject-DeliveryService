@@ -59,7 +59,7 @@
 							<h1>오, 2키로?</h1>
 							<div class="hero-btns">
 								<input type="text" placeholder="주소" size="60" id="address" name="address"
-									onclick="findAddress()"><a href="shop.jsp"
+									onclick="findAddress()" value="경기 성남시 분당구 성남대로 45"><a href="shop.jsp"
 									class="boxed-btn">검색</a>
 							</div>
 						</div>

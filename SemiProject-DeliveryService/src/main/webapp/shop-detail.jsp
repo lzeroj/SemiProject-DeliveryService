@@ -82,7 +82,19 @@
 					<div class="single-product-content">
 						<h2>${storeInfo.storeName}</h2><br>
 						<span class="store_detail_css"><strong>최소주문금액</strong> : ${storeInfo.storeMinimumOrderAmount}</span><br>
-						<span class="store_detail_css"><strong>배달거리</strong> : </span><br><br>
+						<span class="store_detail_css">
+						<c:choose>
+							<c:when test="${distance > 4}">
+								<strong>배달거리</strong> : ${distance} Km - 2000원
+							</c:when>
+							<c:when test="${distance > 2 && distance < 4}">
+								<strong>배달거리</strong> : ${distance} Km - 1000원
+							</c:when>
+							<c:when test="${distance < 2  && distance > 0}">
+								<strong>배달거리</strong> : ${distance} Km - 무료
+							</c:when>
+						</c:choose>
+						</span><br><br>
 						<textarea class="form-control" id="store-detail" rows="6" readonly="readonly">
 ${storeInfo.storeInfo}
 						</textarea>

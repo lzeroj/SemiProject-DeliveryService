@@ -13,6 +13,7 @@ public class StoFindFoodDetailByFoodNameController implements Controller{
 		String foodname = request.getParameter("foodname");
 		FoodVO fvo = FoodDAO.getInstance().findFoodDetailByFoodName(foodname);
 		request.setAttribute("foodinfo", fvo);
+
 		return "single-product.jsp";
 	}
 }
