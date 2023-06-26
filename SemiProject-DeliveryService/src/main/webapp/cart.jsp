@@ -39,7 +39,7 @@
 <link rel="stylesheet" href="assets/css/responsive.css">
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
-
+<script src="https://code.jquery.com/jquery-latest.min.js"></script>
 </head>
 <body>
 
@@ -140,7 +140,6 @@
 													return confirm("정말로 삭제하시겠습니까?");
 												}
 											</script>
-
 										</td>
 									</tr>
 								</c:forEach>
@@ -150,7 +149,7 @@
 				</div>
 				<div class="col-lg-4">
 					<div class="total-section">
-						<form action="OrderFood.do" method="post">
+						<form action="OrderFood.do" method="post" name="orderFoodForm" id="orderFoodForm">
 							<table class="total-table">
 								<thead class="total-table-head">
 									<tr class="table-total-row">
@@ -174,10 +173,20 @@
 										<td>
 										<input type="hidden" name="totalSum" value="${totalSum}"/>
 										<button class="btn btn-warning" name="order"
-												type="submit">주문하기</button></td>
+												type="button" id="order">주문하기</button></td>
 									</tr>
 								</tbody>
 							</table>
+							<script type="text/javascript">
+								$(function() {
+									$("#order").submit(function() {
+										if(confirm("주문 하시겠습니까?")){
+											$("#orderFoodForm").onsubmit();
+										}
+									});
+								});
+							</script>
+							
 							<%-- 주문하기 ( order_food 테이블 저장 ) --%>
 						</form>
 					</div>

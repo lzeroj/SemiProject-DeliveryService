@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
 import javax.sql.DataSource;
 
@@ -77,13 +76,12 @@ public class OrderDAO {
 			con = dataSource.getConnection();
 			StringBuilder sb = new StringBuilder();
 			sb.append("INSERT INTO ORDER_FOOD ");
-			sb.append("VALUES(order_no_seq.NEXTVAL, ?, ?, SYSDATE, ?, ?, ?)");
+			sb.append("VALUES(order_no_seq.NEXTVAL, ?, ?, SYSDATE, ?, ?)");
 			pstmt =con.prepareStatement(sb.toString());
-//			pstmt.setInt(1, ovo.getFoodPrice());
+			pstmt.setInt(1, ovo.getTotalPrice());
 			pstmt.setString(2, "Y");
 			pstmt.setString(3, location);
 			pstmt.setString(4, ovo.getMemberVO().getUserId());
-//			pstmt.setString(5, ovo.getFoodVO().getFoodName());
 			pstmt.executeUpdate();
 		} finally {
 			// TODO: handle finally clause

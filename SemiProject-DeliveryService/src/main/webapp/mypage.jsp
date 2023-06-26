@@ -396,14 +396,21 @@
 						<div class="menu-nav-wrap">
 							<div class="menu-nav">
 								<ul class="nav nav-tabs" role="tablist" style="background: none">
+<<<<<<< HEAD
 									<li class="nav-item"><a class="nav-link active"
+=======
+									<li class="nav-item"><a class="nav-link active"
+>>>>>>> refs/heads/order
 										data-toggle="tab" href="update-form.jsp" style="margin-top: 15px"
+<<<<<<< HEAD
 										onclick="updateMember()">회원정보수정</a></li>
 										data-toggle="tab" href="#" style="margin-top: 15px"
+=======
+										onclick="updateMember()">회원정보수정</a></li>
+										<li><a data-toggle="tab" href="#" style="margin-top: 15px"
+>>>>>>> refs/heads/order
 										>주문내역보기</a></li>
 
-
->>>>>>> branch 'develop' of https://github.com/lzeroj/SemiProject-DeliveryService.git
 									<li class="nav-item"><a class="nav-link" data-toggle="tab"
 										href="myOrderList" onclick="updateMember()">회원수정하기</a></li>
 									<!-- 									<li class="nav-item"><a class="nav-link" data-toggle="tab"
