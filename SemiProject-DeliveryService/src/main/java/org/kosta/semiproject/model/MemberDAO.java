@@ -63,13 +63,14 @@ public class MemberDAO {
 		ResultSet rs = null;
 		try {
 			con = dataSource.getConnection();
-			String sql = "SELECT user_name FROM member WHERE user_id=? AND password=?";
+			String sql = "SELECT * FROM member WHERE user_id=? AND password=?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, user_id);
 			pstmt.setString(2, password);
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
-				vo = new MemberVO(user_id, password, rs.getString(1), null, null, null, null, null, 0);
+				vo = new MemberVO(user_id, password, rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4),
+						rs.getString(5), rs.getString(6), rs.getInt(7));
 			}
 		} finally {
 			// TODO: handle finally clause
