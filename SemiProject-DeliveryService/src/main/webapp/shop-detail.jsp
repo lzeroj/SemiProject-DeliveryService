@@ -14,7 +14,10 @@
 	<!-- favicon -->
 	<link rel="shortcut icon" type="image/png" href="assets/img/favicon.png">
 	<!-- google font -->
-	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+	<link
+	href="https://fonts.googleapis.com/css2?family=Sunflower:wght@300&display=swap"
+	rel="stylesheet">
+
 	<link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
 	<!-- fontawesome -->
 	<link rel="stylesheet" href="assets/css/all.min.css">
@@ -33,6 +36,7 @@
 	<!-- responsive -->
 	<link rel="stylesheet" href="assets/css/responsive.css">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	
 <style type="text/css">
 	.store_detail_css{
@@ -81,6 +85,366 @@
 				<div class="col-md-7">
 					<div class="single-product-content">
 						<h2>${storeInfo.storeName}</h2> 
+						<h2>
+							${storeInfo.storeName}
+							&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;
+							<c:choose>
+								<c:when test="${heartchk}">
+									<span class="chkajax" id="ajaktrue" data-bool="true"><i class="bi bi-heart-fill fa-1x"></i></span>
+								</c:when>
+								<c:otherwise>
+									<span class="chkajax" id="ajakfalse" data-bool="false"><i class="bi bi-heart fa-1x"></i></span>
+								</c:otherwise>
+							</c:choose>
+							<script type="text/javascript">
+								$(function() {
+									$(".chkajax").on("click", function() {
+										let storeNumber = "${storeInfo.storeNumber}";
+										let userid = "${member.userId}";
+										console.log(storeNumber);
+										console.log(userid);
+										$.ajax({
+											type:"get",
+											url:"FaoFavoritesInsertYN.do",
+											data:{
+												storeNumber: storeNumber,
+												userid : userid
+											},//서버에 넘기는 데이터
+											success:function(result){ //result(변수명은 어떤것이든 상관없음)
+												//success funtion 매개변수로 서버가 응답한 데이터가 전달
+												if($(".chkajax").data("bool")=="true"){
+													if(result === "true"){
+											            $(this).empty();
+											            $(this).append('<i class="bi bi-heart-fill fa-1x"></i>');
+													}else{
+											            $(this).empty();	
+											            $(this).append('<i class="bi bi-heart fa-1x"></i>');	
+													}
+												}else{ //$(".chkajax").data("bool")=="false"
+													if(result === "true"){
+											            $(this).empty();
+											            $(this).append('<i class="bi bi-heart-fill fa-1x"></i>');
+													}else{
+											            $(this).empty();	
+											            $(this).append('<i class="bi bi-heart fa-1x"></i>');	
+													}
+												}
+											}.bind(this)
+										}); //ajax
+									});
+									
+									let heartchk = "${heartchk}";
+									if(heartchk === "true"){
+										$("#ajakfalse").hide();
+										$("#ajaktrue").show();
+									}else{
+										$("#ajaktrue").hide();
+										$("#ajakfalse").show();
+									}
+								});
+							</script>
+						</h2>
+						<br>
+						<h2>
+							${storeInfo.storeName}
+							&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;
+							<c:choose>
+								<c:when test="${heartchk}">
+									<span class="chkajax" id="ajaktrue" data-bool="true"><i class="bi bi-heart-fill fa-1x"></i></span>
+								</c:when>
+								<c:otherwise>
+									<span class="chkajax" id="ajakfalse" data-bool="false"><i class="bi bi-heart fa-1x"></i></span>
+								</c:otherwise>
+							</c:choose>
+							<script type="text/javascript">
+								$(function() {
+									$(".chkajax").on("click", function() {
+										let storeNumber = "${storeInfo.storeNumber}";
+										let userid = "${member.userId}";
+										console.log(storeNumber);
+										console.log(userid);
+										$.ajax({
+											type:"get",
+											url:"FaoFavoritesInsertYN.do",
+											data:{
+												storeNumber: storeNumber,
+												userid : userid
+											},//서버에 넘기는 데이터
+											success:function(result){ //result(변수명은 어떤것이든 상관없음)
+												//success funtion 매개변수로 서버가 응답한 데이터가 전달
+												if($(".chkajax").data("bool")=="true"){
+													if(result === "true"){
+											            $(this).empty();
+											            $(this).append('<i class="bi bi-heart-fill fa-1x"></i>');
+													}else{
+											            $(this).empty();	
+											            $(this).append('<i class="bi bi-heart fa-1x"></i>');	
+													}
+												}else{ //$(".chkajax").data("bool")=="false"
+													if(result === "true"){
+											            $(this).empty();
+											            $(this).append('<i class="bi bi-heart-fill fa-1x"></i>');
+													}else{
+											            $(this).empty();	
+											            $(this).append('<i class="bi bi-heart fa-1x"></i>');	
+													}
+												}
+											}.bind(this)
+										}); //ajax
+									});
+									
+									let heartchk = "${heartchk}";
+									if(heartchk === "true"){
+										$("#ajakfalse").hide();
+										$("#ajaktrue").show();
+									}else{
+										$("#ajaktrue").hide();
+										$("#ajakfalse").show();
+									}
+								});
+							</script>
+						</h2>
+						<br>
+						<h2>
+							${storeInfo.storeName}
+							&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;
+							<c:choose>
+								<c:when test="${heartchk}">
+									<span class="chkajax" id="ajaktrue" data-bool="true"><i class="bi bi-heart-fill fa-1x"></i></span>
+								</c:when>
+								<c:otherwise>
+									<span class="chkajax" id="ajakfalse" data-bool="false"><i class="bi bi-heart fa-1x"></i></span>
+								</c:otherwise>
+							</c:choose>
+							<script type="text/javascript">
+								$(function() {
+									$(".chkajax").on("click", function() {
+										let storeNumber = "${storeInfo.storeNumber}";
+										let userid = "${member.userId}";
+										console.log(storeNumber);
+										console.log(userid);
+										$.ajax({
+											type:"get",
+											url:"FaoFavoritesInsertYN.do",
+											data:{
+												storeNumber: storeNumber,
+												userid : userid
+											},//서버에 넘기는 데이터
+											success:function(result){ //result(변수명은 어떤것이든 상관없음)
+												//success funtion 매개변수로 서버가 응답한 데이터가 전달
+												if($(".chkajax").data("bool")=="true"){
+													if(result === "true"){
+											            $(this).empty();
+											            $(this).append('<i class="bi bi-heart-fill fa-1x"></i>');
+													}else{
+											            $(this).empty();	
+											            $(this).append('<i class="bi bi-heart fa-1x"></i>');	
+													}
+												}else{ //$(".chkajax").data("bool")=="false"
+													if(result === "true"){
+											            $(this).empty();
+											            $(this).append('<i class="bi bi-heart-fill fa-1x"></i>');
+													}else{
+											            $(this).empty();	
+											            $(this).append('<i class="bi bi-heart fa-1x"></i>');	
+													}
+												}
+											}.bind(this)
+										}); //ajax
+									});
+									
+									let heartchk = "${heartchk}";
+									if(heartchk === "true"){
+										$("#ajakfalse").hide();
+										$("#ajaktrue").show();
+									}else{
+										$("#ajaktrue").hide();
+										$("#ajakfalse").show();
+									}
+								});
+							</script>
+						</h2>
+						<br>
+						<h2>
+							${storeInfo.storeName}
+							&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;
+							<c:choose>
+								<c:when test="${heartchk}">
+									<span class="chkajax" id="ajaktrue" data-bool="true"><i class="bi bi-heart-fill fa-1x"></i></span>
+								</c:when>
+								<c:otherwise>
+									<span class="chkajax" id="ajakfalse" data-bool="false"><i class="bi bi-heart fa-1x"></i></span>
+								</c:otherwise>
+							</c:choose>
+							<script type="text/javascript">
+								$(function() {
+									$(".chkajax").on("click", function() {
+										let storeNumber = "${storeInfo.storeNumber}";
+										let userid = "${member.userId}";
+										console.log(storeNumber);
+										console.log(userid);
+										$.ajax({
+											type:"get",
+											url:"FaoFavoritesInsertYN.do",
+											data:{
+												storeNumber: storeNumber,
+												userid : userid
+											},//서버에 넘기는 데이터
+											success:function(result){ //result(변수명은 어떤것이든 상관없음)
+												//success funtion 매개변수로 서버가 응답한 데이터가 전달
+												if($(".chkajax").data("bool")=="true"){
+													if(result === "true"){
+											            $(this).empty();
+											            $(this).append('<i class="bi bi-heart-fill fa-1x"></i>');
+													}else{
+											            $(this).empty();	
+											            $(this).append('<i class="bi bi-heart fa-1x"></i>');	
+													}
+												}else{ //$(".chkajax").data("bool")=="false"
+													if(result === "true"){
+											            $(this).empty();
+											            $(this).append('<i class="bi bi-heart-fill fa-1x"></i>');
+													}else{
+											            $(this).empty();	
+											            $(this).append('<i class="bi bi-heart fa-1x"></i>');	
+													}
+												}
+											}.bind(this)
+										}); //ajax
+									});
+									
+									let heartchk = "${heartchk}";
+									if(heartchk === "true"){
+										$("#ajakfalse").hide();
+										$("#ajaktrue").show();
+									}else{
+										$("#ajaktrue").hide();
+										$("#ajakfalse").show();
+									}
+								});
+							</script>
+						</h2>
+						<br>
+						<h2>
+							${storeInfo.storeName}
+							&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;
+							<c:choose>
+								<c:when test="${heartchk}">
+									<span class="chkajax" id="ajaktrue" data-bool="true"><i class="bi bi-heart-fill fa-1x"></i></span>
+								</c:when>
+								<c:otherwise>
+									<span class="chkajax" id="ajakfalse" data-bool="false"><i class="bi bi-heart fa-1x"></i></span>
+								</c:otherwise>
+							</c:choose>
+							<script type="text/javascript">
+								$(function() {
+									$(".chkajax").on("click", function() {
+										let storeNumber = "${storeInfo.storeNumber}";
+										let userid = "${member.userId}";
+										console.log(storeNumber);
+										console.log(userid);
+										$.ajax({
+											type:"get",
+											url:"FaoFavoritesInsertYN.do",
+											data:{
+												storeNumber: storeNumber,
+												userid : userid
+											},//서버에 넘기는 데이터
+											success:function(result){ //result(변수명은 어떤것이든 상관없음)
+												//success funtion 매개변수로 서버가 응답한 데이터가 전달
+												if($(".chkajax").data("bool")=="true"){
+													if(result === "true"){
+											            $(this).empty();
+											            $(this).append('<i class="bi bi-heart-fill fa-1x"></i>');
+													}else{
+											            $(this).empty();	
+											            $(this).append('<i class="bi bi-heart fa-1x"></i>');	
+													}
+												}else{ //$(".chkajax").data("bool")=="false"
+													if(result === "true"){
+											            $(this).empty();
+											            $(this).append('<i class="bi bi-heart-fill fa-1x"></i>');
+													}else{
+											            $(this).empty();	
+											            $(this).append('<i class="bi bi-heart fa-1x"></i>');	
+													}
+												}
+											}.bind(this)
+										}); //ajax
+									});
+									
+									let heartchk = "${heartchk}";
+									if(heartchk === "true"){
+										$("#ajakfalse").hide();
+										$("#ajaktrue").show();
+									}else{
+										$("#ajaktrue").hide();
+										$("#ajakfalse").show();
+									}
+								});
+							</script>
+						</h2>
+						<br>
+						<h2>
+							${storeInfo.storeName}
+							&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;
+							<c:choose>
+								<c:when test="${heartchk}">
+									<span class="chkajax" id="ajaktrue" data-bool="true"><i class="bi bi-heart-fill fa-1x"></i></span>
+								</c:when>
+								<c:otherwise>
+									<span class="chkajax" id="ajakfalse" data-bool="false"><i class="bi bi-heart fa-1x"></i></span>
+								</c:otherwise>
+							</c:choose>
+							<script type="text/javascript">
+								$(function() {
+									$(".chkajax").on("click", function() {
+										let storeNumber = "${storeInfo.storeNumber}";
+										let userid = "${member.userId}";
+										console.log(storeNumber);
+										console.log(userid);
+										$.ajax({
+											type:"get",
+											url:"FaoFavoritesInsertYN.do",
+											data:{
+												storeNumber: storeNumber,
+												userid : userid
+											},//서버에 넘기는 데이터
+											success:function(result){ //result(변수명은 어떤것이든 상관없음)
+												//success funtion 매개변수로 서버가 응답한 데이터가 전달
+												if($(".chkajax").data("bool")=="true"){
+													if(result === "true"){
+											            $(this).empty();
+											            $(this).append('<i class="bi bi-heart-fill fa-1x"></i>');
+													}else{
+											            $(this).empty();	
+											            $(this).append('<i class="bi bi-heart fa-1x"></i>');	
+													}
+												}else{ //$(".chkajax").data("bool")=="false"
+													if(result === "true"){
+											            $(this).empty();
+											            $(this).append('<i class="bi bi-heart-fill fa-1x"></i>');
+													}else{
+											            $(this).empty();	
+											            $(this).append('<i class="bi bi-heart fa-1x"></i>');	
+													}
+												}
+											}.bind(this)
+										}); //ajax
+									});
+									
+									let heartchk = "${heartchk}";
+									if(heartchk === "true"){
+										$("#ajakfalse").hide();
+										$("#ajaktrue").show();
+									}else{
+										$("#ajaktrue").hide();
+										$("#ajakfalse").show();
+									}
+								});
+							</script>
+						</h2>
+						<br>
 						<span class="store_detail_css"><strong>최소주문금액</strong> : ${storeInfo.storeMinimumOrderAmount}</span><br>
 						<span class="store_detail_css">
 						<c:choose>
@@ -98,15 +462,6 @@
 						<textarea class="form-control" id="store-detail" rows="6" readonly="readonly">
 ${storeInfo.storeInfo}
 						</textarea>
-						<br><br>
-						
-						<%-- 리뷰 보기 기능 --%>
-						<form action="ReviewListByStoreNumber.do" method="get">
-						<button type="submit" class="btn btn-outline-success">리뷰 보기</button>
-						<input type="hidden" name="storeName" value="${storeInfo.storeName}">
-						</form>
-						<%-- 리뷰 END --%>
-						
 						<div class="single-product-form">
 <!-- 							<a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a> -->
 <!-- 							<br><p><strong>카테고리: </strong>한식</p> -->

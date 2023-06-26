@@ -23,10 +23,15 @@
 									<c:choose>
 										<c:when test="${sessionScope.member!=null}">
 											<div style="display: flex; align-items: center;">
+												<span style="color : #fff">${member.userName}님 환영합니다!</span>
 												<a href="FindMemberBy.do?user_id=${member.userId}"
-													style="margin-left: 10px">${member.userName}님 마이페이지</a> <a
-													class="shopping-cart" href="CartFindListByCartNo.do"><i
-													class="bi bi-cart"></i></a> <a href="Logout.do" onclick="return confirm('로그아웃을 하시겠습니까?');">로그아웃
+													style="margin-left: 10px"><i class="bi bi-person-circle fa-2x"></i>
+												</a> 
+												<a class="shopping-cart" href="CartFindListByCartNo.do">
+													<i class="bi bi-cart fa-2x"></i>
+												</a>
+												<a href="Logout.do" onclick="return confirm('로그아웃을 하시겠습니까?');">
+													<i class="bi bi-box-arrow-right fa-2x"></i>
 												</a>
 											</div>
 										</c:when>
@@ -35,9 +40,6 @@
 											<%--login.jsp --%>
 										</c:otherwise>
 									</c:choose>
-									<script type="text/javascript">
-
-									</script>
 								</div>
 							</li>
 						</ul>

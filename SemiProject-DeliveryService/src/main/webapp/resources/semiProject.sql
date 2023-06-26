@@ -30,7 +30,28 @@ CREATE TABLE ORDER_FOOD (
 drop table order_food
 -- 주문 시퀀스 생성 
 CREATE SEQUENCE order_no_seq NOCACHE;
-select * from ORDER_FOOD
+--주문 조회;
+select * from ORDER_FOOD;
+
+--inner join-----
+SELECT ORDER_FOOD.order_no, ORDER_FOOD.total_price, ORDER_FOOD.order_date, ORDER_FOOD.order_location, cart.food_name, cart.user_id
+FROM ORDER_FOOD
+INNER JOIN cart ON ORDER_FOOD.user_id = cart.user_id AND ORDER_FOOD.food_name = cart.food_name;
+
+
+
+
+
+
+--주문 삽입 목데이터
+INSERT INTO ORDER_FOOD (order_no, total_price, order_success, order_date, order_location, user_id, food_name)
+VALUES (order_no_seq.NEXTVAL, 6000, 'Y', SYSDATE, '오리역', 'test1', '김치볶음밥');
+INSERT INTO ORDER_FOOD (order_no, total_price, order_success, order_date, order_location, user_id, food_name)
+VALUES (order_no_seq.NEXTVAL, 11000, 'y', SYSDATE, '정자역', 'test2', '순대국');
+INSERT INTO ORDER_FOOD (order_no, total_price, order_success, order_date, order_location, user_id, food_name)
+VALUES (order_no_seq.NEXTVAL, 15000, 'Y', SYSDATE, '오리역', 'test4', '우동');
+
+
 ----------------------------------------------------------------------------
 -- **가게테이블**
 
