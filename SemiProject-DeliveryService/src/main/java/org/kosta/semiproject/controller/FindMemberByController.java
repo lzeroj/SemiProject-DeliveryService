@@ -13,7 +13,7 @@ public class FindMemberByController implements Controller {
 		String user_id = request.getParameter("user_id");
 		MemberVO vo = MemberDAO.getInstance().findMember(user_id);
 		request.setAttribute("user_id", vo);
-		return "mypage/domino.jsp";
+		return "mypage/mypage.jsp";
 	}
 
 }

@@ -22,15 +22,15 @@
 		<div class="input-form-backgroud row">
 			<div class="input-form col-md-12 mx-auto" id="form">
 				<div class="txt_field">
-					<h1 class="mb-3">회원 수정</h1>
+					<h1 class="mb-3">회원 정보 수정</h1>
 				</div>
 				<form class="validation-form" method="post"
-					action="RegisterMember.do">
+					action="${org.kosta.semiproject.controller}/memberUpdate.do">
 					<div class="row">
 						<div class="col-md-6 mb-3">
 							<label for="name">아이디</label> <input class="form-control"
-								type="text" name="user_id" placeholder="ori123"
-								required="required">
+								type="text" name="user_id" 
+								readonly="readonly" value="${mvo.userId}">
 						</div>
 						<div class="col-md-6 mb-3">
 							<label for="nickname">비밀번호</label> <input type="password"
@@ -46,14 +46,14 @@
 						<div class="col-md-6 mb-3">
 							<label for="nickname">생년월일</label> <input type="text"
 								class="form-control" name="user_birth" placeholder="1997-04-05"
-								required>
+								required="required" readonly="readonly">
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-md-6 mb-3">
 							<label for="email">이름</label> <input type="text"
 								class="form-control" name="user_name" placeholder="이름을 적으세요"
-								required>
+								required="required" readonly="readonly">
 						</div>
 						<div class="col-md-6 mb-3">
 							<label for="email">이메일</label> <input type="email"
