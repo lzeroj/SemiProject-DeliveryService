@@ -14,7 +14,9 @@
 	<!-- favicon -->
 	<link rel="shortcut icon" type="image/png" href="assets/img/favicon.png">
 	<!-- google font -->
-	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+	<link
+	href="https://fonts.googleapis.com/css2?family=Sunflower:wght@300&display=swap"
+	rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
 	<!-- fontawesome -->
 	<link rel="stylesheet" href="assets/css/all.min.css">
@@ -71,8 +73,9 @@
                 <div class="col-md-12">
                     <div class="product-filters">
                         <ul>
+<!--                         single-category-item -->
                             <li data-filter="*">All</li>
-                            <li class="active" data-filter=".한식">한식</li>
+                            <li data-filter=".한식">한식</li>
                             <li data-filter=".중식">중식</li>
                             <li data-filter=".일식">일식</li>
                             <li data-filter=".양식">양식</li>
@@ -90,7 +93,7 @@
         		<div class="col-lg-3 col-md-6 text-center ${stolist.storeCategory}">
 					<div class="single-product-item" data-chk="${stolist.storeCategory}">
 						<div class="product-image">
-							<a href="StoFindStoreAndFoodListDetailByStoreName.do?storenumber=${stolist.storeNumber}"><img src="assets/img/store/${stolist.storePicturePath}" alt=""></a>
+							<img src="assets/img/store/${stolist.storePicturePath}" alt="">
 						</div>
 						<h3>${stolist.storeName}</h3>
 						<input type="hidden" id="location" value="${stolist.storeLocation}"/>

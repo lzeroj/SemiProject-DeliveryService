@@ -42,13 +42,14 @@ INNER JOIN cart ON ORDER_FOOD.user_id = cart.user_id AND ORDER_FOOD.food_name = 
 
 
 
+
 --주문 삽입 목데이터
 INSERT INTO ORDER_FOOD (order_no, total_price, order_success, order_date, order_location, user_id, food_name)
 VALUES (order_no_seq.NEXTVAL, 6000, 'Y', SYSDATE, '오리역', 'test1', '김치볶음밥');
 INSERT INTO ORDER_FOOD (order_no, total_price, order_success, order_date, order_location, user_id, food_name)
 VALUES (order_no_seq.NEXTVAL, 11000, 'y', SYSDATE, '정자역', 'test2', '순대국');
 INSERT INTO ORDER_FOOD (order_no, total_price, order_success, order_date, order_location, user_id, food_name)
-VALUES (order_no_seq.NEXTVAL, 8000, 'Y', SYSDATE, '오리역', 'kim12', '비빔밥');
+VALUES (order_no_seq.NEXTVAL, 15000, 'Y', SYSDATE, '오리역', 'test4', '우동');
 
 
 ----------------------------------------------------------------------------

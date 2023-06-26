@@ -76,8 +76,11 @@
         });
         
         $(".single-category-item").on('click', function(){
+			var clickedElement = $(this);
 			var address = $("#address").val();
-			var category = $(".single-category-item").data("type");
+//			var category = $(".single-category-item").data("type");
+			var category = clickedElement.data("type");
+			alert(category);
 			console.log("category: "+category);
 			console.log("address: "+address);
 
@@ -106,7 +109,6 @@
 				value: category
 			}).appendTo(form);
 
-			  
 			// 폼 전송
 			form.appendTo('body').submit();
 		});
