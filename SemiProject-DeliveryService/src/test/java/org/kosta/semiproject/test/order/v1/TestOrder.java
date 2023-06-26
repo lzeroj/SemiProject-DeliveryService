@@ -1,28 +1,35 @@
 package org.kosta.semiproject.test.order.v1;
 
-//public class TestOrder {
-//	@SuppressWarnings("unused")
-//	public static void main(String[] args) {
-//		try {
-//			OrderVO orderVO = new OrderVO();
-//			orderVO.setFoodPrice(5000);
-//			orderVO.setOrderSuccess("Y");
-//			orderVO.setOrderDate("2023-06-26");
-//			MemberVO memberVO = new MemberVO();
-//			memberVO.setUserId("test3");
-//			orderVO.setMemberVO(memberVO);
-//			FoodVO foodVO = new FoodVO();
-//			foodVO.setFoodName("육개장");
-//			orderVO.setFoodVO(foodVO);
-//			if (orderVO == null) {
-//				System.out.println("주문이 실패되었습니다");
-//			} else {
-//				OrderDAO.getInstance().order(orderVO);
-//				System.out.println("주문이 완료되었습니다.");
-//			}
-//
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		}
-//	}
-//}
+import java.sql.SQLException;
+
+import org.kosta.semiproject.model.FoodVO;
+import org.kosta.semiproject.model.MemberVO;
+import org.kosta.semiproject.model.OrderDAO;
+import org.kosta.semiproject.model.OrderVO;
+
+public class TestOrder {
+	public static void main(String[] args) {
+		try {
+			int foodprice = 5000;
+			String location = "목동역";
+			String userid = "test1";
+			String foodname = "순대국";
+			
+			OrderVO ovo = new OrderVO();
+//			ovo.setFoodPrice(foodprice);
+			
+			MemberVO mvo = new MemberVO();
+			mvo.setUserId(userid);
+			ovo.setMemberVO(mvo);
+			
+			FoodVO fvo = new FoodVO();
+			fvo.setFoodName(foodname);
+//			ovo.setFoodVO(fvo);
+			
+			OrderDAO.getInstance().order(ovo, location);
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+}
