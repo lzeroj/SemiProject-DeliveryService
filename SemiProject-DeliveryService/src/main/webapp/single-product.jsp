@@ -86,7 +86,7 @@
 							
 							
 							<%--  임영준 장바구니 추가 기능  --%>
-							<button class="cart-btn" type="button" onclick="insertCart()"><i class="fas fa-shopping-cart"></i>
+							<button class="btn btn-warning" type="button" onclick="insertCart()"><i class="fas fa-shopping-cart"></i>
 							장바구니 추가
 							</button>								
 							<script type="text/javascript">
@@ -117,7 +117,7 @@
 							</script>								
 							<%-- 장바구니 추가 기능 End --%>
 							
-							<a href="#" class="cart-btn"><i class="fas fa-shopping-cart"></i> 주문하기 </a>
+							<button class="btn btn-warning"><i class="fas fa-shopping-cart"></i> 주문하기</button>
 								<!-- <br><p><strong>카테고리: </strong>한식</p> -->
 						</div>
 					</div>

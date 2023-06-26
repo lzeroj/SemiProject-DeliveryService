@@ -80,7 +80,7 @@
 				</div>
 				<div class="col-md-7">
 					<div class="single-product-content">
-						<h2>${storeInfo.storeName}</h2><br>
+						<h2>${storeInfo.storeName}</h2> 
 						<span class="store_detail_css"><strong>최소주문금액</strong> : ${storeInfo.storeMinimumOrderAmount}</span><br>
 						<span class="store_detail_css">
 						<c:choose>
@@ -98,6 +98,15 @@
 						<textarea class="form-control" id="store-detail" rows="6" readonly="readonly">
 ${storeInfo.storeInfo}
 						</textarea>
+						<br><br>
+						
+						<%-- 리뷰 보기 기능 --%>
+						<form action="ReviewListByStoreNumber.do" method="get">
+						<button type="submit" class="btn btn-outline-success">리뷰 보기</button>
+						<input type="hidden" name="storeName" value="${storeInfo.storeName}">
+						</form>
+						<%-- 리뷰 END --%>
+						
 						<div class="single-product-form">
 <!-- 							<a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a> -->
 <!-- 							<br><p><strong>카테고리: </strong>한식</p> -->

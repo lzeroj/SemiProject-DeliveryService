@@ -124,3 +124,36 @@ INSERT INTO STORE_FOOD(food_name,store_number,food_price,food_picture_path) VALU
 INSERT INTO STORE_FOOD(food_name,store_number,food_price,food_picture_path) VALUES('팔보채',10,23000,'china_palbochae.png');	
 INSERT INTO STORE_FOOD(food_name,store_number,food_price,food_picture_path) VALUES('양장피',10,27000,'china_yangjangpi.png');	
 
+
+
+-- 리뷰테이블
+CREATE TABLE review (
+review_no NUMBER PRIMARY KEY,
+review_content CLOB NOT NULL,
+review_insertdate DATE NOT NULL,
+store_number NUMBER NOT NULL,
+user_id VARCHAR2(100) NOT NULL,
+ CONSTRAINT fk_review_store_number FOREIGN KEY (store_number) REFERENCES STORE(store_number) ON DELETE CASCADE,
+ CONSTRAINT fk_review_user_id FOREIGN KEY (user_id) REFERENCES MEMBER(user_id) ON DELETE CASCADE
+)
+
+
+-- 테스트 후 생성 예정
+CREATE SEQUENCE review_no_seq NOCACHE;
+
+INSERT INTO review(review_no,review_content,review_insertdate,store_number,user_id) VALUES(1,'테스트:맛있어요~~!',sysdate,3,'test1');
+INSERT INTO review(review_no,review_content,review_insertdate,store_number,user_id) VALUES(2,'테스트:맛없어요',sysdate,3,'test2');
+INSERT INTO review(review_no,review_content,review_insertdate,store_number,user_id) VALUES(3,'테스트:쏘쏘',sysdate,3,'test3');
+INSERT INTO review(review_no,review_content,review_insertdate,store_number,user_id) VALUES(5,'테스트:굿',sysdate,3,'abcd');
+INSERT INTO review(review_no,review_content,review_insertdate,store_number,user_id) VALUES(6,'테스트1',sysdate,3,'test1');
+INSERT INTO review(review_no,review_content,review_insertdate,store_number,user_id) VALUES(7,'테스트2',sysdate,3,'test2');
+INSERT INTO review(review_no,review_content,review_insertdate,store_number,user_id) VALUES(8,'테스트3',sysdate,3,'test3');
+INSERT INTO review(review_no,review_content,review_insertdate,store_number,user_id) VALUES(9,'테스트4',sysdate,3,'abcd');
+INSERT INTO review(review_no,review_content,review_insertdate,store_number,user_id) VALUES(10,'테스트5',sysdate,3,'test1');
+INSERT INTO review(review_no,review_content,review_insertdate,store_number,user_id) VALUES(11,'테스트6',sysdate,3,'test2');
+INSERT INTO review(review_no,review_content,review_insertdate,store_number,user_id) VALUES(12,'테스트7',sysdate,3,'test3');
+INSERT INTO review(review_no,review_content,review_insertdate,store_number,user_id) VALUES(13,'테스트8',sysdate,3,'test1');
+INSERT INTO review(review_no,review_content,review_insertdate,store_number,user_id) VALUES(14,'테스트9',sysdate,3,'abcd');
+delete from review where review_no=5;
+
+select * from review

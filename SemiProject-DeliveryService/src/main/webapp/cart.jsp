@@ -7,8 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description"
-	content="Responsive Bootstrap4 Shop Template, Created by Imran Hossain from https://imransdesign.com/">
+<meta name="description" content="Responsive Bootstrap4 Shop Template, Created by Imran Hossain from https://imransdesign.com/">
 
 <!-- title -->
 <title>장바구니</title>
