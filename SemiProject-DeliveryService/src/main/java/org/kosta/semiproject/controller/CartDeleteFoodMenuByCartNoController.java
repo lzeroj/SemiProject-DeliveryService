@@ -7,7 +7,7 @@ import javax.servlet.http.HttpSession;
 
 import org.kosta.semiproject.model.CartDAO;
 
-public class CartAjaxInsertFoodController implements Controller {
+public class CartDeleteFoodMenuByCartNoController implements Controller {
 
 	@Override
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -15,14 +15,13 @@ public class CartAjaxInsertFoodController implements Controller {
 			throw new ServletException("POST 방식만 서비스 됩니다");
 		
 		HttpSession session = request.getSession(false);
-		if(session==null||session.getAttribute("mvo")==null) {
+		if(session==null||session.getAttribute("member")==null) {
 			System.out.println("**비인증 상태이므로 서비스 할 수 없습니다.**");
-			return "redirect:FindPostList.do";
+			return "redirect:index.jsp";
 		}
-		String user_id = (String) session.getAttribute("id");
-		String food_name = request.getParameter("foodname");
-		CartDAO.getInstance().insertCart(user_id,food_name);
-		return "AjaxView";
+		int cartNo = Integer.parseInt(request.getParameter("cartNo"));
+		CartDAO.getInstance().deleteCartMenu(cartNo);
+		return "redirect:CartFindListByCartNo.do";
 	}
 
 }

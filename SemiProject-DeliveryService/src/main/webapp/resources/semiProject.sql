@@ -15,7 +15,7 @@ drop table member
 SELECT * FROM member;
 
 ----------------------------------------------------------------------------
--- **주문 테이블**
+-- **주문 테이블**  // 재확인 예정
 CREATE TABLE ORDER_FOOD (
     order_no NUMBER PRIMARY KEY,
     total_price NUMBER NOT NULL,
@@ -29,6 +29,7 @@ CREATE TABLE ORDER_FOOD (
 drop table order_food
 -- 주문 시퀀스 생성 
 CREATE SEQUENCE order_no_seq NOCACHE;
+select * from ORDER_FOOD
 ----------------------------------------------------------------------------
 -- **가게테이블**
 
@@ -67,16 +68,16 @@ SELECT * FROM STORE_FOOD;
 -- **장바구니 테이블 **
 
 CREATE TABLE cart( 
+   cart_no NUMBER PRIMARY KEY,
    user_id VARCHAR2(100) NOT NULL,
    food_name VARCHAR2(100) NOT NULL,
    quantity NUMBER NOT NULL CHECK (quantity > 0),
-   CONSTRAINT cart_pk PRIMARY KEY(user_id, food_name),
    CONSTRAINT cart_user_id_fk FOREIGN KEY(user_id) REFERENCES MEMBER(user_id) ON DELETE CASCADE,     
    CONSTRAINT cart_food_name_fk FOREIGN KEY(food_name) REFERENCES STORE_FOOD(food_name) ON DELETE CASCADE    
 );
 
+CREATE SEQUENCE cart_no_seq NOCACHE;
 commit
-
 select * from cart
 	
 	
@@ -98,12 +99,12 @@ select * from cart
 INSERT INTO STORE_FOOD(food_name,store_number,food_price,food_picture_path) VALUES('순대국',1,11000,'');	
 select * from store_food
 -- 장바구니
-INSERT INTO cart(user_id,food_name,quantity) VALUES('test1','순대국',1);
-INSERT INTO cart(user_id,food_name,quantity) VALUES('test1','삼겹살',2);
-INSERT INTO cart(user_id,food_name,quantity) VALUES('test1','우동',3);
-INSERT INTO cart(user_id,food_name,quantity) VALUES('test2','갈비',4);
-INSERT INTO cart(user_id,food_name,quantity) VALUES('test2','규카츠',1);
-INSERT INTO cart(user_id,food_name,quantity) VALUES('test3','육개장',2);
+INSERT INTO cart(cart_no,user_id,food_name,quantity) VALUES(cart_no_seq.nextval,'test1','순대국',1);
+INSERT INTO cart(cart_no,user_id,food_name,quantity) VALUES(cart_no_seq.nextval,'test1','삼겹살',2);
+INSERT INTO cart(cart_no,user_id,food_name,quantity) VALUES(cart_no_seq.nextval,'test1','우동',3);
+INSERT INTO cart(cart_no,user_id,food_name,quantity) VALUES(cart_no_seq.nextval,'test2','갈비',4);
+INSERT INTO cart(cart_no,user_id,food_name,quantity) VALUES(cart_no_seq.nextval,'test2','규카츠',1);
+INSERT INTO cart(cart_no,user_id,food_name,quantity) VALUES(cart_no_seq.nextval,'test3','육개장',2);
 
 --주문테이블
 INSERT INTO order_food(order_no,total_price,order_success,order_date,order_location,user_id,food_name) VALUES(order_no_seq.nextval,11000,'Y',sysdate,'위치미정','test1','순대국');

@@ -13,7 +13,7 @@ public class LoginController implements Controller {
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String user_id = request.getParameter("user_id");
 		String password = request.getParameter("password");
-		MemberVO vo = MemberDAO.getInstance().login(user_id, password);
+		MemberVO vo = MemberDAO.getInstance().login(user_id, password);	
 		String path = null;
 		if (vo == null) {
 			path = "redirect:login-fail.jsp";

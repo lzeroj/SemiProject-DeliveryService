@@ -25,7 +25,7 @@
 											<div style="display: flex; align-items: center;">
 												<a href="FindMemberBy.do?user_id=${member.userId}"
 													style="margin-left: 10px">${member.userName}님 마이페이지</a> <a
-													class="shopping-cart" href="CartFindListByIdAndFoodName.do"><i
+													class="shopping-cart" href="CartFindListByCartNo.do"><i
 													class="bi bi-cart"></i></a> <a href="Logout.do" onclick="return confirm('로그아웃을 하시겠습니까?');">로그아웃
 												</a>
 											</div>
