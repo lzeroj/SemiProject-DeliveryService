@@ -141,18 +141,16 @@ public class MemberDAO {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		int result = -1;
-		String sql = "update membership set password = ?, email = ?, phone = ?, address = ? userAddDetail=? where userid = ?";
-
 		try {
 			con = dataSource.getConnection();
+			String sql = "update member set password = ?, email = ?, phone = ?, address = ? add_detail=? where user_id = ?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, mvo.getUserPassword());
 			pstmt.setString(2, mvo.getUserEmail());
 			pstmt.setString(3, mvo.getUserPhone());
-			pstmt.setString(4, mvo.getUserAddDetail());
+			pstmt.setString(4, mvo.getUserAddress());
 			pstmt.setString(5, mvo.getUserAddDetail());
 			pstmt.setString(6, mvo.getUserId());
-
 			result = pstmt.executeUpdate();
 
 		} catch (Exception e) {
