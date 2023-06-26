@@ -171,8 +171,11 @@
 								</tr>
 							</tbody>
 						</table>
+						<%-- 주문하기 ( order_food 테이블 저장 ) --%>
 						<div class="cart-buttons">
-							<a href="checkout.jsp" class="boxed-btn black">주문하기</a>
+							<form action="" method="post">
+								<button class="btn btn-warning" type="submit">주문하기</button>
+							</form>
 						</div>
 					</div>
 				</div>

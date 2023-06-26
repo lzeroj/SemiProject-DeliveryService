@@ -120,10 +120,14 @@
 						<table class="order-details">
 							<thead>
 								<tr>
-									<th><strong>합계</strong></th>
-									<th><strong>$240</strong></th>
+									<th><strong>합계</strong></th>											
 								</tr>
 							</thead>
+							<tbody class="order-details-body">
+								<tr>
+									<td><strong><span><fmt:formatNumber value="${requestScope.totalPrice}" pattern="#,###"></fmt:formatNumber></span>원</strong></td>
+								</tr>
+						</tbody>
 						</table>
 						<a href="#" class="boxed-btn">주문하기</a>
 					</div>
