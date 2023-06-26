@@ -16,7 +16,7 @@ public class LoginController implements Controller {
 		MemberVO vo = MemberDAO.getInstance().login(user_id, password);	
 		String path = null;
 		if (vo == null) {
-			path = "redirect:login-fail.jsp";
+			path = "redirect:login-chk-fail.jsp";
 		} else {
 			path = "redirect:index.jsp";
 			HttpSession session = request.getSession();

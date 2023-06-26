@@ -9,7 +9,7 @@ public class TestUnitFindFoodDetailByFoodName {
 
 	public static void main(String[] args) {
 		try {
-			FoodVO fvo = FoodDAO.getInstance().findFoodDetailByFoodName("떡볶이");
+			FoodVO fvo = FoodDAO.getInstance().findFoodDetailByFoodName("볶음밥");
 			System.out.println(fvo.toString());
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

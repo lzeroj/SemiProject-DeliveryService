@@ -172,3 +172,7 @@ SELECT review_no_seq.nextval,review_content,review_insertdate,store_number,user_
 delete from review;
 
 select * from review
+
+--사진 업데이트 
+select * from store_food;
+UPDATE store_food  SET food_picture_path = 'korea_galbi11.png' where food_name ='갈비';
