@@ -89,7 +89,7 @@
 							&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;
 							<c:choose>
 								<c:when test="${heartchk}">
-									<span class="chkajax" id="ajaktrue" data-bool="true"><i class="bi bi-heart-fill fa-1x"></i></span>
+									<span class="chkajax" id="ajaktrue" data-bool="true"><i class="bi bi-heart-fill fa-1x" style="color : red"></i></span>
 								</c:when>
 								<c:otherwise>
 									<span class="chkajax" id="ajakfalse" data-bool="false"><i class="bi bi-heart fa-1x"></i></span>
