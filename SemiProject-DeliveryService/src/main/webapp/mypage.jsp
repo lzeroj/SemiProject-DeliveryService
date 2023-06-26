@@ -398,11 +398,11 @@
 								<ul class="nav nav-tabs" role="tablist" style="background: none">
 									<li class="nav-item"><a class="nav-link active"
 										data-toggle="tab" href="#" style="margin-top: 15px"
-										onclick="updateMember()">회원정보수정</a></li>
+										>주문내역보기</a></li>
 
 
 									<li class="nav-item"><a class="nav-link" data-toggle="tab"
-										href="myOrderList">주문내역보기</a></li>
+										href="myOrderList" onclick="updateMember()">회원수정하기</a></li>
 									<!-- 									<li class="nav-item"><a class="nav-link" data-toggle="tab"
 										href="myQna">1:1 문의</a></li>
 									<li class="nav-item"><a class="nav-link" data-toggle="tab"

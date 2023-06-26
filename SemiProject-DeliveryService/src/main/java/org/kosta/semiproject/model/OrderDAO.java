@@ -63,11 +63,29 @@ public class OrderDAO {
 				orderVO.setMemberVO(mvo);
 				list.add(orderVO);
 			}
-
 		} finally {
 			// TODO: finally 절 처리
 			closeAll(rs, pstmt, con);
 		}
 		return list;
+	}
+
+	public void order(OrderVO or) throws SQLException {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		try {
+			con = dataSource.getConnection();
+			String sql = "INSERT INTO ORDER_FOOD (order_no, total_price, order_success, order_date, order_location, user_id, food_name) VALUES(order_no_seq.NEXTVAL, ?, ?, SYSDATE, ?, ?, ?)";
+			pstmt =con.prepareStatement(sql);
+			pstmt.setInt(1, or.getFoodPrice());
+			pstmt.setString(2, or.getOrderSuccess());
+			pstmt.setString(3,or.getOrderSuccess());
+			pstmt.setString(4, or.getMemberVO().getUserId());
+			pstmt.setString(5, or.getFoodVO().getFoodName());
+			pstmt.executeUpdate();
+		} finally {
+			// TODO: handle finally clause
+			closeAll(pstmt, con);
+		}
 	}
 }
