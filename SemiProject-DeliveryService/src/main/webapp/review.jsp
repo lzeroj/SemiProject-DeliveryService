@@ -81,12 +81,15 @@
 								<span class="date"><i class="fas fa-calendar"></i> ${reviewList.reviewInsertDate}</span>
 							</p>
 							<p class="excerpt">${reviewList.reviewContent}</p><br><br>
+							<c:if test="${sessionScope.member.userId == reviewList.memberVO.userId }">
 							<button class="btn btn-link">수정</button>
-							<button class="btn btn-link">삭제</button>
-						</div>
+							<button class="btn btn-link">삭제</button>		
+							</c:if>									
+						</div>					
 					</div>
 				</div>
 			</c:forEach>
+			
 			</div>
 
 			<div class="row">
