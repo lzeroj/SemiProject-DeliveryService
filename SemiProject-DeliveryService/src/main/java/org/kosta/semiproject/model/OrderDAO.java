@@ -33,58 +33,61 @@ public class OrderDAO {
 		closeAll(pstmt, con);
 	}
 
-	public ArrayList<OrderVO> OrderList(String user_id) throws SQLException {
-		ArrayList<OrderVO> list = new ArrayList<>();
-		Connection con = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		try {
-			con = dataSource.getConnection();
-			StringBuilder sql = new StringBuilder();
-			sql.append(
-					"SELECT ORDER_FOOD.order_no, ORDER_FOOD.total_price, ORDER_FOOD.order_date, ORDER_FOOD.order_location, cart.food_name, cart.user_id ");
-			sql.append("FROM ORDER_FOOD ");
-			sql.append(
-					"INNER JOIN cart ON ORDER_FOOD.user_id = cart.user_id AND ORDER_FOOD.food_name = cart.food_name ");
-			sql.append("WHERE cart.user_id = ?");
-			pstmt = con.prepareStatement(sql.toString());
-			pstmt.setString(1, user_id);
-			rs = pstmt.executeQuery();
-			while (rs.next()) {
-				OrderVO orderVO = new OrderVO();
-				orderVO.setOrderNo(rs.getLong("ORDER_NO"));
-				orderVO.setFoodPrice(rs.getInt("TOTAL_PRICE"));
-				orderVO.setOrderDate(rs.getString("ORDER_DATE"));
-				MemberVO mvo = new MemberVO();
-				mvo.setUserId(rs.getString("USER_ID")); // ResultSet에서 얻은 값을 사용
-				FoodVO food = new FoodVO();
-				food.setFoodName(rs.getString("FOOD_NAME")); // ResultSet에서 얻은 값을 사용
-				orderVO.setFoodVO(food);
-				orderVO.setMemberVO(mvo);
-				list.add(orderVO);
-			}
-		} finally {
-			// TODO: finally 절 처리
-			closeAll(rs, pstmt, con);
-		}
-		return list;
-	}
-
-//	public void order(CartVO or) throws SQLException {
+//	public ArrayList<OrderVO> OrderList(String user_id) throws SQLException {
+//		ArrayList<OrderVO> list = new ArrayList<>();
 //		Connection con = null;
 //		PreparedStatement pstmt = null;
+//		ResultSet rs = null;
 //		try {
 //			con = dataSource.getConnection();
-//			String sql = "INSERT INTO ORDER_FOOD (order_no, total_price, order_success, order_date, order_location, user_id, food_name) VALUES(order_no_seq.NEXTVAL, ?, ?, SYSDATE, ?, ?, ?)";
-//			pstmt =con.prepareStatement(sql);
-//			pstmt.setInt(1, or.getFoodPrice());
-//			pstmt.setString(2, or.getOrderSuccess());
-//			pstmt.setString(3, or.getMemberVO().getUserId());
-//			pstmt.setString(4, or.getFoodVO().getFoodName());
-//			pstmt.executeUpdate();
+//			StringBuilder sql = new StringBuilder();
+//			sql.append(
+//					"SELECT ORDER_FOOD.order_no, ORDER_FOOD.total_price, ORDER_FOOD.order_date, ORDER_FOOD.order_location, cart.food_name, cart.user_id ");
+//			sql.append("FROM ORDER_FOOD ");
+//			sql.append(
+//					"INNER JOIN cart ON ORDER_FOOD.user_id = cart.user_id AND ORDER_FOOD.food_name = cart.food_name ");
+//			sql.append("WHERE cart.user_id = ?");
+//			pstmt = con.prepareStatement(sql.toString());
+//			pstmt.setString(1, user_id);
+//			rs = pstmt.executeQuery();
+//			while (rs.next()) {
+//				OrderVO orderVO = new OrderVO();
+//				orderVO.setOrderNo(rs.getLong("ORDER_NO"));
+//				orderVO.setFoodPrice(rs.getInt("TOTAL_PRICE"));
+//				orderVO.setOrderDate(rs.getString("ORDER_DATE"));
+//				MemberVO mvo = new MemberVO();
+//				mvo.setUserId(rs.getString("USER_ID")); // ResultSet에서 얻은 값을 사용
+//				FoodVO food = new FoodVO();
+//				food.setFoodName(rs.getString("FOOD_NAME")); // ResultSet에서 얻은 값을 사용
+//				orderVO.setFoodVO(food);
+//				orderVO.setMemberVO(mvo);
+//				list.add(orderVO);
+//			}
 //		} finally {
-//			// TODO: handle finally clause
-//			closeAll(pstmt, con);
+//			// TODO: finally 절 처리
+//			closeAll(rs, pstmt, con);
 //		}
+//		return list;
 //	}
+
+	public void order(OrderVO ovo, String location) throws SQLException {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		try {
+			con = dataSource.getConnection();
+			StringBuilder sb = new StringBuilder();
+			sb.append("INSERT INTO ORDER_FOOD ");
+			sb.append("VALUES(order_no_seq.NEXTVAL, ?, ?, SYSDATE, ?, ?, ?)");
+			pstmt =con.prepareStatement(sb.toString());
+//			pstmt.setInt(1, ovo.getFoodPrice());
+			pstmt.setString(2, "Y");
+			pstmt.setString(3, location);
+			pstmt.setString(4, ovo.getMemberVO().getUserId());
+//			pstmt.setString(5, ovo.getFoodVO().getFoodName());
+			pstmt.executeUpdate();
+		} finally {
+			// TODO: handle finally clause
+			closeAll(pstmt, con);
+		}
+	}
 }

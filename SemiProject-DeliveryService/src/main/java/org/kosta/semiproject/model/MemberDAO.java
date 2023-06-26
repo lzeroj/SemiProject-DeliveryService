@@ -141,9 +141,10 @@ public class MemberDAO {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		int result = -1;
+		String sql = "UPDATE member SET password = ?, email = ?, phone = ?, address = ? add_detail=? WHERE user_id = ?";
+		//회원정보 (비밀번호, 이메일, 번호, 주소 수정)
 		try {
 			con = dataSource.getConnection();
-			String sql = "update member set password = ?, email = ?, phone = ?, address = ? add_detail=? where user_id = ?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, mvo.getUserPassword());
 			pstmt.setString(2, mvo.getUserEmail());
@@ -152,20 +153,9 @@ public class MemberDAO {
 			pstmt.setString(5, mvo.getUserAddDetail());
 			pstmt.setString(6, mvo.getUserId());
 			result = pstmt.executeUpdate();
-
+			pstmt.close();
 		} catch (Exception e) {
 			e.printStackTrace();
-		} finally {
-			try {
-				if (con != null) {
-					con.close();
-				}
-				if (pstmt != null) {
-					pstmt.close();
-				}
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
 		}
 		return result;
 	}

@@ -108,7 +108,7 @@
 				name: 'category',
 				value: category
 			}).appendTo(form);
-
+			
 			// 폼 전송
 			form.appendTo('body').submit();
 		});

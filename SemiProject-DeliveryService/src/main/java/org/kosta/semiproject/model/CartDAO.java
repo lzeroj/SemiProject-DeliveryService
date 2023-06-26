@@ -15,18 +15,15 @@ public class CartDAO {
 	private CartDAO() {
 		this.dataSource = DataSourceManager.getInstance().getDataSource();
 	}
-
 	public static CartDAO getInstance() {
 		return instance;
 	}
-
 	public void closeAll(PreparedStatement pstmt, Connection con) throws SQLException {
 		if (pstmt != null)
 			pstmt.close();
 		if (con != null)
 			con.close(); // connection을 dbcp에 반환한다
 	}
-
 	public void closeAll(ResultSet rs, PreparedStatement pstmt, Connection con) throws SQLException {
 		if (rs != null)
 			rs.close();

@@ -2,24 +2,24 @@ package org.kosta.semiproject.model;
 
 public class OrderVO {
 	private long orderNo;
-	private int foodPrice;
+	private int totalPrice;
 	private String orderSuccess;
 	private String orderDate;
-	private FoodVO foodVO;
+	private String orderLocation;
 	private MemberVO memberVO;
 
 	public OrderVO() {
 		super();
 	}
 
-	public OrderVO(long orderNo, int foodPrice, String orderSuccess, String orderDate, FoodVO foodVO,
+	public OrderVO(long orderNo, int totalPrice, String orderSuccess, String orderDate, String orderLocation,
 			MemberVO memberVO) {
 		super();
 		this.orderNo = orderNo;
-		this.foodPrice = foodPrice;
+		this.totalPrice = totalPrice;
 		this.orderSuccess = orderSuccess;
 		this.orderDate = orderDate;
-		this.foodVO = foodVO;
+		this.orderLocation = orderLocation;
 		this.memberVO = memberVO;
 	}
 
@@ -31,12 +31,12 @@ public class OrderVO {
 		this.orderNo = orderNo;
 	}
 
-	public int getFoodPrice() {
-		return foodPrice;
+	public int getTotalPrice() {
+		return totalPrice;
 	}
 
-	public void setFoodPrice(int foodPrice) {
-		this.foodPrice = foodPrice;
+	public void setTotalPrice(int totalPrice) {
+		this.totalPrice = totalPrice;
 	}
 
 	public String getOrderSuccess() {
@@ -55,12 +55,12 @@ public class OrderVO {
 		this.orderDate = orderDate;
 	}
 
-	public FoodVO getFoodVO() {
-		return foodVO;
+	public String getOrderLocation() {
+		return orderLocation;
 	}
 
-	public void setFoodVO(FoodVO foodVO) {
-		this.foodVO = foodVO;
+	public void setOrderLocation(String orderLocation) {
+		this.orderLocation = orderLocation;
 	}
 
 	public MemberVO getMemberVO() {
@@ -73,8 +73,8 @@ public class OrderVO {
 
 	@Override
 	public String toString() {
-		return "OrderVO [orderNo=" + orderNo + ", foodPrice=" + foodPrice + ", orderSuccess=" + orderSuccess
-				+ ", orderDate=" + orderDate + ", foodVO=" + foodVO + ", memberVO=" + memberVO + "]";
+		return "OrderVO [orderNo=" + orderNo + ", totalPrice=" + totalPrice + ", orderSuccess=" + orderSuccess
+				+ ", orderDate=" + orderDate + ", orderLocation=" + orderLocation + ", memberVO=" + memberVO + "]";
 	}
 
 }

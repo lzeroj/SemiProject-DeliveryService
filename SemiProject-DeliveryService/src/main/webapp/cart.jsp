@@ -166,12 +166,14 @@
 										</c:forEach>
 										<td>
 											<%-- id구분을 위해 앞에 cartTotalPrice 추가  --%> <strong><span
-												id="cartTotalPrice"> <fmt:formatNumber
-														value="${totalSum}" pattern="#,###"></fmt:formatNumber></span>원</strong>
+												id="cartTotalPrice"> 
+												<fmt:formatNumber value="${totalSum}" pattern="#,###"></fmt:formatNumber></span>원</strong>
 										</td>
 									</tr>
 									<tr>
-										<td><button class="btn btn-warning" name="order"
+										<td>
+										<input type="hidden" name="totalSum" value="${totalSum}"/>
+										<button class="btn btn-warning" name="order"
 												type="submit">주문하기</button></td>
 									</tr>
 								</tbody>
