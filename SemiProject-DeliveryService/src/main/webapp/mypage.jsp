@@ -396,29 +396,16 @@
 						<div class="menu-nav-wrap">
 							<div class="menu-nav">
 								<ul class="nav nav-tabs" role="tablist" style="background: none">
-<<<<<<< HEAD
 									<li class="nav-item"><a class="nav-link active"
-=======
-									<li class="nav-item"><a class="nav-link active"
->>>>>>> refs/heads/order
-										data-toggle="tab" href="update-form.jsp" style="margin-top: 15px"
-<<<<<<< HEAD
-										onclick="updateMember()">회원정보수정</a></li>
 										data-toggle="tab" href="#" style="margin-top: 15px"
-=======
-										onclick="updateMember()">회원정보수정</a></li>
-										<li><a data-toggle="tab" href="#" style="margin-top: 15px"
->>>>>>> refs/heads/order
 										>주문내역보기</a></li>
-
 									<li class="nav-item"><a class="nav-link" data-toggle="tab"
-										href="myOrderList" onclick="updateMember()">회원수정하기</a></li>
+										href="myOrderList"onclick="updateMember()">회원정보수정</a></li>
 									<!-- 									<li class="nav-item"><a class="nav-link" data-toggle="tab"
 										href="myQna">1:1 문의</a></li>
 									<li class="nav-item"><a class="nav-link" data-toggle="tab"
 										href="myReview">내가 쓴 리뷰 보기</a></li> -->
 								</ul>
-
 							</div>
 						</div>
 						<div class="info-wrap">
