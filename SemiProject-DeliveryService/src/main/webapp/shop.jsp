@@ -38,17 +38,6 @@
 
 </head>
 <body>
-<script type="text/javascript">
-	$(function() {
-		const queryString = window.location.search;
-		const urlParams = new URLSearchParams(queryString);
-		const value = "."+urlParams.get('category');
-        console.log("value:"+value);
-        $(".product-lists").isotope({
-                filter: value,
-        });
-	});
-</script>
 	<!--PreLoader-->
     <div class="loader">
         <div class="loader-inner">
@@ -103,103 +92,188 @@
 						<div class="product-image">
 							<a href="StoFindStoreAndFoodListDetailByStoreName.do?storenumber=${stolist.storeNumber}"><img src="assets/img/store/${stolist.storePicturePath}" alt=""></a>
 						</div>
-					    <script>
-        					console.log("${stolist.storeLocation}");
-    					</script>
 						<h3>${stolist.storeName}</h3>
 						<input type="hidden" id="location" value="${stolist.storeLocation}"/>
-						<p id="result-${stolist.storeNumber}"></p>
-						<a href="StoFindStoreAndFoodListDetailByStoreName.do?storenumber=${stolist.storeNumber}" class="cart-btn"><i class="fas fa-shopping-cart"></i> 주문하러가기</a>
+						<p id="result-${stolist.storeNumber - 1}"></p>
+						<a href="#" onclick="handleLinkClick(event)" id="result1-${stolist.storeNumber - 1}" class="cart-btn"><i class="fas fa-shopping-cart"></i> 주문하러가기</a>
+						<script type="text/javascript">
+							function handleLinkClick(event) {
+								event.preventDefault();
+								var storeNumber = parseInt(event.target.id.split('-')[1]) + 1;
+								var dynamicId = "result1-" + (storeNumber - 1);
+								
+								var element = document.getElementById(dynamicId);
+								let distance = element.getAttribute("data-distance");
+								let index = element.getAttribute("data-index");
+
+								console.log(distance);
+								console.log(index);
+								alert(index);
+
+								let url = "StoFindStoreAndFoodListDetailByStoreName.do?storenumber=" + (parseInt(index) + 1) + "&distance=" + distance;
+								
+								window.location.href = url;
+							}
+						</script>
+						
 					</div>
 				</div>
 				</c:forEach>
-<script type="text/javascript">
-    $(function() {
-        $(".product-lists .single-product-item").each(function(index) {
-            var startaddress = "<c:out value='${address}' />";
-            var arriveaddress = $(this).find("input#location").val();
-            console.log("arriveaddress: "+arriveaddress);
-        	var resultId = "result-" + $(this).index();
+				<script type="text/javascript">
+				async function getCoordinates(startaddress, arriveaddress, resultId, index) {
+				    var geocoder = new kakao.maps.services.Geocoder();
 
-            // JavaScript 함수 실행
-            getCoordinates(startaddress, arriveaddress, resultId, index);
-        });
-    });
+				    var startlatitude = null;
+				    var startlongitude = null;
+				    var arrivelatitude = null;
+				    var arrivelongitude = null;
 
-    function getCoordinates(startaddress, arriveaddress, resultId, index) {
+				    await new Promise(function(resolve, reject) {
+				        geocoder.addressSearch(startaddress, function(result, status) {
+				            if (status === kakao.maps.services.Status.OK) {
+				                startlatitude = result[0].y;
+				                startlongitude = result[0].x;
+				                console.log("출발위도:"+startlatitude);
+				                console.log("출발경도:"+startlongitude);
 
-        var geocoder = new kakao.maps.services.Geocoder();
+				                resolve();
+				            } else {
+				                reject("출발 주소를 찾을 수 없습니다.");
+				            }
+				        });
+				    });
 
-        var polyline = null;
-        var startlatitude = null;
-        var startlongitude = null;
-        var arrivelatitude = null;
-        var arrivelongitude = null;
+				    await new Promise(function(resolve, reject) {
+				        geocoder.addressSearch(arriveaddress, function(result, status) {
+				            if (status === kakao.maps.services.Status.OK) {
+				                arrivelatitude = result[0].y;
+				                arrivelongitude = result[0].x;
+				                console.log("도착위도:"+arrivelatitude);
+				                console.log("도착경도:"+arrivelongitude);
 
-        geocoder.addressSearch(startaddress, function(result, status) {
-            if (status === kakao.maps.services.Status.OK) {
-                startlatitude = result[0].y;
-                startlongitude = result[0].x;
-                console.log("출발위도:"+startlatitude);
-                console.log("출발경도:"+startlongitude);
+				                resolve();
+				            } else {
+				                reject("도착 주소를 찾을 수 없습니다.");
+				            }
+				        });
+				    });
 
-                if (startlatitude && startlongitude && arrivelatitude && arrivelongitude) {
-                    calculateDistance(resultId, index);
-                }
-            } else {
-                alert("출발 주소를 찾을 수 없습니다.");
-            }
-        });
+				    await calculateDistance(resultId, index, startlatitude, startlongitude, arrivelatitude, arrivelongitude);
+				    nextFunction(index);
+				}
+				
+				function calculateDistance(resultId, index, startlatitude, startlongitude, arrivelatitude, arrivelongitude) {
+				    var polyline = new daum.maps.Polyline({
+				        path: [
+				            new daum.maps.LatLng(startlatitude, startlongitude),
+				            new daum.maps.LatLng(arrivelatitude, arrivelongitude)
+				        ],
+				    });
 
-        geocoder.addressSearch(arriveaddress, function(result, status) {
-            if (status === kakao.maps.services.Status.OK) {
-                arrivelatitude = result[0].y;
-                arrivelongitude = result[0].x;
-                console.log("도착위도:"+arrivelatitude);
-                console.log("도착경도:"+arrivelongitude);
+				    var distance = polyline.getLength();
+				    console.log("distance:"+distance);
+				    var chkfree = null;
+				    if(distance>2000 && distance<4000){
+				    	chkfree = "배달 요금 : 1000";
+			    	}else if(distance>0 && distance<2000){
+			    		chkfree = "배달 요금 : 무료";
+			    	}else if(distance>4000){
+			    		chkfree = "배달 요금 : 2000";
+			    	}
+				    resultId = "result-" + index;
+				    $("#" + resultId).html(chkfree);
+				    
+				    // data-distance에 distance 값을 저장
+				    var linkElement = document.getElementById("result-" + index);
+				    var linkElementbtn = document.getElementById("result1-" + index);
 
-                if (startlatitude && startlongitude && arrivelatitude && arrivelongitude) {
-                    calculateDistance(resultId, index);
-                }
-            } else {
-                alert("도착 주소를 찾을 수 없습니다.");
-            }
-        });
+				    if (linkElement) {
+			    	  linkElement.setAttribute("data-distance", distance/1000);
+			    	  linkElement.setAttribute("data-index", index);
+			    	  linkElementbtn.setAttribute("data-distance", distance);
+			    	  linkElementbtn.setAttribute("data-index", index);
 
-        function calculateDistance(resultId, index) {
-            polyline = new daum.maps.Polyline({
-                path: [
-                    new daum.maps.LatLng(startlatitude, startlongitude),
-                    new daum.maps.LatLng(arrivelatitude, arrivelongitude)
-                ],
-            });
+			    	} else {
+			    	  console.error("Link element not found for index: " + index);
+			    	}				 
+				    
+				    return new Promise(function(resolve, reject) {
+				        resolve();
+				    });
+				}
+				
+				function nextFunction(index) {
+				    console.log("다음 함수 실행. Index: " + index);
+				    // 결과를 웹 페이지에 표시할 HTML 요소를 선택합니다.
+				    resultId = "result-" + index;
+				    console.log("nextFunction-resultId:"+resultId)
+				    var resultElement = document.getElementById(resultId);
 
-            var distance = polyline.getLength();
-            console.log("distance:"+distance);
-            resultId = "result-" + index;
-            $("#" + resultId).html(distance / 1000);
-            
-            
-            nextFunction(index);
-        }
-        
-        function nextFunction(index) {
-            console.log("다음 함수 실행. Index: " + index);
-            // 결과를 웹 페이지에 표시할 HTML 요소를 선택합니다.
-            resultId = "result-" + index;
-            console.log("nextFunction-resultId:"+resultId)
-            var resultElement = document.getElementById(resultId);
+				    var distances = Array.from(document.querySelectorAll(".single-product-item[data-chk]")).map(function (item) {
+				        var distanceElement = item.querySelector("p");
+				        var distance = distanceElement ? parseFloat(distanceElement.textContent) : null;
+				        return distance;
+				    });
 
-            // 거리를 표시할 HTML 요소를 생성하거나 업데이트합니다.
-            if (resultElement) {
-//               resultElement.innerHTML = distance / 1000; // 거리를 킬로미터로 표시하도록 조정할 수 있습니다.
-//               console.log(distance / 1000);
-            }
-        }
+				    distances.sort(function (a, b) {
+				        return b - a;
+				    });
 
-    }
-    
-</script>
+				    var productList = document.querySelector(".product-lists");
+
+				    if (productList) {
+				        var items = Array.from(productList.children);
+				        items.sort(function (a, b) {
+				            var distanceAElement = a.querySelector("p");
+				            var distanceBElement = b.querySelector("p");
+				            var distanceA = distanceAElement ? parseFloat(distanceAElement.textContent) : null;
+				            var distanceB = distanceBElement ? parseFloat(distanceBElement.textContent) : null;
+				            return distanceA - distanceB;
+				        });
+
+				        items.forEach(function(item) {
+				            productList.insertBefore(item, productList.firstChild);
+				        });
+				    }
+				}
+
+				$(function() {
+					const queryString = window.location.search;
+					const urlParams = new URLSearchParams(queryString);
+					const value = "."+urlParams.get('category');
+					const sortBy = urlParams.get('distance'); // 새로운 정렬 기준을 가져옵니다 (예: 'distance')
+					
+					// 정렬 함수를 정의합니다
+					const customSortFunction = function(a, b) {
+					  const distanceA = parseFloat(a.getAttribute('data-distance'));
+					  const distanceB = parseFloat(b.getAttribute('data-distance'));
+					
+					  // 원하는 정렬 기준에 따라 비교하여 정렬합니다
+					  if (distanceA < distanceB) {
+					    return -1;
+					  } else if (distanceA > distanceB) {
+					    return 1;
+					  } else {
+					    return 0;
+					  }
+					};
+
+					$(".product-lists .single-product-item").each(async function(index) {
+					  var startaddress = "<c:out value='${address}' />";
+					  var arriveaddress = $(this).find("input#location").val();
+					  console.log("arriveaddress: " + arriveaddress);
+					  var resultId = "result-" + $(this).index();
+					
+					  await getCoordinates(startaddress, arriveaddress, resultId, index);
+					
+					  // 데이터를 받은 후에 정렬하여 isotope에 적용합니다
+					  var productList = $(".product-lists");
+					  
+					 	  //productList.isotope('reloadItems');
+					  productList.isotope('arrange', { filter: value, sortBy: sortBy, sortAscending: true, sortFunction: customSortFunction });
+					});
+				});				    
+				</script>
 			</div>
 
 			<div class="row">
