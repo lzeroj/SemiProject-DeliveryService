@@ -63,13 +63,22 @@ public class MemberDAO {
 		ResultSet rs = null;
 		try {
 			con = dataSource.getConnection();
+<<<<<<< HEAD
 			String sql = "SELECT user_id ,user_name FROM member WHERE user_id=? AND password=?";
+=======
+			String sql = "SELECT * FROM member WHERE user_id=? AND password=?";
+>>>>>>> branch 'develop' of https://github.com/lzeroj/SemiProject-DeliveryService.git
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, user_id);
 			pstmt.setString(2, password);
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
+<<<<<<< HEAD
 				vo = new MemberVO(rs.getString(1), null, rs.getString(2), null, null, null, null, null, 0);
+=======
+				vo = new MemberVO(user_id, password, rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4),
+						rs.getString(5), rs.getString(6), rs.getInt(7));
+>>>>>>> branch 'develop' of https://github.com/lzeroj/SemiProject-DeliveryService.git
 			}
 		} finally {
 			// TODO: handle finally clause

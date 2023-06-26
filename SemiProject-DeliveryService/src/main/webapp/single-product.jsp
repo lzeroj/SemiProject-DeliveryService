@@ -84,29 +84,41 @@
 								<input type="number" placeholder="0">
 							</form>
 							
-							<%-- *********************** 임영준 장바구니 추가 기능  --%>
-							<button class="cart-btn" type="button" onclick="insertCart()" >
-							<i class="fas fa-shopping-cart"></i>장바구니 추가</button>
-								
+							
+							<%--  임영준 장바구니 추가 기능  --%>
+							<button class="cart-btn" type="button" onclick="insertCart()"><i class="fas fa-shopping-cart"></i>
+							장바구니 추가
+							</button>								
 							<script type="text/javascript">
-								function insertCart() {
+								function insertCart(foodName) {
 									if(confirm("장바구니에 추가하시겠습니까?")){
 										xhr = new XMLHttpRequest();
 										xhr.onreadystatechange = function() {
 											if(xhr.readyState==4&&xhr.status==200){
-												alert("장바구니에 추가되었습니다.");
+												let check = xhr.responseText;
+												console.log(check);
+												if(check==="ok"){
+													alert("장바구니에 추가되었습니다.");						
+												}else if(check==="fail"){
+													alert("이미 장바구니에 등록되어 있습니다.");
+												}
+												else{ <%--check==="nullSession" --%>
+													alert("세션이 끊겼습니다. 다시 로그인 하세요");
+													location.href="index.jsp";
+												}
 											}
 										}
-										xhr.open("post","CartAjaxInsertFood.do");
+										xhr.open("post","CartAjaxInsertCart.do");
 										xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
-										xhr.send("foodname="+${foodinfo.foodName});
+										let data = "foodname=" + '${foodinfo.foodName}';
+										xhr.send(data);
 									}							
 								}
 							</script>								
-							<%--*********************** 장바구니 추가 기능 End --%>
+							<%-- 장바구니 추가 기능 End --%>
 							
-							<a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> 주문하기 </a>
-<!-- 							<br><p><strong>카테고리: </strong>한식</p> -->
+							<a href="#" class="cart-btn"><i class="fas fa-shopping-cart"></i> 주문하기 </a>
+								<!-- <br><p><strong>카테고리: </strong>한식</p> -->
 						</div>
 					</div>
 				</div>
