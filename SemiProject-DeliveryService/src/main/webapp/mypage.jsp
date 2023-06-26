@@ -397,10 +397,8 @@
 							<div class="menu-nav">
 								<ul class="nav nav-tabs" role="tablist" style="background: none">
 									<li class="nav-item"><a class="nav-link active"
-										data-toggle="tab" href="#" style="margin-top: 15px"
+										data-toggle="tab" href="update-form.jsp" style="margin-top: 15px"
 										onclick="updateMember()">회원정보수정</a></li>
-
-
 									<li class="nav-item"><a class="nav-link" data-toggle="tab"
 										href="myOrderList">주문내역보기</a></li>
 									<!-- 									<li class="nav-item"><a class="nav-link" data-toggle="tab"
@@ -516,7 +514,7 @@
 	//updateMember로 이동
     function updateMember() {
         var contextPath = "${pageContext.request.contextPath}";
-        var updateMemberURL = contextPath + "/updateMember.jsp";
+        var updateMemberURL = contextPath + "/UpdateMemberForm.do";
         window.location.href = updateMemberURL;
     }	
 	
