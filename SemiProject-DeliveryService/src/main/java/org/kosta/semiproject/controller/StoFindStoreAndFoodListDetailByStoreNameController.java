@@ -27,12 +27,16 @@ public class StoFindStoreAndFoodListDetailByStoreNameController implements Contr
 		if(session.getAttribute("member")!=null) {
 			MemberVO mvo = (MemberVO) session.getAttribute("member");
 			System.out.println(mvo);
+			System.out.println(storenumber);
 			FavoritesVO fvo = FavoritesDAO.getInstance().favoritesChecker(storenumber, mvo.getUserId());
+			System.out.println("fvo.getFavorites(): "+fvo.getFavorites());
 			if(fvo.getFavorites().equals("Y")) {
+				System.out.println("fvo.getFavorites(): "+fvo.getFavorites());
 				heartchk = true;
 			}
-			request.setAttribute("heartchk", heartchk);
 		}
+		System.out.println("heartchk:"+heartchk);
+		request.setAttribute("heartchk", heartchk);
 
 		StoreVO svo = StoreDAO.getInstance().findStoreDetailByStoreNumber(storenumber);
 		ArrayList<FoodVO> list = FoodDAO.getInstance().findFoodInfoByStoreNumber(storenumber);

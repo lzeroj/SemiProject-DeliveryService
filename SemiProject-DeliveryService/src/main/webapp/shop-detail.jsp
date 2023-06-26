@@ -33,6 +33,7 @@
 	<!-- responsive -->
 	<link rel="stylesheet" href="assets/css/responsive.css">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	
 <style type="text/css">
 	.store_detail_css{
@@ -89,13 +90,46 @@
 							&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;
 							<c:choose>
 								<c:when test="${heartchk}">
-									<i class="bi bi-heart-fill fa-1x"></i>
+									<span class="chkajax" id="ajaktrue"><i class="bi bi-heart-fill fa-1x"></i></span>
 								</c:when>
 								<c:otherwise>
-									<i class="bi bi-heart fa-1x"></i>
+									<span class="chkajax" id="ajakfalse"><i class="bi bi-heart fa-1x"></i></span>
 								</c:otherwise>
 							</c:choose>
-							
+							<script type="text/javascript">
+								$(function() {
+// 									let heartchk = "${heartchk}";
+// 									if(heartchk){
+// 										$("#ajakfalse").hide();
+// 									}else{
+// 										$("#ajaktrue").hide();
+// 									}
+									
+									$(".chkajax").on("click", function() {
+										let storeNumber = "${storeInfo.storeNumber}";
+										let userid = "${member.userId}";
+										console.log(storeNumber);
+										console.log(userid);
+										$.ajax({
+											type:"get",
+											url:"FaoFavoritesInsertYN.do",
+											data:{
+												storeNumber: storeNumber,
+												userid : userid
+											},//서버에 넘기는 데이터
+											success:function(result){ //result(변수명은 어떤것이든 상관없음)
+												//success funtion 매개변수로 서버가 응답한 데이터가 전달
+												alert(result);
+												if(result){
+										            $("#ajakfalse").hide();
+										            $("#ajaktrue").show();	
+												}
+											}
+										}); //ajax
+
+									});
+								});
+							</script>
 						</h2>
 						<br>
 						<span class="store_detail_css"><strong>최소주문금액</strong> : ${storeInfo.storeMinimumOrderAmount}</span><br>

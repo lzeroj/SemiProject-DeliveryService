@@ -7,7 +7,7 @@ import org.kosta.semiproject.model.FavoritesDAO;
 public class TestUnitFavoritesInsert {
 
 	public static void main(String[] args) {
-		int storeNumber = 3;
+		int storeNumber = 1;
 		String userid = "test3";
 		try {
 			FavoritesDAO.getInstance().favoritesInsertYN(storeNumber, userid);
