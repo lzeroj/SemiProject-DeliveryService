@@ -69,7 +69,7 @@ public class MemberDAO {
 			pstmt.setString(2, password);
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
-				vo = new MemberVO(user_id, password, rs.getString(1), null, null, null, null, null, 0);
+				vo = new MemberVO(rs.getString(1), null, rs.getString(2), null, null, null, null, null, 0);
 			}
 		} finally {
 			// TODO: handle finally clause
@@ -77,8 +77,6 @@ public class MemberDAO {
 		}
 		return vo;
 	}
-
-
 
 	public int checkId(String id) throws SQLException {
 		Connection con = null;
@@ -139,4 +137,38 @@ public class MemberDAO {
 		return vo;
 	}
 
+	public int updateMember(MemberVO mvo) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		int result = -1;
+		String sql = "update membership set password = ?, email = ?, phone = ?, address = ? userAddDetail=? where userid = ?";
+
+		try {
+			con = dataSource.getConnection();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, mvo.getUserPassword());
+			pstmt.setString(2, mvo.getUserEmail());
+			pstmt.setString(3, mvo.getUserPhone());
+			pstmt.setString(4, mvo.getUserAddDetail());
+			pstmt.setString(5, mvo.getUserAddDetail());
+			pstmt.setString(6, mvo.getUserId());
+
+			result = pstmt.executeUpdate();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (con != null) {
+					con.close();
+				}
+				if (pstmt != null) {
+					pstmt.close();
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return result;
+	}
 }

@@ -24,7 +24,8 @@ CREATE TABLE ORDER_FOOD (
     order_location VARCHAR2(100) NOT NULL,
     user_id VARCHAR2(100) NOT NULL,
     food_name VARCHAR2(100) NOT NULL,
-    CONSTRAINT fk_user_id FOREIGN KEY (user_id,food_name) REFERENCES cart(user_id,food_name)
+    CONSTRAINT fk_user_id FOREIGN KEY (user_id) REFERENCES member(user_id),
+    CONSTRAINT fk_food_name FOREIGN KEY (food_name) REFERENCES store_food(food_name)
 );
 drop table order_food
 -- 주문 시퀀스 생성 
