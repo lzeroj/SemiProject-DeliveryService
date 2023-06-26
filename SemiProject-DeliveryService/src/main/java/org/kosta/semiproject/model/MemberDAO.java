@@ -69,7 +69,7 @@ public class MemberDAO {
 			pstmt.setString(2, password);
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
-				vo = new MemberVO(null, null, rs.getString(1), null, null, null, null, null, 0);
+				vo = new MemberVO(user_id, password, rs.getString(1), null, null, null, null, null, 0);
 			}
 		} finally {
 			// TODO: handle finally clause
