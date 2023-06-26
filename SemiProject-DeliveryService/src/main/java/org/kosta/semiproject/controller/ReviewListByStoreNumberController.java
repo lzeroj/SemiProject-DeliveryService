@@ -15,7 +15,6 @@ public class ReviewListByStoreNumberController implements Controller {
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String storeName = request.getParameter("storeName");
 		String pageNo = request.getParameter("pageNo");
-		System.out.println(pageNo);
 		Pagination pagination = null;
 		long totalPostCount = ReviewDAO.getInstance().findTotalPostCount(storeName);
 		if(pageNo==null) {
@@ -26,7 +25,6 @@ public class ReviewListByStoreNumberController implements Controller {
 		request.setAttribute("pagination", pagination);
 		request.setAttribute("storeName", storeName);
 		ArrayList<ReviewVO> list = ReviewDAO.getInstance().findStoreReviewList(storeName,pagination);
-		System.out.println(list);
 		request.setAttribute("reviewList", list);			
 		return "review.jsp";
 	}

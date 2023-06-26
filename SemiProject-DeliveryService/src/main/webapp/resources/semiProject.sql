@@ -162,19 +162,13 @@ user_id VARCHAR2(100) NOT NULL,
 -- 테스트 후 생성 예정
 CREATE SEQUENCE review_no_seq NOCACHE;
 
-INSERT INTO review(review_no,review_content,review_insertdate,store_number,user_id) VALUES(1,'테스트:맛있어요~~!',sysdate,3,'test1');
-INSERT INTO review(review_no,review_content,review_insertdate,store_number,user_id) VALUES(2,'테스트:맛없어요',sysdate,3,'test2');
-INSERT INTO review(review_no,review_content,review_insertdate,store_number,user_id) VALUES(3,'테스트:쏘쏘',sysdate,3,'test3');
-INSERT INTO review(review_no,review_content,review_insertdate,store_number,user_id) VALUES(5,'테스트:굿',sysdate,3,'abcd');
-INSERT INTO review(review_no,review_content,review_insertdate,store_number,user_id) VALUES(6,'테스트1',sysdate,3,'test1');
-INSERT INTO review(review_no,review_content,review_insertdate,store_number,user_id) VALUES(7,'테스트2',sysdate,3,'test2');
-INSERT INTO review(review_no,review_content,review_insertdate,store_number,user_id) VALUES(8,'테스트3',sysdate,3,'test3');
-INSERT INTO review(review_no,review_content,review_insertdate,store_number,user_id) VALUES(9,'테스트4',sysdate,3,'abcd');
-INSERT INTO review(review_no,review_content,review_insertdate,store_number,user_id) VALUES(10,'테스트5',sysdate,3,'test1');
-INSERT INTO review(review_no,review_content,review_insertdate,store_number,user_id) VALUES(11,'테스트6',sysdate,3,'test2');
-INSERT INTO review(review_no,review_content,review_insertdate,store_number,user_id) VALUES(12,'테스트7',sysdate,3,'test3');
-INSERT INTO review(review_no,review_content,review_insertdate,store_number,user_id) VALUES(13,'테스트8',sysdate,3,'test1');
-INSERT INTO review(review_no,review_content,review_insertdate,store_number,user_id) VALUES(14,'테스트9',sysdate,3,'abcd');
-delete from review where review_no=5;
+INSERT INTO review(review_no,review_content,review_insertdate,store_number,user_id) VALUES(review_no_seq.nextval,'테스트:맛있어요~~!',sysdate,3,'test1');
+INSERT INTO review(review_no,review_content,review_insertdate,store_number,user_id) VALUES(review_no_seq.nextval,'테스트:맛없어요',sysdate,3,'test2');
+INSERT INTO review(review_no,review_content,review_insertdate,store_number,user_id) VALUES(review_no_seq.nextval,'테스트:쏘쏘',sysdate,3,'test3');
+
+INSERT INTO review(review_no,review_content,review_insertdate,store_number,user_id)
+SELECT review_no_seq.nextval,review_content,review_insertdate,store_number,user_id FROM review 
+
+delete from review;
 
 select * from review
