@@ -28,7 +28,7 @@
 				<div class="txt_field">
 					<h1 class="mb-3">회원 정보 수정</h1>
 				</div>
-				<form class="validation-form" method="post" action="UpdateMember.do">
+				<form class="validation-form" method="post" action="../UpdateMember.do">
 					<div class="row">
 						<div class="col-md-6 mb-3">
 							<label for="name">아이디</label> <input type="text"

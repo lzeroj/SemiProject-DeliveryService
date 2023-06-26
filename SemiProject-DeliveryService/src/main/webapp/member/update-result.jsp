@@ -15,10 +15,10 @@
 <body>
 <div class="container pt-3">
 <a href="../index.jsp">Home</a><hr>
-회원정보 수정완료<br><br>
-아이디 ${sessionScope.mvo.id}<br>
-이름 ${sessionScope.mvo.name}<br>
-주소 ${sessionScope.mvo.address}<br>
+<script type="text/javascript">
+	alert("${sessionScope.member.userName} 님 회원정보 수정되었습니다.");
+	location.href = "../index.jsp";
+</script>
 </div>
 </body>
 </html>

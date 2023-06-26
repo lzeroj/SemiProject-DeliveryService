@@ -397,10 +397,8 @@
 							<div class="menu-nav">
 								<ul class="nav nav-tabs" role="tablist" style="background: none">
 									<li class="nav-item"><a class="nav-link active"
-<<<<<<< HEAD
 										data-toggle="tab" href="update-form.jsp" style="margin-top: 15px"
 										onclick="updateMember()">회원정보수정</a></li>
-=======
 										data-toggle="tab" href="#" style="margin-top: 15px"
 										>주문내역보기</a></li>
 
