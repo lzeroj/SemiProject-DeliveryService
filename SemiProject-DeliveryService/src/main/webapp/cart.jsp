@@ -17,7 +17,7 @@
 <link rel="shortcut icon" type="image/png" href="assets/img/favicon.png">
 <!-- google font -->
 <link
-	href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700"
+	href="https://fonts.googleapis.com/css2?family=Sunflower:wght@300&display=swap"
 	rel="stylesheet">
 <link
 	href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap"

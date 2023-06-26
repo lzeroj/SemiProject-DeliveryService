@@ -24,16 +24,27 @@ public class StoFindStoreAndFoodListDetailByStoreNameController implements Contr
 		// 즐겨찾기 처리
 		HttpSession session = request.getSession(false);
 		boolean heartchk = false;
+		// session에 값이있을때 : 로그인 했을때
 		if(session.getAttribute("member")!=null) {
 			MemberVO mvo = (MemberVO) session.getAttribute("member");
 			System.out.println(mvo);
 			System.out.println(storenumber);
 			FavoritesVO fvo = FavoritesDAO.getInstance().favoritesChecker(storenumber, mvo.getUserId());
-			System.out.println("fvo.getFavorites(): "+fvo.getFavorites());
-			if(fvo.getFavorites().equals("Y")) {
-				System.out.println("fvo.getFavorites(): "+fvo.getFavorites());
-				heartchk = true;
+			// fvo가 null 이면
+			if(fvo==null) {
+				heartchk = false;
+			}else {
+				if(fvo.getFavorites().equals("Y")) {
+					System.out.println("fvo.getFavorites(): "+fvo.getFavorites());
+					heartchk = true;
+				}else if(fvo.getFavorites().equals("N")){
+					System.out.println("fvo.getFavorites(): "+fvo.getFavorites());
+					heartchk = false;
+				}
 			}
+		// session에 값이없을때 : 비로그인 상태일때
+		}else {
+			heartchk = false;
 		}
 		System.out.println("heartchk:"+heartchk);
 		request.setAttribute("heartchk", heartchk);

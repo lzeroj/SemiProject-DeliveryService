@@ -14,7 +14,10 @@
 	<!-- favicon -->
 	<link rel="shortcut icon" type="image/png" href="assets/img/favicon.png">
 	<!-- google font -->
-	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+	<link
+	href="https://fonts.googleapis.com/css2?family=Sunflower:wght@300&display=swap"
+	rel="stylesheet">
+
 	<link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
 	<!-- fontawesome -->
 	<link rel="stylesheet" href="assets/css/all.min.css">
@@ -38,10 +41,6 @@
 <style type="text/css">
 	.store_detail_css{
 		font-size: 20px;
-	}
-	
-	.bi bi-heart{
-		
 	}
 </style>
 
@@ -90,21 +89,14 @@
 							&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;
 							<c:choose>
 								<c:when test="${heartchk}">
-									<span class="chkajax" id="ajaktrue"><i class="bi bi-heart-fill fa-1x"></i></span>
+									<span class="chkajax" id="ajaktrue" data-bool="true"><i class="bi bi-heart-fill fa-1x"></i></span>
 								</c:when>
 								<c:otherwise>
-									<span class="chkajax" id="ajakfalse"><i class="bi bi-heart fa-1x"></i></span>
+									<span class="chkajax" id="ajakfalse" data-bool="false"><i class="bi bi-heart fa-1x"></i></span>
 								</c:otherwise>
 							</c:choose>
 							<script type="text/javascript">
 								$(function() {
-// 									let heartchk = "${heartchk}";
-// 									if(heartchk){
-// 										$("#ajakfalse").hide();
-// 									}else{
-// 										$("#ajaktrue").hide();
-// 									}
-									
 									$(".chkajax").on("click", function() {
 										let storeNumber = "${storeInfo.storeNumber}";
 										let userid = "${member.userId}";
@@ -119,15 +111,35 @@
 											},//서버에 넘기는 데이터
 											success:function(result){ //result(변수명은 어떤것이든 상관없음)
 												//success funtion 매개변수로 서버가 응답한 데이터가 전달
-												alert(result);
-												if(result){
-										            $("#ajakfalse").hide();
-										            $("#ajaktrue").show();	
+												if($(".chkajax").data("bool")=="true"){
+													if(result === "true"){
+											            $(this).empty();
+											            $(this).append('<i class="bi bi-heart-fill fa-1x"></i>');
+													}else{
+											            $(this).empty();	
+											            $(this).append('<i class="bi bi-heart fa-1x"></i>');	
+													}
+												}else{ //$(".chkajax").data("bool")=="false"
+													if(result === "true"){
+											            $(this).empty();
+											            $(this).append('<i class="bi bi-heart-fill fa-1x"></i>');
+													}else{
+											            $(this).empty();	
+											            $(this).append('<i class="bi bi-heart fa-1x"></i>');	
+													}
 												}
-											}
+											}.bind(this)
 										}); //ajax
-
 									});
+									
+									let heartchk = "${heartchk}";
+									if(heartchk === "true"){
+										$("#ajakfalse").hide();
+										$("#ajaktrue").show();
+									}else{
+										$("#ajaktrue").hide();
+										$("#ajakfalse").show();
+									}
 								});
 							</script>
 						</h2>
