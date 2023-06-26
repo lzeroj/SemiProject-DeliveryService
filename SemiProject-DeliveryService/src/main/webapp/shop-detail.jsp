@@ -38,6 +38,10 @@
 	.store_detail_css{
 		font-size: 20px;
 	}
+	
+	.bi bi-heart{
+		
+	}
 </style>
 
 </head>
@@ -80,7 +84,20 @@
 				</div>
 				<div class="col-md-7">
 					<div class="single-product-content">
-						<h2>${storeInfo.storeName}</h2><br>
+						<h2>
+							${storeInfo.storeName}
+							&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;
+							<c:choose>
+								<c:when test="${heartchk}">
+									<i class="bi bi-heart-fill fa-1x"></i>
+								</c:when>
+								<c:otherwise>
+									<i class="bi bi-heart fa-1x"></i>
+								</c:otherwise>
+							</c:choose>
+							
+						</h2>
+						<br>
 						<span class="store_detail_css"><strong>최소주문금액</strong> : ${storeInfo.storeMinimumOrderAmount}</span><br>
 						<span class="store_detail_css">
 						<c:choose>
