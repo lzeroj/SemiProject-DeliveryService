@@ -145,3 +145,6 @@ INSERT INTO STORE_FOOD(food_name,store_number,food_price,food_picture_path) VALU
 INSERT INTO STORE_FOOD(food_name,store_number,food_price,food_picture_path) VALUES('팔보채',10,23000,'china_palbochae.png');	
 INSERT INTO STORE_FOOD(food_name,store_number,food_price,food_picture_path) VALUES('양장피',10,27000,'china_yangjangpi.png');	
 
+select * from store_food
+UPDATE STORE_FOOD SET food_picture_path = 'korea_ddokboki.png' WHERE FOOD_NAME = '떡볶이';
+
