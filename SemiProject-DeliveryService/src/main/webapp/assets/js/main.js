@@ -82,7 +82,6 @@
 			console.log("address: "+address);
 
 			//alert(address);
-
 			if($("#address").val()==""){
 				
 				//alert("주소를 선택해주세요");
