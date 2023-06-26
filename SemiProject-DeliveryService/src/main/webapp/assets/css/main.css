@@ -138,7 +138,8 @@ h6, .h6 {
 }
 
 p {
-  font-family: "Open Sans", sans-serif;
+/*   font-family: "Open Sans", sans-serif; */
+  font-family: 'Sunflower', sans-serif;
   font-weight: 400;
   font-size: 1rem;
   letter-spacing: 0.1px;
@@ -1310,13 +1311,13 @@ ul.product-share li:hover a {
   -webkit-transition: 0.3s;
   -o-transition: 0.3s;
   transition: 0.3s;
-}
+}.single-category-item{  -webkit-transition: 0.3s;  -o-transition: 0.3s;  transition: 0.3s;}
 
 .single-product-item:hover {
   -webkit-box-shadow: none;
   box-shadow: none;
 }
-
+.single-category-item{  -webkit-box-shadow: none;  box-shadow: none;}
 .search-bar-tablecell button[type=submit] {
   -webkit-transition: 0.3s;
   -o-transition: 0.3s;
@@ -2394,8 +2395,7 @@ ul.social-link-team li a {
 
 .single-product-item {
   margin-bottom: 30px;
-}
-
+}.single-category-item {  margin-bottom: 30px;}
 .product-image {
   padding: 30px;
   padding-bottom: 0;
@@ -2411,7 +2411,7 @@ ul.social-link-team li a {
   font-size: 20px;
   font-weight: 600;
   margin-bottom: 10px;
-}
+}.single-category-item h3 {  font-size: 20px;  font-weight: 600;  margin-bottom: 10px;}
 
 p.product-price {
   font-family: 'Poppins', sans-serif;
@@ -2427,7 +2427,7 @@ p.product-price span {
   font-weight: 400;
 }
 
-a.cart-btn {
+a.cart-btn  {
   font-family: 'Poppins', sans-serif;
   display: inline-block;
   background-color: #F28123;
@@ -2706,7 +2706,7 @@ table.order-details tbody td {
   box-shadow: 0 0 20px #e4e4e4;
   padding-bottom: 50px;
   border-radius: 5px;
-}
+}.single-category-item {  -webkit-box-shadow: 0 0 20px #e4e4e4;  box-shadow: 0 0 20px #e4e4e4;  padding-bottom: 50px;  border-radius: 5px;}.single-category-item{  -webkit-box-shadow: 0 0 20px #e4e4e4;  box-shadow: 0 0 20px #e4e4e4;  padding-bottom: 50px;  border-radius: 5px;	}
 
 /* -----------------------------------------------------------------------------
 

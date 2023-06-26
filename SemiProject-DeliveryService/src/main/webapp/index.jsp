@@ -58,8 +58,8 @@
 							<p class="subtitle">무료 배달 서비스</p>
 							<h1>오, 2키로?</h1>
 							<div class="hero-btns">
-								<input type="text" placeholder="주소" size="60" id="address"
-									onclick="findAddress()"> <a href="shop.jsp"
+								<input type="text" placeholder="주소" size="60" id="address" name="address"
+									onclick="findAddress()" value="경기 성남시 분당구 성남대로 45"><a href="shop.jsp"
 									class="boxed-btn">검색</a>
 							</div>
 						</div>
@@ -84,36 +84,36 @@
 			</div>
 			<div class="row">
 				<div class="col-lg-3 col-md-6 text-center">
-					<div class="single-product-item">
-						<div class="product-image">
-							<a href="shop.jsp"><img
+					<div class="single-category-item" data-type="한식">
+						<div class="product-image" >
+							<a href="#"><img
 								src="assets/img/음식카테고리/한식.png" alt=""></a>
 						</div>
 						<h3>한식</h3>
 					</div>
 				</div>
 				<div class="col-lg-3 col-md-6 text-center">
-					<div class="single-product-item">
+					<div class="single-category-item" data-type="중식">
 						<div class="product-image">
-							<a href="shop.jsp"><img
+							<a href="#" data-type="중식"><img
 								src="assets/img/음식카테고리/중식.png" alt=""></a>
 						</div>
 						<h3>중식</h3>
 					</div>
 				</div>
 				<div class="col-lg-3 col-md-6 offset-md-3 offset-lg-0 text-center">
-					<div class="single-product-item">
+					<div class="single-category-item" data-type="일식">
 						<div class="product-image">
-							<a href="shop.jsp"><img
+							<a href="#"><img
 								src="assets/img/음식카테고리/일식.png" alt=""></a>
 						</div>
 						<h3>일식</h3>
 					</div>
 				</div>
 				<div class="col-lg-3 col-md-6 offset-md-3 offset-lg-0 text-center">
-					<div class="single-product-item">
+					<div class="single-category-item" data-type="양식">
 						<div class="product-image">
-							<a href="shop.jsp"><img
+							<a href="#"><img
 								src="assets/img/음식카테고리/양식.png" alt=""></a>
 						</div>
 						<h3>양식</h3>
@@ -227,6 +227,5 @@
 			}).open();
 		}
 	</script>
-
 </body>
 </html>

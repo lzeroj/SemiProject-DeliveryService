@@ -74,6 +74,44 @@
                 }
             }
         });
+        
+        $(".single-category-item").on('click', function(){
+			var clickedElement = $(this);
+			var address = $("#address").val();
+//			var category = $(".single-category-item").data("type");
+			var category = clickedElement.data("type");
+			alert(category);
+			console.log("category: "+category);
+			console.log("address: "+address);
+
+			//alert(address);
+			if($("#address").val()==""){
+				
+				//alert("주소를 선택해주세요");
+				//return false;
+			}
+			// 폼 생성 및 데이터 전송
+			var form = $('<form>').attr({
+				method: 'GET',
+				action: 'StoFindStoreListAll.do'  // 컨트롤러 URL을 입력해주세요
+			});
+			  
+			// 주소 값을 히든 필드로 추가
+			$('<input>').attr({
+				type: 'hidden',
+				name: 'address',
+				value: address
+			}).appendTo(form);
+			
+			$('<input>').attr({
+				type: 'hidden',
+				name: 'category',
+				value: category
+			}).appendTo(form);
+			
+			// 폼 전송
+			form.appendTo('body').submit();
+		});
 
         // count down
         if($('.time-countdown').length){  
@@ -84,7 +122,7 @@
             });
          });
         }
-
+        
         // projects filters isotop
         $(".product-filters li").on('click', function () {
             
@@ -92,6 +130,19 @@
             $(this).addClass("active");
 
             var selector = $(this).attr('data-filter');
+//            var chek1 = $("#item").data("chk");
+//
+//            var chek = $(".product-filters ul li").data("filters");
+//            console.log("chek:"+chek);
+//            console.log("chek1:"+chek1);
+//
+//            console.log("selector:"+selector);
+//            
+//            if(chek!=selector){
+//				$(".single-product-item").hide();
+//			}else{
+//				$(".single-product-item").show();
+//			}
 
             $(".product-lists").isotope({
                 filter: selector,

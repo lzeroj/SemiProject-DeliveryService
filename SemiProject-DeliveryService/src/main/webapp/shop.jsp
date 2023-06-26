@@ -14,7 +14,9 @@
 	<!-- favicon -->
 	<link rel="shortcut icon" type="image/png" href="assets/img/favicon.png">
 	<!-- google font -->
-	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+	<link
+	href="https://fonts.googleapis.com/css2?family=Sunflower:wght@300&display=swap"
+	rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
 	<!-- fontawesome -->
 	<link rel="stylesheet" href="assets/css/all.min.css">
@@ -33,10 +35,11 @@
 	<!-- responsive -->
 	<link rel="stylesheet" href="assets/css/responsive.css">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=87599c2f74b02fcf28a9638597678071&libraries=services"></script>
 
 </head>
 <body>
-	
 	<!--PreLoader-->
     <div class="loader">
         <div class="loader-inner">
@@ -66,16 +69,16 @@
 	<!-- products -->
 	<div class="product-section mt-150 mb-150">
 		<div class="container">
-
 			<div class="row">
                 <div class="col-md-12">
                     <div class="product-filters">
                         <ul>
-                            <li class="active" data-filter="*">All</li>
-                            <li data-filter=".strawberry">한식</li>
-                            <li data-filter=".berry">중식</li>
-                            <li data-filter=".lemon">일식</li>
-                            <li data-filter=".strawberry">양식</li>
+<!--                         single-category-item -->
+                            <li data-filter="*">All</li>
+                            <li data-filter=".한식">한식</li>
+                            <li data-filter=".중식">중식</li>
+                            <li data-filter=".일식">일식</li>
+                            <li data-filter=".양식">양식</li>
                             <li data-filter=".berry">피자</li>
                             <li data-filter=".lemon">치킨</li>
                             <li data-filter=".strawberry">패스트푸드</li>
@@ -86,60 +89,194 @@
             </div>
 
 			<div class="row product-lists">
-				<div class="col-lg-3 col-md-6 text-center strawberry">
-					<div class="single-product-item">
+				<c:forEach items="${stolist}" var="stolist">
+        		<div class="col-lg-3 col-md-6 text-center ${stolist.storeCategory}">
+					<div class="single-product-item" data-chk="${stolist.storeCategory}">
 						<div class="product-image">
-							<a href="single-product.jsp"><img src="assets/img/products/product-img-1.jpg" alt=""></a>
+							<img src="assets/img/store/${stolist.storePicturePath}" alt="">
 						</div>
-						<h3>Strawberry</h3>
-						<a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+						<h3>${stolist.storeName}</h3>
+						<input type="hidden" id="location" value="${stolist.storeLocation}"/>
+						<p id="result-${stolist.storeNumber - 1}"></p>
+						<a href="#" onclick="handleLinkClick(event)" id="result1-${stolist.storeNumber - 1}" class="cart-btn"><i class="fas fa-shopping-cart"></i> 주문하러가기</a>
+						<script type="text/javascript">
+							function handleLinkClick(event) {
+								event.preventDefault();
+								var storeNumber = parseInt(event.target.id.split('-')[1]) + 1;
+								var dynamicId = "result1-" + (storeNumber - 1);
+								
+								var element = document.getElementById(dynamicId);
+								let distance = element.getAttribute("data-distance");
+								let index = element.getAttribute("data-index");
+
+								console.log(distance);
+								console.log(index);
+								alert(index);
+
+								let url = "StoFindStoreAndFoodListDetailByStoreName.do?storenumber=" + (parseInt(index) + 1) + "&distance=" + distance;
+								
+								window.location.href = url;
+							}
+						</script>
+						
 					</div>
 				</div>
-				<div class="col-lg-3 col-md-6 text-center berry">
-					<div class="single-product-item">
-						<div class="product-image">
-							<a href="single-product.jsp"><img src="assets/img/products/product-img-2.jpg" alt=""></a>
-						</div>
-						<h3>Berry</h3>
-						<a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
-					</div>
-				</div>
-				<div class="col-lg-3 col-md-6 text-center lemon">
-					<div class="single-product-item">
-						<div class="product-image">
-							<a href="single-product.jsp"><img src="assets/img/products/product-img-3.jpg" alt=""></a>
-						</div>
-						<h3>Lemon</h3>
-						<a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
-					</div>
-				</div>
-				<div class="col-lg-3 col-md-6 text-center">
-					<div class="single-product-item">
-						<div class="product-image">
-							<a href="single-product.jsp"><img src="assets/img/products/product-img-4.jpg" alt=""></a>
-						</div>
-						<h3>Avocado</h3>
-						<a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
-					</div>
-				</div>
-				<div class="col-lg-3 col-md-6 text-center">
-					<div class="single-product-item">
-						<div class="product-image">
-							<a href="single-product.jsp"><img src="assets/img/products/product-img-5.jpg" alt=""></a>
-						</div>
-						<h3>Green Apple</h3>
-						<a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
-					</div>
-				</div>
-				<div class="col-lg-3 col-md-6 text-center strawberry">
-					<div class="single-product-item">
-						<div class="product-image">
-							<a href="single-product.jsp"><img src="assets/img/products/product-img-6.jpg" alt=""></a>
-						</div>
-						<h3>Strawberry</h3>
-						<a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
-					</div>
-				</div>
+				</c:forEach>
+				<script type="text/javascript">
+				async function getCoordinates(startaddress, arriveaddress, resultId, index) {
+				    var geocoder = new kakao.maps.services.Geocoder();
+
+				    var startlatitude = null;
+				    var startlongitude = null;
+				    var arrivelatitude = null;
+				    var arrivelongitude = null;
+
+				    await new Promise(function(resolve, reject) {
+				        geocoder.addressSearch(startaddress, function(result, status) {
+				            if (status === kakao.maps.services.Status.OK) {
+				                startlatitude = result[0].y;
+				                startlongitude = result[0].x;
+				                console.log("출발위도:"+startlatitude);
+				                console.log("출발경도:"+startlongitude);
+
+				                resolve();
+				            } else {
+				                reject("출발 주소를 찾을 수 없습니다.");
+				            }
+				        });
+				    });
+
+				    await new Promise(function(resolve, reject) {
+				        geocoder.addressSearch(arriveaddress, function(result, status) {
+				            if (status === kakao.maps.services.Status.OK) {
+				                arrivelatitude = result[0].y;
+				                arrivelongitude = result[0].x;
+				                console.log("도착위도:"+arrivelatitude);
+				                console.log("도착경도:"+arrivelongitude);
+
+				                resolve();
+				            } else {
+				                reject("도착 주소를 찾을 수 없습니다.");
+				            }
+				        });
+				    });
+
+				    await calculateDistance(resultId, index, startlatitude, startlongitude, arrivelatitude, arrivelongitude);
+				    nextFunction(index);
+				}
+				
+				function calculateDistance(resultId, index, startlatitude, startlongitude, arrivelatitude, arrivelongitude) {
+				    var polyline = new daum.maps.Polyline({
+				        path: [
+				            new daum.maps.LatLng(startlatitude, startlongitude),
+				            new daum.maps.LatLng(arrivelatitude, arrivelongitude)
+				        ],
+				    });
+
+				    var distance = polyline.getLength();
+				    console.log("distance:"+distance);
+				    var chkfree = null;
+				    if(distance>2000 && distance<4000){
+				    	chkfree = "배달 요금 : 1000";
+			    	}else if(distance>0 && distance<2000){
+			    		chkfree = "배달 요금 : 무료";
+			    	}else if(distance>4000){
+			    		chkfree = "배달 요금 : 2000";
+			    	}
+				    resultId = "result-" + index;
+				    $("#" + resultId).html(chkfree);
+				    
+				    // data-distance에 distance 값을 저장
+				    var linkElement = document.getElementById("result-" + index);
+				    var linkElementbtn = document.getElementById("result1-" + index);
+
+				    if (linkElement) {
+			    	  linkElement.setAttribute("data-distance", distance/1000);
+			    	  linkElement.setAttribute("data-index", index);
+			    	  linkElementbtn.setAttribute("data-distance", distance);
+			    	  linkElementbtn.setAttribute("data-index", index);
+
+			    	} else {
+			    	  console.error("Link element not found for index: " + index);
+			    	}				 
+				    
+				    return new Promise(function(resolve, reject) {
+				        resolve();
+				    });
+				}
+				
+				function nextFunction(index) {
+				    console.log("다음 함수 실행. Index: " + index);
+				    // 결과를 웹 페이지에 표시할 HTML 요소를 선택합니다.
+				    resultId = "result-" + index;
+				    console.log("nextFunction-resultId:"+resultId)
+				    var resultElement = document.getElementById(resultId);
+
+				    var distances = Array.from(document.querySelectorAll(".single-product-item[data-chk]")).map(function (item) {
+				        var distanceElement = item.querySelector("p");
+				        var distance = distanceElement ? parseFloat(distanceElement.textContent) : null;
+				        return distance;
+				    });
+
+				    distances.sort(function (a, b) {
+				        return b - a;
+				    });
+
+				    var productList = document.querySelector(".product-lists");
+
+				    if (productList) {
+				        var items = Array.from(productList.children);
+				        items.sort(function (a, b) {
+				            var distanceAElement = a.querySelector("p");
+				            var distanceBElement = b.querySelector("p");
+				            var distanceA = distanceAElement ? parseFloat(distanceAElement.textContent) : null;
+				            var distanceB = distanceBElement ? parseFloat(distanceBElement.textContent) : null;
+				            return distanceA - distanceB;
+				        });
+
+				        items.forEach(function(item) {
+				            productList.insertBefore(item, productList.firstChild);
+				        });
+				    }
+				}
+
+				$(function() {
+					const queryString = window.location.search;
+					const urlParams = new URLSearchParams(queryString);
+					const value = "."+urlParams.get('category');
+					const sortBy = urlParams.get('distance'); // 새로운 정렬 기준을 가져옵니다 (예: 'distance')
+					
+					// 정렬 함수를 정의합니다
+					const customSortFunction = function(a, b) {
+					  const distanceA = parseFloat(a.getAttribute('data-distance'));
+					  const distanceB = parseFloat(b.getAttribute('data-distance'));
+					
+					  // 원하는 정렬 기준에 따라 비교하여 정렬합니다
+					  if (distanceA < distanceB) {
+					    return -1;
+					  } else if (distanceA > distanceB) {
+					    return 1;
+					  } else {
+					    return 0;
+					  }
+					};
+
+					$(".product-lists .single-product-item").each(async function(index) {
+					  var startaddress = "<c:out value='${address}' />";
+					  var arriveaddress = $(this).find("input#location").val();
+					  console.log("arriveaddress: " + arriveaddress);
+					  var resultId = "result-" + $(this).index();
+					
+					  await getCoordinates(startaddress, arriveaddress, resultId, index);
+					
+					  // 데이터를 받은 후에 정렬하여 isotope에 적용합니다
+					  var productList = $(".product-lists");
+					  
+					 	  //productList.isotope('reloadItems');
+					  productList.isotope('arrange', { filter: value, sortBy: sortBy, sortAscending: true, sortFunction: customSortFunction });
+					});
+				});				    
+				</script>
 			</div>
 
 			<div class="row">
@@ -189,6 +326,7 @@
 	<!-- end copyright -->
 	
 	<!-- jquery -->
+	
 	<script src="assets/js/jquery-1.11.3.min.js"></script>
 	<!-- bootstrap -->
 	<script src="assets/bootstrap/js/bootstrap.min.js"></script>
@@ -208,6 +346,7 @@
 	<script src="assets/js/sticker.js"></script>
 	<!-- main js -->
 	<script src="assets/js/main.js"></script>
+	
 
 </body>
 </html>
