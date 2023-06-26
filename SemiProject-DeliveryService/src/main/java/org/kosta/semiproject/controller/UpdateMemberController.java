@@ -37,7 +37,7 @@ public class UpdateMemberController implements Controller {
 		mvo.setUserPhone(phone);
 		mvo.setUserBirth(birth);
 		MemberDAO.getInstance().updateMember(mvo);
-		session.setAttribute("mvo", mvo);
-		return "redirect:/member/update-result.jsp";
+		session.setAttribute("member", mvo);
+		return "redirect:member/update-result.jsp";
 	}
 }
