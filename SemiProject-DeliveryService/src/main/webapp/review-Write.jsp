@@ -13,7 +13,7 @@
 			</tr>
 		</table>
 		<div class="text-center">
-			<button type="submit" class="btn btn-primary">확인</button>
-			<button type="reset" class="btn btn-primary">취소</button>
+			<button type="submit" class="btn btn-primary">리뷰 작성하기</button>
+			<button type="reset" class="btn btn-primary">돌아가기</button>
 		</div>
 	</form>
