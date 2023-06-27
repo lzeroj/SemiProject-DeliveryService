@@ -12,7 +12,7 @@
 	<title>상세보기</title>
 
 	<!-- favicon -->
-	<link rel="shortcut icon" type="image/png" href="assets/img/favicon.png">
+	<link rel="shortcut icon" type="image/png" href="assets/img/favicon-duck2_32.png">
 	<!-- google font -->
 	<link
 	href="https://fonts.googleapis.com/css2?family=Sunflower:wght@300&display=swap"
@@ -84,7 +84,7 @@
 				</div>
 				<div class="col-md-7">
 					<div class="single-product-content">
-						<h2>
+						<h2 style="font-size: 2.5rem;">
 							${storeInfo.storeName}
 							&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;
 							<c:choose>
@@ -114,7 +114,7 @@
 												if($(".chkajax").data("bool")=="true"){
 													if(result === "true"){
 											            $(this).empty();
-											            $(this).append('<i class="bi bi-heart-fill fa-1x"></i>');
+											            $(this).append('<i class="bi bi-heart-fill fa-1x" style="color : red"></i>');
 													}else{
 											            $(this).empty();	
 											            $(this).append('<i class="bi bi-heart fa-1x"></i>');	
@@ -122,7 +122,7 @@
 												}else{ //$(".chkajax").data("bool")=="false"
 													if(result === "true"){
 											            $(this).empty();
-											            $(this).append('<i class="bi bi-heart-fill fa-1x"></i>');
+											            $(this).append('<i class="bi bi-heart-fill fa-1x" style="color : red"></i>');
 													}else{
 											            $(this).empty();	
 											            $(this).append('<i class="bi bi-heart fa-1x"></i>');	

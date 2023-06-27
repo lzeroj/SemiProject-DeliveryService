@@ -13,7 +13,7 @@
 	<title>404!</title>
 
 	<!-- favicon -->
-	<link rel="shortcut icon" type="image/png" href="assets/img/favicon.png">
+	<link rel="shortcut icon" type="image/png" href="assets/img/favicon-duck2_32.png">
 	<!-- google font -->
 	<link
 	href="https://fonts.googleapis.com/css2?family=Sunflower:wght@300&display=swap"
@@ -75,7 +75,7 @@
 				<div class="row">
 					<div class="col-lg-8 offset-lg-2 text-center">
 						<div class="breadcrumb-text">
-							<p>Fresh adn Organic</p>
+							<p>오, 2km?!</p>
 							<h1>404 - Not Found</h1>
 						</div>
 					</div>
@@ -91,9 +91,9 @@
 						<div class="col-lg-8 offset-lg-2 text-center">
 							<div class="error-text">
 								<i class="far fa-sad-cry"></i>
-								<h1>Oops! Not Found.</h1>
+								<h1>페이지를 찾을 수 없습니다</h1>
 								<p>The page you requested for is not found.</p>
-								<a href="index.html" class="boxed-btn">Back to Home</a>
+								<a href="index.html" class="boxed-btn">홈으로 돌아가기</a>
 							</div>
 						</div>
 					</div>

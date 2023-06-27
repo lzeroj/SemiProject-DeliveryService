@@ -112,10 +112,10 @@
 			console.log("address: "+address);
 
 			if($("#address").val()==""){
-				
-				//alert("주소를 선택해주세요");
-				//return false;
+				alert("주소를 선택해주세요");
+				return false;
 			}
+			
 			// 폼 생성 및 데이터 전송
 			var form = $('<form>').attr({
 				method: 'GET',

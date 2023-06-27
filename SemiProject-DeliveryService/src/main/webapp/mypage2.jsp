@@ -14,7 +14,7 @@
 <title>마이페이지</title>
 
 <!-- favicon -->
-<link rel="shortcut icon" type="image/png" href="assets/img/favicon.png">
+<link rel="shortcut icon" type="image/png" href="assets/img/favicon-duck2_32.png">
 <!-- google font -->
 <link
 	href="https://fonts.googleapis.com/css2?family=Sunflower:wght@300&display=swap"
@@ -93,26 +93,52 @@
 											data-toggle="tab" href="#" style="margin-top: 15px">주문내역보기</a></li>
 										<li class="nav-item"><a class="nav-link"
 											data-toggle="tab" href="myOrderList" onclick="updateMember()">회원정보수정</a></li>
+										<li class="nav-item"><a class="nav-link"
+											data-toggle="tab" href="myOrderList" onclick="deleteMember()">회원 탈퇴</a></li>
 									</ul>
 								</div>
 							</div>
 
-							<div class="tab-type6"></div>
+<!-- 							<div class="tab-type6"></div> -->
 							<div class="order-list">
-								<div class="no-data">주문내역이 없습니다.</div>
-								<div class="cart-section mt-150 mb-150">
-									<div class="container">
-										<div class="row">
-											<div class="col-lg-8 col-md-12">
-												<div class="cart-table-wrap"></div>
+								<c:choose>
+									<c:when test="">
+									<div class="no-data">주문내역이 없습니다.</div>
+									</c:when>
+									<c:otherwise>
+									<table class="cart-table">
+										<thead class="cart-table-head">
+											<tr class="table-head-row">
+												<th class="product-image">주문번호</th>
+												<th class="product-image">가게명</th>
+												<th class="product-name">주문위치</th>
+												<th class="product-price">금액</th> <!-- 전체금액 -->
+												<th class="product-name">주문ㅅ</th>
+												<th class="product-image">배달현황</th>
+												
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>i+1</td>
+											</tr>
+										</tbody>
+									</table>
+									</c:otherwise>
+								</c:choose>
+									<div class="cart-section mt-150 mb-150">
+										<div class="container">
+											<div class="row">
+												<div class="col-lg-8 col-md-12">
+													<div class="cart-table-wrap"></div>
+												</div>
 											</div>
 										</div>
 									</div>
-								</div>
 								<div class="btn-wrap">
 									<a href="${pageContext.request.contextPath}/index.jsp"
-										class="btn-type v3" style="border-radius: 5%">지금 주문하러 가기</a> <a
-										href="CartFindListByCartNo.do"
+										class="btn-type v3" style="border-radius: 5%">지금 주문하러 가기</a> 
+									<a href="CartFindListByCartNo.do" 
 										class="btn-type v4" style="border-radius: 5%">장바구니 보러가기</a>
 								</div>
 							</div>
