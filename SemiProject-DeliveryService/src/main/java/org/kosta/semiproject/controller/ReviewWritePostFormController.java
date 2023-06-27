@@ -15,7 +15,10 @@ public class ReviewWritePostFormController implements Controller {
 			return "redirect:login.jsp";
 		}
 		
-		System.out.println(request.getParameter("storeName"));
+		String storeName = request.getParameter("storeName");
+		int storeNumber = Integer.parseInt(request.getParameter("storeNumber"));
+		request.setAttribute("storeName", storeName);
+		request.setAttribute("storeNumber", storeNumber);
 		request.setAttribute("url", "review-Write.jsp");
 		return "review-layout.jsp";
 	}

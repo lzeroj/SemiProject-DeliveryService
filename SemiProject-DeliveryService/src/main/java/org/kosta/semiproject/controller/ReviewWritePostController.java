@@ -8,8 +8,6 @@ import javax.servlet.http.HttpSession;
 import org.kosta.semiproject.model.MemberVO;
 import org.kosta.semiproject.model.ReviewDAO;
 import org.kosta.semiproject.model.ReviewVO;
-import org.kosta.semiproject.model.StoreDAO;
-import org.kosta.semiproject.model.StoreVO;
 
 public class ReviewWritePostController implements Controller {
 
@@ -23,16 +21,15 @@ public class ReviewWritePostController implements Controller {
 			System.out.println("**비인증 상태이므로 서비스 할 수 없습니다.**");
 			return "redirect:index.jsp";
 		}
-		
-		System.out.println(session.getAttribute("storeName"));
+		//String storeName = request.getParameter("storeName");
+		int storeNumber = Integer.parseInt(request.getParameter("storeNumber"));
 		String reviewContent = request.getParameter("content");
 		MemberVO memberVO = (MemberVO) session.getAttribute("member");
 		ReviewVO reviewVO = new ReviewVO();
-		/* StoreVO storeVO = StoreDAO.getInstance(). */
-/*		reviewVO.setReviewContent(reviewContent);
+		reviewVO.setReviewContent(reviewContent);
 		reviewVO.setMemberVO(memberVO);
-		ReviewDAO.getInstance().writeReview(reviewContent);*/
-		return "redirect:ReviewListByStoreName.do";
+		ReviewDAO.getInstance().insertReview(reviewVO,storeNumber);	
+		return "redirect:ReviewListByStoreNumber.do?storeNumber="+storeNumber;
 	}
 
 }

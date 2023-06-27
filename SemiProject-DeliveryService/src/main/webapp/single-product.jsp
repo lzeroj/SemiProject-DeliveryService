@@ -34,7 +34,10 @@
 	<link rel="stylesheet" href="assets/css/responsive.css">
 	<!-- icon style -->
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
+<<<<<<< HEAD
 
+=======
+>>>>>>> branch 'develop' of https://github.com/lzeroj/SemiProject-DeliveryService.git
 </head>
 <body>
 	<!--PreLoader-->
@@ -97,7 +100,17 @@
 												console.log(check);
 												if(check==="ok"){
 													alert("장바구니에 추가되었습니다.");						
+<<<<<<< HEAD
 												}else{ <%--check==="nullSession" --%>
+=======
+												}
+												
+ 												/*else if(check==="fail"){
+													alert("이미 장바구니에 등록되어 있습니다.");
+												} */
+												
+												else{ <%--check==="nullSession" --%>
+>>>>>>> branch 'develop' of https://github.com/lzeroj/SemiProject-DeliveryService.git
 													alert("세션이 끊겼습니다. 다시 로그인 하세요");
 													location.href="index.jsp";
 												}

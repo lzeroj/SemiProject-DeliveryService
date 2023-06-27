@@ -33,7 +33,7 @@ public class ReviewDAO {
 		closeAll(pstmt, con);
 	}
 	
-	public ArrayList<ReviewVO> findStoreReviewList(String storeName, Pagination pagination) throws SQLException {
+	public ArrayList<ReviewVO> findStoreReviewList(int storeNumber, Pagination pagination) throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -46,10 +46,10 @@ public class ReviewDAO {
 			sql.append("ROW_NUMBER() OVER(ORDER BY review_insertdate DESC) ");
 			sql.append("AS rnum, review_content, review_insertdate, store_number, user_id FROM review ) r ");
 			sql.append("INNER JOIN store s ON r.store_number = s.store_number ");
-			sql.append("WHERE s.store_name = ? ");
+			sql.append("WHERE s.store_number = ? ");
 			sql.append("AND rnum BETWEEN ? AND ?");
 			pstmt = con.prepareStatement(sql.toString());
-			pstmt.setString(1, storeName);
+			pstmt.setInt(1, storeNumber);
 			pstmt.setLong(2, pagination.getStartRowNumber());
 			pstmt.setLong(3, pagination.getEndRowNumber());
 			rs = pstmt.executeQuery();
@@ -68,7 +68,7 @@ public class ReviewDAO {
 		return list;
 	}
 
-	public long findTotalPostCount(String storeName) throws SQLException {
+	public long findTotalPostCount(int storeNumber) throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -79,9 +79,9 @@ public class ReviewDAO {
 			sql.append("SELECT count(*) "); 
 			sql.append("FROM review r "); 
 			sql.append("INNER JOIN store s ON r.store_number = s.store_number "); 
-			sql.append("WHERE s.store_name=?"); 
+			sql.append("WHERE s.store_number=?"); 
 			pstmt = con.prepareStatement(sql.toString());
-			pstmt.setString(1, storeName);
+			pstmt.setInt(1, storeNumber);
 			rs = pstmt.executeQuery();
 			if(rs.next())
 				totalPostCount = rs.getLong(1);
@@ -96,5 +96,22 @@ public class ReviewDAO {
 	 * review(review_no,review_content,review_insertdate,store_number,user_id)
 	 * VALUES(review_no_seq.nextval,?,sysdate,?,?);
 	 */
-	
+
+	public void insertReview(ReviewVO reviewVO, int storeNumber) throws SQLException {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		try {
+			con = dataSource.getConnection();
+			StringBuilder sql = new StringBuilder();
+			sql.append("INSERT INTO review(review_no,review_content,review_insertdate,store_number,user_id) ");
+			sql.append("VALUES(review_no_seq.nextval,?,sysdate,?,?)");
+			pstmt = con.prepareStatement(sql.toString());
+			pstmt.setString(1, reviewVO.getReviewContent());
+			pstmt.setInt(2, storeNumber);
+			pstmt.setString(3,reviewVO.getMemberVO().getUserId());
+			pstmt.executeUpdate();
+		}finally {
+			closeAll(pstmt, con);
+		}
+	}
 }

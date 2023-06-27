@@ -164,8 +164,9 @@ ${storeInfo.storeInfo}
 						<br><br>
 						
 						<%-- 리뷰 보기 기능 --%>
-						<form action="ReviewListByStoreName.do" method="get">
+						<form action="ReviewListByStoreNumber.do" method="get">
 						<button type="submit" class="btn btn-outline-success">리뷰 보기</button>
+						<input type="hidden" name="storeNumber" value="${storeInfo.storeNumber}">
 						<input type="hidden" name="storeName" value="${storeInfo.storeName}">
 						</form>
 						<%-- 리뷰 END --%>
@@ -197,7 +198,7 @@ ${storeInfo.storeInfo}
 				<div class="col-lg-4 col-md-6 text-center">
 					<div class="single-product-item">
 						<div class="product-image">
-							<a href="StoFindFoodDetailByFoodName.do?foodname=${foodInfo.foodName}"><img src="assets/img/food/${foodInfo.foodPicturePath}" alt=""></a>
+							<a href="StoFindFoodDetailByFoodName.do?foodname=${foodInfo.foodName}"><img src="assets/img/food/${foodInfo.foodPicturePath}" alt="" style="width: 300px" height="300px"></a>
 						</div>
 						<h3>${foodInfo.foodName}</h3>
 						<p class="product-price"><span>가격</span> ${foodInfo.foodPrice}원 </p>
