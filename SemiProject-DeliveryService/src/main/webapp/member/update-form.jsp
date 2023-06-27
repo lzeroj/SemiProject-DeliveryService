@@ -31,43 +31,43 @@
 				<form class="validation-form" method="post" action="../UpdateMember.do">
 					<div class="row">
 						<div class="col-md-6 mb-3">
-							<label for="name">아이디</label> <input type="text"
+							<label for="userId">아이디</label> <input type="text"
 								class="form-control" name="userId"
 								value="${sessionScope.member.userId}" readonly="readonly">
 						</div>
 						<div class="col-md-6 mb-3">
-							<label for="nickname">비밀번호</label> <input type="password"
+							<label for="userPassword">비밀번호</label> <input type="password"
 								class="form-control" name="userPassword" required>
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-md-6 mb-3">
-							<label for="name">전화번호</label> <input type="text"
+							<label for="userPhone">전화번호</label> <input type="text"
 								class="form-control" name="userPhone"
 								placeholder="예) 01012345678" required>
 						</div>
 						<div class="col-md-6 mb-3">
-							<label for="nickname">생년월일</label> <input type="text"
+							<label for="userBirth">생년월일</label> <input type="text"
 								class="form-control" name="userBirth"
 								value="${sessionScope.member.userBirth}" readonly="readonly">
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-md-6 mb-3">
-							<label for="email">이름</label> <input type="text"
+							<label for="userName">이름</label> <input type="text"
 								class="form-control" name="userName"
 								value="${sessionScope.member.userName}" required="required"
 								readonly="readonly">
 						</div>
 						<div class="col-md-6 mb-3">
-							<label for="email">이메일</label> <input type="email"
+							<label for="userEmail">이메일</label> <input type="userEmail"
 								class="form-control" name="userEmail"
 								placeholder="you@example.com" required>
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-md-12">
-							<label for="root">고객 유형</label> <select
+							<label for="userType">고객 유형</label> <select
 								class="custom-select d-block w-100" name="userType">
 								<option value="1">일반고객</option>
 								<option value="2">점주</option>
@@ -75,8 +75,8 @@
 						</div>
 					</div>
 					<div class="row">
-						<div class="col-md-12" id="address1">
-							<label for="address">주소</label>
+						<div class="col-md-12" id="userAddress">
+							<label for="userAddress">주소</label>
 							<div class="input-group">
 								<input type="text" class="form-control" name="userAddress"
 									id="address" placeholder="주소를 입력해주세요" required>
@@ -88,12 +88,12 @@
 						</div>
 					</div>
 					<div class="row">
-						<div class="col-md-12 " id="address2">
-							<label for="address2">상세주소<span class="text-muted">&nbsp;(필수
+						<div class="col-md-12 " id="userAddDetail">
+							<label for="userAddDetail">상세주소<span class="text-muted">&nbsp;(필수
 									)</span></label> <input type="text" class="form-control" name="userAddDetail"
 								placeholder="상세주소를 입력해주세요.">
 						</div>
-					</div>
+					</div>   
 					<hr class="mb-4">
 					<div class="mb-4"></div>
 					<button class="btn btn-primary btn-lg btn-block" type="submit"

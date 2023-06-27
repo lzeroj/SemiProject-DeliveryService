@@ -9,7 +9,7 @@ import org.kosta.semiproject.model.Pagination;
 import org.kosta.semiproject.model.ReviewDAO;
 import org.kosta.semiproject.model.ReviewVO;
 
-public class ReviewListByStoreNumberController implements Controller {
+public class ReviewListByStoreNameController implements Controller {
 
 	@Override
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {

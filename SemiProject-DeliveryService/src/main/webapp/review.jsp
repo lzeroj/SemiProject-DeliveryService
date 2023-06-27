@@ -82,7 +82,9 @@
 							</p>
 							<p class="excerpt">${reviewList.reviewContent}</p><br><br>
 							<c:if test="${sessionScope.member.userId == reviewList.memberVO.userId }">
-							<button class="btn btn-link">수정</button>
+							<form action="UpdatePostForm.do" method="post">
+							<button class="btn btn-link" type="submit">수정</button>
+							</form>
 							<button class="btn btn-link">삭제</button>		
 							</c:if>									
 						</div>					
@@ -115,8 +117,8 @@
 									<li><a href="ReviewListByStoreNumber.do?storeName=${storeName}&pageNo=${pagination.endPageOfPageGroup+1}">Next</a></li>
 									</c:if>
 									<li class="col-lg-12 text-right">
-									<form action="ReviewWritePost.do" method="get">
-									<input type="hidden" name="reviewWrite" value="리뷰">
+									<form action="ReviewWritePostForm.do" method="get">
+									<input type="hidden" name="storeName" value="${storeName}">
 									<button class="btn btn-primary" type="submit">리뷰 작성</button></form>
 									</li>
 								</ul>

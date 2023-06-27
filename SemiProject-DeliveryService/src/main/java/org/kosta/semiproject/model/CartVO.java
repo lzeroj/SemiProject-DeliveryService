@@ -5,17 +5,19 @@ public class CartVO {
 	private MemberVO memberVO;
 	private FoodVO foodVO;
 	private int quantity;
+	private int isCartOrdered;
 	
 	public CartVO() {
 		super();
 	}
 
-	public CartVO(int cartNo, MemberVO memberVO, FoodVO foodVO, int quantity) {
+	public CartVO(int cartNo, MemberVO memberVO, FoodVO foodVO, int quantity, int isCartOrdered) {
 		super();
 		this.cartNo = cartNo;
 		this.memberVO = memberVO;
 		this.foodVO = foodVO;
 		this.quantity = quantity;
+		this.isCartOrdered = isCartOrdered;
 	}
 
 	public int getCartNo() {
@@ -50,10 +52,19 @@ public class CartVO {
 		this.quantity = quantity;
 	}
 
+	public int getIsCartOrdered() {
+		return isCartOrdered;
+	}
+
+	public void setIsCartOrdered(int isCartOrdered) {
+		this.isCartOrdered = isCartOrdered;
+	}
+
 	@Override
 	public String toString() {
 		return "CartVO [cartNo=" + cartNo + ", memberVO=" + memberVO + ", foodVO=" + foodVO + ", quantity=" + quantity
-				+ "]";
+				+ ", isCartOrdered=" + isCartOrdered + "]";
 	}
+	
 	
 }
