@@ -24,14 +24,9 @@ public class CartAjaxInsertCartController implements Controller {
 			MemberVO memberVO = (MemberVO) session.getAttribute("member");
 			String userId = memberVO.getUserId();
 			String foodName = request.getParameter("foodname");
-			int checkId = CartDAO.getInstance().checkCartMenu(userId,foodName);
-			String result = null;
-			if(checkId==1) {
-				result = "fail";
-			}else {
-				CartDAO.getInstance().insertCart(userId,foodName);
-				result = "ok";			
-			}	
+			//int checkId = CartDAO.getInstance().checkCartMenu(userId,foodName);
+			CartDAO.getInstance().insertCart(userId,foodName);
+			String	result = "ok";				
 			request.setAttribute("responsebody", result);
 		}	
 		return "AjaxView";

@@ -122,7 +122,7 @@
 							<div class="single-logo-item">
 								<img src="assets/img/company-logos/5.png" alt="">
 							</div>
-						</div>
+						</div> 
 					</div>
 				</div>
 			</div>

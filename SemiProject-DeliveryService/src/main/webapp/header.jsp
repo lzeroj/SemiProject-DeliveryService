@@ -8,7 +8,7 @@
 			<div class="col-lg-12 col-sm-12 text-center">
 				<div class="main-menu-wrap">
 					<!-- logo -->
-					<div class="site-logo" id="ducklogo" style="margin-top: -30px">
+					<div class="site-logo" id="ducklogo" style="margin-top: -40px">
 						<a href="index.jsp"> <img src="assets/img/oh2km.png"
 							alt="오리사진">
 						</a>

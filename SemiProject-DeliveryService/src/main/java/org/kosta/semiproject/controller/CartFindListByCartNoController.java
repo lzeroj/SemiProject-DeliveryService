@@ -18,7 +18,7 @@ public class CartFindListByCartNoController implements Controller {
 		HttpSession session = request.getSession(false);
 		if (session == null || session.getAttribute("member") == null) {
 			System.out.println("**비인증 상태이므로 서비스 할 수 없습니다.**");
-			return "redirect:index.jsp";
+			return "redirect:login-chk-fail.jsp";
 		}
 		MemberVO memberVO = (MemberVO) session.getAttribute("member");
 		String userId = memberVO.getUserId();
