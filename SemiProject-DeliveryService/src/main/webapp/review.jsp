@@ -82,7 +82,9 @@
 							</p>
 							<p class="excerpt">${reviewList.reviewContent}</p><br><br>
 							<c:if test="${sessionScope.member.userId == reviewList.memberVO.userId }">
-							<button class="btn btn-link">수정</button>
+							<form action="UpdatePostForm.do" method="post">
+							<button class="btn btn-link" type="submit">수정</button>
+							</form>
 							<button class="btn btn-link">삭제</button>		
 							</c:if>									
 						</div>					

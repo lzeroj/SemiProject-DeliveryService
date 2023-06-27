@@ -141,14 +141,14 @@ public class MemberDAO {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		int result = -1;
-		String sql = "UPDATE member SET password = ?, email = ?, phone = ?, address = ? add_detail=? WHERE user_id = ?";
+		String sql = "UPDATE member SET password = ?, user_phone = ?, email = ?, address = ?, add_detail=? WHERE user_id = ?";
 		//회원정보 (비밀번호, 이메일, 번호, 주소 수정)
 		try {
 			con = dataSource.getConnection();
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, mvo.getUserPassword());
-			pstmt.setString(2, mvo.getUserEmail());
-			pstmt.setString(3, mvo.getUserPhone());
+			pstmt.setString(2, mvo.getUserPhone());
+			pstmt.setString(3, mvo.getUserEmail());
 			pstmt.setString(4, mvo.getUserAddress());
 			pstmt.setString(5, mvo.getUserAddDetail());
 			pstmt.setString(6, mvo.getUserId());
