@@ -14,8 +14,6 @@
 
 <!-- favicon -->
 <link rel="shortcut icon" type="image/png" href="assets/img/favicon-duck2_32.png">
-<link rel="shortcut icon" type="image/png"
-	href="assets/img/favicon-duck2_32.png">
 <!-- google font -->
 <link
 	href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700"
@@ -63,7 +61,7 @@
 				<div class="col-lg-8 offset-lg-2 text-center">
 					<div class="breadcrumb-text">
 						<p>무료 배달 서비스</p>
-						<h1>${storeName}리뷰게시판</h1>
+						<h1>${storeName} 리뷰 게시판</h1>					
 					</div>
 				</div>
 			</div>
@@ -74,46 +72,31 @@
 	<!-- latest news -->
 	<div class="latest-news mt-150 mb-150">
 		<div class="container">
-			<div class="row">				
-				<c:forEach items="${reviewList}" var="reviewList">
-					<div class="col-lg-3 col-md-3">
-						<div class="single-latest-news">
-							<div class="news-text-box">
-								<p class="blog-meta">
-									<span class="author"><i class="fas fa-user"></i>${reviewList.memberVO.userId}</span>
-									<span class="date"><i class="fas fa-calendar"></i>
-										${reviewList.reviewInsertDate}</span>
-								</p>
-								<p class="excerpt">${reviewList.reviewContent}</p>
-								<br> <br>
-								<c:if
-									test="${sessionScope.member.userId == reviewList.memberVO.userId }">
-									<form id="updateWritePostForm" action="UpdatePostForm.do"
-										method="post">
-										<button class="btn btn-link" type="submit" onclick="UpdatePost()">수정</button>
-									</form>
-									<script type="text/javascript">
-										function UpdatePost() {
-											if (confirm("수정하시겠습니까")) {
-												document.getElementById(
-														"updateWritePostForm")
-														.submit();
-											}
-										}
-									</script>
-									<form id="reviewDeleteForm" action="ReviewDelete.do"
-										method="post">
-										<button class="btn btn-link" type="button"
-											onclick="deleteReview()">삭제</button>
-										<input type="hidden" name="reviewNo"
-											value="${reviewList.reviewNo}"> <input type="hidden"
-											name="storeNumber" value="${storeNumber}">
-									</form>
-								</c:if>
-							</div>
-						</div>
+			<div class="row">
+			<c:forEach items="${reviewList}" var="reviewList">
+				<div class="col-lg-3 col-md-3">
+					<div class="single-latest-news">
+						<div class="news-text-box">													
+							<p class="blog-meta">
+								<span class="author"><i class="fas fa-user"></i>${reviewList.memberVO.userId}</span> 
+								<span class="date"><i class="fas fa-calendar"></i> ${reviewList.reviewInsertDate}</span>
+							</p>
+							<p class="excerpt">${reviewList.reviewContent}</p><br><br>
+							<c:if test="${sessionScope.member.userId == reviewList.memberVO.userId }">				
+							<form action="UpdatePostForm.do" method="post">
+								<button class="btn btn-link" type="submit">수정</button>
+							</form>
+							<form id="reviewDeleteForm" action="ReviewDelete.do" method="post">
+								<input type="hidden" name="reviewNo" value="${reviewList.reviewNo}">
+								<input type="hidden" name="storeNumber" value="${storeNumber}">
+								<input type="hidden" id="storeName" name="storeName">
+								<button class="btn btn-link" type="button" onclick="deleteReview()">삭제</button>	
+							</form>
+							</c:if>									
+						</div>					
 					</div>
-				</c:forEach>
+				</div>
+			</c:forEach>		
 			</div>
 			<script type="text/javascript">
 				let storeName = '${storeName}';
@@ -124,8 +107,6 @@
 					
 				function deleteReview() {
 					if(confirm("삭제하시겠습니까?")){
-				function deleteReview() {
-					if (confirm("삭제하시겠습니까?")) {
 						document.getElementById("reviewDeleteForm").submit();
 					}
 				}
@@ -136,37 +117,27 @@
 						<div class="col-lg-12 text-center">
 							<div class="pagination-wrap">
 								<ul>
-									<c:if test="${pagination.previousPageGroup}">
-										<li><a
-											href=" ReviewListByStoreNumber.do?storeName=${storeName}&storeNumber=${storeNumber}&pageNo=${pagination.startPageOfPageGroup-1}">Previous</a></li>
+									<c:if test="${pagination.previousPageGroup}">				
+									<li><a href=" ReviewListByStoreNumber.do?storeName=${storeName}&storeNumber=${storeNumber}&pageNo=${pagination.startPageOfPageGroup-1}">Previous</a></li>
 									</c:if>
-									<c:forEach begin="${pagination.startPageOfPageGroup}"
-										end="${pagination.endPageOfPageGroup}" var="page">
-										<c:choose>
-											<c:when test="${pagination.nowPage==page}">
-												<li><a class="active"
-													href="ReviewListByStoreNumber.do?storeName=${storeName}&storeNumber=${storeNumber}&pageNo=${page}">${page}</a></li>
-											</c:when>
-											<c:otherwise>
-												<li><a
-													href="ReviewListByStoreNumber.do?storeName=${storeName}&storeNumber=${storeNumber}&pageNo=${page}">${page}</a></li>
-											</c:otherwise>
-										</c:choose>
+									<c:forEach begin="${pagination.startPageOfPageGroup}" end="${pagination.endPageOfPageGroup}" var="page">
+									<c:choose>
+									<c:when test="${pagination.nowPage==page}">
+									<li><a class="active" href="ReviewListByStoreNumber.do?storeName=${storeName}&storeNumber=${storeNumber}&pageNo=${page}">${page}</a></li>
+									</c:when>
+									<c:otherwise>
+									<li><a href="ReviewListByStoreNumber.do?storeName=${storeName}&storeNumber=${storeNumber}&pageNo=${page}">${page}</a></li>
+									</c:otherwise>
+									</c:choose>
 									</c:forEach>
 									<c:if test="${pagination.nextPageGroup}">
-										<li><a
-											href="ReviewListByStoreNumber.do?storeName=${storeName}&storeNumber=${storeNumber}&pageNo=${pagination.endPageOfPageGroup+1}">Next</a></li>
+									<li><a href="ReviewListByStoreNumber.do?storeName=${storeName}&storeNumber=${storeNumber}&pageNo=${pagination.endPageOfPageGroup+1}">Next</a></li>
 									</c:if>
 									<li class="col-lg-12 text-right">
 									<form action="ReviewWritePostForm.do" method="post">
 									<input type="hidden" name="storeNumber" value="${storeNumber}">
 									<input type="hidden" name="storeName" value="${storeName}">
 									<button class="btn btn-primary" type="submit">리뷰 작성</button></form>
-										<form action="ReviewWritePostForm.do" method="get">
-											<input type="hidden" name="storeNumber"
-												value="${storeNumber}">
-											<button class="btn btn-primary" type="submit">리뷰 작성</button>
-										</form>
 									</li>
 								</ul>
 							</div>
