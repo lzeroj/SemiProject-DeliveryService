@@ -5,11 +5,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.kosta.semiproject.model.MemberVO;
 import org.kosta.semiproject.model.ReviewDAO;
-import org.kosta.semiproject.model.ReviewVO;
 
-public class ReviewWritePostController implements Controller {
+public class ReviewDeleteController implements Controller {
 
 	@Override
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -22,12 +20,9 @@ public class ReviewWritePostController implements Controller {
 			return "redirect:index.jsp";
 		}
 		int storeNumber = Integer.parseInt(request.getParameter("storeNumber"));
-		String reviewContent = request.getParameter("content");
-		MemberVO memberVO = (MemberVO) session.getAttribute("member");
-		ReviewVO reviewVO = new ReviewVO();
-		reviewVO.setReviewContent(reviewContent);
-		reviewVO.setMemberVO(memberVO);
-		ReviewDAO.getInstance().insertReview(reviewVO,storeNumber);	
+		int reviewNo = Integer.parseInt(request.getParameter("reviewNo"));
+		System.out.println(reviewNo);
+		ReviewDAO.getInstance().deleteReview(reviewNo);
 		return "redirect:ReviewListByStoreNumber.do?storeNumber="+storeNumber;
 	}
 

@@ -81,19 +81,28 @@
 								<span class="date"><i class="fas fa-calendar"></i> ${reviewList.reviewInsertDate}</span>
 							</p>
 							<p class="excerpt">${reviewList.reviewContent}</p><br><br>
-							<c:if test="${sessionScope.member.userId == reviewList.memberVO.userId }">
+							<c:if test="${sessionScope.member.userId == reviewList.memberVO.userId }">				
 							<form action="UpdatePostForm.do" method="post">
 							<button class="btn btn-link" type="submit">수정</button>
 							</form>
-							<button class="btn btn-link">삭제</button>		
+							<form id="reviewDeleteForm" action="ReviewDelete.do" method="post">
+							<button class="btn btn-link"  type="button" onclick="deleteReview()">삭제</button>	
+							<input type="hidden" name="reviewNo" value="${reviewList.reviewNo}">
+							<input type="hidden" name="storeNumber" value="${storeNumber}">
+							</form>
 							</c:if>									
 						</div>					
 					</div>
 				</div>
-			</c:forEach>
-			
+			</c:forEach>		
 			</div>
-
+			<script type="text/javascript">
+					function deleteReview() {
+						if(confirm("삭제하시겠습니까?")){
+							document.getElementById("reviewDeleteForm").submit();
+							}
+					}
+			</script>
 			<div class="row">
 				<div class="container">
 					<div class="row">
@@ -101,24 +110,23 @@
 							<div class="pagination-wrap">
 								<ul>
 									<c:if test="${pagination.previousPageGroup}">				
-									<li><a href=" ReviewListByStoreNumber.do?storeName=${storeName}&pageNo=${pagination.startPageOfPageGroup-1}">Previous</a></li>
+									<li><a href=" ReviewListByStoreNumber.do?storeName=${storeName}&storeNumber=${storeNumber}&pageNo=${pagination.startPageOfPageGroup-1}">Previous</a></li>
 									</c:if>
 									<c:forEach begin="${pagination.startPageOfPageGroup}" end="${pagination.endPageOfPageGroup}" var="page">
 									<c:choose>
 									<c:when test="${pagination.nowPage==page}">
-									<li><a class="active" href="ReviewListByStoreNumber.do?storeName=${storeName}&pageNo=${page}">${page}</a></li>
+									<li><a class="active" href="ReviewListByStoreNumber.do?storeName=${storeName}&storeNumber=${storeNumber}&pageNo=${page}">${page}</a></li>
 									</c:when>
 									<c:otherwise>
-									<li><a href="ReviewListByStoreNumber.do?storeName=${storeName}&pageNo=${page}">${page}</a></li>
+									<li><a href="ReviewListByStoreNumber.do?storeName=${storeName}&storeNumber=${storeNumber}&pageNo=${page}">${page}</a></li>
 									</c:otherwise>
 									</c:choose>
 									</c:forEach>
 									<c:if test="${pagination.nextPageGroup}">
-									<li><a href="ReviewListByStoreNumber.do?storeName=${storeName}&pageNo=${pagination.endPageOfPageGroup+1}">Next</a></li>
+									<li><a href="ReviewListByStoreNumber.do?storeName=${storeName}&storeNumber=${storeNumber}&pageNo=${pagination.endPageOfPageGroup+1}">Next</a></li>
 									</c:if>
 									<li class="col-lg-12 text-right">
 									<form action="ReviewWritePostForm.do" method="get">
-									<input type="hidden" name="storeName" value="${storeName}">
 									<input type="hidden" name="storeNumber" value="${storeNumber}">
 									<button class="btn btn-primary" type="submit">리뷰 작성</button></form>
 									</li>
