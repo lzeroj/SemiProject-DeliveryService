@@ -13,7 +13,7 @@
 <title>리뷰게시판</title>
 
 <!-- favicon -->
-<link rel="shortcut icon" type="image/png" href="assets/img/favicon.png">
+<link rel="shortcut icon" type="image/png" href="assets/img/favicon-duck2_32.png">
 <!-- google font -->
 <link
 	href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700"

@@ -8,7 +8,7 @@
 			<div class="col-lg-12 col-sm-12 text-center">
 				<div class="main-menu-wrap">
 					<!-- logo -->
-					<div class="site-logo" id="ducklogo" style="margin-top: -40px">
+					<div class="site-logo" id="ducklogo" style="margin-top: -30px">
 						<a href="index.jsp"> <img src="assets/img/oh2km.png"
 							alt="오리사진">
 						</a>
@@ -36,7 +36,13 @@
 											</div>
 										</c:when>
 										<c:otherwise>
-											<a href="login.jsp"><i class="bi bi-person-circle"></i></a>
+											<a href="login-chk-fail.jsp"
+												style="margin-left: 10px"><i class="bi bi-person-circle fa-2x"></i>
+											</a> 
+											<a class="shopping-cart" href="login-chk-fail.jsp">
+												<i class="bi bi-cart fa-2x"></i>
+											</a>
+											<a href="login.jsp"><i class="bi bi-box-arrow-in-right fa-2x"></i></a>
 											<%--login.jsp --%>
 										</c:otherwise>
 									</c:choose>
