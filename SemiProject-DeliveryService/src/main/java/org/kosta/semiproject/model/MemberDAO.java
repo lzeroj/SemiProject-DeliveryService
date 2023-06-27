@@ -141,7 +141,7 @@ public class MemberDAO {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		int result = -1;
-		String sql = "UPDATE member SET password = ?, email = ?, phone = ?, address = ? add_detail=? WHERE user_id = ?";
+		String sql = "UPDATE member SET password = ?, use r_phone = ?, email = ?, address = ?, add_detail=? WHERE user_id = ?";
 		//회원정보 (비밀번호, 이메일, 번호, 주소 수정)
 		try {
 			con = dataSource.getConnection();

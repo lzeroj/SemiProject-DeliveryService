@@ -13,7 +13,8 @@ CREATE TABLE MEMBER (
 drop table member
 -- 회원 전체조회
 SELECT * FROM member;
-
+-- 회원 정보 업데이트
+UPDATE member SET password = 'aa', user_phone = '01012312312', email = 'nnnn@naver.com', address = '서울 강남구 역삼로 13', add_detail='1층' WHERE user_id ='test1';
 ----------------------------------------------------------------------------
 -- **주문 테이블**  // 재확인 예정
 CREATE TABLE ORDER_FOOD (
