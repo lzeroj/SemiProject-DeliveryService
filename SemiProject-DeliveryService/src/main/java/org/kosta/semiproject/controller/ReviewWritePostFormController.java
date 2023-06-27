@@ -16,7 +16,9 @@ public class ReviewWritePostFormController implements Controller {
 		}
 		
 		int storeNumber = Integer.parseInt(request.getParameter("storeNumber"));
+		String storeName = request.getParameter("storeName");
 		request.setAttribute("storeNumber", storeNumber);
+		request.setAttribute("storeName", storeName);
 		request.setAttribute("url", "review-Write.jsp");
 		return "review-layout.jsp";
 	}

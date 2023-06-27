@@ -84,7 +84,7 @@
 				</div>
 				<div class="col-md-7">
 					<div class="single-product-content">
-						<h2>
+						<h2 style="font-size: 2.5rem;">
 							${storeInfo.storeName}
 							&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;
 							<c:choose>
@@ -164,9 +164,9 @@ ${storeInfo.storeInfo}
 						<br><br>
 						
 						<%-- 리뷰 보기 기능 --%>
-						<form action="ReviewListByStoreNumber.do" method="get">
+						<form action="ReviewListByStoreNumber.do" method="post">
 						<button type="submit" class="btn btn-outline-success">리뷰 보기</button>
-						<input type="hidden" name="storeName" value="${storeInfo.storeName}">
+						 <input type="hidden" name="storeName" value="${storeInfo.storeName}">
 						<input type="hidden" name="storeNumber" value="${storeInfo.storeNumber}">
 						</form>
 						<%-- 리뷰 END --%>

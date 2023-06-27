@@ -18,6 +18,7 @@
 		<div class="text-center">			
 			<button type="submit" class="btn btn-primary">수정하기</button>
 			<input type="hidden" name="storeNumber" value="${storeNumber}">
+			<input type="hidden" name="storeName" value="${storeName}">
 			<button type="reset" class="btn btn-primary">삭제하기</button>	
 		</div>
 	</form>

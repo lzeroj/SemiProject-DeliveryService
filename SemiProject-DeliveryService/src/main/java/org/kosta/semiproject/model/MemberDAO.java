@@ -69,7 +69,7 @@ public class MemberDAO {
 			pstmt.setString(2, password);
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
-				vo = new MemberVO(rs.getString(1), null, rs.getString(2), null, null, null, null, null, 0);
+				vo = new MemberVO(rs.getString(1), null, rs.getString(2), null, null, null, null, null, 0, null);
 			}
 		} finally {
 			// TODO: handle finally clause
@@ -78,57 +78,19 @@ public class MemberDAO {
 		return vo;
 	}
 
-	public int checkId(String id) throws SQLException {
-		Connection con = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		int result = 0;
-		try {
-			con = dataSource.getConnection();
-			String sql = "select count(*) from member where id=?";
-			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, id);
-			rs = pstmt.executeQuery();
-			if (rs.next())
-				result = rs.getInt(1);
-		} finally {
-			closeAll(rs, pstmt, con);
-		}
-		return result;
-	}
-
-	public int getTotalMemberCount() {
-		int count = 0;
-		Connection con = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		try {
-			con = dataSource.getConnection();
-			String sql = "select count(*) from member";
-			pstmt = con.prepareStatement(sql);
-			rs = pstmt.executeQuery();
-			if (rs.next()) {
-				count = rs.getInt(1);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return count;
-	}
-
 	public MemberVO findMember(String user_id) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		MemberVO vo = null;
 		try {
-			con = dataSource.getConnection();
+			con = dataSource.getConnection();	
 			String sql = "SELECT USER_NAME FROM MEMBER WHERE USER_ID= ?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, user_id);
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
-				vo = new MemberVO(null, null, rs.getString(1), null, null, null, null, null, 0);
+				vo = new MemberVO(null, null, rs.getString(1), null, null, null, null, null, 0, null);
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -142,7 +104,7 @@ public class MemberDAO {
 		PreparedStatement pstmt = null;
 		int result = -1;
 		String sql = "UPDATE member SET password = ?, user_phone = ?, email = ?, address = ?, add_detail=? WHERE user_id = ?";
-		//회원정보 (비밀번호, 이메일, 번호, 주소 수정)
+		// 회원정보 (비밀번호, 이메일, 번호, 주소 수정)
 		try {
 			con = dataSource.getConnection();
 			pstmt = con.prepareStatement(sql);
@@ -158,5 +120,33 @@ public class MemberDAO {
 			e.printStackTrace();
 		}
 		return result;
+	}
+
+	public boolean deleteMember(String id) throws SQLException {
+		boolean flag = false;
+
+		String sql = "DELETE FROM member WHERE user_id=?";
+
+		Connection con = null;
+		PreparedStatement pstmt = null;
+
+		try {
+			con = dataSource.getConnection();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+
+			int i = pstmt.executeUpdate();
+
+			if (i == 1) {
+				flag = true;
+			} else {
+				flag = false;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeAll(pstmt, con);
+		}
+		return flag;
 	}
 }
