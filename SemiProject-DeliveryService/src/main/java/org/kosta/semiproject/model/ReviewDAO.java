@@ -32,7 +32,17 @@ public class ReviewDAO {
 			rs.close();
 		closeAll(pstmt, con);
 	}
-	
+	/*
+	SELECT r.review_no,r.review_content, r.review_insertdate,r.user_id
+	FROM ( 
+	SELECT 
+	ROW_NUMBER() OVER(PARTITION BY store_number ORDER BY review_insertdate DESC) 
+	AS rnumdate, review_no,review_content, review_insertdate, store_number, user_id FROM review
+	) r
+	INNER JOIN store s ON r.store_number = s.store_number
+	WHERE r.store_number = 3
+	AND rnumdate BETWEEN 1 AND 8
+	*/
 	public ArrayList<ReviewVO> findStoreReviewList(int storeNumber, Pagination pagination) throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -41,13 +51,13 @@ public class ReviewDAO {
 		try {
 			con = dataSource.getConnection();
 			StringBuilder sql = new StringBuilder();
-			sql.append("SELECT r.review_content, r.review_insertdate, r.user_id ");
+			sql.append("SELECT r.review_no,r.review_content, r.review_insertdate, r.user_id ");
 			sql.append("FROM ( SELECT ");
-			sql.append("ROW_NUMBER() OVER(ORDER BY review_insertdate DESC) ");
-			sql.append("AS rnum, review_content, review_insertdate, store_number, user_id FROM review ) r ");
+			sql.append("ROW_NUMBER() OVER(PARTITION BY store_number ORDER BY review_insertdate DESC) ");
+			sql.append("AS rnumdate, review_no,review_content, review_insertdate, store_number, user_id FROM review ) r ");
 			sql.append("INNER JOIN store s ON r.store_number = s.store_number ");
-			sql.append("WHERE s.store_number = ? ");
-			sql.append("AND rnum BETWEEN ? AND ?");
+			sql.append("WHERE r.store_number = ? ");
+			sql.append("AND rnumdate BETWEEN ? AND ?");
 			pstmt = con.prepareStatement(sql.toString());
 			pstmt.setInt(1, storeNumber);
 			pstmt.setLong(2, pagination.getStartRowNumber());
@@ -55,6 +65,7 @@ public class ReviewDAO {
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
 				ReviewVO reviewVO = new ReviewVO();
+				reviewVO.setReviewNo(rs.getInt("review_no"));
 				reviewVO.setReviewContent(rs.getString("review_content"));
 				reviewVO.setReviewInsertDate(rs.getString("review_insertdate"));
 				MemberVO memberVO = new MemberVO();
@@ -109,6 +120,20 @@ public class ReviewDAO {
 			pstmt.setString(1, reviewVO.getReviewContent());
 			pstmt.setInt(2, storeNumber);
 			pstmt.setString(3,reviewVO.getMemberVO().getUserId());
+			pstmt.executeUpdate();
+		}finally {
+			closeAll(pstmt, con);
+		}
+	}
+
+	public void deleteReview(int reviewNo) throws SQLException {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		try {
+			con = dataSource.getConnection();
+			String sql = "DELETE FROM review WHERE review_no=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, reviewNo);
 			pstmt.executeUpdate();
 		}finally {
 			closeAll(pstmt, con);

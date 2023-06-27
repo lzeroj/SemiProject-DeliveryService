@@ -13,7 +13,8 @@ public class ReviewListByStoreNumberController implements Controller {
 
 	@Override
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		int storeNumber =  Integer.parseInt(request.getParameter("storeNumber"));    
+		int storeNumber =  Integer.parseInt(request.getParameter("storeNumber")); 
+		String storeName = request.getParameter("storeName"); 
 		String pageNo = request.getParameter("pageNo");
 		Pagination pagination = null;
 		long totalPostCount = ReviewDAO.getInstance().findTotalPostCount(storeNumber);
@@ -24,6 +25,7 @@ public class ReviewListByStoreNumberController implements Controller {
 		}
 		request.setAttribute("pagination", pagination);
 		request.setAttribute("storeNumber", storeNumber);
+		request.setAttribute("storeName", storeName);
 		ArrayList<ReviewVO> list = ReviewDAO.getInstance().findStoreReviewList(storeNumber,pagination);
 		request.setAttribute("reviewList", list);			
 		return "review.jsp";
