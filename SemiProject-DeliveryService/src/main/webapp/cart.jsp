@@ -164,30 +164,33 @@
 												value="${totalSum+list.foodVO.foodPrice * list.quantity}"></c:set>
 										</c:forEach>
 										<td>
-											<%-- id구분을 위해 앞에 cartTotalPrice 추가  --%> <strong><span
-												id="cartTotalPrice"> 
-												<fmt:formatNumber value="${totalSum}" pattern="#,###"></fmt:formatNumber></span>원</strong>
+											<%-- id구분을 위해 앞에 cartTotalPrice 추가  --%> 
+											<strong><span id="cartTotalPrice"> 
+												<fmt:formatNumber value="${totalSum}" pattern="#,###"></fmt:formatNumber>
+											</span>원</strong>
 										</td>
 									</tr>
 									<tr>
 										<td>
-										<input type="hidden" name="totalSum" value="${totalSum}"/>
+										<input type="hidden" id="totalSum" name="totalSum" value=""/>
 										<button class="btn btn-warning" name="order"
 												type="button" id="order">주문하기</button></td>
 									</tr>
 								</tbody>
 							</table>
+							<%-- 주문하기 ( order_food 테이블 저장 ) --%>
 							<script type="text/javascript">
 								$(function() {
-									$("#order").submit(function() {
+									$("#order").click(function(){
+										let totalprice = $("#cartTotalPrice").text().trim();
+										totalprice = totalprice.replace(",","")
+										$("#totalSum").val(totalprice); 
 										if(confirm("주문 하시겠습니까?")){
-											$("#orderFoodForm").onsubmit();
+											$("#orderFoodForm").submit();
 										}
-									});
+									})
 								});
 							</script>
-							
-							<%-- 주문하기 ( order_food 테이블 저장 ) --%>
 						</form>
 					</div>
 				</div>

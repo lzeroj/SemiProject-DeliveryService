@@ -33,16 +33,6 @@ public class ReviewDAO {
 		closeAll(pstmt, con);
 	}
 	
-	/*
-	SELECT r.review_content, r.review_insertdate, r.user_id
-	FROM (
-	    SELECT ROW_NUMBER() OVER(ORDER BY review_insertdate DESC) AS rnum, review_content, review_insertdate, store_number, user_id 
-	    FROM review
-	) r
-	INNER JOIN store s ON r.store_number = s.store_number
-	WHERE s.store_name = '홀딱반한숯불직화' AND rnum BETWEEN 1 AND 5;
-	*/
-
 	public ArrayList<ReviewVO> findStoreReviewList(String storeName, Pagination pagination) throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -100,4 +90,11 @@ public class ReviewDAO {
 		}
 		return totalPostCount;
 	}
+	
+	/*
+	 * INSERT INTO
+	 * review(review_no,review_content,review_insertdate,store_number,user_id)
+	 * VALUES(review_no_seq.nextval,?,sysdate,?,?);
+	 */
+	
 }
