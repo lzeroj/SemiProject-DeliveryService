@@ -93,7 +93,7 @@
         		<div class="col-lg-3 col-md-6 text-center ${stolist.storeCategory}">
 					<div class="single-product-item" data-chk="${stolist.storeCategory}">
 						<div class="product-image">
-							<img src="assets/img/store/${stolist.storePicturePath}" alt="">
+							<img src="assets/img/store/${stolist.storePicturePath}" alt="" width="175px" height="175px">
 						</div>
 						<h3>${stolist.storeName}</h3>
 						<input type="hidden" id="location" value="${stolist.storeLocation}"/>

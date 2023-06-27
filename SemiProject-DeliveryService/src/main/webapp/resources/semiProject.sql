@@ -176,4 +176,4 @@ select * from review
 
 --사진 업데이트 
 select * from store_food;
-UPDATE store_food  SET food_picture_path = 'korea_galbi11.png' where food_name ='갈비';
+UPDATE store_food  SET food_picture_path = 'china_bokkeumbap.png' where food_name ='볶음밥';
