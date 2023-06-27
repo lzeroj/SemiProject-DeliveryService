@@ -11,7 +11,7 @@
 	content="Responsive Bootstrap4 Shop Template, Created by Imran Hossain from https://imransdesign.com/">
 
 <!-- title -->
-<title>리뷰게시판</title>
+<title>마이페이지</title>
 
 <!-- favicon -->
 <link rel="shortcut icon" type="image/png" href="assets/img/favicon.png">
@@ -65,11 +65,7 @@
 			<div class="row">
 				<div class="col-lg-8 offset-lg-2 text-center">
 					<div class="breadcrumb-text">
-						<c:choose>
-							<c:when test="${sessionScope.member!=null}">
-								<h1>${member.userName}마이페이지</h1>
-							</c:when>
-						</c:choose>
+					<h1>마이페이지</h1>
 					</div>
 				</div>
 			</div>
@@ -84,7 +80,7 @@
 						<div class="page-title-wrap">
 							<c:choose>
 								<c:when test="${sessionScope.member!=null}">
-									<h2 class="page-title">${member.userName}😊</h2>
+									<h2 class="page-title">${member.userName}님 환영합니다😊!!</h2>
 								</c:when>
 							</c:choose>
 						</div>
@@ -116,7 +112,7 @@
 								<div class="btn-wrap">
 									<a href="${pageContext.request.contextPath}/index.jsp"
 										class="btn-type v3" style="border-radius: 5%">지금 주문하러 가기</a> <a
-										href="${pageContext.request.contextPath}/cart.jsp"
+										href="CartFindListByCartNo.do"
 										class="btn-type v4" style="border-radius: 5%">장바구니 보러가기</a>
 								</div>
 							</div>
