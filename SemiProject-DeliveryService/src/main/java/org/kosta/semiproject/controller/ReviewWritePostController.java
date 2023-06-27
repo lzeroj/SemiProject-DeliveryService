@@ -28,7 +28,7 @@ public class ReviewWritePostController implements Controller {
 		reviewVO.setReviewContent(reviewContent);
 		reviewVO.setMemberVO(memberVO);
 		ReviewDAO.getInstance().insertReview(reviewVO,storeNumber);	
-		return "redirect:ReviewListByStoreNumber.do?storeNumber="+storeNumber;
+		return "ReviewListByStoreNumber.do";
 	}
 
 }

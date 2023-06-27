@@ -13,7 +13,7 @@
 <title>리뷰게시판</title>
 
 <!-- favicon -->
-<link rel="shortcut icon" type="image/png" href="assets/img/favicon.png">
+<link rel="shortcut icon" type="image/png" href="assets/img/favicon-duck2_32.png">
 <!-- google font -->
 <link
 	href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700"
@@ -39,6 +39,7 @@
 <link rel="stylesheet" href="assets/css/responsive.css">
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 <body>
 
@@ -83,12 +84,13 @@
 							<p class="excerpt">${reviewList.reviewContent}</p><br><br>
 							<c:if test="${sessionScope.member.userId == reviewList.memberVO.userId }">				
 							<form action="UpdatePostForm.do" method="post">
-							<button class="btn btn-link" type="submit">수정</button>
+								<button class="btn btn-link" type="submit">수정</button>
 							</form>
 							<form id="reviewDeleteForm" action="ReviewDelete.do" method="post">
-							<button class="btn btn-link"  type="button" onclick="deleteReview()">삭제</button>	
-							<input type="hidden" name="reviewNo" value="${reviewList.reviewNo}">
-							<input type="hidden" name="storeNumber" value="${storeNumber}">
+								<input type="hidden" name="reviewNo" value="${reviewList.reviewNo}">
+								<input type="hidden" name="storeNumber" value="${storeNumber}">
+								<input type="hidden" id="storeName" name="storeName">
+								<button class="btn btn-link" type="button" onclick="deleteReview()">삭제</button>	
 							</form>
 							</c:if>									
 						</div>					
@@ -97,11 +99,17 @@
 			</c:forEach>		
 			</div>
 			<script type="text/javascript">
-					function deleteReview() {
-						if(confirm("삭제하시겠습니까?")){
-							document.getElementById("reviewDeleteForm").submit();
-							}
+				let storeName = '${storeName}';
+				
+				$(function() {
+					$("#storeName").val(storeName);
+				});
+					
+				function deleteReview() {
+					if(confirm("삭제하시겠습니까?")){
+						document.getElementById("reviewDeleteForm").submit();
 					}
+				}
 			</script>
 			<div class="row">
 				<div class="container">
@@ -126,8 +134,9 @@
 									<li><a href="ReviewListByStoreNumber.do?storeName=${storeName}&storeNumber=${storeNumber}&pageNo=${pagination.endPageOfPageGroup+1}">Next</a></li>
 									</c:if>
 									<li class="col-lg-12 text-right">
-									<form action="ReviewWritePostForm.do" method="get">
+									<form action="ReviewWritePostForm.do" method="post">
 									<input type="hidden" name="storeNumber" value="${storeNumber}">
+									<input type="hidden" name="storeName" value="${storeName}">
 									<button class="btn btn-primary" type="submit">리뷰 작성</button></form>
 									</li>
 								</ul>

@@ -21,9 +21,11 @@ public class ReviewDeleteController implements Controller {
 		}
 		int storeNumber = Integer.parseInt(request.getParameter("storeNumber"));
 		int reviewNo = Integer.parseInt(request.getParameter("reviewNo"));
-		System.out.println(reviewNo);
+		String storeName = request.getParameter("storeName");
+		 request.setAttribute("storeName", storeName);
+		 request.setAttribute("storeNumber", storeNumber);	 
 		ReviewDAO.getInstance().deleteReview(reviewNo);
-		return "redirect:ReviewListByStoreNumber.do?storeNumber="+storeNumber;
+		return "ReviewListByStoreNumber.do";
 	}
 
 }
