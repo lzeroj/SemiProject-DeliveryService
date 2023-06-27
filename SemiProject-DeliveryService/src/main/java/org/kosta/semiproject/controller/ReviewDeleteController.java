@@ -19,12 +19,16 @@ public class ReviewDeleteController implements Controller {
 			System.out.println("**비인증 상태이므로 서비스 할 수 없습니다.**");
 			return "redirect:index.jsp";
 		}
-		int storeNumber = Integer.parseInt(request.getParameter("storeNumber"));
+		
 		int reviewNo = Integer.parseInt(request.getParameter("reviewNo"));
-		String storeName = request.getParameter("storeName");
-		 request.setAttribute("storeName", storeName);
-		 request.setAttribute("storeNumber", storeNumber);	 
 		ReviewDAO.getInstance().deleteReview(reviewNo);
+		
+		request.getParameter("storeNumber");		
+		request.getParameter("storeName");
+		// 필요 없음 삭제 예정
+		//request.setAttribute("storeNamed", storeName);
+		//request.setAttribute("storeNumber", storeNumber);	 
+		
 		return "ReviewListByStoreNumber.do";
 	}
 

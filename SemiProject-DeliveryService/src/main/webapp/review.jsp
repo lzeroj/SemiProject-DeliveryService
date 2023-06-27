@@ -89,7 +89,7 @@
 							<form id="reviewDeleteForm" action="ReviewDelete.do" method="post">
 								<input type="hidden" name="reviewNo" value="${reviewList.reviewNo}">
 								<input type="hidden" name="storeNumber" value="${storeNumber}">
-								<input type="hidden" id="storeName" name="storeName">
+								<input type="hidden" id="storeName" name="storeName" value="${storeName}">
 								<button class="btn btn-link" type="button" onclick="deleteReview()">삭제</button>	
 							</form>
 							</c:if>									
@@ -99,11 +99,11 @@
 			</c:forEach>		
 			</div>
 			<script type="text/javascript">
-				let storeName = '${storeName}';
+	/* 		let storeName = '${storeName}';
 				
 				$(function() {
 					$("#storeName").val(storeName);
-				});
+				}); */
 					
 				function deleteReview() {
 					if(confirm("삭제하시겠습니까?")){
