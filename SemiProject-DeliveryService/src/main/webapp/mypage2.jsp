@@ -113,14 +113,16 @@
 												<th class="product-image">가게명</th>
 												<th class="product-name">주문위치</th>
 												<th class="product-price">금액</th> <!-- 전체금액 -->
-												<th class="product-name">주문ㅅ</th>
-												<th class="product-image">배달현황</th>
-												
+												<th class="product-name">주문시간</th>
 											</tr>
 										</thead>
 										<tbody>
 											<tr>
 												<td>i+1</td>
+												<td></td>
+												<td></td>
+												<td></td>
+												<td></td>
 											</tr>
 										</tbody>
 									</table>

@@ -99,7 +99,12 @@
 			</c:forEach>		
 			</div>
 			<script type="text/javascript">
+<<<<<<< HEAD
 				let storeName = '${storeName}';
+=======
+				var storeName = '${storeName}';
+				console.log(storeName);
+>>>>>>> branch 'develop' of https://github.com/lzeroj/SemiProject-DeliveryService.git
 				
 				$(function() {
 					$("#storeName").val(storeName);
@@ -107,6 +112,10 @@
 					
 				function deleteReview() {
 					if(confirm("삭제하시겠습니까?")){
+<<<<<<< HEAD
+=======
+						console.log(storeName);
+>>>>>>> branch 'develop' of https://github.com/lzeroj/SemiProject-DeliveryService.git
 						document.getElementById("reviewDeleteForm").submit();
 					}
 				}
@@ -134,9 +143,16 @@
 									<li><a href="ReviewListByStoreNumber.do?storeName=${storeName}&storeNumber=${storeNumber}&pageNo=${pagination.endPageOfPageGroup+1}">Next</a></li>
 									</c:if>
 									<li class="col-lg-12 text-right">
+<<<<<<< HEAD
 									<form action="ReviewWritePostForm.do" method="post">
+=======
+									<form action="ReviewWritePostForm.do" method="get">
+>>>>>>> branch 'develop' of https://github.com/lzeroj/SemiProject-DeliveryService.git
 									<input type="hidden" name="storeNumber" value="${storeNumber}">
+<<<<<<< HEAD
 									<input type="hidden" name="storeName" value="${storeName}">
+=======
+>>>>>>> branch 'develop' of https://github.com/lzeroj/SemiProject-DeliveryService.git
 									<button class="btn btn-primary" type="submit">리뷰 작성</button></form>
 									</li>
 								</ul>
