@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,7 +14,8 @@
 <title>마이페이지</title>
 
 <!-- favicon -->
-<link rel="shortcut icon" type="image/png" href="assets/img/favicon-duck2_32.png">
+<link rel="shortcut icon" type="image/png"
+	href="assets/img/favicon-duck2_32.png">
 <!-- google font -->
 <link
 	href="https://fonts.googleapis.com/css2?family=Sunflower:wght@300&display=swap"
@@ -44,7 +45,7 @@
 	href="https://cdn.dominos.co.kr/domino/asset/css/font.css">
 <link rel="stylesheet" type="text/css"
 	href="https://cdn.dominos.co.kr/domino/pc/css/common.css">
-<link rel="stylesheet" type="text/css" href="/resources/css/ol.css">
+<!-- <link rel="stylesheet" type="text/css" href="/resources/css/ol.css"> -->
 <!--메인에는 sub.css 호출하지않음-->
 <link rel="stylesheet" type="text/css"
 	href="https://cdn.dominos.co.kr/domino/pc/css/sub.css">
@@ -65,7 +66,7 @@
 			<div class="row">
 				<div class="col-lg-8 offset-lg-2 text-center">
 					<div class="breadcrumb-text">
-					<h1>마이페이지</h1>
+						<h1>마이페이지</h1>
 					</div>
 				</div>
 			</div>
@@ -73,14 +74,14 @@
 	</div>
 	<div class="row">
 		<div class="col-sm-8 offset-sm-2">
-		<%--이 부분을 써야함  --%>
+			<%--이 부분을 써야함  --%>
 			<section id="content">
 				<div class="sub-type mypage">
 					<div class="inner-box">
 						<div class="page-title-wrap">
 							<c:choose>
 								<c:when test="${sessionScope.member!=null}">
-									<h2 class="page-title">${member.userName}님 환영합니다😊!!</h2>
+									<h2 class="page-title">${member.userName}님환영합니다😊!!</h2>
 								</c:when>
 							</c:choose>
 						</div>
@@ -94,54 +95,57 @@
 										<li class="nav-item"><a class="nav-link"
 											data-toggle="tab" href="myOrderList" onclick="updateMember()">회원정보수정</a></li>
 										<li class="nav-item"><a class="nav-link"
-											data-toggle="tab" href="myOrderList" onclick="deleteMember()">회원 탈퇴</a></li>
+											data-toggle="tab" href="myOrderList" onclick="deleteMember()">회원
+												탈퇴</a></li>
 									</ul>
 								</div>
 							</div>
-
-<!-- 							<div class="tab-type6"></div> -->
+							<div class="tab-type6">
+								<div class="cart-table-wrap">
+									<c:choose>
+										<c:when test="${empty list}">
+											<div class="no-data">주문내역이 없습니다.</div>
+										</c:when>
+										<c:otherwise>
+											<table class="cart-table">
+												<thead class="cart-table-head">
+													<tr class="table-head-row">
+														<th class="product-image">주문번호</th>
+														<th class="product-image">가게명</th>
+														<th class="product-name">주문위치</th>
+														<th class="product-price">금액</th>
+														<th class="product-name">주문시간</th>
+													</tr>
+												</thead>
+												<tbody>
+												<c:forEach items="${list}" var="list">
+													<tr class="table-body-row">
+														<td></td>
+														<td>${list.storeVO.storeName}</td>
+														<td>${list.orderLocation}</td>
+														<td>${list.totalPrice}</td>
+														<td>${list.orderDate}</td>
+													</tr>
+												</c:forEach>
+												</tbody>
+											</table>
+										</c:otherwise>
+									</c:choose>
+								</div>
+							</div>
 							<div class="order-list">
-								<c:choose>
-									<c:when test="">
-									<div class="no-data">주문내역이 없습니다.</div>
-									</c:when>
-									<c:otherwise>
-									<table class="cart-table">
-										<thead class="cart-table-head">
-											<tr class="table-head-row">
-												<th class="product-image">주문번호</th>
-												<th class="product-image">가게명</th>
-												<th class="product-name">주문위치</th>
-												<th class="product-price">금액</th> <!-- 전체금액 -->
-												<th class="product-name">주문시간</th>
-											</tr>
-										</thead>
-										<tbody>
-											<tr>
-												<td>i+1</td>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>
-											</tr>
-										</tbody>
-									</table>
-									</c:otherwise>
-								</c:choose>
-									<div class="cart-section mt-150 mb-150">
-										<div class="container">
-											<div class="row">
-												<div class="col-lg-8 col-md-12">
-													<div class="cart-table-wrap"></div>
-												</div>
-											</div>
+								<div class="cart-section mt-150 mb-150">
+									<div class="container">
+										<div class="row">
+											<div class="col-lg-8 col-md-12"></div>
 										</div>
 									</div>
+								</div>
 								<div class="btn-wrap">
 									<a href="${pageContext.request.contextPath}/index.jsp"
-										class="btn-type v3" style="border-radius: 5%">지금 주문하러 가기</a> 
-									<a href="CartFindListByCartNo.do" 
-										class="btn-type v4" style="border-radius: 5%">장바구니 보러가기</a>
+										class="btn-type v3" style="border-radius: 5%">지금 주문하러 가기</a> <a
+										href="CartFindListByCartNo.do" class="btn-type v4"
+										style="border-radius: 5%">장바구니 보러가기</a>
 								</div>
 							</div>
 						</article>
@@ -152,13 +156,17 @@
 	</div>
 	<%-- 하단 메뉴 공통 부분 --%>
 	<c:import url="webpagefooter.jsp"></c:import>
-<script type="text/javascript">
-function updateMember() {
-    var contextPath = "${pageContext.request.contextPath}";
-    var updateMemberURL = contextPath + "/UpdateMemberForm.do";
-    window.location.href = updateMemberURL;
-}	
-</script>
+	<script type="text/javascript">
+		function updateMember() {
+			var contextPath = "${pageContext.request.contextPath}";
+			var updateMemberURL = contextPath + "/UpdateMemberForm.do";
+			window.location.href = updateMemberURL;
+		}
+		$(function() {
+			var ss = '${list}';
+			console.log(ss);
+		});
+	</script>
 
 	<!-- jquery -->
 	<script src="assets/js/jquery-1.11.3.min.js"></script>
