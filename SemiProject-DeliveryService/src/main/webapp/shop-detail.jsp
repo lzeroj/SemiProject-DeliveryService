@@ -164,7 +164,7 @@ ${storeInfo.storeInfo}
 						<br><br>
 						
 						<%-- 리뷰 보기 기능 --%>
-						<form action="ReviewListByStoreNumber.do" method="get">
+						<form action="ReviewListByStoreName.do" method="get">
 						<button type="submit" class="btn btn-outline-success">리뷰 보기</button>
 						<input type="hidden" name="storeName" value="${storeInfo.storeName}">
 						</form>

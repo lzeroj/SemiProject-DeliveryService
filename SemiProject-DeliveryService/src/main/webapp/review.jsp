@@ -115,8 +115,8 @@
 									<li><a href="ReviewListByStoreNumber.do?storeName=${storeName}&pageNo=${pagination.endPageOfPageGroup+1}">Next</a></li>
 									</c:if>
 									<li class="col-lg-12 text-right">
-									<form action="ReviewWritePost.do" method="get">
-									<input type="hidden" name="reviewWrite" value="리뷰">
+									<form action="ReviewWritePostForm.do" method="get">
+									<input type="hidden" name="storeName" value="${storeName}">
 									<button class="btn btn-primary" type="submit">리뷰 작성</button></form>
 									</li>
 								</ul>

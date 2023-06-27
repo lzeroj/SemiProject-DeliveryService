@@ -101,7 +101,7 @@ CREATE TABLE cart(
 CREATE SEQUENCE cart_no_seq NOCACHE;
 commit
 select * from cart
-	
+
 	
 -- INSERT 구문 ( TEST 데이터 삽입 ) 
 
