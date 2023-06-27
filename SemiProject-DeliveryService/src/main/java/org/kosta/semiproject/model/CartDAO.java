@@ -50,7 +50,8 @@ public class CartDAO {
 			sql.append("INNER JOIN store_food sf ON c.food_name=sf.food_name ");
 			sql.append("INNER JOIN member m ON c.user_id = m.user_id ");
 			sql.append("INNER JOIN store s ON sf.store_number = s.store_number ");
-			sql.append("WHERE c.user_id=?");
+			sql.append("WHERE c.user_id=? ");
+			sql.append("AND c.IS_CART_ORDERED = 1");
 			pstmt = con.prepareStatement(sql.toString());
 			pstmt.setString(1, userId);
 			rs = pstmt.executeQuery();
@@ -148,7 +149,7 @@ public class CartDAO {
 		PreparedStatement pstmt = null;
 		try {
 			con = dataSource.getConnection();
-			String sql = "INSERT INTO cart(cart_no,user_id,food_name,quantity,) VALUES(cart_no_seq.nextval,?,?,1)";
+			String sql = "INSERT INTO cart(cart_no,user_id,food_name,quantity,IS_CART_ORDERED) VALUES(cart_no_seq.nextval,?,?,1,1)";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, userId);
 			pstmt.setString(2, foodName);
@@ -191,5 +192,21 @@ public class CartDAO {
 		return checkId;
 	}
 	
+	public void orderCartMenu(String userId) throws SQLException {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		try {
+			StringBuilder sb = new StringBuilder();
+			sb.append("UPDATE CART SET IS_CART_ORDERED = 0 ");
+			sb.append("WHERE IS_CART_ORDERED = 1 ");
+			sb.append("AND USER_ID = ? ");
+			con = dataSource.getConnection();
+			pstmt = con.prepareStatement(sb.toString());
+			pstmt.setString(1, userId);
+			pstmt.executeUpdate();
+		}finally {
+			closeAll(pstmt, con);
+		}
+	}
 
 }

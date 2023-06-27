@@ -42,10 +42,7 @@ public class FoodDAO {
 			pstmt.setInt(1, storeNumber);
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
-				fvo = new FoodVO(rs.getString("FOOD_NAME"),rs.getInt("FOOD_PRICE"),rs.getString("FOOD_PICTURE_PATH"));
-//				fvo.setFoodName(rs.getString("FOOD_NAME"));
-//				fvo.setFoodPrice(rs.getInt("FOOD_PRICE"));
-//				fvo.setFoodPicturePath(rs.getString("FOOD_PICTURE_PATH"));
+				fvo = new FoodVO(rs.getString("FOOD_NAME"),rs.getInt("FOOD_PRICE"),rs.getString("FOOD_PICTURE_PATH"),rs.getString("FOOD_INFO"));
 				list.add(fvo);
 			}
 		}finally {
@@ -68,14 +65,12 @@ public class FoodDAO {
 			if(rs.next()) {
 				StoreVO svo = new StoreVO();
 				svo.setStoreNumber(rs.getInt("STORE_NUMBER"));
-				fvo = new FoodVO(rs.getString("FOOD_NAME"),rs.getInt("FOOD_PRICE"),rs.getString("FOOD_PICTURE_PATH"),svo);
+				fvo = new FoodVO(rs.getString("FOOD_NAME"),rs.getInt("FOOD_PRICE"),rs.getString("FOOD_PICTURE_PATH"),rs.getString("FOOD_INFO"),svo);
 			}
 		}finally {
 			closeAll(rs,pstmt,con);
 		}
 		return fvo;
 	}
-
-	
 
 }
