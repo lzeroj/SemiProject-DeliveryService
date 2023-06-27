@@ -39,6 +39,7 @@
 <link rel="stylesheet" href="assets/css/responsive.css">
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 <body>
 
@@ -83,12 +84,13 @@
 							<p class="excerpt">${reviewList.reviewContent}</p><br><br>
 							<c:if test="${sessionScope.member.userId == reviewList.memberVO.userId }">				
 							<form action="UpdatePostForm.do" method="post">
-							<button class="btn btn-link" type="submit">수정</button>
+								<button class="btn btn-link" type="submit">수정</button>
 							</form>
 							<form id="reviewDeleteForm" action="ReviewDelete.do" method="post">
-							<button class="btn btn-link"  type="button" onclick="deleteReview()">삭제</button>	
-							<input type="hidden" name="reviewNo" value="${reviewList.reviewNo}">
-							<input type="hidden" name="storeNumber" value="${storeNumber}">
+								<input type="hidden" name="reviewNo" value="${reviewList.reviewNo}">
+								<input type="hidden" name="storeNumber" value="${storeNumber}">
+								<input type="hidden" id="storeName" name="storeName">
+								<button class="btn btn-link" type="button" onclick="deleteReview()">삭제</button>	
 							</form>
 							</c:if>									
 						</div>					
@@ -97,11 +99,19 @@
 			</c:forEach>		
 			</div>
 			<script type="text/javascript">
-					function deleteReview() {
-						if(confirm("삭제하시겠습니까?")){
-							document.getElementById("reviewDeleteForm").submit();
-							}
+				var storeName = '${storeName}';
+				console.log(storeName);
+				
+				$(function() {
+					$("#storeName").val(storeName);
+				});
+					
+				function deleteReview() {
+					if(confirm("삭제하시겠습니까?")){
+						console.log(storeName);
+						document.getElementById("reviewDeleteForm").submit();
 					}
+				}
 			</script>
 			<div class="row">
 				<div class="container">
