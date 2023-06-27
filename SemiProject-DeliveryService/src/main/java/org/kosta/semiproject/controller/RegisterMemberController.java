@@ -21,7 +21,7 @@ public class RegisterMemberController implements Controller {
 		String userTypeId = request.getParameter("user_type");
 		int user_type = Integer.parseInt(userTypeId);
 		MemberVO memberVO = new MemberVO(user_id, password, user_name, email, address, add_detail, user_phone,
-				user_birth, user_type);
+				user_birth, user_type, null);
         MemberDAO memberDAO = MemberDAO.getInstance();
         memberDAO.register(memberVO);
 		request.setAttribute("member", memberVO);
