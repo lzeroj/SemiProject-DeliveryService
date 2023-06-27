@@ -84,7 +84,7 @@
 				</div>
 				<div class="col-md-7">
 					<div class="single-product-content">
-						<h2>
+						<h2 style="font-size: 2.5rem;">
 							${storeInfo.storeName}
 							&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;
 							<c:choose>
