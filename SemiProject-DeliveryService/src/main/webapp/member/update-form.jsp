@@ -79,7 +79,7 @@
 							<label for="userAddress">주소</label>
 							<div class="input-group">
 								<input type="text" class="form-control" name="userAddress"
-									id="userAddress" placeholder="주소를 입력해주세요" required>
+									id="address" placeholder="주소를 입력해주세요" required>
 								<div class="input-group-append">
 									<button class="btn btn-outline-secondary" type="button"
 										onclick="findAddress()" id="addressSearchButton">주소검색</button>
