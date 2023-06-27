@@ -71,7 +71,6 @@ CREATE TABLE STORE(
 CREATE SEQUENCE store_seq NOCACHE;
 -- 가게 전체조회
 SELECT * FROM STORE; 
-
 ----------------------------------------------------------------------------
 -- **가게별 음식 테이블**
 -- 테이블 DROP
@@ -170,7 +169,6 @@ INSERT INTO review(review_no,review_content,review_insertdate,store_number,user_
 INSERT INTO review(review_no,review_content,review_insertdate,store_number,user_id)
 SELECT review_no_seq.nextval,review_content,review_insertdate,store_number,user_id FROM review 
 
-delete from review;
 
 select * from review
 

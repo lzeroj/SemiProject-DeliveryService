@@ -9,22 +9,22 @@ import org.kosta.semiproject.model.Pagination;
 import org.kosta.semiproject.model.ReviewDAO;
 import org.kosta.semiproject.model.ReviewVO;
 
-public class ReviewListByStoreNameController implements Controller {
+public class ReviewListByStoreNumberController implements Controller {
 
 	@Override
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		String storeName = request.getParameter("storeName");
+		int storeNumber =  Integer.parseInt(request.getParameter("storeNumber"));    
 		String pageNo = request.getParameter("pageNo");
 		Pagination pagination = null;
-		long totalPostCount = ReviewDAO.getInstance().findTotalPostCount(storeName);
+		long totalPostCount = ReviewDAO.getInstance().findTotalPostCount(storeNumber);
 		if(pageNo==null) {
 			pagination = new Pagination(totalPostCount);
 		}else {
 			pagination = new Pagination(totalPostCount,Long.parseLong(pageNo));
 		}
 		request.setAttribute("pagination", pagination);
-		request.setAttribute("storeName", storeName);
-		ArrayList<ReviewVO> list = ReviewDAO.getInstance().findStoreReviewList(storeName,pagination);
+		request.setAttribute("storeNumber", storeNumber);
+		ArrayList<ReviewVO> list = ReviewDAO.getInstance().findStoreReviewList(storeNumber,pagination);
 		request.setAttribute("reviewList", list);			
 		return "review.jsp";
 	}

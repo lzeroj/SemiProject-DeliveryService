@@ -119,6 +119,7 @@
 									<li class="col-lg-12 text-right">
 									<form action="ReviewWritePostForm.do" method="get">
 									<input type="hidden" name="storeName" value="${storeName}">
+									<input type="hidden" name="storeNumber" value="${storeNumber}">
 									<button class="btn btn-primary" type="submit">리뷰 작성</button></form>
 									</li>
 								</ul>

@@ -99,9 +99,12 @@
 												console.log(check);
 												if(check==="ok"){
 													alert("장바구니에 추가되었습니다.");						
-												}else if(check==="fail"){
-													alert("이미 장바구니에 등록되어 있습니다.");
 												}
+												
+ 												/*else if(check==="fail"){
+													alert("이미 장바구니에 등록되어 있습니다.");
+												} */
+												
 												else{ <%--check==="nullSession" --%>
 													alert("세션이 끊겼습니다. 다시 로그인 하세요");
 													location.href="index.jsp";
