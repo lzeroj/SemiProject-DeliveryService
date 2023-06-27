@@ -10,7 +10,7 @@
 	<meta name="description" content="Responsive Bootstrap4 Shop Template, Created by Imran Hossain from https://imransdesign.com/">
 
 	<!-- title -->
-	<title>404!</title>
+	<title>주문완료</title>
 
 	<!-- favicon -->
 	<link rel="shortcut icon" type="image/png" href="assets/img/favicon.png">
@@ -36,7 +36,7 @@
 	<link rel="stylesheet" href="assets/css/main.css">
 	<!-- responsive -->
 	<link rel="stylesheet" href="assets/css/responsive.css">
-
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
 </head>
 <body>
 	
@@ -50,6 +50,7 @@
 	
 	<%-- 상단 메뉴 공통 부분 --%>
 	<c:import url="header.jsp"></c:import>
+
 
 		<!-- search area -->
 		<div class="search-area">
@@ -75,8 +76,8 @@
 				<div class="row">
 					<div class="col-lg-8 offset-lg-2 text-center">
 						<div class="breadcrumb-text">
-							<p>Fresh adn Organic</p>
-							<h1>404 - Not Found</h1>
+							<p>오, 2km?!</p>
+							<h1>주문 완료!</h1>
 						</div>
 					</div>
 				</div>
@@ -90,10 +91,10 @@
 					<div class="row">
 						<div class="col-lg-8 offset-lg-2 text-center">
 							<div class="error-text">
-								<i class="far fa-sad-cry"></i>
-								<h1>Oops! Not Found.</h1>
-								<p>The page you requested for is not found.</p>
-								<a href="index.html" class="boxed-btn">Back to Home</a>
+								<i class="bi bi-emoji-smile"></i>
+								<h1>주문이 완료되었습니다</h1>
+								<p>*주문정보는 마이페이지에서 확인할 수 있습니다*</p>
+								<a href="index.jsp" class="boxed-btn">메인화면으로 가기</a>
 							</div>
 						</div>
 					</div>

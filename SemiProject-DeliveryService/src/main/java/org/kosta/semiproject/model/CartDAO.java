@@ -148,7 +148,7 @@ public class CartDAO {
 		PreparedStatement pstmt = null;
 		try {
 			con = dataSource.getConnection();
-			String sql = "INSERT INTO cart(cart_no,user_id,food_name,quantity) VALUES(cart_no_seq.nextval,?,?,1)";
+			String sql = "INSERT INTO cart(cart_no,user_id,food_name,quantity,) VALUES(cart_no_seq.nextval,?,?,1)";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, userId);
 			pstmt.setString(2, foodName);

@@ -82,7 +82,8 @@ public class OrderDAO {
 			pstmt.setString(2, "Y");
 			pstmt.setString(3, location);
 			pstmt.setString(4, ovo.getMemberVO().getUserId());
-			pstmt.executeUpdate();
+			int result = pstmt.executeUpdate();
+			System.out.println("result: "+result);
 		} finally {
 			// TODO: handle finally clause
 			closeAll(pstmt, con);
