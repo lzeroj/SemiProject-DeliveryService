@@ -1,4 +1,5 @@
 package org.kosta.semiproject.model;
+
 public class MemberVO {
 	private String userId;
 	private String userPassword;
@@ -9,6 +10,7 @@ public class MemberVO {
 	private String userPhone;
 	private String userBirth;
 	private int userType;
+	private String userState;
 
 	public MemberVO() {
 		super();
@@ -16,7 +18,7 @@ public class MemberVO {
 	}
 
 	public MemberVO(String userId, String userPassword, String userName, String userEmail, String userAddress,
-			String userAddDetail, String userPhone, String userBirth, int userType) {
+			String userAddDetail, String userPhone, String userBirth, int userType, String userState) {
 		super();
 		this.userId = userId;
 		this.userPassword = userPassword;
@@ -27,6 +29,7 @@ public class MemberVO {
 		this.userPhone = userPhone;
 		this.userBirth = userBirth;
 		this.userType = userType;
+		this.userState = userState;
 	}
 
 	public String getUserId() {
@@ -101,10 +104,20 @@ public class MemberVO {
 		this.userType = userType;
 	}
 
+	public String getUserState() {
+		return userState;
+	}
+
+	public void setUserState(String userState) {
+		this.userState = userState;
+	}
+
 	@Override
-   public String toString() {
-      return "MemberVO [userId=" + userId + ", userPassword=" + userPassword + ", userName=" + userName
-            + ", userEmail=" + userEmail + ", userAddress=" + userAddress + ", userAddDetail=" + userAddDetail
-            + ", userPhone=" + userPhone + ", userBirth=" + userBirth + ", userType=" + userType + "]";
-   }
+	public String toString() {
+		return "MemberVO [userId=" + userId + ", userPassword=" + userPassword + ", userName=" + userName
+				+ ", userEmail=" + userEmail + ", userAddress=" + userAddress + ", userAddDetail=" + userAddDetail
+				+ ", userPhone=" + userPhone + ", userBirth=" + userBirth + ", userType=" + userType + ", userState="
+				+ userState + "]";
+	}
+
 }
