@@ -122,10 +122,10 @@
 												<tbody>
 												<c:forEach items="${list}" var="list">
 													<tr class="table-body-row">
-														<td><img src="assets/img/store/${list.storePicturePath}" alt="" width="20px" height="20px"></td>
+														<td><img src="assets/img/store/${list.storePicturePath}" alt="" width="100px" height="76px"></td>
 														<td><a href="StoFindStoreAndFoodListDetailByStoreName.do?storename=${list.storeName}" data-storename="${list.storeName}">${list.storeName}</a></td>
 														<td>${list.storeLocation}</td>
-														<td>${list.storeCategory}원</td>
+														<td >${list.storeCategory}원</td>
 														<td>${list.storePhoneNumber}</td>
 													</tr>
 												</c:forEach>
