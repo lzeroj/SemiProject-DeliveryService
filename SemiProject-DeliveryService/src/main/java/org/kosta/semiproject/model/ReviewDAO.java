@@ -139,4 +139,54 @@ public class ReviewDAO {
 			closeAll(pstmt, con);
 		}
 	}
+
+	public void updateReviewpost(ReviewVO review) throws SQLException {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		try {
+			con = dataSource.getConnection();
+			String sql = "UPDATE review SET review_content=? WHERE review_no=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, review.getReviewContent());
+			pstmt.setInt(2, review.getReviewNo());
+			pstmt.executeUpdate();
+		} finally {
+			// TODO: handle finally clause
+			closeAll(pstmt, con);
+		}
+	}
+
+	public ReviewVO findReviewPostByNo(int review_no) throws SQLException {
+		ReviewVO review = null;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			con = dataSource.getConnection();
+			StringBuilder sql = new StringBuilder();
+			sql.append("SELECT r.review_no, r.review_content, r.review_insertdate,r.store_number,m.user_id ");
+			sql.append("FROM review r ");
+			sql.append("INNER JOIN member m ON r.user_id = m.user_id ");
+			sql.append("where r.review_no = ?");
+			pstmt = con.prepareStatement(sql.toString());
+			pstmt.setInt(1, review_no);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				review = new ReviewVO();
+				review.setReviewNo(rs.getInt("review_no"));
+				review.setReviewContent(rs.getString("review_content"));
+				review.setReviewInsertDate(rs.getString("review_insertdate"));
+				StoreVO store = new StoreVO();
+				store.setStoreNumber(rs.getInt("store_number"));
+				review.setStoreVO(store);
+				MemberVO member = new MemberVO();
+				member.setUserId(rs.getString("user_id"));
+				review.setMemberVO(member);
+			}
+		} finally {
+			// TODO: handle finally clause
+			closeAll(rs, pstmt, con);
+		}
+		return review;
+	}
 }
