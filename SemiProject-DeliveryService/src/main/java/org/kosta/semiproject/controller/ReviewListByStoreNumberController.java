@@ -16,8 +16,8 @@ public class ReviewListByStoreNumberController implements Controller {
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		int storeNumber =  Integer.parseInt(request.getParameter("storeNumber")); 
 		String storeName = request.getParameter("storeName"); 
-		request.setAttribute("storeNumber", storeNumber);
-		request.setAttribute("storeName", storeName);
+		//request.setAttribute("storeNumber", storeNumber);
+		//request.setAttribute("storeName", storeName);
 	
 		String pageNo = request.getParameter("pageNo");
 		Pagination pagination = null;
@@ -27,8 +27,9 @@ public class ReviewListByStoreNumberController implements Controller {
 		}else {
 			pagination = new Pagination(totalPostCount,Long.parseLong(pageNo));
 		}
-		request.setAttribute("pagination", pagination);
+
 		HttpSession session = request.getSession();
+		session.setAttribute("pagination", pagination);
 		session.setAttribute("storeNumber", storeNumber);
 		session.setAttribute("storeName", storeName);
 		ArrayList<ReviewVO> list = ReviewDAO.getInstance().findStoreReviewList(storeNumber,pagination);
