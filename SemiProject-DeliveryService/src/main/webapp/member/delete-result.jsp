@@ -14,7 +14,24 @@
 </head>
 <body>
 <div class="container pt-3">
+<%--
 
-</div>
-</body>
-</html>
+	String id = (String)session.getAttribute("user_id");
+
+	MemberDAO dao = MemberDAO.getInstance();
+	boolean check = dao.deleteMember(id);
+	
+	if(check) {		
+		session.invalidate();
+--%>
+		<script>
+			alert("회원 탈퇴가 정상처리되었습니다.");
+			location.href="/index.jsp";
+		</script>
+<%--
+	}else {
+--%>
+		<script>
+			alert("회원 탈퇴에 실패했습니다. 지속적인 문제 발생시 관리자에게 문의바랍니다.");
+			location.href="/delete-form.jsp";
+		</script>
