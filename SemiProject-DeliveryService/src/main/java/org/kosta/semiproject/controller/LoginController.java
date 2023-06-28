@@ -16,7 +16,8 @@ public class LoginController implements Controller {
 			throw new ServletException("POST METHOD 방식만 로그인 가능");
 		String user_id = request.getParameter("user_id");
 		String password = request.getParameter("password");
-		MemberVO vo = MemberDAO.getInstance().login(user_id, password);	
+		String user_state = request.getParameter("user_state");
+		MemberVO vo = MemberDAO.getInstance().login(user_id, password, user_state);	
 		String path = null;
 		if (vo == null) {
 			path = "redirect:login-fail.jsp";
