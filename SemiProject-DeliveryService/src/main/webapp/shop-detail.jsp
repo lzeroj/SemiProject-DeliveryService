@@ -219,7 +219,7 @@ ${storeInfo.storeInfo}
 				<div class="col-lg-4 col-md-6 text-center">
 					<div class="single-product-item">
 						<div class="product-image">
-							<a href="StoFindFoodDetailByFoodName.do?foodname=${foodInfo.foodName}"><img src="assets/img/food/${foodInfo.foodPicturePath}" alt="" style="width: 300px" height="300px"></a>
+							<a href="StoFindFoodDetailByFoodName.do?foodname=${foodInfo.foodName}"><img src="assets/img/food/${foodInfo.foodPicturePath}" alt="" width="150px" height="150px"></a>
 						</div>
 						<h3>${foodInfo.foodName}</h3>
 						<p class="product-price"><span>가격</span> ${foodInfo.foodPrice}원 </p>
