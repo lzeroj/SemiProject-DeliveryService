@@ -113,7 +113,7 @@
 								console.log(index);
 								console.log('${address}');
 
-								let url = "StoFindStoreAndFoodListDetailByStoreName.do?storenumber=" + (parseInt(index) + 1) + "&distance=" + distance;
+								let url = "StoFindStoreAndFoodListDetailByStoreName.do?storenumber=" + (parseInt(index) + 1) + "&distance=" + distance ;
 								
 								window.location.href = url;
 							}

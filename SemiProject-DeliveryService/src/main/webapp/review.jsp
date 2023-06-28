@@ -82,12 +82,13 @@
 								<span class="date"><i class="fas fa-calendar"></i> ${reviewList.reviewInsertDate}</span>
 							</p>
 							<p class="excerpt">${reviewList.reviewContent}</p><br><br>
-							<c:if test="${sessionScope.member.userId == reviewList.memberVO.userId }">				
+							<c:if test="${sessionScope.member.userId == reviewList.memberVO.userId }">			
+							<div style="display: flex; justify-content: flex-end;">
 							<form id="updateWritePostForm"action="ReviewUpdatePostForm.do" method="post">
 							<input type="hidden" name="reviewNo" value="${reviewList.reviewNo}">
 								<input type="hidden" name="storeNumber" value="${storeNumber}">
 								<input type="hidden" id="storeName" name="storeName" value="${storeName}">
-							<button class="btn btn-link" type="submit" onclick="updatePost()">수정</button>
+							<button class="btn btn-link" type=button onclick="updatePost()">수정</button>
 							</form>
 							<form id="reviewDeleteForm" action="ReviewDelete.do" method="post">
 								<input type="hidden" name="reviewNo" value="${reviewList.reviewNo}">
@@ -95,6 +96,7 @@
 								<input type="hidden" id="storeName" name="storeName" value="${storeName}">
 								<button class="btn btn-link" type="button" onclick="deleteReview()">삭제</button>	
 							</form>
+							</div>
 							</c:if>									
 						</div>					
 					</div>

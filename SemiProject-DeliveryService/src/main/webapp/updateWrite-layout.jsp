@@ -59,7 +59,7 @@
 				<div class="col-lg-8 offset-lg-2 text-center">
 					<div class="breadcrumb-text">
 						<p>무료 배달 서비스</p>
-						<h1>리뷰 수정하기</h1>
+						<h1>${storeName} 리뷰 수정하기</h1>
 					</div>
 				</div>
 			</div>

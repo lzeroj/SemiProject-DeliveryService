@@ -15,7 +15,10 @@ public class CartAjaxInsertCartController implements Controller {
 		if(request.getMethod().equals("POST")==false)
 			throw new ServletException("POST 방식만 서비스 됩니다");
 		
-		HttpSession session = request.getSession(false);		
+		HttpSession session = request.getSession(false);	
+		String address = (String) session.getAttribute("address");
+		System.out.println("주소 : "+address);
+		
 		if (session == null || session.getAttribute("member") == null) {
 			System.out.println("**비인증 상태이므로 서비스 할 수 없습니다.**");
 			String nullSession = "nullSession";

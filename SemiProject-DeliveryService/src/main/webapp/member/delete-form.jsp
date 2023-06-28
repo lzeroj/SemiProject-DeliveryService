@@ -20,32 +20,40 @@
 <script
 	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <link rel="stylesheet" href="../assets/css/register.css">
+
 <title>회원 탈퇴</title>
 </head>
 <body>
 	<div class="container">
-		<div class="input-form-backgroud row">
-			<div class="input-form col-md-12 mx-auto" id="form">
-				<div class="txt_field">
-					<h1 class="mb-3">회원 탈퇴</h1>
+		<form class="validation-form" method="post" action="../DeleteMember.do">
+			<div class="input-form-backgroud row">
+				<div class="input-form col-md-12 mx-auto" id="form">
+					<div class="txt_field">
+						<h1 class="mb-3">회원 탈퇴</h1>
+					</div>
+					<p class="text-center">
+						회원 탈퇴를 하면 서비스를 더 이상 이용하실 수 없습니다. <br /> 회원 탈퇴를 진행하시겠습니까?
+					</p>
+					<div class="col-md-6 mb-3">
+						<label for="userId">아이디</label> <input type="text"
+							class="form-control" name="userId"
+							value="${sessionScope.member.userId}" readonly="readonly">
+					</div>
+					<div class="col-md-6 mb-3">
+						<label for="userPassword">비밀번호</label> <input type="password"
+							class="form-control" name="userPassword" placeholder="현재 비밀번호 입력"
+							required>
+					</div>
+					<hr class="mb-4">
+					<div class="mb-4"></div>
+					<div class="col text-center"></div>
+					<button class="btn btn-primary btn-lg btn-block" type="submit"
+						id="btn-submit">탈퇴하기</button>
+					<!-- background-color: #ff6e00; border-color: #ff6e00; -->
 				</div>
-				<p class="text-center">
-					회원 탈퇴를 하면 서비스를 더 이상 이용하실 수 없습니다. <br/> 회원 탈퇴를 진행하시겠습니까?
-				</p>																																																															
-				<form id="submitForm" method="post" >
-					<label for="userId">아이디</label> <input type="text" name="userId"
-						value="${sessionScope.member.userId}" readonly="readonly">
-					<br>
-					<div>
-						<input type="password" name="password" placeholder="현재 비밀번호 입력"
-							required />
-					</div>
-					<div>
-						<button type="submit">회원 탈퇴 하기</button>
-					</div>
-				</form>
 			</div>
-		</div>
+		</form>
+		<c:import url="../footer.jsp"></c:import>
 	</div>
 </body>
 </html>

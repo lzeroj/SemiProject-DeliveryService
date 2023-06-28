@@ -1,5 +1,7 @@
 package org.kosta.semiproject.controller;
 
+import java.net.URLEncoder;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -23,13 +25,13 @@ public class ReviewDeleteController implements Controller {
 		int reviewNo = Integer.parseInt(request.getParameter("reviewNo"));
 		ReviewDAO.getInstance().deleteReview(reviewNo);
 		
-		request.getParameter("storeNumber");		
-		request.getParameter("storeName");
+		int storeNumber = Integer.parseInt(request.getParameter("storeNumber"));		
+		String storeName = URLEncoder.encode(request.getParameter("storeName"), "utf-8");
 		// 필요 없음 삭제 예정
 		//request.setAttribute("storeNamed", storeName);
 		//request.setAttribute("storeNumber", storeNumber);	 
 		
-		return "ReviewListByStoreNumber.do";
+		return "redirect:ReviewListByStoreNumber.do?storeName="+storeName+"&storeNumber="+storeNumber;
 	}
 
 }

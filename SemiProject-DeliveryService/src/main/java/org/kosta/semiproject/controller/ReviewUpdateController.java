@@ -25,6 +25,7 @@ public class ReviewUpdateController implements Controller {
 		review.setReviewContent(reviewContent);
 		int storeNumber = Integer.parseInt(request.getParameter("storeNumber"));
 		String storeName = URLEncoder.encode(request.getParameter("storeName"), "utf-8");
+		System.out.println(storeName);
 		ReviewDAO.getInstance().updateReviewpost(review);
 		return "redirect:ReviewListByStoreNumber.do?storeName=" + storeName + "&storeNumber=" + storeNumber;
 	}

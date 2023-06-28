@@ -16,6 +16,8 @@ public class MemberDAO {
 	}
 
 	public static MemberDAO getInstance() {
+		if (instance == null)
+			instance = new MemberDAO();
 		return instance;
 	}
 
@@ -84,7 +86,7 @@ public class MemberDAO {
 		ResultSet rs = null;
 		MemberVO vo = null;
 		try {
-			con = dataSource.getConnection();	
+			con = dataSource.getConnection();
 			String sql = "SELECT USER_NAME FROM MEMBER WHERE USER_ID= ?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, user_id);
@@ -122,31 +124,61 @@ public class MemberDAO {
 		return result;
 	}
 
-	public boolean deleteMember(String id) throws SQLException {
-		boolean flag = false;
-
-		String sql = "DELETE FROM member WHERE user_id=?";
-
+	/*
+	 * public boolean deleteMember(String id) throws SQLException { boolean flag =
+	 * false;
+	 * 
+	 * String sql = "DELETE FROM member WHERE user_id=?";
+	 * 
+	 * Connection con = null; PreparedStatement pstmt = null;
+	 * 
+	 * try { con = dataSource.getConnection(); pstmt = con.prepareStatement(sql);
+	 * pstmt.setString(1, id);
+	 * 
+	 * int i = pstmt.executeUpdate();
+	 * 
+	 * if (i == 1) { flag = true; } else { flag = false; } } catch (Exception e) {
+	 * e.printStackTrace(); } finally { closeAll(pstmt, con); } return flag; }
+	 */
+	
+	public int deleteMember(String id, String password) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
-
+		ResultSet rs = null;
+		String dbPwd = "";  //
+		int result = -1;
 		try {
 			con = dataSource.getConnection();
-			pstmt = con.prepareStatement(sql);
+			pstmt = con.prepareStatement("SELECT password FROM member WHERE user_id=? ");
 			pstmt.setString(1, id);
-
-			int i = pstmt.executeUpdate();
-
-			if (i == 1) {
-				flag = true;
-			} else {
-				flag = false;
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				dbPwd = rs.getString("password");
+				if(dbPwd.equals(password)) {//db password와 일치여부
+					pstmt = con.prepareStatement("");
+					pstmt.setString(1, id);
+					pstmt.executeUpdate();
+					result = 1; // 회원탈퇴 성공
+				}else {
+					result = 0;
+				}
 			}
-		} catch (Exception e) {
+		}catch(Exception e) {
 			e.printStackTrace();
-		} finally {
-			closeAll(pstmt, con);
+		}finally {
+			if(rs!= null)
+				try {rs.close();
+				}catch(SQLException e) {
+				}
+			if(pstmt!= null)
+				try {pstmt.close();
+				}catch(SQLException e) {
+				}
+			if(con!= null)
+				try {con.close();
+				}catch(SQLException e) {
+				}
 		}
-		return flag;
+		return result;
 	}
 }

@@ -20,7 +20,10 @@ public class ReviewUpdatePostFormController implements Controller {
 			return "redirect:login.jsp";
 		}
 		int review_No = Integer.parseInt(request.getParameter("reviewNo"));
+		String storeName = request.getParameter("storeName");
 		request.setAttribute("review", ReviewDAO.getInstance().findReviewPostByNo(review_No));
+		request.setAttribute("storeName", storeName);
+		System.out.println(storeName);
 		request.setAttribute("updateUrl", "updateWrite.jsp");
 		return "updateWrite-layout.jsp";
 	}

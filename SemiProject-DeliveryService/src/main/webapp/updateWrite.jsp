@@ -10,7 +10,7 @@
 	</table>
 	<div class="text-center">
 		<input type="hidden" name="storeNumber" value="${review.storeVO.storeNumber}">
-		<input type="hidden" name="storeName" value="${review.storeVO.storeName}">
+		<input type="hidden" name="storeName" value="${storeName}">
 		<input type="hidden" name="reviewNo" value="${review.reviewNo}">
 		<button type="submit" class="btn btn-primary">리뷰 수정하기</button>
 		<button type="reset" class="btn btn-primary">삭제하기</button>

@@ -19,9 +19,9 @@ UPDATE member SET password = 'aa', user_phone = '01012312312', email = 'nnnn@nav
 DELETE FROM member WHERE user_id ='test1';
 -- 탈퇴를 함에 있어 id 테이블 외래키 제약 조건 위배 해제
 -- 삭제
-ALTER TABLE member DROP FOREIGN KEY user_id;
+ALTER TABLE member DROP CONSTRAINT fk_user_id;
 -- 추가
-ALTER TABLE member ADD CONSTRAINT fk_user_id FOREIGN KEY (user_id) REFERENCES member(user_id) ON DELETE CASCADE;
+ALTER TABLE member ADD CONSTRAINT fk_user_id FOREIGN KEY (user_id) REFERENCES member(user_id);
 ----------------------------------------------------------------------------
 -- **주문 테이블**  // 재확인 예정
 CREATE TABLE ORDER_FOOD (
@@ -32,7 +32,7 @@ CREATE TABLE ORDER_FOOD (
     order_location VARCHAR2(100) NOT NULL,
     user_id VARCHAR2(100) NOT NULL,
     food_name VARCHAR2(100) NOT NULL,
-    CONSTRAINT fk_user_id FOREIGN KEY (user_id) REFERENCES member(user_id),
+    CONSTRAINT fk_user_id FOREIGN KEY (user_id) REFERENCES member(user_id) ON DELETE CASCADE,
     CONSTRAINT fk_food_name FOREIGN KEY (food_name) REFERENCES store_food(food_name)
 );
 drop table order_food
