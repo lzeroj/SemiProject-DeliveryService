@@ -78,7 +78,7 @@
 						<p class="single-product-pricing"> ${foodinfo.foodPrice}원</p>
 						<p>${foodinfo.foodInfo}</p>
 						<div class="single-product-form">
-							<form action="index.html">
+							<form>
 								<input id="quantity" name="quantity" type="number" placeholder="0">
 							</form>
 							
@@ -153,9 +153,6 @@
 // 								}
 							</script>								
 							<%-- 장바구니 추가 기능 End --%>
-							
-							<button class="btn btn-warning"><i class="fas fa-shopping-cart"></i> 주문하기</button>
-								<!-- <br><p><strong>카테고리: </strong>한식</p> -->
 						</div>
 					</div>
 				</div>
