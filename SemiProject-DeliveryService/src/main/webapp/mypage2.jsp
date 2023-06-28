@@ -93,9 +93,10 @@
 										<li class="nav-item"><a class="nav-link active"
 											data-toggle="tab" href="#" style="margin-top: 15px">주문내역보기</a></li>
 										<li class="nav-item"><a class="nav-link"
-											data-toggle="tab" href="myOrderList" onclick="updateMember()">회원정보수정</a></li>
+											data-toggle="tab" href="myUpdate" onclick="updateMember()">회원정보수정</a></li>
 										<li class="nav-item"><a class="nav-link"
-											data-toggle="tab" href="myOrderList" onclick="deleteMember()">회원탈퇴</a></li>
+											data-toggle="tab" href="myDelete" onclick="deleteMember()">회원
+												탈퇴</a></li>
 									</ul>
 								</div>
 							</div>
@@ -161,12 +162,11 @@
 			var updateMemberURL = contextPath + "/UpdateMemberForm.do";
 			window.location.href = updateMemberURL;
 		}
-// 		$(function() {
-// 			let count = '${count}';
-// 			for(let i=0;i<count;i++){
-// 				$("#no").text(i);
-// 			}
-// 		});
+		function deleteMember() {
+			var contextPath = "${pageContext.request.contextPath}";
+			var deleteMemberURL = contextPath + "/DeleteMemberForm.do";
+			window.location.href = deleteMemberURL;
+		};
 	</script>
 
 	<!-- jquery -->
