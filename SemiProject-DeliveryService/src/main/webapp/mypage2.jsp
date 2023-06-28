@@ -45,7 +45,8 @@
 	href="https://cdn.dominos.co.kr/domino/asset/css/font.css">
 <link rel="stylesheet" type="text/css"
 	href="https://cdn.dominos.co.kr/domino/pc/css/common.css">
-<!-- <link rel="stylesheet" type="text/css" href="/resources/css/ol.css"> -->
+<!-- <link rel="stylesheet" type="text/css"
+		href="/resources/css/ol.css"> -->
 <!--메인에는 sub.css 호출하지않음-->
 <link rel="stylesheet" type="text/css"
 	href="https://cdn.dominos.co.kr/domino/pc/css/sub.css">
@@ -93,9 +94,14 @@
 										<li class="nav-item"><a class="nav-link active"
 											data-toggle="tab" href="#" style="margin-top: 15px">주문내역보기</a></li>
 										<li class="nav-item"><a class="nav-link"
-											data-toggle="tab" href="myOrderList" onclick="updateMember()">회원정보수정</a></li>
+											data-toggle="tab" href="myUpdate" onclick="updateMember()">회원정보수정</a></li>
 										<li class="nav-item"><a class="nav-link"
+<<<<<<< HEAD
 											data-toggle="tab" href="myOrderList" onclick="deleteMember()">회원탈퇴</a></li>
+=======
+											data-toggle="tab" href="myDelete" onclick="deleteMember()">회원
+												탈퇴</a></li>
+>>>>>>> refs/heads/nyk
 									</ul>
 								</div>
 							</div>
@@ -117,6 +123,7 @@
 													</tr>
 												</thead>
 												<tbody>
+<<<<<<< HEAD
 												<c:forEach items="${list}" var="list">
 													<tr class="table-body-row">
 														<td></td>
@@ -126,6 +133,17 @@
 														<td>${list.orderDate}</td>
 													</tr>
 												</c:forEach>
+=======
+													<c:forEach items="${list}" var="list">
+														<tr class="table-body-row">
+															<td></td>
+															<td>${list.storeVO.storeName}</td>
+															<td>${list.orderLocation}</td>
+															<td>${list.totalPrice}</td>
+															<td>${list.orderDate}</td>
+														</tr>
+													</c:forEach>
+>>>>>>> refs/heads/nyk
 												</tbody>
 											</table>
 										</c:otherwise>
@@ -161,10 +179,11 @@
 			var updateMemberURL = contextPath + "/UpdateMemberForm.do";
 			window.location.href = updateMemberURL;
 		}
-		$(function() {
-			var ss = '${list}';
-			console.log(ss);
-		});
+		function deleteMember() {
+			var contextPath = "${pageContext.request.contextPath}";
+			var deleteMemberURL = contextPath + "/DeleteMemberForm.do";
+			window.location.href = deleteMemberURL;
+		};
 	</script>
 
 	<!-- jquery -->
