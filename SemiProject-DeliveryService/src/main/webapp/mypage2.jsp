@@ -119,7 +119,6 @@
 													</tr>
 												</thead>
 												<tbody>
-<<<<<<< HEAD
 												<c:forEach items="${list}" var="list" varStatus="status" begin="1" end="${count}" step="1">
 													<tr class="table-body-row">
 														<td id="no">${status.count}</td>
@@ -129,17 +128,6 @@
 														<td>${list.orderDate}</td>
 													</tr>
 												</c:forEach>
-=======
-													<c:forEach items="${list}" var="list">
-														<tr class="table-body-row">
-															<td></td>
-															<td>${list.storeVO.storeName}</td>
-															<td>${list.orderLocation}</td>
-															<td>${list.totalPrice}</td>
-															<td>${list.orderDate}</td>
-														</tr>
-													</c:forEach>
->>>>>>> branch 'develop' of https://github.com/lzeroj/SemiProject-DeliveryService.git
 												</tbody>
 											</table>
 										</c:otherwise>
