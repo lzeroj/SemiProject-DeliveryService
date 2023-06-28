@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.sql.DataSource;
 
@@ -181,4 +182,43 @@ public class MemberDAO {
 		}
 		return result;
 	}
+	
+	public ArrayList<StoreVO> findLikeStoreListById (String userid) throws SQLException{
+//		SELECT S.STORE_NUMBER , S.STORE_NAME , S.STORE_LOCATION , S.STORE_CATEGORY , S.STORE_PHONENUMBER S.STORE_PICTURE_PATH F.FAVORITES
+//		FROM STORE S, FAVORITES F
+//		WHERE S.STORE_NUMBER = F.STORE_NUMBER 
+//		AND F.USER_ID = 'test1'
+//		AND FAVORITES = 'Y'
+		ArrayList<StoreVO> list = new ArrayList<StoreVO>();
+		StoreVO svo = null;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			StringBuilder sb = new StringBuilder();
+			sb.append("SELECT S.STORE_NUMBER , S.STORE_NAME , S.STORE_LOCATION , S.STORE_CATEGORY , S.STORE_PHONENUMBER, S.STORE_PICTURE_PATH ");
+			sb.append("FROM STORE S, FAVORITES F ");
+			sb.append("WHERE S.STORE_NUMBER = F.STORE_NUMBER ");
+			sb.append("AND F.USER_ID = ? ");
+			sb.append("AND FAVORITES = 'Y'");
+			con = dataSource.getConnection();
+			pstmt = con.prepareStatement(sb.toString());
+			pstmt.setString(1, userid);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				svo = new StoreVO();
+				svo.setStoreNumber(rs.getInt("STORE_NUMBER"));
+				svo.setStoreName(rs.getString("STORE_NAME"));
+				svo.setStoreLocation(rs.getString("STORE_LOCATION"));
+				svo.setStoreCategory(rs.getString("STORE_CATEGORY"));
+				svo.setStorePhoneNumber(rs.getString("STORE_PHONENUMBER"));
+				svo.setStorePicturePath(rs.getString("STORE_PICTURE_PATH"));
+				list.add(svo);
+			}
+		}finally {
+			closeAll(rs, pstmt, con);
+		}
+		return list;
+	}
+	
 }
