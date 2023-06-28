@@ -96,12 +96,8 @@
 										<li class="nav-item"><a class="nav-link"
 											data-toggle="tab" href="myUpdate" onclick="updateMember()">회원정보수정</a></li>
 										<li class="nav-item"><a class="nav-link"
-<<<<<<< HEAD
-											data-toggle="tab" href="myOrderList" onclick="deleteMember()">회원탈퇴</a></li>
-=======
 											data-toggle="tab" href="myDelete" onclick="deleteMember()">회원
 												탈퇴</a></li>
->>>>>>> refs/heads/nyk
 									</ul>
 								</div>
 							</div>
@@ -123,17 +119,6 @@
 													</tr>
 												</thead>
 												<tbody>
-<<<<<<< HEAD
-												<c:forEach items="${list}" var="list">
-													<tr class="table-body-row">
-														<td></td>
-														<td>${list.storeVO.storeName}</td>
-														<td>${list.orderLocation}</td>
-														<td>${list.totalPrice}원</td>
-														<td>${list.orderDate}</td>
-													</tr>
-												</c:forEach>
-=======
 													<c:forEach items="${list}" var="list">
 														<tr class="table-body-row">
 															<td></td>
@@ -143,7 +128,6 @@
 															<td>${list.orderDate}</td>
 														</tr>
 													</c:forEach>
->>>>>>> refs/heads/nyk
 												</tbody>
 											</table>
 										</c:otherwise>
