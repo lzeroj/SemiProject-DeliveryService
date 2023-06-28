@@ -6,7 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="shortcut icon" type="image/png" href="assets/img/favicon-duck2_32.png">
+<link rel="shortcut icon" type="image/png"
+	href="assets/img/favicon-duck2_32.png">
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
 <link rel="stylesheet" href="assets/css/register.css">
@@ -29,7 +30,8 @@
 				<div class="txt_field">
 					<h1 class="mb-3">회원 정보 수정</h1>
 				</div>
-				<form class="validation-form" method="post" action="../UpdateMember.do">
+				<form class="validation-form" method="post"
+					action="../UpdateMember.do">
 					<div class="row">
 						<div class="col-md-6 mb-3">
 							<label for="userId">아이디</label> <input type="text"
@@ -90,11 +92,11 @@
 					</div>
 					<div class="row">
 						<div class="col-md-12 " id="userAddDetail">
-							<label for="userAddDetail">상세주소<span class="text-muted">&nbsp;(필수
-									)</span></label> <input type="text" class="form-control" name="userAddDetail"
+							<label for="userAddDetail">상세주소<span class="text-muted">&nbsp;(필수)</span></label>
+							<input type="text" class="form-control" name="userAddDetail"
 								placeholder="상세주소를 입력해주세요.">
 						</div>
-					</div>   
+					</div>
 					<hr class="mb-4">
 					<div class="mb-4"></div>
 					<button class="btn btn-primary btn-lg btn-block" type="submit"

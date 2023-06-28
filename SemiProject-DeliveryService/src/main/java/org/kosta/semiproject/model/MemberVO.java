@@ -1,6 +1,12 @@
 package org.kosta.semiproject.model;
 
-public class MemberVO {
+import java.io.Serializable;
+
+public class MemberVO implements Serializable  {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5273973056262601241L;
 	private String userId;
 	private String userPassword;
 	private String userName;

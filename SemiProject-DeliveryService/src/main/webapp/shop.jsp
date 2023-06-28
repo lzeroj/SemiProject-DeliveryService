@@ -111,6 +111,7 @@
 
 								console.log(distance);
 								console.log(index);
+								console.log('${address}');
 
 								let url = "StoFindStoreAndFoodListDetailByStoreName.do?storenumber=" + (parseInt(index) + 1) + "&distance=" + distance ;
 								

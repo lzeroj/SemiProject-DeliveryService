@@ -95,8 +95,7 @@
 										<li class="nav-item"><a class="nav-link"
 											data-toggle="tab" href="myOrderList" onclick="updateMember()">회원정보수정</a></li>
 										<li class="nav-item"><a class="nav-link"
-											data-toggle="tab" href="myOrderList" onclick="deleteMember()">회원
-												탈퇴</a></li>
+											data-toggle="tab" href="myOrderList" onclick="deleteMember()">회원탈퇴</a></li>
 									</ul>
 								</div>
 							</div>
@@ -123,7 +122,7 @@
 														<td></td>
 														<td>${list.storeVO.storeName}</td>
 														<td>${list.orderLocation}</td>
-														<td>${list.totalPrice}</td>
+														<td>${list.totalPrice}원</td>
 														<td>${list.orderDate}</td>
 													</tr>
 												</c:forEach>

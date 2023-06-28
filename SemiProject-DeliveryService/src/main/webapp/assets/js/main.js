@@ -77,7 +77,6 @@
         
         $(".shopping-cart").on('click', function(){
 			var address = $("#address").val();
-//			alert(address);
 			console.log("address: "+address);
 
 			if($("#address").val()==""){
@@ -89,14 +88,14 @@
 				method: 'GET',
 				action: 'CartFindListByCartNo.do'  // 컨트롤러 URL을 입력해주세요
 			});
-			  
+			
 			// 주소 값을 히든 필드로 추가
 			$('<input>').attr({
 				type: 'hidden',
 				name: 'address',
 				value: address
 			}).appendTo(form);
-			
+			  
 			// 폼 전송
 			form.appendTo('body').submit();
 		});
