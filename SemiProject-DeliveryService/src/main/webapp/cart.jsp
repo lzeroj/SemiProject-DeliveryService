@@ -210,7 +210,9 @@
 											let totalprice = $("#cartTotalPrice").text().trim();
 											totalprice = totalprice.replace(",", "")
 											$("#totalSum").val(totalprice);
-											if('${empty cartList}'){
+											let empty = '${empty cartList}';
+											console.log(empty);
+											if(empty == true){
 												alert("장바구니에 목록이 없습니다");
 											}else if(confirm("주문 하시겠습니까?")){
 												$("#orderFoodForm").submit();

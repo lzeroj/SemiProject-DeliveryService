@@ -42,6 +42,14 @@
 	.store_detail_css{
 		font-size: 20px;
 	}
+	.storetitle{
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+	.chkajax{
+		margin-left: auto;
+	}
 </style>
 
 </head>
@@ -84,7 +92,7 @@
 				</div>
 				<div class="col-md-7">
 					<div class="single-product-content">
-						<h2 style="font-size: 2.5rem;">
+						<h2 style="font-size: 2.5rem;" class="storetitle">
 							${storeInfo.storeName}
 							&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;
 							<c:choose>
@@ -148,7 +156,7 @@
 										$("#distanceinfo").html("<strong>배달거리</strong> : " + distance4 + "Km - 무료");
 										console.log("배달거리 : " + distance4 + "Km - 무료");
 									}else{
-										$("#distanceinfo").html("현재 위치가 확인되지 않았습니다 현재 위치 후 가게를 조회해 주세요");
+										$("#distanceinfo").html("현재 위치가 확인되지 않았습니다 현재 위치 설정 후 가게를 조회해 주세요");
 									}
 									
 									// 초기 즐겨찾기 상태 출력
