@@ -87,7 +87,7 @@
 							<input type="hidden" name="reviewNo" value="${reviewList.reviewNo}">
 								<input type="hidden" name="storeNumber" value="${storeNumber}">
 								<input type="hidden" id="storeName" name="storeName" value="${storeName}">
-							<button class="btn btn-link" type="submit" onclick="updatePost()">수정</button>
+							<button class="btn btn-link" type=button onclick="updatePost()">수정</button>
 							</form>
 							<form id="reviewDeleteForm" action="ReviewDelete.do" method="post">
 								<input type="hidden" name="reviewNo" value="${reviewList.reviewNo}">
