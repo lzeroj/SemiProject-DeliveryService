@@ -106,27 +106,27 @@
 								<div class="cart-table-wrap">
 									<c:choose>
 										<c:when test="${empty list}">
-											<div class="no-data">주문내역이 없습니다.</div>
+											<div class="no-data">즐겨찾기한 목록이 없습니다</div>
 										</c:when>
 										<c:otherwise>
 											<table class="cart-table">
 												<thead class="cart-table-head">
 													<tr class="table-head-row">
-														<th class="product-image">주문번호</th>
-														<th class="product-image">가게명</th>
-														<th class="product-name">주문위치</th>
-														<th class="product-price">금액</th>
-														<th class="product-name">주문시간</th>
+														<th class="product-image">가게사진</th>
+														<th class="product-image">가게이름</th>
+														<th class="product-name">가게위치</th>
+														<th class="product-price">카테고리</th>
+														<th class="product-price">가게전화번호</th>
 													</tr>
 												</thead>
 												<tbody>
-												<c:forEach items="${list}" var="list" varStatus="status" begin="1" end="${count}" step="1">
+												<c:forEach items="${list}" var="list">
 													<tr class="table-body-row">
-														<td id="no">${status.count}</td>
-														<td><a href="StoFindStoreAndFoodListDetailByStoreName.do?storename=${list.storeVO.storeName}" data-storename="${list.storeVO.storeName}">${list.storeVO.storeName}</a></td>
-														<td>${list.orderLocation}</td>
-														<td>${list.totalPrice}원</td>
-														<td>${list.orderDate}</td>
+														<td><img src="assets/img/store/${list.storePicturePath}" alt="" width="100px" height="76px"></td>
+														<td><a href="StoFindStoreAndFoodListDetailByStoreName.do?storename=${list.storeName}" data-storename="${list.storeName}">${list.storeName}</a></td>
+														<td>${list.storeLocation}</td>
+														<td >${list.storeCategory}원</td>
+														<td>${list.storePhoneNumber}</td>
 													</tr>
 												</c:forEach>
 												</tbody>

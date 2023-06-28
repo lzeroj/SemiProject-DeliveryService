@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.sql.DataSource;
 
@@ -16,6 +17,8 @@ public class MemberDAO {
 	}
 
 	public static MemberDAO getInstance() {
+		if (instance == null)
+			instance = new MemberDAO();
 		return instance;
 	}
 
@@ -84,7 +87,7 @@ public class MemberDAO {
 		ResultSet rs = null;
 		MemberVO vo = null;
 		try {
-			con = dataSource.getConnection();	
+			con = dataSource.getConnection();
 			String sql = "SELECT USER_NAME FROM MEMBER WHERE USER_ID= ?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, user_id);
@@ -122,31 +125,100 @@ public class MemberDAO {
 		return result;
 	}
 
-	public boolean deleteMember(String id) throws SQLException {
-		boolean flag = false;
-
-		String sql = "DELETE FROM member WHERE user_id=?";
-
+	/*
+	 * public boolean deleteMember(String id) throws SQLException { boolean flag =
+	 * false;
+	 * 
+	 * String sql = "DELETE FROM member WHERE user_id=?";
+	 * 
+	 * Connection con = null; PreparedStatement pstmt = null;
+	 * 
+	 * try { con = dataSource.getConnection(); pstmt = con.prepareStatement(sql);
+	 * pstmt.setString(1, id);
+	 * 
+	 * int i = pstmt.executeUpdate();
+	 * 
+	 * if (i == 1) { flag = true; } else { flag = false; } } catch (Exception e) {
+	 * e.printStackTrace(); } finally { closeAll(pstmt, con); } return flag; }
+	 */
+	
+	public int deleteMember(String id, String password) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
-
+		ResultSet rs = null;
+		String dbPwd = "";  //
+		int result = -1;
 		try {
 			con = dataSource.getConnection();
-			pstmt = con.prepareStatement(sql);
+			pstmt = con.prepareStatement("SELECT password FROM member WHERE user_id=? ");
 			pstmt.setString(1, id);
-
-			int i = pstmt.executeUpdate();
-
-			if (i == 1) {
-				flag = true;
-			} else {
-				flag = false;
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				dbPwd = rs.getString("password");
+				if(dbPwd.equals(password)) {//db password와 일치여부
+					pstmt = con.prepareStatement("");
+					pstmt.setString(1, id);
+					pstmt.executeUpdate();
+					result = 1; // 회원탈퇴 성공
+				}else {
+					result = 0;
+				}
 			}
-		} catch (Exception e) {
+		}catch(Exception e) {
 			e.printStackTrace();
-		} finally {
-			closeAll(pstmt, con);
+		}finally {
+			if(rs!= null)
+				try {rs.close();
+				}catch(SQLException e) {
+				}
+			if(pstmt!= null)
+				try {pstmt.close();
+				}catch(SQLException e) {
+				}
+			if(con!= null)
+				try {con.close();
+				}catch(SQLException e) {
+				}
 		}
-		return flag;
+		return result;
 	}
+	
+	public ArrayList<StoreVO> findLikeStoreListById (String userid) throws SQLException{
+//		SELECT S.STORE_NUMBER , S.STORE_NAME , S.STORE_LOCATION , S.STORE_CATEGORY , S.STORE_PHONENUMBER S.STORE_PICTURE_PATH F.FAVORITES
+//		FROM STORE S, FAVORITES F
+//		WHERE S.STORE_NUMBER = F.STORE_NUMBER 
+//		AND F.USER_ID = 'test1'
+//		AND FAVORITES = 'Y'
+		ArrayList<StoreVO> list = new ArrayList<StoreVO>();
+		StoreVO svo = null;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			StringBuilder sb = new StringBuilder();
+			sb.append("SELECT S.STORE_NUMBER , S.STORE_NAME , S.STORE_LOCATION , S.STORE_CATEGORY , S.STORE_PHONENUMBER, S.STORE_PICTURE_PATH ");
+			sb.append("FROM STORE S, FAVORITES F ");
+			sb.append("WHERE S.STORE_NUMBER = F.STORE_NUMBER ");
+			sb.append("AND F.USER_ID = ? ");
+			sb.append("AND FAVORITES = 'Y'");
+			con = dataSource.getConnection();
+			pstmt = con.prepareStatement(sb.toString());
+			pstmt.setString(1, userid);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				svo = new StoreVO();
+				svo.setStoreNumber(rs.getInt("STORE_NUMBER"));
+				svo.setStoreName(rs.getString("STORE_NAME"));
+				svo.setStoreLocation(rs.getString("STORE_LOCATION"));
+				svo.setStoreCategory(rs.getString("STORE_CATEGORY"));
+				svo.setStorePhoneNumber(rs.getString("STORE_PHONENUMBER"));
+				svo.setStorePicturePath(rs.getString("STORE_PICTURE_PATH"));
+				list.add(svo);
+			}
+		}finally {
+			closeAll(rs, pstmt, con);
+		}
+		return list;
+	}
+	
 }

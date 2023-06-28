@@ -88,7 +88,7 @@
 							${storeInfo.storeName}
 							&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;
 							<c:choose>
-								<c:when test="${heartchk}">
+								<c:when test="${heartchk}"> <!-- 초기의 이미지 -->
 									<span class="chkajax" id="ajaktrue" data-bool="true"><i class="bi bi-heart-fill fa-1x" style="color : red"></i></span>
 								</c:when>
 								<c:otherwise>
@@ -109,7 +109,7 @@
 												storeNumber: storeNumber,
 												userid : userid
 											},//서버에 넘기는 데이터
-											success:function(result){ //result(변수명은 어떤것이든 상관없음)
+											success:function(result){ 
 												//success funtion 매개변수로 서버가 응답한 데이터가 전달
 												if($(".chkajax").data("bool")=="true"){
 													if(result === "true"){
@@ -131,7 +131,27 @@
 											}.bind(this)
 										}); //ajax
 									});
+									let storeNumber = "${storeInfo.storeNumber}";
+
+									// 거리 정보를 가져와 화면상 출력
+									let json = <%= session.getAttribute("json") %>;
+									let distance4 = json[storeNumber];
+									console.log(distance4);	
 									
+									if(distance4 > 4){
+										$("#distanceinfo").html("<strong>배달거리</strong> : " + distance4 + "Km - 2000원");
+										console.log("배달거리 : " + distance4 + "Km - 2000원");
+									}else if(distance4 > 2 && distance4 < 4){
+										$("#distanceinfo").html("<strong>배달거리</strong> : " + distance4 + "Km - 1000원");
+										console.log("배달거리 : " + distance4 + "Km - 1000원");
+									}else if(distance4 < 2 && distance4 > 0){
+										$("#distanceinfo").html("<strong>배달거리</strong> : " + distance4 + "Km - 무료");
+										console.log("배달거리 : " + distance4 + "Km - 무료");
+									}else{
+										$("#distanceinfo").html("현재 위치가 확인되지 않았습니다 현재 위치 후 가게를 조회해 주세요");
+									}
+									
+									// 초기 즐겨찾기 상태 출력
 									let heartchk = "${heartchk}";
 									if(heartchk === "true"){
 										$("#ajakfalse").hide();
@@ -145,18 +165,19 @@
 						</h2>
 						<br>
 						<span class="store_detail_css"><strong>최소주문금액</strong> : ${storeInfo.storeMinimumOrderAmount}</span><br>
-						<span class="store_detail_css">
-						<c:choose>
-							<c:when test="${distance > 4}">
-								<strong>배달거리</strong> : ${distance} Km - 2000원
-							</c:when>
-							<c:when test="${distance > 2 && distance < 4}">
-								<strong>배달거리</strong> : ${distance} Km - 1000원
-							</c:when>
-							<c:when test="${distance < 2  && distance > 0}">
-								<strong>배달거리</strong> : ${distance} Km - 무료
-							</c:when>
-						</c:choose>
+						<span class="store_detail_css" id="distanceinfo">
+						
+<%-- 						<c:choose> --%>
+<%-- 							<c:when test="${distance > 4}"> --%>
+<%-- 								<strong>배달거리</strong> : ${distance} Km - 2000원 --%>
+<%-- 							</c:when> --%>
+<%-- 							<c:when test="${distance > 2 && distance < 4}"> --%>
+<%-- 								<strong>배달거리</strong> : ${distance} Km - 1000원 --%>
+<%-- 							</c:when> --%>
+<%-- 							<c:when test="${distance < 2  && distance > 0}"> --%>
+<%-- 								<strong>배달거리</strong> : ${distance} Km - 무료 --%>
+<%-- 							</c:when> --%>
+<%-- 						</c:choose> --%>
 						</span><br><br>
 						<textarea class="form-control" id="store-detail" rows="6" readonly="readonly">
 ${storeInfo.storeInfo}

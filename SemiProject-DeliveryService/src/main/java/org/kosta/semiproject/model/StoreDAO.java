@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 
 import javax.sql.DataSource;
 
@@ -141,15 +140,24 @@ public class StoreDAO {
 		return map;
 	}
 	
-	public void insertDistanceCalculator(Map<Integer, Object> map) throws SQLException {
+	public int findStoreByName(String storename) throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int storenumber = 0;
 		try {
-			
-			
-			
+			String sql = "SELECT STORE_NUMBER FROM STORE WHERE STORE_NAME = ?";
+			con = dataSource.getConnection();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, storename);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				storenumber = rs.getInt(1);
+			}
 		}finally {
 			closeAll(pstmt,con);
 		}
+		return storenumber;
 	}
+	
 }
