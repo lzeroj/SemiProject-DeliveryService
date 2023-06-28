@@ -41,10 +41,16 @@
 <link rel="stylesheet" href="assets/css/responsive.css">
 <link rel="stylesheet" type="text/css"
 	href="https://cdn.dominos.co.kr/domino/pc/css/common.css">
-
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
 <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+<style type="text/css">
+
+/* #cartnodata{ */
+/* 	margin-right: -360px; */
+/* } */
+
+</style>
 </head>
 <body>
 
@@ -82,7 +88,7 @@
 					<div class="cart-table-wrap">
 						<c:choose>
 							<c:when test="${empty cartList}">
-								<div class="no-data">주문내역이 없습니다.</div>
+								<div class="no-data" id="cartnodata">장바구니에 담은 물건이 없습니다.</div>
 							</c:when>
 							<c:otherwise>
 								<table class="cart-table">
@@ -159,7 +165,7 @@
 						</c:choose>
 					</div>
 				</div>
-				<div class="col-lg-4">
+				<div id="totaldiv" class="col-lg-4">
 					<div class="total-section">
 						<form action="OrderFood.do" method="post" name="orderFoodForm"
 							id="orderFoodForm">
@@ -194,19 +200,22 @@
 							<%-- 주문하기 ( order_food 테이블 저장 ) --%>
 							<script type="text/javascript">
 								$(function() {
-									$("#order").click(
-											function() {
-												let totalprice = $(
-														"#cartTotalPrice")
-														.text().trim();
-												totalprice = totalprice
-														.replace(",", "")
-												$("#totalSum").val(totalprice);
-												if (confirm("주문 하시겠습니까?")) {
-													$("#orderFoodForm")
-															.submit();
-												}
-											})
+// 									if('${empty cartList}'){
+// 										$("#totaldiv").hide();
+// 									}else{
+// 										$("#totaldiv").show();
+// 									}
+									
+									$("#order").click(function() {
+											let totalprice = $("#cartTotalPrice").text().trim();
+											totalprice = totalprice.replace(",", "")
+											$("#totalSum").val(totalprice);
+											if('${empty cartList}'){
+												alert("장바구니에 목록이 없습니다");
+											}else if(confirm("주문 하시겠습니까?")){
+												$("#orderFoodForm").submit();
+											}
+									});
 								});
 							</script>
 						</form>

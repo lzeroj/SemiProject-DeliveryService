@@ -117,10 +117,10 @@
 													</tr>
 												</thead>
 												<tbody>
-												<c:forEach items="${list}" var="list">
+												<c:forEach items="${list}" var="list" varStatus="status" begin="1" end="${count}" step="1">
 													<tr class="table-body-row">
-														<td></td>
-														<td>${list.storeVO.storeName}</td>
+														<td id="no">${status.count}</td>
+														<td><a href="StoFindStoreAndFoodListDetailByStoreName.do?storename=${list.storeVO.storeName}" data-storename="${list.storeVO.storeName}">${list.storeVO.storeName}</a></td>
 														<td>${list.orderLocation}</td>
 														<td>${list.totalPrice}원</td>
 														<td>${list.orderDate}</td>
@@ -161,10 +161,12 @@
 			var updateMemberURL = contextPath + "/UpdateMemberForm.do";
 			window.location.href = updateMemberURL;
 		}
-		$(function() {
-			var ss = '${list}';
-			console.log(ss);
-		});
+// 		$(function() {
+// 			let count = '${count}';
+// 			for(let i=0;i<count;i++){
+// 				$("#no").text(i);
+// 			}
+// 		});
 	</script>
 
 	<!-- jquery -->
