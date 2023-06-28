@@ -5,7 +5,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-public class UpdatePostFormController implements Controller {
+import org.kosta.semiproject.model.ReviewDAO;
+
+public class ReviewUpdatePostFormController implements Controller {
 
 	@Override
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -17,6 +19,8 @@ public class UpdatePostFormController implements Controller {
 			System.out.println("**비인증 상태이므로 서비스 할 수 없습니다**");
 			return "redirect:login.jsp";
 		}
+		int review_No = Integer.parseInt(request.getParameter("reviewNo"));
+		request.setAttribute("review", ReviewDAO.getInstance().findReviewPostByNo(review_No));
 		request.setAttribute("updateUrl", "updateWrite.jsp");
 		return "updateWrite-layout.jsp";
 	}
