@@ -33,7 +33,7 @@ public class OrderDAO {
 		closeAll(pstmt, con);
 	}
 
-	public int order(OrderVO ovo, String location) throws SQLException {
+	public int order(OrderVO ovo, String address) throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		int result = 0;
@@ -45,7 +45,7 @@ public class OrderDAO {
 			pstmt =con.prepareStatement(sb.toString());
 			pstmt.setInt(1, ovo.getTotalPrice());
 			pstmt.setString(2, "Y");
-			pstmt.setString(3, location);
+			pstmt.setString(3, address);
 			pstmt.setString(4, ovo.getMemberVO().getUserId());
 			result = pstmt.executeUpdate();
 			System.out.println("result: "+result);

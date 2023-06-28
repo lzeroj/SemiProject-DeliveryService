@@ -35,9 +35,9 @@
 <link rel="stylesheet" href="assets/css/responsive.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
 <script src="https://kit.fontawesome.com/72ab60a7d8.js" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-latest.min.js"></script>
 </head>
 <body>
-
 	<!--PreLoader-->
 	<div class="loader">
 		<div class="loader-inner">
@@ -218,27 +218,19 @@
 	<script src="assets/js/main.js"></script>
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script type="text/javascript">
-// 		function findAddress() {
-// 			addressPopupWindow = new daum.Postcode({
-// 				oncomplete : function(data) {
-// 					let address = data.roadAddress; // 주소 검색 API에서 가져온 도로명 주소 값
-// 					let input = document.getElementById('address'); //input value 값을 버
-// 					input.value = address; // 버튼의 value 속성에 동적으로 주소 값을 설정
-// 				}
-// 			}).open();
-// 		}
-		var addressPopupWindow;
-		function findAddress(){
-			if(addressPopupWindow == null || addressPopupWindow.closed){
-			    addressPopupWindow = new daum.Postcode({
-					oncomplete : function(data) {
-						let address = data.roadAddress; // 주소 검색 API에서 가져온 도로명 주소 값
-						let input = document.getElementById('address'); //input value 값을 버
-						input.value = address; // 버튼의 value 속성에 동적으로 주소 값을 설정
-						addressPopupWindow = null;
-					}
-				}).open();
-			}
+// 		$(function() {
+// 			var address = $("#address").val();
+// 			alert(address);
+// 			console.log("address: "+address);
+// 		});
+		function findAddress() {
+			addressPopupWindow = new daum.Postcode({
+				oncomplete : function(data) {
+					let address = data.roadAddress; // 주소 검색 API에서 가져온 도로명 주소 값
+					let input = document.getElementById('address'); //input value 값을 버
+					input.value = address; // 버튼의 value 속성에 동적으로 주소 값을 설정
+				}
+			}).open();
 		}
 	</script>
 </body>

@@ -38,7 +38,6 @@ public class OrderFoodController implements Controller {
 		if(totalSum==0 || address==null) {
 			System.out.println("totalSum: "+totalSum);
 			System.out.println("address: "+address);
-
 			path = "redirect:order-fail.jsp";
 		}else {
 			int result = OrderDAO.getInstance().order(ovo, address);

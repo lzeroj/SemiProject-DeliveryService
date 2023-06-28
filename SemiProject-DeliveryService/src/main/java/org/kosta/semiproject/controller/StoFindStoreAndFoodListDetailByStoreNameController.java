@@ -20,10 +20,11 @@ public class StoFindStoreAndFoodListDetailByStoreNameController implements Contr
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		int storenumber = Integer.parseInt(request.getParameter("storenumber"));
 		String distance = request.getParameter("distance");
-		String address = request.getParameter("address");
 
 		// 즐겨찾기 처리
 		HttpSession session = request.getSession(false);
+		String address = (String) session.getAttribute("address");
+		System.out.println("StoFindStoreAndFoodListDetailByStoreNameController: "+address);
 		boolean heartchk = false;
 		// session에 값이있을때 : 로그인 했을때
 		if(session.getAttribute("member")!=null) {
@@ -58,8 +59,6 @@ public class StoFindStoreAndFoodListDetailByStoreNameController implements Contr
 		if(distance!=null) {
 			double distance2 = Double.parseDouble(distance);
 			double distance4 = Math.round((distance2/1000)*10)/10.0;
-			session = request.getSession();
-			session.setAttribute("address", address);
 			session.setAttribute("distance", distance4);
 		}
 		return "shop-detail.jsp";
