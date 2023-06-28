@@ -59,20 +59,20 @@ public class MemberDAO {
 		}
 	}
 
-	public MemberVO login(String user_id, String password) throws SQLException {
+	public MemberVO login(String user_id, String password, String user_state) throws SQLException {
 		MemberVO vo = null;
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
 			con = dataSource.getConnection();
-			String sql = "SELECT user_id,user_name FROM member WHERE user_id=? AND password=?";
+			String sql = "SELECT user_id, user_name FROM member WHERE user_id=? AND password=? AND user_state='Y' ";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, user_id);
 			pstmt.setString(2, password);
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
-				vo = new MemberVO(rs.getString(1), null, rs.getString(2), null, null, null, null, null, 0, null);
+				vo = new MemberVO(rs.getString(1), null, rs.getString(2), null, null, null, null, null, 0, "Y");
 			}
 		} finally {
 			// TODO: handle finally clause
@@ -107,7 +107,7 @@ public class MemberDAO {
 		PreparedStatement pstmt = null;
 		int result = -1;
 		String sql = "UPDATE member SET password = ?, user_phone = ?, email = ?, address = ?, add_detail=? WHERE user_id = ?";
-		// 회원정보 (비밀번호, 이메일, 번호, 주소 수정)
+		// 회원정보 (비밀번호, 번호, 이메일, 주소 수정)
 		try {
 			con = dataSource.getConnection();
 			pstmt = con.prepareStatement(sql);
@@ -125,64 +125,36 @@ public class MemberDAO {
 		return result;
 	}
 
-	/*
-	 * public boolean deleteMember(String id) throws SQLException { boolean flag =
-	 * false;
-	 * 
-	 * String sql = "DELETE FROM member WHERE user_id=?";
-	 * 
-	 * Connection con = null; PreparedStatement pstmt = null;
-	 * 
-	 * try { con = dataSource.getConnection(); pstmt = con.prepareStatement(sql);
-	 * pstmt.setString(1, id);
-	 * 
-	 * int i = pstmt.executeUpdate();
-	 * 
-	 * if (i == 1) { flag = true; } else { flag = false; } } catch (Exception e) {
-	 * e.printStackTrace(); } finally { closeAll(pstmt, con); } return flag; }
-	 */
-	
-	public int deleteMember(String id, String password) {
+	public int deleteMember(String id, String password) throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String dbPwd = "";  //
-		int result = -1;
+		String dbPass = ""; //db에서 꺼낸 password 담을 변수
+		int result = -1; // 초기화
 		try {
 			con = dataSource.getConnection();
 			pstmt = con.prepareStatement("SELECT password FROM member WHERE user_id=? ");
 			pstmt.setString(1, id);
 			rs = pstmt.executeQuery();
-			if(rs.next()) {
-				dbPwd = rs.getString("password");
-				if(dbPwd.equals(password)) {//db password와 일치여부
-					pstmt = con.prepareStatement("");
+			if (rs.next()) {
+				dbPass = rs.getString("password");
+				if (dbPass.equals(password)) {// db password와 일치여부
+					String sql="UPDATE member SET user_state='N' WHERE user_id = ? ";
+					pstmt = con.prepareStatement(sql);
 					pstmt.setString(1, id);
 					pstmt.executeUpdate();
+					pstmt.close();
 					result = 1; // 회원탈퇴 성공
-				}else {
+				} else {
 					result = 0;
 				}
 			}
-		}catch(Exception e) {
-			e.printStackTrace();
-		}finally {
-			if(rs!= null)
-				try {rs.close();
-				}catch(SQLException e) {
-				}
-			if(pstmt!= null)
-				try {pstmt.close();
-				}catch(SQLException e) {
-				}
-			if(con!= null)
-				try {con.close();
-				}catch(SQLException e) {
-				}
+		} finally {
+			closeAll(rs, pstmt, con);
 		}
 		return result;
 	}
-	
+
 	public ArrayList<StoreVO> findLikeStoreListById (String userid) throws SQLException{
 //		SELECT S.STORE_NUMBER , S.STORE_NAME , S.STORE_LOCATION , S.STORE_CATEGORY , S.STORE_PHONENUMBER S.STORE_PICTURE_PATH F.FAVORITES
 //		FROM STORE S, FAVORITES F
@@ -220,5 +192,28 @@ public class MemberDAO {
 		}
 		return list;
 	}
-	
+
+	public int checkUser(String id, String password) throws SQLException {
+		int check = -1; // 아이디가 없을때 반환
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			con = dataSource.getConnection();
+			String sql = "SELECT * FROM member WHERE user_id=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				if (rs.getString("password").equals(password)) {
+					check = 1; // 아이디와 비밀번호 일치
+				} else {
+					check = 0; // 비밀번호 불일치
+				}
+			}
+		} finally {
+			closeAll(rs, pstmt, con);
+		}
+		return check;
+	}
 }

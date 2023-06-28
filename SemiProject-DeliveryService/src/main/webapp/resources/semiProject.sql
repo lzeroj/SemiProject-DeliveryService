@@ -15,13 +15,10 @@ drop table member
 SELECT * FROM member;
 -- 회원 정보 업데이트
 UPDATE member SET password = 'aa', user_phone = '01012312312', email = 'nnnn@naver.com', address = '서울 강남구 역삼로 13', add_detail='1층' WHERE user_id ='test1';
--- 회원 탈퇴
-DELETE FROM member WHERE user_id ='test1';
--- 탈퇴를 함에 있어 id 테이블 외래키 제약 조건 위배 해제
--- 삭제
-ALTER TABLE member DROP CONSTRAINT fk_user_id;
--- 추가
-ALTER TABLE member ADD CONSTRAINT fk_user_id FOREIGN KEY (user_id) REFERENCES member(user_id);
+-- 컬럼 삭제
+ALTER TABLE member DROP COLUMN User_State;
+-- 컬럼 추가
+ALTER TABLE member ADD User_State VARCHAR2(20) DEFAULT 'Y' NOT NULL;
 ----------------------------------------------------------------------------
 -- **주문 테이블**  // 재확인 예정
 CREATE TABLE ORDER_FOOD (
@@ -35,6 +32,7 @@ CREATE TABLE ORDER_FOOD (
     CONSTRAINT fk_user_id FOREIGN KEY (user_id) REFERENCES member(user_id) ON DELETE CASCADE,
     CONSTRAINT fk_food_name FOREIGN KEY (food_name) REFERENCES store_food(food_name)
 );
+
 drop table order_food
 -- 주문 시퀀스 생성 
 CREATE SEQUENCE order_no_seq NOCACHE;
