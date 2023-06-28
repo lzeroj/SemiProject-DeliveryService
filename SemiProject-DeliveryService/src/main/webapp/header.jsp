@@ -27,7 +27,7 @@
 												<a href="FindMemberBy.do?user_id=${member.userId}"
 													style="margin-left: 10px"><i class="bi bi-person-circle fa-2x"></i>
 												</a> 
-												<a class="shopping-cart" href="CartFindListByCartNo.do">
+												<a class="shopping-cart" href="#">
 													<i class="bi bi-cart fa-2x"></i>
 												</a>
 												<a href="Logout.do" onclick="return confirm('로그아웃을 하시겠습니까?');">

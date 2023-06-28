@@ -1,5 +1,7 @@
 package org.kosta.semiproject.controller;
 
+import java.net.URLEncoder;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -28,7 +30,9 @@ public class ReviewWritePostController implements Controller {
 		reviewVO.setReviewContent(reviewContent);
 		reviewVO.setMemberVO(memberVO);
 		ReviewDAO.getInstance().insertReview(reviewVO,storeNumber);	
-		return "ReviewListByStoreNumber.do";
+		String storeName = URLEncoder.encode(request.getParameter("storeName"), "utf-8");
+		return "redirect:ReviewListByStoreNumber.do?storeName="+storeName+"&storeNumber="+storeNumber;
+
 	}
 
 }

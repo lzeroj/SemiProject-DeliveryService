@@ -91,37 +91,26 @@
 								<c:forEach items="${cartList}" var="list">
 									<tr class="table-body-row">
 										<td class="product-remove">${list.foodVO.storeVO.storeName}</td>
-										<td class="product-image"><img
-											src="assets/img/food/${list.foodVO.foodPicturePath}"
-											alt="Food Image"></td>
+										<td class="product-image">
+										<img src="assets/img/food/${list.foodVO.foodPicturePath}" alt="Food Image">
+										</td>
 										<td class="product-name">${list.foodVO.foodName}</td>
 										<td class="product-price" id="foodPrice${list.cartNo}">
-											<%-- id구분을 위해 앞에 foodPrice 추가  --%> <fmt:formatNumber
-												value="${list.foodVO.foodPrice}" pattern="#,###"></fmt:formatNumber>
+											<%-- id구분을 위해 앞에 foodPrice 추가  --%> 
+											<fmt:formatNumber value="${list.foodVO.foodPrice}" pattern="#,###"></fmt:formatNumber>
 										</td>
 										<td>
 											<%-- 마이너스 버튼 폼 --%> <%-- id구분을 위해 앞에 decreaseButton 추가 --%>
 											<button id="decreaseButton${list.cartNo}"
 												class="btn btn-secondary" type="button"
-												onclick="quantityMinus('${list.cartNo}')"<c:if test="${list.quantity == 1}">disabled="disabled"</c:if> <%-- ${list.quantity == 1 ? 'disabled' : ''}> 이거랑 같음 --%>
-											>-</button>
-											<%--	input hidden 은 form 에 전달할 때 사용 / ajax 쓸 때는 button onlclick 으로 자바스크립트로 보내야 함.
-												<form method="post" action="CartFoodMenuUpdateMinus.do">
-													<input type="hidden" name=user_id value="${list.memberVO.userId}">
-													<input type="hidden" name=food_name value="${list.foodVO.foodName}">
-												</form>
-											 --%> <%-- ajax 통신 및 forEach 문 구분을 위해 id 부여 --%> <strong><span
-												id="${list.cartNo}">${list.quantity}</span></strong> <%-- 플러스 버튼 폼 --%>
-											<button id="increaseButton" class="btn btn-secondary"
-												type="button" onclick="quantityPlus('${list.cartNo}')">
-												+</button> <%--	input hidden 은 form 에 전달할 때 사용 / ajax 쓸 때는 button onlclick 으로 자바스크립트로 보내야 함.
-													<form method="post" action="CartFoodMenuUpdatePlus.do">
-														<input type="hidden" name=user_id value="${list.memberVO.userId}">
-														<input type="hidden" name=food_name value="${list.foodVO.foodName}"> 		
-													</form>	 
-											 --%>
+												onclick="quantityMinus('${list.cartNo}')"
+												<c:if test="${list.quantity == 1}">disabled="disabled"</c:if> <%-- ${list.quantity == 1 ? 'disabled' : ''}> 이거랑 같음 --%>
+												>-</button>
+												 <%-- ajax 통신 및 forEach 문 구분을 위해 id 부여 --%> 
+											 <strong><span id="${list.cartNo}">${list.quantity}</span></strong> <%-- 플러스 버튼 폼 --%>
+											<button id="increaseButton" class="btn btn-secondary" type="button" onclick="quantityPlus('${list.cartNo}')">+</button> 
 										</td>
-										<%-- 합계 테스트 필요--%>
+										
 										<td class="product-total"
 											id="eachFoodTotalPrice${list.cartNo}"><fmt:formatNumber
 												value="${list.foodVO.foodPrice * list.quantity}"
@@ -158,7 +147,7 @@
 								</thead>
 								<tbody>
 									<tr class="total-data">
-										<%-- 총금액 계산방법 테스트 --%>
+										<%-- 총금액 계산 --%>
 										<c:forEach items="${cartList}" var="list">
 											<c:set var="totalSum"
 												value="${totalSum+list.foodVO.foodPrice * list.quantity}"></c:set>
@@ -205,8 +194,7 @@
 			//console.log(foodName);
 			let quantityElement = document.getElementById(cartNo);
 			let price = document.getElementById("foodPrice" + cartNo);
-			let eachFoodTotalPrice = document
-					.getElementById("eachFoodTotalPrice" + cartNo);
+			let eachFoodTotalPrice = document.getElementById("eachFoodTotalPrice" + cartNo);
 			let cartTotalPrice = document.getElementById("cartTotalPrice");
 			let button = document.getElementById("decreaseButton" + cartNo);
 			//console.log(quantityElement)									
@@ -227,8 +215,7 @@
 					let eachPrice = parseInt(quantity) * foodPrice;
 					// console.log(eachPrice);											
 					eachFoodTotalPrice.innerHTML = eachPrice.toLocaleString(); // int 값을 string으로 변환
-					let totalPrice = parseInt(cartTotalPrice.innerText.replace(
-							/,/g, "")); // 숫자 text 8,000 같은 콤마 삭제 및 int 변환
+					let totalPrice = parseInt(cartTotalPrice.innerText.replace(/,/g, "")); // 숫자 text 8,000 같은 콤마 삭제 및 int 변환
 					totalPrice += foodPrice;
 					cartTotalPrice.innerHTML = totalPrice.toLocaleString(); // int 를 다시 string으로 변환
 				}
@@ -246,8 +233,7 @@
 			//console.log(foodName);
 			let quantityElement = document.getElementById(cartNo);
 			let price = document.getElementById("foodPrice" + cartNo);
-			let eachFoodTotalPrice = document
-					.getElementById("eachFoodTotalPrice" + cartNo);
+			let eachFoodTotalPrice = document.getElementById("eachFoodTotalPrice" + cartNo);
 			let cartTotalPrice = document.getElementById("cartTotalPrice");
 			let button = document.getElementById("decreaseButton" + cartNo);
 			//console.log(quantityElement)									
@@ -267,15 +253,13 @@
 					let eachPrice = parseInt(quantity) * foodPrice;
 					//console.log(eachPrice);
 					eachFoodTotalPrice.innerHTML = eachPrice.toLocaleString();
-					let totalPrice = parseInt(cartTotalPrice.innerText.replace(
-							/,/g, ""));
+					let totalPrice = parseInt(cartTotalPrice.innerText.replace(/,/g, ""));
 					totalPrice -= foodPrice;
 					cartTotalPrice.innerHTML = totalPrice.toLocaleString();
 				}
 			}
 			xhr.open("post", "CartAjaxFoodMenuUpdateMinus.do");
-			xhr.setRequestHeader("Content-type",
-					"application/x-www-form-urlencoded");
+			xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 			// AJAX 요청 전송
 			let data = "cartNo=" + cartNo;
 			xhr.send(data);

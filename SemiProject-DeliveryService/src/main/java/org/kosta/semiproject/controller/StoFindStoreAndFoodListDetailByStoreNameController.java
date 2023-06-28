@@ -21,7 +21,6 @@ public class StoFindStoreAndFoodListDetailByStoreNameController implements Contr
 		int storenumber = Integer.parseInt(request.getParameter("storenumber"));
 		String distance = request.getParameter("distance");
 		String address = request.getParameter("address");
-
 		// 즐겨찾기 처리
 		HttpSession session = request.getSession(false);
 		boolean heartchk = false;
