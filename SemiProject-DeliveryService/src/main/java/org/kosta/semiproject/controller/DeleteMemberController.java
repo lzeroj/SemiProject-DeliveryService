@@ -28,7 +28,6 @@ public class DeleteMemberController implements Controller {
 		// 그 회원의 상태값을 n으로 업데이트
 		// 리턴
 		
-		
 		return "redirect:member/delete-result.jsp";
 	}
 }

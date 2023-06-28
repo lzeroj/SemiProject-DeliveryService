@@ -82,7 +82,7 @@
 						<div class="page-title-wrap">
 							<c:choose>
 								<c:when test="${sessionScope.member!=null}">
-									<h2 class="page-title">${member.userName}님환영합니다😊!!</h2>
+									<h2 class="page-title">${member.userName}님 환영합니다😊!!</h2>
 								</c:when>
 							</c:choose>
 						</div>
