@@ -14,7 +14,8 @@ public class OrderFoodController implements Controller {
 	@Override
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String path = null;
-		
+		String cartno = request.getParameter("cartno");
+		System.out.println("cartno: "+cartno);
 		//로그인 여부확인 
 		HttpSession session = request.getSession(false);
 		MemberVO memberVO = (MemberVO) session.getAttribute("member");
