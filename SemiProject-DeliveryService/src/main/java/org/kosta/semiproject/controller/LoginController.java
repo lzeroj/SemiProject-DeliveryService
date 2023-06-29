@@ -17,13 +17,16 @@ public class LoginController implements Controller {
 		String user_id = request.getParameter("user_id");
 		String password = request.getParameter("password");
 		String user_state = request.getParameter("user_state");
+		String userBirthday = request.getParameter("userbirth");
 		MemberVO vo = MemberDAO.getInstance().login(user_id, password, user_state);	
 		String path = null;
+		System.out.println(vo);
 		if (vo == null) {
 			path = "redirect:login-fail.jsp";
 		} else {
 			path = "redirect:index.jsp";
 			HttpSession session = request.getSession();
+			session.setAttribute("member", userBirthday);
 			session.setAttribute("member", vo);
 		}
 		return path;
