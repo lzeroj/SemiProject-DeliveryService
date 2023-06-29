@@ -7,9 +7,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="shortcut icon" type="image/png"
-	href="assets/img/favicon-duck2_32.png">
-<link rel="shortcut icon" type="../image/png"
-	href="assets/img/favicon-duck2_32.png">
+	href="../assets/img/favicon-duck2_32.png">
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
 
@@ -24,7 +22,15 @@
 <script
 	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <link rel="stylesheet" href="../assets/css/register.css">
-
+<style type="text/css">
+#btn-submit:hover {
+	background: #ff6e00;
+	border-color: #ff6e00;
+}
+#form {
+margin-top:13%;
+}
+</style>
 <title>회원 정보 수정</title>
 </head>
 <body>
@@ -55,9 +61,9 @@
 	</div>
 	<div class="container">
 		<div class="input-form-backgroud row">
-			<div class="input-form col-md-12 mx-auto" id="form">
+			<div class="input-form col-md-12 mx-auto" id="form" style="padding-top: 0px" >
 				<div class="txt_field">
-					<h1 class="mb-3">회원 정보 수정</h1>
+					<h1 class="mb-3" style="font-size: 250%">회원 정보 수정</h1>
 				</div>
 				<form class="validation-form" method="post"
 					action="../UpdateMember.do">
