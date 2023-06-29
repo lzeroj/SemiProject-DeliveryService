@@ -215,7 +215,7 @@
 											$("#totalSum").val(totalprice);
 											let empty = '${empty cartList}';
 											console.log(empty);
-											if(empty == true){
+											if(empty == "true"){
 												alert("장바구니에 목록이 없습니다");
 											}else if(confirm("주문 하시겠습니까?")){
 												$("#orderFoodForm").submit();

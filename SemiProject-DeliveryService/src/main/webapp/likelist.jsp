@@ -91,9 +91,9 @@
 								<div class="menu-nav">
 									<ul class="nav nav-tabs" role="tablist"
 										style="background: none">
-										<li class="nav-item"><a class="nav-link active"
-											data-toggle="tab" href="FindMemberBy.do?user_id=${member.userId}" style="margin-top: 15px">주문내역보기</a></li>
 										<li class="nav-item"><a class="nav-link"
+											data-toggle="tab" href="FindMemberBy.do?user_id=${member.userId}" style="margin-top: 15px">주문내역보기</a></li>
+										<li class="nav-item"><a class="nav-link active"
 											data-toggle="tab" href="#" onclick="likeList()">즐겨찾기목록</a></li>
 										<li class="nav-item"><a class="nav-link"
 											data-toggle="tab" href="myUpdate" onclick="updateMember()">회원정보수정</a></li>
