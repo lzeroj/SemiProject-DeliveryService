@@ -1,5 +1,7 @@
 package org.kosta.semiproject.controller;
 
+import java.util.ArrayList;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -16,13 +18,13 @@ public class OrderFoodController implements Controller {
 		String path = null;
 		String cartno = request.getParameter("cartno");
 		System.out.println("cartno: "+cartno);
+		
 		//로그인 여부확인 
 		HttpSession session = request.getSession(false);
 		MemberVO memberVO = (MemberVO) session.getAttribute("member");
 		if(memberVO==null) {
 			path = "redirect:login.jsp";
 		}
-
 		String address = (String) session.getAttribute("address");
 		System.out.println("address:"+address);
 		int totalSum = Integer.parseInt(request.getParameter("totalSum"));
@@ -44,7 +46,12 @@ public class OrderFoodController implements Controller {
 			int result = OrderDAO.getInstance().order(ovo, address);
 			System.out.println("result: "+result);
 			if(result == 1) {
-				CartDAO.getInstance().orderCartMenu(memberVO.getUserId());
+				int orderNo = OrderDAO.getInstance().maxOrderNo();
+				ArrayList<Integer> cartNolist = CartDAO.getInstance().findCartNoByIsOrderAndId(memberVO.getUserId());
+				for(int i=0;i<cartNolist.size();i++) {
+					OrderDAO.getInstance().orderDetail(orderNo, cartNolist.get(i));
+				}
+				int orderresult = CartDAO.getInstance().orderCartMenu(memberVO.getUserId());
 				path = "redirect:order-complete.jsp";
 			}else {
 				path = "redirect:order-fail.jsp";

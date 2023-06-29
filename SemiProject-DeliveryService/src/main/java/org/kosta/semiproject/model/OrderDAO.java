@@ -55,6 +55,58 @@ public class OrderDAO {
 		return result;
 	}
 	
+	public void orderDetail(int orderno ,int cartno) throws SQLException {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		try {
+			con = dataSource.getConnection();
+			StringBuilder sb = new StringBuilder();
+			sb.append("INSERT INTO CART_ORDER_MAPPING ");
+			sb.append("VALUES(? , ?)");
+			pstmt =con.prepareStatement(sb.toString());
+			pstmt.setInt(1, orderno);
+			pstmt.setInt(2, cartno);
+			pstmt.executeUpdate();
+		} finally {
+			closeAll(pstmt, con);
+		}
+	}
+	
+	public int maxOrderNo() throws SQLException {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int max = 0;
+		try {
+			String sql = "SELECT max(ORDER_NO) FROM  ORDER_FOOD";
+			con = dataSource.getConnection();
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				max = rs.getInt(1);
+			}
+		}finally {
+			closeAll(rs, pstmt, con);
+		}
+		return max;
+	}
+	
+	public ArrayList<OrderVO> findOrderListByDate(String userId , String date) throws SQLException{
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		ArrayList<OrderVO> list = new ArrayList<OrderVO>();
+		OrderVO ovo = null;
+		try {
+			
+			
+			
+		}finally {
+			closeAll(rs, pstmt, con);
+		}
+		return list;
+	}
+	
 	public ArrayList<OrderVO> OrderList(String userId) throws SQLException{
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -116,7 +168,6 @@ public class OrderDAO {
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
 				ovo = new OrderVO();
-				
 				StoreVO svo = new StoreVO();
 				svo.setStoreName(rs.getString("STORE_NAME"));
 				ovo.setStoreVO(svo);
@@ -126,7 +177,6 @@ public class OrderDAO {
 				ovo.setOrderSuccess(rs.getString("ORDER_SUCCESS"));
 				list.add(ovo);
 			}
-			
 		} finally {
 			closeAll(rs, pstmt, con);
 		}

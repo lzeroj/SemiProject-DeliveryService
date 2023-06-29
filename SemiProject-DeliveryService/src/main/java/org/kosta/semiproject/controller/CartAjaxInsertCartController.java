@@ -1,5 +1,7 @@
 package org.kosta.semiproject.controller;
 
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -32,7 +34,7 @@ public class CartAjaxInsertCartController implements Controller {
 			System.out.println("quantity1: "+quantity1);
 			int quantity = Integer.parseInt(request.getParameter("quantity"));
 			System.out.println("quantity:"+quantity);
-			CartDAO.getInstance().insertCart(userId,foodName,quantity);
+			int insertresult = CartDAO.getInstance().insertCart(userId,foodName,quantity);
 			String result = "ok";			
 			request.setAttribute("responsebody", result);
 		}	

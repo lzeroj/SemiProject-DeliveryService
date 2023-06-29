@@ -187,10 +187,11 @@ public class CartDAO {
 		}		
 	}
 
-	public void insertCart(String userId, String foodName, int quantity) throws SQLException {
+	public int insertCart(String userId, String foodName, int quantity) throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		CartVO cvo = checkFoodMenuByIdAndFood(userId,foodName);
+		int result = 0;
 		try {
 			con = dataSource.getConnection();
 			if(cvo == null) {
@@ -210,11 +211,12 @@ public class CartDAO {
 				pstmt.setInt(1, quantity);
 				pstmt.setString(2, userId);
 				pstmt.setString(3, foodName);
-				pstmt.executeUpdate();
+				result = pstmt.executeUpdate();
 			}
 		}finally {
 			closeAll(pstmt, con);
 		}		
+		return result;
 	}
 
 	/*
@@ -250,9 +252,10 @@ public class CartDAO {
 		return checkId;
 	}
 	
-	public void orderCartMenu(String userId) throws SQLException {
+	public int orderCartMenu(String userId) throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
+		int result = 0;
 		try {
 			StringBuilder sb = new StringBuilder();
 			sb.append("UPDATE CART SET IS_CART_ORDERED = 0 ");
@@ -261,10 +264,31 @@ public class CartDAO {
 			con = dataSource.getConnection();
 			pstmt = con.prepareStatement(sb.toString());
 			pstmt.setString(1, userId);
-			pstmt.executeUpdate();
+			result = pstmt.executeUpdate();
 		}finally {
 			closeAll(pstmt, con);
 		}
+		return result;
+	}
+	
+	public ArrayList<Integer> findCartNoByIsOrderAndId(String userid) throws SQLException{
+		ArrayList<Integer> list = new ArrayList<Integer>();
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			String sql = "SELECT * FROM cart WHERE user_id = ? AND IS_CART_ORDERED = 1";
+			con = dataSource.getConnection();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, userid);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				list.add(rs.getInt(1));
+			}
+		}finally {
+			closeAll(rs, pstmt, con);
+		}
+		return list;
 	}
 
 }
