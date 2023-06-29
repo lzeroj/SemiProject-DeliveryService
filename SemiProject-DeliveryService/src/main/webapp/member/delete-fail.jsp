@@ -20,7 +20,7 @@
 <body>
 	<div class="container pt-3">
 		<script>
-			alert("비밀번호를 다시 한번 확인해보세용");
+			alert("비밀번호를 다시 한 번 확인하시기 바랍니다.");
 			location.href = "member/delete-form.jsp";
 		</script>
 	</div>

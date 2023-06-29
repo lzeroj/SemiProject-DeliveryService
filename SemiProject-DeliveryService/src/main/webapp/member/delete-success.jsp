@@ -15,7 +15,7 @@
 <body>
 <div class="container pt-3">
 		<script>
-			alert("탈퇴 성공!@");
+			alert("회원탈퇴가 완료되었습니다. 오,2km를 이용해주셔서 감사합니다.");
 			location.href = "Logout.do";
 		</script>
 </div>
