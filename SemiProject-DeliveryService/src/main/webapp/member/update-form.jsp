@@ -8,9 +8,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="shortcut icon" type="image/png"
 	href="assets/img/favicon-duck2_32.png">
+<link rel="shortcut icon" type="../image/png"
+	href="assets/img/favicon-duck2_32.png">
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
-<link rel="stylesheet" href="assets/css/register.css">
+
+<link rel="stylesheet" href="../assets/css/register.css">
+<link rel="stylesheet" href="../assets/css/main.css">
 <script
 	src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.slim.min.js"></script>
 <script
@@ -24,6 +28,31 @@
 <title>회원 정보 수정</title>
 </head>
 <body>
+	<div class="top-header-area" id="sticker">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12 col-sm-12 text-center">
+					<div class="main-menu-wrap">
+						<!-- logo -->
+						<div class="site-logo" id="ducklogo" style="margin-top: -30px">
+							<img src="../assets/img/oh2km.png" alt="오리사진">
+						</div>
+						<!-- logo -->
+						<!-- menu start -->
+						<nav class="main-menu" style="display: block;">
+							<ul>
+								<li>
+									<div class="header-icons"></div>
+								</li>
+							</ul>
+						</nav>
+						<div class="mobile-menu"></div>
+						<!-- menu end -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 	<div class="container">
 		<div class="input-form-backgroud row">
 			<div class="input-form col-md-12 mx-auto" id="form">
