@@ -15,11 +15,11 @@
 	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
-<title>Insert title here</title>
+<title>회원탈퇴실패</title>
 </head>
 <body>
 	<div class="container pt-3">
-		<script>
+		<script type="text/javascript">
 			alert("비밀번호를 다시 한 번 확인하시기 바랍니다.");
 			location.href = "member/delete-form.jsp";
 		</script>
