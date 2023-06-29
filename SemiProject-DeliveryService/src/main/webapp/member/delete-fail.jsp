@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ page import="org.kosta.semiproject.model.MemberDAO" %>
+<%@ page import="org.kosta.semiproject.model.MemberDAO"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,25 +19,10 @@
 </head>
 <body>
 	<div class="container pt-3">
-		<%
-			String id = (String)session.getAttribute("user_id");
-			String password = (String)session.getAttribute("password");
-			
-			MemberDAO dao = MemberDAO.getInstance();
-			int result = dao.deleteMember(id, password);
-	
-			if(result > 0) {
-				%>
 		<script>
-			alert("회원 탈퇴가 정상처리되었습니다.");
-			location.href = "/index.jsp";
+			alert("비밀번호를 다시 한번 확인해보세용");
+			location.href = "member/delete-form.jsp";
 		</script>
-		<% } else { %>
-		<script>
-			alert("회원 탈퇴에 실패했습니다. 지속적인 문제 발생시 관리자에게 문의바랍니다.");
-			location.href = "delete-form.jsp";
-		</script>
-		<% } %>
 	</div>
 </body>
 </html>

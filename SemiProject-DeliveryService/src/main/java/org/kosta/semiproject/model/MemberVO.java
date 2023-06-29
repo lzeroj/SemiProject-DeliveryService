@@ -3,9 +3,7 @@ package org.kosta.semiproject.model;
 import java.io.Serializable;
 
 public class MemberVO implements Serializable  {
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 5273973056262601241L;
 	private String userId;
 	private String userPassword;
