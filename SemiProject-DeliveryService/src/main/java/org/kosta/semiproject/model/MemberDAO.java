@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.sql.DataSource;
 
@@ -16,6 +17,8 @@ public class MemberDAO {
 	}
 
 	public static MemberDAO getInstance() {
+		if (instance == null)
+			instance = new MemberDAO();
 		return instance;
 	}
 
@@ -56,64 +59,26 @@ public class MemberDAO {
 		}
 	}
 
-	public MemberVO login(String user_id, String password) throws SQLException {
+	public MemberVO login(String user_id, String password, String user_state) throws SQLException {
 		MemberVO vo = null;
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
 			con = dataSource.getConnection();
-			String sql = "SELECT user_id,user_name FROM member WHERE user_id=? AND password=?";
+			String sql = "SELECT user_id, user_name FROM member WHERE user_id=? AND password=? AND user_state='Y' ";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, user_id);
 			pstmt.setString(2, password);
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
-				vo = new MemberVO(rs.getString(1), null, rs.getString(2), null, null, null, null, null, 0);
+				vo = new MemberVO(rs.getString(1), null, rs.getString(2), null, null, null, null, null, 0, "Y");
 			}
 		} finally {
 			// TODO: handle finally clause
 			closeAll(rs, pstmt, con);
 		}
 		return vo;
-	}
-
-	public int checkId(String id) throws SQLException {
-		Connection con = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		int result = 0;
-		try {
-			con = dataSource.getConnection();
-			String sql = "select count(*) from member where id=?";
-			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, id);
-			rs = pstmt.executeQuery();
-			if (rs.next())
-				result = rs.getInt(1);
-		} finally {
-			closeAll(rs, pstmt, con);
-		}
-		return result;
-	}
-
-	public int getTotalMemberCount() {
-		int count = 0;
-		Connection con = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		try {
-			con = dataSource.getConnection();
-			String sql = "select count(*) from member";
-			pstmt = con.prepareStatement(sql);
-			rs = pstmt.executeQuery();
-			if (rs.next()) {
-				count = rs.getInt(1);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return count;
 	}
 
 	public MemberVO findMember(String user_id) {
@@ -128,7 +93,7 @@ public class MemberDAO {
 			pstmt.setString(1, user_id);
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
-				vo = new MemberVO(null, null, rs.getString(1), null, null, null, null, null, 0);
+				vo = new MemberVO(null, null, rs.getString(1), null, null, null, null, null, 0, null);
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -141,14 +106,14 @@ public class MemberDAO {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		int result = -1;
-		String sql = "UPDATE member SET password = ?, email = ?, phone = ?, address = ? add_detail=? WHERE user_id = ?";
-		//회원정보 (비밀번호, 이메일, 번호, 주소 수정)
+		String sql = "UPDATE member SET password = ?, user_phone = ?, email = ?, address = ?, add_detail=? WHERE user_id = ?";
+		// 회원정보 (비밀번호, 번호, 이메일, 주소 수정)
 		try {
 			con = dataSource.getConnection();
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, mvo.getUserPassword());
-			pstmt.setString(2, mvo.getUserEmail());
-			pstmt.setString(3, mvo.getUserPhone());
+			pstmt.setString(2, mvo.getUserPhone());
+			pstmt.setString(3, mvo.getUserEmail());
 			pstmt.setString(4, mvo.getUserAddress());
 			pstmt.setString(5, mvo.getUserAddDetail());
 			pstmt.setString(6, mvo.getUserId());
@@ -158,5 +123,98 @@ public class MemberDAO {
 			e.printStackTrace();
 		}
 		return result;
+	}
+
+	public int deleteMember(String id, String password) throws SQLException {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String dbPass = ""; // db에서 꺼낸 password 담을 변수
+		int result = -1; // 초기화
+		try {
+			con = dataSource.getConnection();
+			pstmt = con.prepareStatement("SELECT password FROM member WHERE user_id=? ");
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				dbPass = rs.getString("password");
+				if (dbPass.equals(password)) {// db password와 일치여부
+					pstmt.close(); // 첫 번째 pstmt 닫기
+					String sql = "UPDATE member SET user_state='N' WHERE user_id = ? ";
+					pstmt = con.prepareStatement(sql);
+					pstmt.setString(1, id);
+					pstmt.executeUpdate();
+					result = 1; // 회원탈퇴 성공
+				} else {
+					result = 0;
+				}
+			}
+		} finally {
+			closeAll(rs, pstmt, con);
+		}
+		return result;
+	}
+
+	public int checkUser(String id, String password) throws SQLException {
+		int check = -1; // 아이디가 없을때 반환
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			con = dataSource.getConnection();
+			String sql = "SELECT * FROM member WHERE user_id=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				if (rs.getString("password").equals(password)) {
+					check = 1; // 아이디와 비밀번호 일치
+				} else {
+					check = 0; // 비밀번호 불일치
+				}
+			}
+		} finally {
+			closeAll(rs, pstmt, con);
+		}
+		return check;
+	}
+
+	public ArrayList<StoreVO> findLikeStoreListById(String userid) throws SQLException {
+//		SELECT S.STORE_NUMBER , S.STORE_NAME , S.STORE_LOCATION , S.STORE_CATEGORY , S.STORE_PHONENUMBER S.STORE_PICTURE_PATH F.FAVORITES
+//		FROM STORE S, FAVORITES F
+//		WHERE S.STORE_NUMBER = F.STORE_NUMBER 
+//		AND F.USER_ID = 'test1'
+//		AND FAVORITES = 'Y'
+		ArrayList<StoreVO> list = new ArrayList<StoreVO>();
+		StoreVO svo = null;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			StringBuilder sb = new StringBuilder();
+			sb.append(
+					"SELECT S.STORE_NUMBER , S.STORE_NAME , S.STORE_LOCATION , S.STORE_CATEGORY , S.STORE_PHONENUMBER, S.STORE_PICTURE_PATH ");
+			sb.append("FROM STORE S, FAVORITES F ");
+			sb.append("WHERE S.STORE_NUMBER = F.STORE_NUMBER ");
+			sb.append("AND F.USER_ID = ? ");
+			sb.append("AND FAVORITES = 'Y'");
+			con = dataSource.getConnection();
+			pstmt = con.prepareStatement(sb.toString());
+			pstmt.setString(1, userid);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				svo = new StoreVO();
+				svo.setStoreNumber(rs.getInt("STORE_NUMBER"));
+				svo.setStoreName(rs.getString("STORE_NAME"));
+				svo.setStoreLocation(rs.getString("STORE_LOCATION"));
+				svo.setStoreCategory(rs.getString("STORE_CATEGORY"));
+				svo.setStorePhoneNumber(rs.getString("STORE_PHONENUMBER"));
+				svo.setStorePicturePath(rs.getString("STORE_PICTURE_PATH"));
+				list.add(svo);
+			}
+		} finally {
+			closeAll(rs, pstmt, con);
+		}
+		return list;
 	}
 }

@@ -15,7 +15,6 @@ public class StoFindFoodDetailByFoodNameController implements Controller{
 		if(session.getAttribute("member")==null) {
 			return "login-chk-fail.jsp";
 		}
-		
 		String foodname = request.getParameter("foodname");
 		FoodVO fvo = FoodDAO.getInstance().findFoodDetailByFoodName(foodname);
 		request.setAttribute("foodinfo", fvo);

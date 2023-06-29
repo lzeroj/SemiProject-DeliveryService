@@ -13,7 +13,12 @@ CREATE TABLE MEMBER (
 drop table member
 -- 회원 전체조회
 SELECT * FROM member;
-
+-- 회원 정보 업데이트
+UPDATE member SET password = 'aa', user_phone = '01012312312', email = 'nnnn@naver.com', address = '서울 강남구 역삼로 13', add_detail='1층' WHERE user_id ='test1';
+-- 컬럼 삭제
+ALTER TABLE member DROP COLUMN User_State;
+-- 컬럼 추가
+ALTER TABLE member ADD User_State VARCHAR2(20) DEFAULT 'Y' NOT NULL;
 ----------------------------------------------------------------------------
 -- **주문 테이블**  // 재확인 예정
 CREATE TABLE ORDER_FOOD (
@@ -24,9 +29,10 @@ CREATE TABLE ORDER_FOOD (
     order_location VARCHAR2(100) NOT NULL,
     user_id VARCHAR2(100) NOT NULL,
     food_name VARCHAR2(100) NOT NULL,
-    CONSTRAINT fk_user_id FOREIGN KEY (user_id) REFERENCES member(user_id),
+    CONSTRAINT fk_user_id FOREIGN KEY (user_id) REFERENCES member(user_id) ON DELETE CASCADE,
     CONSTRAINT fk_food_name FOREIGN KEY (food_name) REFERENCES store_food(food_name)
 );
+
 drop table order_food
 -- 주문 시퀀스 생성 
 CREATE SEQUENCE order_no_seq NOCACHE;
@@ -70,7 +76,6 @@ CREATE TABLE STORE(
 CREATE SEQUENCE store_seq NOCACHE;
 -- 가게 전체조회
 SELECT * FROM STORE; 
-
 ----------------------------------------------------------------------------
 -- **가게별 음식 테이블**
 -- 테이블 DROP
@@ -101,7 +106,7 @@ CREATE TABLE cart(
 CREATE SEQUENCE cart_no_seq NOCACHE;
 commit
 select * from cart
-	
+
 	
 -- INSERT 구문 ( TEST 데이터 삽입 ) 
 
@@ -169,6 +174,9 @@ INSERT INTO review(review_no,review_content,review_insertdate,store_number,user_
 INSERT INTO review(review_no,review_content,review_insertdate,store_number,user_id)
 SELECT review_no_seq.nextval,review_content,review_insertdate,store_number,user_id FROM review 
 
-delete from review;
 
 select * from review
+
+--사진 업데이트 
+select * from store_food;
+UPDATE store_food  SET food_picture_path = 'korea_galbi11.png' where food_name ='갈비';

@@ -14,12 +14,19 @@ public class CartFindListByCartNoController implements Controller {
 
 	@Override
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
-
 		HttpSession session = request.getSession(false);
 		if (session == null || session.getAttribute("member") == null) {
 			System.out.println("**비인증 상태이므로 서비스 할 수 없습니다.**");
-			return "redirect:index.jsp";
+			return "redirect:login-chk-fail.jsp";
 		}
+		
+		String address = (String) session.getAttribute("address");
+		System.out.println("sessionaddress: "+address);
+//		if(session.getAttribute("address")==null) {
+//			String address = request.getParameter("address");
+//			System.out.println("address: "+address);
+//			session.setAttribute("address", address);
+//		}
 		MemberVO memberVO = (MemberVO) session.getAttribute("member");
 		String userId = memberVO.getUserId();
 		//System.out.println(userId);

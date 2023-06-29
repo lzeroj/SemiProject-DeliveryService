@@ -13,7 +13,7 @@
 <title>리뷰게시판</title>
 
 <!-- favicon -->
-<link rel="shortcut icon" type="image/png" href="assets/img/favicon.png">
+<link rel="shortcut icon" type="image/png" href="assets/img/favicon-duck2_32.png">
 <!-- google font -->
 <link
 	href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700"
@@ -39,6 +39,14 @@
 <link rel="stylesheet" href="assets/css/responsive.css">
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<style type="text/css">
+
+.news-text-box{
+	height: 219.25px;
+}
+
+</style>
 </head>
 <body>
 
@@ -81,14 +89,45 @@
 								<span class="date"><i class="fas fa-calendar"></i> ${reviewList.reviewInsertDate}</span>
 							</p>
 							<p class="excerpt">${reviewList.reviewContent}</p><br><br>
-							<button class="btn btn-link">수정</button>
-							<button class="btn btn-link">삭제</button>
-						</div>
+							<c:if test="${sessionScope.member.userId == reviewList.memberVO.userId }">			
+							<div style="display: flex; justify-content: flex-end; ">
+								<form id="updateWritePostForm"action="ReviewUpdatePostForm.do" method="post">
+									<input type="hidden" name="reviewNo" value="${reviewList.reviewNo}">
+									<input type="hidden" name="storeNumber" value="${storeNumber}">
+									<input type="hidden" id="storeName" name="storeName" value="${storeName}">
+									<button class="btn btn-link" type=button onclick="updatePost()">수정</button>
+								</form>
+								<form id="reviewDeleteForm" action="ReviewDelete.do" method="post">
+									<input type="hidden" name="reviewNo" value="${reviewList.reviewNo}">
+									<input type="hidden" name="storeNumber" value="${storeNumber}">
+									<input type="hidden" id="storeName" name="storeName" value="${storeName}">
+									<button class="btn btn-link" type="button" onclick="deleteReview()">삭제</button>	
+								</form>
+							</div>
+							</c:if>									
+						</div>					
 					</div>
 				</div>
-			</c:forEach>
+			</c:forEach>		
 			</div>
-
+			<script type="text/javascript">
+	/* 		let storeName = '${storeName}';
+				
+				$(function() {
+					$("#storeName").val(storeName);
+				}); */
+					
+				function deleteReview() {
+					if(confirm("삭제하시겠습니까?")){
+						document.getElementById("reviewDeleteForm").submit();
+					}
+				}
+				function updatePost() {
+					if(confirm("수정하시겠습니까")){
+						document.getElementById("updateWritePostForm").submit();
+					}
+				}
+			</script>
 			<div class="row">
 				<div class="container">
 					<div class="row">
@@ -96,22 +135,27 @@
 							<div class="pagination-wrap">
 								<ul>
 									<c:if test="${pagination.previousPageGroup}">				
-									<li><a href=" ReviewListByStoreNumber.do?storeName=${storeName}&pageNo=${pagination.startPageOfPageGroup-1}">Previous</a></li>
+									<li><a href=" ReviewListByStoreNumber.do?storeName=${storeName}&storeNumber=${storeNumber}&pageNo=${pagination.startPageOfPageGroup-1}">Previous</a></li>
 									</c:if>
 									<c:forEach begin="${pagination.startPageOfPageGroup}" end="${pagination.endPageOfPageGroup}" var="page">
 									<c:choose>
 									<c:when test="${pagination.nowPage==page}">
-									<li><a class="active" href="ReviewListByStoreNumber.do?storeName=${storeName}&pageNo=${page}">${page}</a></li>
+									<li><a class="active" href="ReviewListByStoreNumber.do?storeName=${storeName}&storeNumber=${storeNumber}&pageNo=${page}">${page}</a></li>
 									</c:when>
 									<c:otherwise>
-									<li><a href="ReviewListByStoreNumber.do?storeName=${storeName}&pageNo=${page}">${page}</a></li>
+									<li><a href="ReviewListByStoreNumber.do?storeName=${storeName}&storeNumber=${storeNumber}&pageNo=${page}">${page}</a></li>
 									</c:otherwise>
 									</c:choose>
 									</c:forEach>
 									<c:if test="${pagination.nextPageGroup}">
-									<li><a href="ReviewListByStoreNumber.do?storeName=${storeName}&pageNo=${pagination.endPageOfPageGroup+1}">Next</a></li>
+									<li><a href="ReviewListByStoreNumber.do?storeName=${storeName}&storeNumber=${storeNumber}&pageNo=${pagination.endPageOfPageGroup+1}">Next</a></li>
 									</c:if>
-									<li class="col-lg-12 text-right"><button class="btn btn-primary">리뷰 작성</button></li>
+									<li class="col-lg-12 text-right">
+									<form action="ReviewWritePostForm.do" method="post">
+									<input type="hidden" name="storeNumber" value="${storeNumber}">
+									<input type="hidden" name="storeName" value="${storeName}">
+									<button class="btn btn-primary" type="submit">리뷰 작성</button></form>
+									</li>
 								</ul>
 							</div>
 						</div>
