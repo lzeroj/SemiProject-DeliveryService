@@ -126,6 +126,7 @@ public class MemberDAO {
 	}
 
 	public int deleteMember(String id, String password) throws SQLException {
+		System.out.println("==========DAO========");
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -146,7 +147,7 @@ public class MemberDAO {
 					pstmt.executeUpdate();
 					result = 1; // 회원탈퇴 성공
 				} else {
-					result = 0;
+					result = 0; // 비밀번호 불일치
 				}
 			}
 		} finally {
@@ -154,30 +155,31 @@ public class MemberDAO {
 		}
 		return result;
 	}
-
-	public int checkUser(String id, String password) throws SQLException {
-		int check = -1; // 아이디가 없을때 반환
-		Connection con = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		try {
-			con = dataSource.getConnection();
-			String sql = "SELECT * FROM member WHERE user_id=?";
-			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, id);
-			rs = pstmt.executeQuery();
-			if (rs.next()) {
-				if (rs.getString("password").equals(password)) {
-					check = 1; // 아이디와 비밀번호 일치
-				} else {
-					check = 0; // 비밀번호 불일치
-				}
-			}
-		} finally {
-			closeAll(rs, pstmt, con);
-		}
-		return check;
-	}
+	
+//
+//	public int checkUser(String id, String password) throws SQLException {
+//		int check = -1; // 아이디가 없을때 반환
+//		Connection con = null;
+//		PreparedStatement pstmt = null;
+//		ResultSet rs = null;
+//		try {
+//			con = dataSource.getConnection();
+//			String sql = "SELECT * FROM member WHERE user_id=?";
+//			pstmt = con.prepareStatement(sql);
+//			pstmt.setString(1, id);
+//			rs = pstmt.executeQuery();
+//			if (rs.next()) {
+//				if (rs.getString("password").equals(password)) {
+//					check = 1; // 아이디와 비밀번호 일치
+//				} else {
+//					check = 0; // 비밀번호 불일치
+//				}
+//			}
+//		} finally {
+//			closeAll(rs, pstmt, con);
+//		}
+//		return check;
+//	}
 
 	public ArrayList<StoreVO> findLikeStoreListById(String userid) throws SQLException {
 //		SELECT S.STORE_NUMBER , S.STORE_NAME , S.STORE_LOCATION , S.STORE_CATEGORY , S.STORE_PHONENUMBER S.STORE_PICTURE_PATH F.FAVORITES

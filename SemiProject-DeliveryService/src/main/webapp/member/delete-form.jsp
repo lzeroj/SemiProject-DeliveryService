@@ -22,6 +22,12 @@
 <link rel="stylesheet" href="../assets/css/register.css">
 
 <title>회원 탈퇴</title>
+<style type="text/css">
+#btn-submit:hover {
+background: #ff6e00 ;
+border-color: #ff6e00;
+}
+</style>
 </head>
 <body>
 	<div class="container">
@@ -49,7 +55,6 @@
 					<div class="col text-center"></div>
 					<button class="btn btn-primary btn-lg btn-block" type="submit"
 						id="btn-submit">탈퇴하기</button>
-					<!-- background-color: #ff6e00; border-color: #ff6e00; -->
 				</div>
 			</div>
 		</form>

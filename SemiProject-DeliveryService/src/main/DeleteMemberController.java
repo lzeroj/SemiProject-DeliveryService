@@ -16,20 +16,29 @@ public class DeleteMemberController implements Controller {
 		HttpSession session = request.getSession(false);
 		if (session == null || session.getAttribute("member") == null) {
 			return "redirect:index.jsp";
-		} // 인증 확인
+		}//인증 확인
 		String id = request.getParameter("userId");
 		String password = request.getParameter("userPassword");
-		String path = null;
-		System.out.println(id);
+
+		int checkUser = MemberDAO.getInstance().checkUser(id, password);
+		if (checkUser == 0) {
+			return "redirect:../index.jsp";
+		}
 		int result = MemberDAO.getInstance().deleteMember(id, password);
 		if (result == 1) {
-			System.out.println(result);
-			path = "member/delete-success.jsp";
-			// 회원 삭제 성공
+		    // 회원 삭제 성공
+		    // 이후 필요한 처리를 수행
 		} else if (result == 0) {
-			// 비밀번호 불일치
-			path = "member/delete-fail.jsp";
+		    // 비밀번호 불일치
+		    // 이후 필요한 처리를 수행
+		} else {
+		    // 회원 아이디가 존재하지 않음
+		    // 이후 필요한 처리를 수행
 		}
-		return path;
+		// memberDAO delete member 메소드를 호출하고 회원 아이디와 패스워드를 전달해서
+		// 그 회원의 상태값을 n으로 업데이트
+		// 리턴
+		
+		return "redirect:member/delete-result.jsp";
 	}
 }
