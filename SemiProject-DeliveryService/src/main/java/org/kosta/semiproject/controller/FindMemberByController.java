@@ -27,13 +27,17 @@ public class FindMemberByController implements Controller {
 		System.out.println("user_id:"+mvo.getUserId());
 		
 		String userid = mvo.getUserId();
-		ArrayList<OrderVO> list = OrderDAO.getInstance().myOrderList(userid);
+		ArrayList<OrderVO> list = OrderDAO.getInstance().OrderList(userid);
+		for(OrderVO ovo : list) {
+			System.out.println(ovo.toString());
+		}
 		int count = list.size();
+		System.out.println(count);
 		
 		request.setAttribute("list", list);
 		request.setAttribute("user_id", vo);
 		request.setAttribute("count", count);
 		
-		return "mypage2.jsp";
+		return "orderlist.jsp";
 	}
 }

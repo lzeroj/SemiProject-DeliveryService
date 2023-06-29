@@ -55,6 +55,37 @@ public class OrderDAO {
 		return result;
 	}
 	
+	public ArrayList<OrderVO> OrderList(String userId) throws SQLException{
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		ArrayList<OrderVO> list = new ArrayList<OrderVO>();
+		OrderVO ovo = null;
+		try {
+			StringBuilder sb = new StringBuilder();
+			sb.append("SELECT O.ORDER_LOCATION , O.TOTAL_PRICE , TO_CHAR(O.ORDER_DATE, 'YYYY-MM-DD HH24:MI:SS') AS ORDER_DATE, O.ORDER_SUCCESS ");
+			sb.append("FROM ORDER_FOOD O ");
+			sb.append("WHERE O.USER_ID = ? ");
+			sb.append("ORDER BY ORDER_DATE DESC");
+			con = dataSource.getConnection();
+			pstmt = con.prepareStatement(sb.toString());
+			pstmt.setString(1, userId);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				ovo = new OrderVO();
+				ovo.setOrderLocation(rs.getString("ORDER_LOCATION"));
+				ovo.setTotalPrice(rs.getInt("TOTAL_PRICE"));
+				ovo.setOrderDate(rs.getString("ORDER_DATE"));
+				ovo.setOrderSuccess(rs.getString("ORDER_SUCCESS"));
+				list.add(ovo);
+			}
+			
+		} finally {
+			closeAll(rs, pstmt, con);
+		}
+		return list;
+	}
+	
 	public ArrayList<OrderVO> myOrderList(String userId) throws SQLException{
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -88,13 +119,11 @@ public class OrderDAO {
 				
 				StoreVO svo = new StoreVO();
 				svo.setStoreName(rs.getString("STORE_NAME"));
-				
 				ovo.setStoreVO(svo);
 				ovo.setOrderLocation(rs.getString("ORDER_LOCATION"));
 				ovo.setTotalPrice(rs.getInt("TOTAL_PRICE"));
 				ovo.setOrderDate(rs.getString("ORDER_DATE"));
 				ovo.setOrderSuccess(rs.getString("ORDER_SUCCESS"));
-				
 				list.add(ovo);
 			}
 			

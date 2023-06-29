@@ -181,6 +181,9 @@
 										<c:forEach items="${cartList}" var="list">
 											<c:set var="totalSum"
 												value="${totalSum+list.foodVO.foodPrice * list.quantity}"></c:set>
+											<c:set var="cartno"
+												value="${list.cartNo}"></c:set>
+											
 										</c:forEach>
 										<td>
 											<%-- id구분을 위해 앞에 cartTotalPrice 추가  --%> <strong><span
@@ -191,6 +194,8 @@
 									</tr>
 									<tr>
 										<td><input type="hidden" id="totalSum" name="totalSum"
+											value="" />
+											<input type="hidden" id="cartno" name="cartno"
 											value="" />
 											<button class="btn btn-warning" name="order" type="button"
 												id="order">주문하기</button></td>
@@ -210,6 +215,8 @@
 											let totalprice = $("#cartTotalPrice").text().trim();
 											totalprice = totalprice.replace(",", "")
 											$("#totalSum").val(totalprice);
+											let cartn = $("#cartno").val('${cartno}');
+											console.log(cartn);
 											let empty = '${empty cartList}';
 											console.log(empty);
 											if(empty == true){
