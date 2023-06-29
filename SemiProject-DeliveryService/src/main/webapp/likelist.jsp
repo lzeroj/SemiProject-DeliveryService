@@ -92,7 +92,7 @@
 									<ul class="nav nav-tabs" role="tablist"
 										style="background: none">
 										<li class="nav-item"><a class="nav-link"
-											data-toggle="tab" href="FindMemberBy.do?user_id=${member.userId}" style="margin-top: 15px">주문내역보기</a></li>
+											data-toggle="tab" href="#" onclick="orderList()" style="margin-top: 15px">주문내역보기</a></li>
 										<li class="nav-item"><a class="nav-link active"
 											data-toggle="tab" href="#" onclick="likeList()">즐겨찾기목록</a></li>
 										<li class="nav-item"><a class="nav-link"
@@ -159,19 +159,24 @@
 	<%-- 하단 메뉴 공통 부분 --%>
 	<c:import url="webpagefooter.jsp"></c:import>
 	<script type="text/javascript">
+		function orderList() {
+			let contextPath = "${pageContext.request.contextPath}";
+			let orderList = contextPath + "/FindMemberBy.do?user_id=${member.userId}";
+			window.location.href = orderList;
+		};
 		function likeList() {
-			var contextPath = "${pageContext.request.contextPath}";
-			var likeListURL = contextPath + "/FindLikeStoreListById.do";
+			let contextPath = "${pageContext.request.contextPath}";
+			let likeListURL = contextPath + "/FindLikeStoreListById.do";
 			window.location.href = likeListURL;
 		};
 		function updateMember() {
-			var contextPath = "${pageContext.request.contextPath}";
-			var updateMemberURL = contextPath + "/UpdateMemberForm.do";
+			let contextPath = "${pageContext.request.contextPath}";
+			let updateMemberURL = contextPath + "/UpdateMemberForm.do";
 			window.location.href = updateMemberURL;
 		}
 		function deleteMember() {
-			var contextPath = "${pageContext.request.contextPath}";
-			var deleteMemberURL = contextPath + "/DeleteMemberForm.do";
+			let contextPath = "${pageContext.request.contextPath}";
+			let deleteMemberURL = contextPath + "/DeleteMemberForm.do";
 			window.location.href = deleteMemberURL;
 		};
 	</script>
