@@ -204,11 +204,11 @@ inner join store_food sf on c.food_name = sf.food_name
 inner join store s on sf.store_number = s.store_number
 --, s.store_name
 
-select o.order_location, s.store_name,o.total_price, o.order_date --,o.order_no , co.cart_no
+select o.order_location,o.order_no, s.store_name,o.total_price, o.order_date --,o.order_no , co.cart_no
 from order_food o
 inner join cart_order_mapping co on o.order_no = co.order_no 
 inner join cart c on co.cart_no = c.cart_no
 inner join store_food sf on c.food_name = sf.food_name
 inner join store s on sf.store_number = s.store_number
-where o.user_id = 'test1'
+where o.user_id = 'shj22k' and o.order_no =42
 ORDER BY O.ORDER_DATE DESC

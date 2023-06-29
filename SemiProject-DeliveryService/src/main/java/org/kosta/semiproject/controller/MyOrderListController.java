@@ -18,8 +18,9 @@ public class MyOrderListController implements Controller {
 		if(session == null || session.getAttribute("member") == null) {
 			return "redirect:login-chk-fail.jsp";
 		}
+		int orderNo =Integer.parseInt(request.getParameter("orderNo"));
 		MemberVO mvo = (MemberVO) session.getAttribute("member");
-		ArrayList<OrderVO> list = OrderDAO.getInstance().myOrderList(mvo.getUserId());
+		ArrayList<OrderVO> list = OrderDAO.getInstance().myOrderList(mvo.getUserId(),orderNo);
 		request.setAttribute("list", list);
 		
 		return "mypage2.jsp";
