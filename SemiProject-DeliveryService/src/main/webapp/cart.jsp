@@ -181,6 +181,8 @@
 										<c:forEach items="${cartList}" var="list">
 											<c:set var="totalSum"
 												value="${totalSum+list.foodVO.foodPrice * list.quantity}"></c:set>
+													<c:set var="cartNo"
+												value="${list.cartNo}"></c:set>
 										</c:forEach>
 										<td>
 											<%-- id구분을 위해 앞에 cartTotalPrice 추가  --%> <strong><span
@@ -194,6 +196,7 @@
 											<input type="hidden" id="storeno" name="storeno" value="" />
 											<button class="btn btn-warning" name="order" type="button"
 												id="order">주문하기</button></td>
+												
 									</tr>
 								</tbody>
 							</table>

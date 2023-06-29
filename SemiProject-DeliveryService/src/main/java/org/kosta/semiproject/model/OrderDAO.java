@@ -85,7 +85,7 @@ public class OrderDAO {
 		}
 		return list;
 	}
-	
+	/*
 	public ArrayList<OrderVO> myOrderList(String userId) throws SQLException{
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -110,6 +110,53 @@ public class OrderDAO {
 			sb.append("AND O.USER_ID = ? ");
 			sb.append("GROUP BY S.STORE_NAME , O.ORDER_LOCATION , O.TOTAL_PRICE , TO_CHAR(O.ORDER_DATE, 'YYYY-MM-DD HH24:MI:SS') , O.ORDER_SUCCESS ");
 			sb.append("ORDER BY ORDER_DATE DESC");
+			con = dataSource.getConnection();
+			pstmt = con.prepareStatement(sb.toString());
+			pstmt.setString(1, userId);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				ovo = new OrderVO();
+				
+				StoreVO svo = new StoreVO();
+				svo.setStoreName(rs.getString("STORE_NAME"));
+				ovo.setStoreVO(svo);
+				ovo.setOrderLocation(rs.getString("ORDER_LOCATION"));
+				ovo.setTotalPrice(rs.getInt("TOTAL_PRICE"));
+				ovo.setOrderDate(rs.getString("ORDER_DATE"));
+				ovo.setOrderSuccess(rs.getString("ORDER_SUCCESS"));
+				list.add(ovo);
+			}
+			
+		} finally {
+			closeAll(rs, pstmt, con);
+		}
+		return list;
+	}
+	*/
+	/*
+	select s.store_name,o.order_location, o.total_price, o.order_date --,o.order_no , co.cart_no
+	from order_food o
+	inner join cart_order_mapping co on o.order_no = co.order_no 
+	inner join cart c on co.cart_no = c.cart_no
+	inner join store_food sf on c.food_name = sf.food_name
+	inner join store s on sf.store_number = s.store_number
+	*/
+	public ArrayList<OrderVO> myOrderList(String userId) throws SQLException{
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		ArrayList<OrderVO> list = new ArrayList<OrderVO>();
+		OrderVO ovo = null;
+		try {
+			StringBuilder sb = new StringBuilder();
+			sb.append("SELECT S.STORE_NAME , O.ORDER_LOCATION , O.TOTAL_PRICE , TO_CHAR(O.ORDER_DATE, 'YYYY-MM-DD HH24:MI:SS') AS ORDER_DATE, O.ORDER_SUCCESS ");
+			sb.append("FROM ORDER_FOOD O ");
+			sb.append("INNER JOIN CART_ORDER_MAPPING CO ON O.ORDER_NO = CO.ORDER_NO ");
+			sb.append("INNER JOIN CART C ON CO.CART_NO = C. CART_NO ");
+			sb.append("INNER JOIN STORE_FOOD SF ON C.FOOD_NAME = SF.FOOD_NAME ");
+			sb.append("INNER JOIN STORE S ON SF.STORE_NUMBER = S.STORE_NUMBER ");
+			sb.append("WHERE O.USER_ID = ? ");
+			sb.append("ORDER BY O.ORDER_DATE DESC");
 			con = dataSource.getConnection();
 			pstmt = con.prepareStatement(sb.toString());
 			pstmt.setString(1, userId);

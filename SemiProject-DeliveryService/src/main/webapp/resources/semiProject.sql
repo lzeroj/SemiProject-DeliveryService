@@ -180,3 +180,35 @@ select * from review
 --사진 업데이트 
 select * from store_food;
 UPDATE store_food  SET food_picture_path = 'korea_galbi11.png' where food_name ='갈비';
+
+
+CREATE TABLE CART_ORDER_MAPPING(
+	order_no NUMBER NOT NULL,
+	cart_no NUMBER NOT NULL,	
+	CONSTRAINT pk_map_no PRIMARY KEY(cart_no,order_no),
+	CONSTRAINT fk_order_no FOREIGN KEY (order_no) REFERENCES order_food(order_no),
+    CONSTRAINT fk_cart_no FOREIGN KEY (cart_no) REFERENCES cart(cart_no)  
+)
+
+INSERT INTO CART_ORDER_MAPPING(order_no,cart_no)  VALUES(37,95);
+INSERT INTO CART_ORDER_MAPPING(order_no,cart_no)  VALUES(37,96);
+INSERT INTO CART_ORDER_MAPPING(order_no,cart_no)  VALUES(37,97);
+
+select * from cart_order_mapping
+
+
+select com.order_no, com.cart_no, s.store_name
+from cart_order_mapping com
+inner join cart c on com.cart_no = c.cart_no
+inner join store_food sf on c.food_name = sf.food_name
+inner join store s on sf.store_number = s.store_number
+--, s.store_name
+
+select o.order_location, s.store_name,o.total_price, o.order_date --,o.order_no , co.cart_no
+from order_food o
+inner join cart_order_mapping co on o.order_no = co.order_no 
+inner join cart c on co.cart_no = c.cart_no
+inner join store_food sf on c.food_name = sf.food_name
+inner join store s on sf.store_number = s.store_number
+where o.user_id = 'test1'
+ORDER BY O.ORDER_DATE DESC
