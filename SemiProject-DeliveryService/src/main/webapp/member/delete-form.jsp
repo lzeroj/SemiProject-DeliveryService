@@ -35,10 +35,11 @@ border-color: #ff6e00;
 			<div class="input-form-backgroud row">
 				<div class="input-form col-md-12 mx-auto" id="form">
 					<div class="txt_field">
-						<h1 class="mb-3">회원 탈퇴</h1>
+						<h1 class="mb-3">회원 비밀번호 확인</h1>
 					</div>
 					<p class="text-center">
-						회원 탈퇴를 하면 서비스를 더 이상 이용하실 수 없습니다. <br /> 회원 탈퇴를 진행하시겠습니까?
+						<strong><span style="color: blue;"> 탈퇴 후에는 서비스를 더 이상 이용할 수 없습니다. </span></strong>
+						<br /> 회원 탈퇴를 계속 진행하시겠습니까?
 					</p>
 					<div class="col-md-6 mb-3">
 						<label for="userId">아이디</label> <input type="text"

@@ -123,7 +123,7 @@
 												<c:forEach items="${list}" var="list" varStatus="order">
 													<tr class="table-body-row">
 														<td>${order.count}</td>
-														<td><a href="" data-storename="">${list.orderLocation}</a></td>
+														<td><a href="MyOrderList.do">${list.orderLocation}</a></td>
 														<td>${list.totalPrice}원</td>
 														<td>${list.orderDate}</td>
 													</tr>
