@@ -9,9 +9,10 @@ import org.kosta.semiproject.model.OrderVO;
 public class TestUnitMyOrderList {
 
 	public static void main(String[] args) {
-		String userId = "test1";
+		String userId = "shj22k";
+		int orderNo = 42;
 		try {
-			ArrayList<OrderVO> list = OrderDAO.getInstance().myOrderList(userId);
+			ArrayList<OrderVO> list = OrderDAO.getInstance().myOrderList(userId,orderNo);
 			for(OrderVO ovo : list) {
 				System.out.println(ovo.toString());
 			}

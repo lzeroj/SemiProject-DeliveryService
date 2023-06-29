@@ -115,7 +115,7 @@ public class OrderDAO {
 		OrderVO ovo = null;
 		try {
 			StringBuilder sb = new StringBuilder();
-			sb.append("SELECT O.ORDER_LOCATION , O.TOTAL_PRICE , TO_CHAR(O.ORDER_DATE, 'YYYY-MM-DD HH24:MI:SS') AS ORDER_DATE, O.ORDER_SUCCESS ");
+			sb.append("SELECT O.ORDER_NO, O.ORDER_LOCATION , O.TOTAL_PRICE , TO_CHAR(O.ORDER_DATE, 'YYYY-MM-DD HH24:MI:SS') AS ORDER_DATE, O.ORDER_SUCCESS ");
 			sb.append("FROM ORDER_FOOD O ");
 			sb.append("WHERE O.USER_ID = ? ");
 			sb.append("ORDER BY ORDER_DATE DESC");
@@ -125,6 +125,7 @@ public class OrderDAO {
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
 				ovo = new OrderVO();
+				ovo.setOrderNo(rs.getInt("ORDER_NO"));
 				ovo.setOrderLocation(rs.getString("ORDER_LOCATION"));
 				ovo.setTotalPrice(rs.getInt("TOTAL_PRICE"));
 				ovo.setOrderDate(rs.getString("ORDER_DATE"));
@@ -174,7 +175,7 @@ public class OrderDAO {
 //		}
 //		return list;
 //	}
-	public ArrayList<OrderVO> myOrderList(String userId) throws SQLException{
+	public ArrayList<OrderVO> myOrderList(String userId , int orderNo) throws SQLException{
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -182,24 +183,25 @@ public class OrderDAO {
 		OrderVO ovo = null;
 		try {
 			StringBuilder sb = new StringBuilder();
-			sb.append("SELECT S.STORE_NAME , O.ORDER_LOCATION , O.TOTAL_PRICE , TO_CHAR(O.ORDER_DATE, 'YYYY-MM-DD HH24:MI:SS') AS ORDER_DATE, O.ORDER_SUCCESS ");
+			sb.append("SELECT S.STORE_NAME , O.ORDER_NO, O.ORDER_LOCATION , O.TOTAL_PRICE , TO_CHAR(O.ORDER_DATE, 'YYYY-MM-DD HH24:MI:SS') AS ORDER_DATE, O.ORDER_SUCCESS ");
 			sb.append("FROM ORDER_FOOD O ");
 			sb.append("INNER JOIN CART_ORDER_MAPPING CO ON O.ORDER_NO = CO.ORDER_NO ");
 			sb.append("INNER JOIN CART C ON CO.CART_NO = C. CART_NO ");
 			sb.append("INNER JOIN STORE_FOOD SF ON C.FOOD_NAME = SF.FOOD_NAME ");
 			sb.append("INNER JOIN STORE S ON SF.STORE_NUMBER = S.STORE_NUMBER ");
-			sb.append("WHERE O.USER_ID = ? ");
+			sb.append("WHERE O.USER_ID = ? and O.ORDER_NO = ? ");
 			sb.append("ORDER BY O.ORDER_DATE DESC");
 			con = dataSource.getConnection();
 			pstmt = con.prepareStatement(sb.toString());
 			pstmt.setString(1, userId);
+			pstmt.setInt(2, orderNo);
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
-				ovo = new OrderVO();
-				
+				ovo = new OrderVO();			
 				StoreVO svo = new StoreVO();
 				svo.setStoreName(rs.getString("STORE_NAME"));
 				ovo.setStoreVO(svo);
+				ovo.setOrderNo(rs.getInt("ORDER_NO"));
 				ovo.setOrderLocation(rs.getString("ORDER_LOCATION"));
 				ovo.setTotalPrice(rs.getInt("TOTAL_PRICE"));
 				ovo.setOrderDate(rs.getString("ORDER_DATE"));
