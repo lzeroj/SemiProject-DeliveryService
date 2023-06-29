@@ -190,8 +190,8 @@
 										</td>
 									</tr>
 									<tr>
-										<td><input type="hidden" id="totalSum" name="totalSum"
-											value="" />
+										<td><input type="hidden" id="totalSum" name="totalSum" value="" />
+											<input type="hidden" id="storeno" name="storeno" value="" />
 											<button class="btn btn-warning" name="order" type="button"
 												id="order">주문하기</button></td>
 									</tr>
