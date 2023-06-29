@@ -13,7 +13,7 @@
 	<title>Check Out</title>
 
 	<!-- favicon -->
-	<link rel="shortcut icon" type="image/png" href="assets/img/favicon.png">
+	<link rel="shortcut icon" type="image/png" href="assets/img/favicon-duck2_32.png">
 	<!-- google font -->
 	<link
 	href="https://fonts.googleapis.com/css2?family=Sunflower:wght@300&display=swap"

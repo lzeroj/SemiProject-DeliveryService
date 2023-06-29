@@ -9,10 +9,10 @@
 	<meta name="description" content="Responsive Bootstrap4 Shop Template, Created by Imran Hossain from https://imransdesign.com/">
 
 	<!-- title -->
-	<title>Single Product</title>
+	<title>상세보기</title>
 
 	<!-- favicon -->
-	<link rel="shortcut icon" type="image/png" href="assets/img/favicon.png">
+	<link rel="shortcut icon" type="image/png" href="assets/img/favicon-duck2_32.png">
 	<!-- google font -->
 	<link
 	href="https://fonts.googleapis.com/css2?family=Sunflower:wght@300&display=swap"
@@ -42,6 +42,14 @@
 	.store_detail_css{
 		font-size: 20px;
 	}
+	.storetitle{
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+	.chkajax{
+		margin-left: auto;
+	}
 </style>
 
 </head>
@@ -64,8 +72,8 @@
 			<div class="row">
 				<div class="col-lg-8 offset-lg-2 text-center">
 					<div class="breadcrumb-text">
-						<p>상세보기</p>
-						<h1>카테고리 : ${storeInfo.storeCategory}</h1>
+						<p>Category</p>
+						<h1>${storeInfo.storeCategory}</h1>
 					</div>
 				</div>
 			</div>
@@ -84,11 +92,11 @@
 				</div>
 				<div class="col-md-7">
 					<div class="single-product-content">
-						<h2>
+						<h2 style="font-size: 2.5rem;" class="storetitle">
 							${storeInfo.storeName}
 							&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;
 							<c:choose>
-								<c:when test="${heartchk}">
+								<c:when test="${heartchk}"> <!-- 초기의 이미지 -->
 									<span class="chkajax" id="ajaktrue" data-bool="true"><i class="bi bi-heart-fill fa-1x" style="color : red"></i></span>
 								</c:when>
 								<c:otherwise>
@@ -109,12 +117,12 @@
 												storeNumber: storeNumber,
 												userid : userid
 											},//서버에 넘기는 데이터
-											success:function(result){ //result(변수명은 어떤것이든 상관없음)
+											success:function(result){ 
 												//success funtion 매개변수로 서버가 응답한 데이터가 전달
 												if($(".chkajax").data("bool")=="true"){
 													if(result === "true"){
 											            $(this).empty();
-											            $(this).append('<i class="bi bi-heart-fill fa-1x"></i>');
+											            $(this).append('<i class="bi bi-heart-fill fa-1x" style="color : red"></i>');
 													}else{
 											            $(this).empty();	
 											            $(this).append('<i class="bi bi-heart fa-1x"></i>');	
@@ -122,7 +130,7 @@
 												}else{ //$(".chkajax").data("bool")=="false"
 													if(result === "true"){
 											            $(this).empty();
-											            $(this).append('<i class="bi bi-heart-fill fa-1x"></i>');
+											            $(this).append('<i class="bi bi-heart-fill fa-1x" style="color : red"></i>');
 													}else{
 											            $(this).empty();	
 											            $(this).append('<i class="bi bi-heart fa-1x"></i>');	
@@ -131,7 +139,27 @@
 											}.bind(this)
 										}); //ajax
 									});
+									let storeNumber = "${storeInfo.storeNumber}";
+
+									// 거리 정보를 가져와 화면상 출력
+									let json = <%= session.getAttribute("json") %>;
+									let distance4 = json[storeNumber];
+									console.log(distance4);	
 									
+									if(distance4 > 4){
+										$("#distanceinfo").html("<strong>배달거리</strong> : " + distance4 + "Km - 2000원");
+										console.log("배달거리 : " + distance4 + "Km - 2000원");
+									}else if(distance4 > 2 && distance4 < 4){
+										$("#distanceinfo").html("<strong>배달거리</strong> : " + distance4 + "Km - 1000원");
+										console.log("배달거리 : " + distance4 + "Km - 1000원");
+									}else if(distance4 < 2 && distance4 > 0){
+										$("#distanceinfo").html("<strong>배달거리</strong> : " + distance4 + "Km - 무료");
+										console.log("배달거리 : " + distance4 + "Km - 무료");
+									}else{
+										$("#distanceinfo").html("현재 위치가 확인되지 않았습니다 현재 위치 설정 후 가게를 조회해 주세요");
+									}
+									
+									// 초기 즐겨찾기 상태 출력
 									let heartchk = "${heartchk}";
 									if(heartchk === "true"){
 										$("#ajakfalse").hide();
@@ -145,18 +173,19 @@
 						</h2>
 						<br>
 						<span class="store_detail_css"><strong>최소주문금액</strong> : ${storeInfo.storeMinimumOrderAmount}</span><br>
-						<span class="store_detail_css">
-						<c:choose>
-							<c:when test="${distance > 4}">
-								<strong>배달거리</strong> : ${distance} Km - 2000원
-							</c:when>
-							<c:when test="${distance > 2 && distance < 4}">
-								<strong>배달거리</strong> : ${distance} Km - 1000원
-							</c:when>
-							<c:when test="${distance < 2  && distance > 0}">
-								<strong>배달거리</strong> : ${distance} Km - 무료
-							</c:when>
-						</c:choose>
+						<span class="store_detail_css" id="distanceinfo">
+						
+<%-- 						<c:choose> --%>
+<%-- 							<c:when test="${distance > 4}"> --%>
+<%-- 								<strong>배달거리</strong> : ${distance} Km - 2000원 --%>
+<%-- 							</c:when> --%>
+<%-- 							<c:when test="${distance > 2 && distance < 4}"> --%>
+<%-- 								<strong>배달거리</strong> : ${distance} Km - 1000원 --%>
+<%-- 							</c:when> --%>
+<%-- 							<c:when test="${distance < 2  && distance > 0}"> --%>
+<%-- 								<strong>배달거리</strong> : ${distance} Km - 무료 --%>
+<%-- 							</c:when> --%>
+<%-- 						</c:choose> --%>
 						</span><br><br>
 						<textarea class="form-control" id="store-detail" rows="6" readonly="readonly">
 ${storeInfo.storeInfo}
@@ -164,9 +193,10 @@ ${storeInfo.storeInfo}
 						<br><br>
 						
 						<%-- 리뷰 보기 기능 --%>
-						<form action="ReviewListByStoreNumber.do" method="get">
+						<form action="ReviewListByStoreNumber.do" method="post">
 						<button type="submit" class="btn btn-outline-success">리뷰 보기</button>
-						<input type="hidden" name="storeName" value="${storeInfo.storeName}">
+						 <input type="hidden" name="storeName" value="${storeInfo.storeName}">
+						<input type="hidden" name="storeNumber" value="${storeInfo.storeNumber}">
 						</form>
 						<%-- 리뷰 END --%>
 						
@@ -197,7 +227,7 @@ ${storeInfo.storeInfo}
 				<div class="col-lg-4 col-md-6 text-center">
 					<div class="single-product-item">
 						<div class="product-image">
-							<a href="StoFindFoodDetailByFoodName.do?foodname=${foodInfo.foodName}"><img src="assets/img/food/${foodInfo.foodPicturePath}" alt=""></a>
+							<a href="StoFindFoodDetailByFoodName.do?foodname=${foodInfo.foodName}"><img src="assets/img/food/${foodInfo.foodPicturePath}" alt="" width="150px" height="150px"></a>
 						</div>
 						<h3>${foodInfo.foodName}</h3>
 						<p class="product-price"><span>가격</span> ${foodInfo.foodPrice}원 </p>
@@ -205,27 +235,6 @@ ${storeInfo.storeInfo}
 					</div>
 				</div>
 				</c:forEach>
-				
-<!-- 				<div class="col-lg-4 col-md-6 text-center"> -->
-<!-- 					<div class="single-product-item"> -->
-<!-- 						<div class="product-image"> -->
-<!-- 							<a href="single-product.html"><img src="assets/img/food/galbi2.png" alt=""></a> -->
-<!-- 						</div> -->
-<!-- 						<h3>갈비탕</h3> -->
-<!-- 						<p class="product-price"><span>가격</span> 11000원 </p> -->
-<!-- 						<a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> 주문하기</a> -->
-<!-- 					</div> -->
-<!-- 				</div> -->
-<!-- 				<div class="col-lg-4 col-md-6 offset-lg-0 offset-md-3 text-center"> -->
-<!-- 					<div class="single-product-item"> -->
-<!-- 						<div class="product-image"> -->
-<!-- 							<a href="single-product.html"><img src="assets/img/food/seasoup.png" alt=""></a> -->
-<!-- 						</div> -->
-<!-- 						<h3>해물탕</h3> -->
-<!-- 						<p class="product-price"><span>가격</span> 9000원 </p> -->
-<!-- 						<a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> 주문하기</a> -->
-<!-- 					</div> -->
-<!-- 				</div> -->
 			</div>
 		</div>
 	</div>
@@ -259,77 +268,8 @@ ${storeInfo.storeInfo}
 	</div>
 	<!-- end logo carousel -->
 
-	<!-- footer -->
-	<div class="footer-area">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-3 col-md-6">
-					<div class="footer-box about-widget">
-						<h2 class="widget-title">About us</h2>
-						<p>Ut enim ad minim veniam perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae.</p>
-					</div>
-				</div>
-				<div class="col-lg-3 col-md-6">
-					<div class="footer-box get-in-touch">
-						<h2 class="widget-title">Get in Touch</h2>
-						<ul>
-							<li>34/8, East Hukupara, Gifirtok, Sadan.</li>
-							<li>support@fruitkha.com</li>
-							<li>+00 111 222 3333</li>
-						</ul>
-					</div>
-				</div>
-				<div class="col-lg-3 col-md-6">
-					<div class="footer-box pages">
-						<h2 class="widget-title">Pages</h2>
-						<ul>
-							<li><a href="index.html">Home</a></li>
-							<li><a href="about.html">About</a></li>
-							<li><a href="services.html">Shop</a></li>
-							<li><a href="news.html">News</a></li>
-							<li><a href="contact.html">Contact</a></li>
-						</ul>
-					</div>
-				</div>
-				<div class="col-lg-3 col-md-6">
-					<div class="footer-box subscribe">
-						<h2 class="widget-title">Subscribe</h2>
-						<p>Subscribe to our mailing list to get the latest updates.</p>
-						<form action="index.html">
-							<input type="email" placeholder="Email">
-							<button type="submit"><i class="fas fa-paper-plane"></i></button>
-						</form>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- end footer -->
-	
-	<!-- copyright -->
-	<div class="copyright">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-6 col-md-12">
-					<p>Copyrights &copy; 2019 - <a href="https://imransdesign.com/">Imran Hossain</a>,  All Rights Reserved.<br>
-						Distributed By - <a href="https://themewagon.com/">Themewagon</a>
-					</p>
-				</div>
-				<div class="col-lg-6 text-right col-md-12">
-					<div class="social-icons">
-						<ul>
-							<li><a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
-							<li><a href="#" target="_blank"><i class="fab fa-twitter"></i></a></li>
-							<li><a href="#" target="_blank"><i class="fab fa-instagram"></i></a></li>
-							<li><a href="#" target="_blank"><i class="fab fa-linkedin"></i></a></li>
-							<li><a href="#" target="_blank"><i class="fab fa-dribbble"></i></a></li>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- end copyright -->
+	<%-- 하단 메뉴 공통 부분 --%>
+	<c:import url="webpagefooter.jsp"></c:import>
 	
 	<!-- jquery -->
 	<script src="assets/js/jquery-1.11.3.min.js"></script>

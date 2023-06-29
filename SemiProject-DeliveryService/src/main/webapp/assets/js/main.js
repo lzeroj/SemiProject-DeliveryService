@@ -75,21 +75,46 @@
             }
         });
         
+        $(".shopping-cart").on('click', function(){
+			var address = $("#address").val();
+			console.log("address: "+address);
+
+			if($("#address").val()==""){
+				alert("주소를 선택해주세요");
+				return false;
+			}
+			// 폼 생성 및 데이터 전송
+			var form = $('<form>').attr({
+				method: 'GET',
+				action: 'CartFindListByCartNo.do'  // 컨트롤러 URL을 입력해주세요
+			});
+			
+			// 주소 값을 히든 필드로 추가
+			$('<input>').attr({
+				type: 'hidden',
+				name: 'address',
+				value: address
+			}).appendTo(form);
+			  
+			// 폼 전송
+			form.appendTo('body').submit();
+		});
+        
         $(".single-category-item").on('click', function(){
 			var clickedElement = $(this);
 			var address = $("#address").val();
 //			var category = $(".single-category-item").data("type");
 			var category = clickedElement.data("type");
-			alert(category);
+//			alert(category);
+			//alert(address);
 			console.log("category: "+category);
 			console.log("address: "+address);
 
-			//alert(address);
 			if($("#address").val()==""){
-				
-				//alert("주소를 선택해주세요");
-				//return false;
+				alert("주소를 선택해주세요");
+				return false;
 			}
+			
 			// 폼 생성 및 데이터 전송
 			var form = $('<form>').attr({
 				method: 'GET',
@@ -147,7 +172,6 @@
             $(".product-lists").isotope({
                 filter: selector,
             });
-            
         });
         
         // isotop inner

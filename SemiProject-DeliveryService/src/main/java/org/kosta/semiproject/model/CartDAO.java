@@ -50,7 +50,8 @@ public class CartDAO {
 			sql.append("INNER JOIN store_food sf ON c.food_name=sf.food_name ");
 			sql.append("INNER JOIN member m ON c.user_id = m.user_id ");
 			sql.append("INNER JOIN store s ON sf.store_number = s.store_number ");
-			sql.append("WHERE c.user_id=?");
+			sql.append("WHERE c.user_id=? ");
+			sql.append("AND c.IS_CART_ORDERED = 1");
 			pstmt = con.prepareStatement(sql.toString());
 			pstmt.setString(1, userId);
 			rs = pstmt.executeQuery();
@@ -75,6 +76,49 @@ public class CartDAO {
 			closeAll(rs, pstmt, con);
 		}
 		return list;
+	}
+	
+	public CartVO checkFoodMenuByIdAndFood(String userId, String foodname) throws SQLException {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		CartVO cartVO = null;
+		try {
+			con = dataSource.getConnection();
+			StringBuilder sql = new StringBuilder();
+			sql.append("SELECT c.cart_no,c.user_id,s.store_name,sf.food_picture_path,c.food_name,sf.food_price,c.quantity ");
+			sql.append("FROM cart c ");
+			sql.append("INNER JOIN store_food sf ON c.food_name=sf.food_name ");
+			sql.append("INNER JOIN member m ON c.user_id = m.user_id ");
+			sql.append("INNER JOIN store s ON sf.store_number = s.store_number ");
+			sql.append("WHERE c.user_id=? ");
+			sql.append("AND c.FOOD_NAME=? ");
+			sql.append("AND c.IS_CART_ORDERED = 1 ");
+			sql.append("ORDER BY CART_NO desc");
+			pstmt = con.prepareStatement(sql.toString());
+			pstmt.setString(1, userId);
+			pstmt.setString(2, foodname);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				cartVO = new CartVO();		
+				cartVO.setCartNo(rs.getInt("cart_no"));
+				 MemberVO memberVO = new MemberVO(); 
+				memberVO.setUserId(rs.getString("user_id"));
+				 cartVO.setMemberVO(memberVO);				 						 
+				 FoodVO foodVO = new FoodVO(); 
+				 foodVO.setFoodName(rs.getString("food_name"));
+				 foodVO.setFoodPrice(rs.getInt("food_price"));
+				 foodVO.setFoodPicturePath(rs.getString("food_picture_path"));
+				 StoreVO storeVO = new StoreVO();
+				 storeVO.setStoreName(rs.getString("store_name"));
+				 foodVO.setStoreVO(storeVO);
+				 cartVO.setFoodVO(foodVO);		 
+				 cartVO.setQuantity(rs.getInt("quantity"));
+			}
+		} finally {
+			closeAll(rs, pstmt, con);
+		}
+		return cartVO;
 	}
 
 	public int updateCartMenuPlus(int cartNo) throws SQLException {
@@ -143,19 +187,36 @@ public class CartDAO {
 		}		
 	}
 
-	public void insertCart(String userId, String foodName) throws SQLException {
+	public int insertCart(String userId, String foodName, int quantity) throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
+		CartVO cvo = checkFoodMenuByIdAndFood(userId,foodName);
+		int result = 0;
 		try {
 			con = dataSource.getConnection();
-			String sql = "INSERT INTO cart(cart_no,user_id,food_name,quantity) VALUES(cart_no_seq.nextval,?,?,1)";
-			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, userId);
-			pstmt.setString(2, foodName);
-			pstmt.executeUpdate();
+			if(cvo == null) {
+				String insertsql = "INSERT INTO cart(cart_no,user_id,food_name,quantity,IS_CART_ORDERED) VALUES(cart_no_seq.nextval,?,?,1,1)";
+				pstmt = con.prepareStatement(insertsql);
+				pstmt.setString(1, userId);
+				pstmt.setString(2, foodName);
+				pstmt.executeUpdate();
+			}else {
+				StringBuilder updatesql = new StringBuilder();
+				updatesql.append("UPDATE CART ");
+				updatesql.append("SET QUANTITY = QUANTITY + ? ");
+				updatesql.append("WHERE USER_ID = ? ");
+				updatesql.append("AND FOOD_NAME = ? ");
+				updatesql.append("AND IS_CART_ORDERED = 1");
+				pstmt = con.prepareStatement(updatesql.toString());
+				pstmt.setInt(1, quantity);
+				pstmt.setString(2, userId);
+				pstmt.setString(3, foodName);
+				result = pstmt.executeUpdate();
+			}
 		}finally {
 			closeAll(pstmt, con);
 		}		
+		return result;
 	}
 
 	/*
@@ -191,5 +252,43 @@ public class CartDAO {
 		return checkId;
 	}
 	
+	public int orderCartMenu(String userId) throws SQLException {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		int result = 0;
+		try {
+			StringBuilder sb = new StringBuilder();
+			sb.append("UPDATE CART SET IS_CART_ORDERED = 0 ");
+			sb.append("WHERE IS_CART_ORDERED = 1 ");
+			sb.append("AND USER_ID = ? ");
+			con = dataSource.getConnection();
+			pstmt = con.prepareStatement(sb.toString());
+			pstmt.setString(1, userId);
+			result = pstmt.executeUpdate();
+		}finally {
+			closeAll(pstmt, con);
+		}
+		return result;
+	}
+	
+	public ArrayList<Integer> findCartNoByIsOrderAndId(String userid) throws SQLException{
+		ArrayList<Integer> list = new ArrayList<Integer>();
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			String sql = "SELECT * FROM cart WHERE user_id = ? AND IS_CART_ORDERED = 1";
+			con = dataSource.getConnection();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, userid);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				list.add(rs.getInt(1));
+			}
+		}finally {
+			closeAll(rs, pstmt, con);
+		}
+		return list;
+	}
 
 }

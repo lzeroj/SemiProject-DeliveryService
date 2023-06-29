@@ -9,10 +9,10 @@
 <meta name="description" content="Responsive Bootstrap4 Shop Template, Created by Imran Hossain from https://imransdesign.com/">
 
 	<!-- title -->
-	<title>Shop</title>
+	<title>스토어 리스트</title>
 
 	<!-- favicon -->
-	<link rel="shortcut icon" type="image/png" href="assets/img/favicon.png">
+	<link rel="shortcut icon" type="image/png" href="assets/img/favicon-duck2_32.png">
 	<!-- google font -->
 	<link
 	href="https://fonts.googleapis.com/css2?family=Sunflower:wght@300&display=swap"
@@ -57,8 +57,8 @@
 			<div class="row">
 				<div class="col-lg-8 offset-lg-2 text-center">
 					<div class="breadcrumb-text">
-						<p>Fresh and Organic</p>
-						<h1>Shop</h1>
+						<p>우리동네 배달 서비스</p>
+						<h1>스토어 리스트</h1>
 					</div>
 				</div>
 			</div>
@@ -93,7 +93,7 @@
         		<div class="col-lg-3 col-md-6 text-center ${stolist.storeCategory}">
 					<div class="single-product-item" data-chk="${stolist.storeCategory}">
 						<div class="product-image">
-							<img src="assets/img/store/${stolist.storePicturePath}" alt="">
+							<img src="assets/img/store/${stolist.storePicturePath}" alt="" width="175px" height="175px">
 						</div>
 						<h3>${stolist.storeName}</h3>
 						<input type="hidden" id="location" value="${stolist.storeLocation}"/>
@@ -111,14 +111,12 @@
 
 								console.log(distance);
 								console.log(index);
-								alert(index);
+								console.log('${address}');
 
-								let url = "StoFindStoreAndFoodListDetailByStoreName.do?storenumber=" + (parseInt(index) + 1) + "&distance=" + distance;
-								
+								let url = "StoFindStoreAndFoodListDetailByStoreName.do?storenumber=" + (parseInt(index) + 1) + "&distance=" + distance ;
 								window.location.href = url;
 							}
 						</script>
-						
 					</div>
 				</div>
 				</c:forEach>
@@ -244,14 +242,12 @@
 					const queryString = window.location.search;
 					const urlParams = new URLSearchParams(queryString);
 					const value = "."+urlParams.get('category');
-					const sortBy = urlParams.get('distance'); // 새로운 정렬 기준을 가져옵니다 (예: 'distance')
+					const sortBy = urlParams.get('distance'); 
 					
-					// 정렬 함수를 정의합니다
 					const customSortFunction = function(a, b) {
 					  const distanceA = parseFloat(a.getAttribute('data-distance'));
 					  const distanceB = parseFloat(b.getAttribute('data-distance'));
 					
-					  // 원하는 정렬 기준에 따라 비교하여 정렬합니다
 					  if (distanceA < distanceB) {
 					    return -1;
 					  } else if (distanceA > distanceB) {
@@ -260,6 +256,11 @@
 					    return 0;
 					  }
 					};
+					
+					// 초기 isoptope class="active" 설정
+					let category = "${category}";
+					let filterValue = "." + category;
+					$("li[data-filter='" + filterValue + "']").addClass("active");
 
 					$(".product-lists .single-product-item").each(async function(index) {
 					  var startaddress = "<c:out value='${address}' />";
@@ -272,25 +273,10 @@
 					  // 데이터를 받은 후에 정렬하여 isotope에 적용합니다
 					  var productList = $(".product-lists");
 					  
-					 	  //productList.isotope('reloadItems');
 					  productList.isotope('arrange', { filter: value, sortBy: sortBy, sortAscending: true, sortFunction: customSortFunction });
 					});
 				});				    
 				</script>
-			</div>
-
-			<div class="row">
-				<div class="col-lg-12 text-center">
-					<div class="pagination-wrap">
-						<ul>
-							<li><a href="#">Prev</a></li>
-							<li><a href="#">1</a></li>
-							<li><a class="active" href="#">2</a></li>
-							<li><a href="#">3</a></li>
-							<li><a href="#">Next</a></li>
-						</ul>
-					</div>
-				</div>
 			</div>
 		</div>
 	</div>

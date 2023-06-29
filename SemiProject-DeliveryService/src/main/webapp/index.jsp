@@ -10,10 +10,10 @@
 	content="Responsive Bootstrap4 Shop Template, Created by Imran Hossain from https://imransdesign.com/">
 
 <!-- title -->
-<title>Fruitkha</title>
+<title>oh, 2km?!</title>
 
 <!-- favicon -->
-<link rel="shortcut icon" type="image/png" href="assets/img/favicon.png">
+<link rel="shortcut icon" type="image/png" href="assets/img/favicon-duck2_32.png">
 <!-- google font -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -34,9 +34,10 @@
 <!-- responsive -->
 <link rel="stylesheet" href="assets/css/responsive.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
+<script src="https://kit.fontawesome.com/72ab60a7d8.js" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-latest.min.js"></script>
 </head>
 <body>
-
 	<!--PreLoader-->
 	<div class="loader">
 		<div class="loader-inner">
@@ -59,7 +60,7 @@
 							<h1>오, 2키로?</h1>
 							<div class="hero-btns">
 								<input type="text" placeholder="주소" size="60" id="address" name="address"
-									onclick="findAddress()" value="경기 성남시 분당구 성남대로 45"><a href="shop.jsp"
+									onclick="findAddress()" value=""  readonly><a href="shop.jsp"
 									class="boxed-btn">검색</a>
 							</div>
 						</div>
@@ -217,8 +218,13 @@
 	<script src="assets/js/main.js"></script>
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script type="text/javascript">
+// 		$(function() {
+// 			var address = $("#address").val();
+// 			alert(address);
+// 			console.log("address: "+address);
+// 		});
 		function findAddress() {
-			new daum.Postcode({
+			addressPopupWindow = new daum.Postcode({
 				oncomplete : function(data) {
 					let address = data.roadAddress; // 주소 검색 API에서 가져온 도로명 주소 값
 					let input = document.getElementById('address'); //input value 값을 버

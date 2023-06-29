@@ -10,8 +10,9 @@ public class TestLoginMember {
 	public static void main(String[] args) {
 		String id = "test1";
 		String password = "a";
+		String user_state="Y";
 		try {
-			MemberVO vo = MemberDAO.getInstance().login(id, password);
+			MemberVO vo = MemberDAO.getInstance().login(id, password, user_state);
 			if (vo == null) {
 				System.out.println("로그인실패");
 			} else {

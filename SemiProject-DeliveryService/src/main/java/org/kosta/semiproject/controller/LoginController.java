@@ -1,5 +1,6 @@
 package org.kosta.semiproject.controller;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -11,9 +12,12 @@ public class LoginController implements Controller {
 
 	@Override
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		if (request.getMethod().equals("POST") == false)
+			throw new ServletException("POST METHOD 방식만 로그인 가능");
 		String user_id = request.getParameter("user_id");
 		String password = request.getParameter("password");
-		MemberVO vo = MemberDAO.getInstance().login(user_id, password);	
+		String user_state = request.getParameter("user_state");
+		MemberVO vo = MemberDAO.getInstance().login(user_id, password, user_state);	
 		String path = null;
 		if (vo == null) {
 			path = "redirect:login-fail.jsp";

@@ -6,8 +6,6 @@
 body {
   font-family: "Poppins", sans-serif;
 	min-height: 100vh;
-	margin-top: 8%;
-/* 	margin-top: 8%; */
 	background: -webkit-gradient(linear, left bottom, right top, from(#92b5db),
 		to(#1d466c));
 	background: -webkit-linear-gradient(bottom left, #92b5db 0%, #1d466c 100%);
@@ -16,15 +14,29 @@ body {
 	background: linear-gradient(120deg, #ffffff, #ffffff);
 }
 
+#navbar {
+  position: fixed;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  background-color: transparent;
+  transition: all var(--animation-duration) ease-in-out;
+  z-index: 1;
+}
+
 h1 {
 	text-align: center;
 	font-weight: 500;
 }
-
+.input-form-backgroud {
+  margin-top: -30px;
+}
 .input-form {
-	max-width: 680px;
-	margin-top: 80px;
+	max-width: 40%;
 	padding: 32px;
+	 margin-bottom: 0;
 	background: #fff;
 	-webkit-border-radius: 10px;
 	-moz-border-radius: 10px;
@@ -54,5 +66,6 @@ h1 {
 }
 
 #form{
+	margin-top:5%;
 	 box-shadow: 10px 10px 15px rgba(0,0,0,0.5);
 }

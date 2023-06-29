@@ -13,7 +13,12 @@ CREATE TABLE MEMBER (
 drop table member
 -- 회원 전체조회
 SELECT * FROM member;
-
+-- 회원 정보 업데이트
+UPDATE member SET password = 'aa', user_phone = '01012312312', email = 'nnnn@naver.com', address = '서울 강남구 역삼로 13', add_detail='1층' WHERE user_id ='test1';
+-- 컬럼 삭제
+ALTER TABLE member DROP COLUMN User_State;
+-- 컬럼 추가
+ALTER TABLE member ADD User_State VARCHAR2(20) DEFAULT 'Y' NOT NULL;
 ----------------------------------------------------------------------------
 -- **주문 테이블**  // 재확인 예정
 CREATE TABLE ORDER_FOOD (
@@ -24,9 +29,10 @@ CREATE TABLE ORDER_FOOD (
     order_location VARCHAR2(100) NOT NULL,
     user_id VARCHAR2(100) NOT NULL,
     food_name VARCHAR2(100) NOT NULL,
-    CONSTRAINT fk_user_id FOREIGN KEY (user_id) REFERENCES member(user_id),
+    CONSTRAINT fk_user_id FOREIGN KEY (user_id) REFERENCES member(user_id) ON DELETE CASCADE,
     CONSTRAINT fk_food_name FOREIGN KEY (food_name) REFERENCES store_food(food_name)
 );
+
 drop table order_food
 -- 주문 시퀀스 생성 
 CREATE SEQUENCE order_no_seq NOCACHE;
@@ -70,7 +76,6 @@ CREATE TABLE STORE(
 CREATE SEQUENCE store_seq NOCACHE;
 -- 가게 전체조회
 SELECT * FROM STORE; 
-
 ----------------------------------------------------------------------------
 -- **가게별 음식 테이블**
 -- 테이블 DROP
@@ -101,7 +106,7 @@ CREATE TABLE cart(
 CREATE SEQUENCE cart_no_seq NOCACHE;
 commit
 select * from cart
-	
+
 	
 -- INSERT 구문 ( TEST 데이터 삽입 ) 
 
@@ -169,6 +174,41 @@ INSERT INTO review(review_no,review_content,review_insertdate,store_number,user_
 INSERT INTO review(review_no,review_content,review_insertdate,store_number,user_id)
 SELECT review_no_seq.nextval,review_content,review_insertdate,store_number,user_id FROM review 
 
-delete from review;
 
 select * from review
+
+--사진 업데이트 
+select * from store_food;
+UPDATE store_food  SET food_picture_path = 'korea_galbi11.png' where food_name ='갈비';
+
+
+CREATE TABLE CART_ORDER_MAPPING(
+	order_no NUMBER NOT NULL,
+	cart_no NUMBER NOT NULL,	
+	CONSTRAINT pk_map_no PRIMARY KEY(cart_no,order_no),
+	CONSTRAINT fk_order_no FOREIGN KEY (order_no) REFERENCES order_food(order_no),
+    CONSTRAINT fk_cart_no FOREIGN KEY (cart_no) REFERENCES cart(cart_no)  
+)
+
+INSERT INTO CART_ORDER_MAPPING(order_no,cart_no)  VALUES(37,95);
+INSERT INTO CART_ORDER_MAPPING(order_no,cart_no)  VALUES(37,96);
+INSERT INTO CART_ORDER_MAPPING(order_no,cart_no)  VALUES(37,97);
+
+select * from cart_order_mapping
+
+
+select com.order_no, com.cart_no, s.store_name
+from cart_order_mapping com
+inner join cart c on com.cart_no = c.cart_no
+inner join store_food sf on c.food_name = sf.food_name
+inner join store s on sf.store_number = s.store_number
+--, s.store_name
+
+select o.order_location,o.order_no, s.store_name,o.total_price, o.order_date --,o.order_no , co.cart_no
+from order_food o
+inner join cart_order_mapping co on o.order_no = co.order_no 
+inner join cart c on co.cart_no = c.cart_no
+inner join store_food sf on c.food_name = sf.food_name
+inner join store s on sf.store_number = s.store_number
+where o.user_id = 'shj22k' and o.order_no =42
+ORDER BY O.ORDER_DATE DESC
