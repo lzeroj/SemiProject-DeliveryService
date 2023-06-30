@@ -91,22 +91,6 @@ public class OrderDAO {
 		return max;
 	}
 	
-	public ArrayList<OrderVO> findOrderListByDate(String userId , String date) throws SQLException{
-		Connection con = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		ArrayList<OrderVO> list = new ArrayList<OrderVO>();
-		OrderVO ovo = null;
-		try {
-			
-			
-			
-		}finally {
-			closeAll(rs, pstmt, con);
-		}
-		return list;
-	}
-	
 	public ArrayList<OrderVO> OrderList(String userId) throws SQLException{
 		Connection con = null;
 		PreparedStatement pstmt = null;
