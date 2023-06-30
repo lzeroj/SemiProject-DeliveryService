@@ -60,7 +60,7 @@
 							<h1>오, 2키로?</h1>
 							<div class="hero-btns">
 								<input type="text" placeholder="주소" size="60" id="address" name="address"
-									onclick="findAddress()" value=""  readonly><a href="shop.jsp"
+									onclick="findAddress()" value="" readonly><a href="shop.jsp"
 									class="boxed-btn">검색</a>
 							</div>
 						</div>
@@ -218,11 +218,6 @@
 	<script src="assets/js/main.js"></script>
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script type="text/javascript">
-// 		$(function() {
-// 			var address = $("#address").val();
-// 			alert(address);
-// 			console.log("address: "+address);
-// 		});
 		function findAddress() {
 			addressPopupWindow = new daum.Postcode({
 				oncomplete : function(data) {
@@ -232,6 +227,16 @@
 				}
 			}).open();
 		}
+		$(function() {
+			let address = '${sessionScope.address}';
+			let member = '${sessionScope.member}';
+			console.log(member);
+			if(member != ""){
+				if(address != ""){
+					$("#address").val(address);
+				}
+			}
+		});
 	</script>
 </body>
 </html>
