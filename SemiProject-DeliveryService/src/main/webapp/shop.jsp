@@ -136,7 +136,6 @@
 				                startlongitude = result[0].x;
 				                console.log("출발위도:"+startlatitude);
 				                console.log("출발경도:"+startlongitude);
-
 				                resolve();
 				            } else {
 				                reject("출발 주소를 찾을 수 없습니다.");
@@ -151,7 +150,6 @@
 				                arrivelongitude = result[0].x;
 				                console.log("도착위도:"+arrivelatitude);
 				                console.log("도착경도:"+arrivelongitude);
-
 				                resolve();
 				            } else {
 				                reject("도착 주소를 찾을 수 없습니다.");

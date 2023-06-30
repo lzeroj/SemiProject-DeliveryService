@@ -66,13 +66,14 @@ public class MemberDAO {
 		ResultSet rs = null;
 		try {
 			con = dataSource.getConnection();
-			String sql = "SELECT user_id, user_name FROM member WHERE user_id=? AND password=? AND user_state='Y' ";
+			String sql = "SELECT * FROM member WHERE user_id=? AND password=? AND user_state='Y' ";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, user_id);
 			pstmt.setString(2, password);
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
-				vo = new MemberVO(rs.getString(1), null, rs.getString(2), null, null, null, null, null, 0, "Y");
+				vo = new MemberVO(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5),
+						rs.getString(6), rs.getString(7), rs.getString(8), 0, "Y");
 			}
 		} finally {
 			// TODO: handle finally clause
@@ -218,5 +219,27 @@ public class MemberDAO {
 			closeAll(rs, pstmt, con);
 		}
 		return list;
+	}
+
+	public MemberVO findByid(String userId) throws SQLException {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		MemberVO vo = null;
+		try {
+			con = dataSource.getConnection();
+			String sql = "select user_id  from member where user_id = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, userId);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				vo = new MemberVO(userId, null, null, null, null, null, null, null, 0, null);
+			}
+
+		} finally {
+			// TODO: handle finally clause
+			closeAll(rs, pstmt, con);
+		}
+		return vo;
 	}
 }

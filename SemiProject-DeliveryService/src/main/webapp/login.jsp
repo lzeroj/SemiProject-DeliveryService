@@ -63,6 +63,7 @@
 			<div class="signup_link">
 				회원이 아니신가요? <a href="register.jsp">회원가입</a><br> <a
 					href="index.jsp">HOME</a>
+					<input type="hidden" name="userbirth" value="${sessionScope.member.userBirth}">
 			</div>
 		</form>
 	</div>

@@ -8,7 +8,7 @@ import org.kosta.semiproject.model.MemberVO;
 public class TestLoginMember {
 
 	public static void main(String[] args) {
-		String id = "test1";
+		String id = "kim13";
 		String password = "a";
 		String user_state="Y";
 		try {

@@ -56,6 +56,7 @@ public class StoFindStoreAndFoodListDetailByStoreNameController implements Contr
 			}
 		}else { // session에 값이없을때 : 비로그인 상태일때
 			heartchk = false;
+			return "redirect:login-chk-fail.jsp";
 		}
 		
 		request.setAttribute("heartchk", heartchk);
