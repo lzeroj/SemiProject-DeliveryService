@@ -220,4 +220,26 @@ public class MemberDAO {
 		}
 		return list;
 	}
+
+	public MemberVO findByid(String userId) throws SQLException {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		MemberVO vo = null;
+		try {
+			con = dataSource.getConnection();
+			String sql = "select user_id  from member where user_id = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, userId);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				vo = new MemberVO(userId, null, null, null, null, null, null, null, 0, null);
+			}
+
+		} finally {
+			// TODO: handle finally clause
+			closeAll(rs, pstmt, con);
+		}
+		return vo;
+	}
 }

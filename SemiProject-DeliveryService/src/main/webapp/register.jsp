@@ -29,9 +29,8 @@
 				<div class="col-lg-12 col-sm-12 text-center">
 					<div class="main-menu-wrap">
 						<!-- logo -->
-						<div class="site-logo" id="ducklogo" style="margin-top: -30px"> 
-							 <img src="assets/img/oh2km.png"
-								alt="오리사진">
+						<div class="site-logo" id="ducklogo" style="margin-top: -30px">
+							<img src="assets/img/oh2km.png" alt="오리사진">
 						</div>
 						<!-- logo -->
 						<!-- menu start -->
@@ -48,12 +47,21 @@
 			<form class="validation-form" method="post"
 				action="RegisterMember.do">
 				<div class="row">
-					<div class="col-md-6 mb-3">
-						<label for="name">아이디</label> <input class="form-control"
-							type="text" name="user_id" placeholder="ori123"
-							required="required">
+					<div class="col-md-12">
+						<label for="name">아이디</label>
+						<div class="input-group">
+							<input class="form-control" type="text" name="user_id"
+								id="userId" placeholder="ori123" required="required">
+							<div class="input-group-append">
+								<button class="btn btn-outline-secondary" type="button"
+									id="checkId" onclick="findById()">아이디 중복검사</button>
+							</div>
+						</div>
 					</div>
-					<div class="col-md-6 mb-3">
+				</div>
+
+				<div class="row">
+					<div class="col-md-12 ">
 						<label for="nickname">비밀번호</label> <input type="password"
 							class="form-control" name="password" placeholder="" required>
 					</div>
@@ -123,7 +131,6 @@
 			</form>
 		</div>
 	</div>
-	</div>
 	<script type="text/javascript">
 		function findAddress() {
 			new daum.Postcode({
@@ -134,6 +141,32 @@
 				}
 			}).open();
 		}
+		function findById() {
+		    let userIdInput = document.getElementById("userId");
+		    if (userIdInput) {
+		        let userId = userIdInput.value;
+		        console.log(userId);
+		        if (userId.length === 0 || userId === null || userId.trim() === "") {
+		            alert("아이디를 입력하세요!");
+		        } else {
+		            let xhr = new XMLHttpRequest();
+		            xhr.onreadystatechange = function() {
+		                if (xhr.readyState == 4 && xhr.status == 200) {
+		                    let result = xhr.responseText;
+		                    console.log(result);
+		                    if (result === "true") {
+		                        alert("사용 가능한 아이디입니다.");
+		                    } else if (result === "false") {
+		                        alert("중복된 아이디입니다.");
+		                    }
+		                }
+		            };
+		            xhr.open("GET", "FindById.do?user_id=" + userId);
+		            xhr.send();
+		        }
+		    }
+		}
+
 	</script>
 </body>
 </html>
