@@ -29,9 +29,8 @@
 				<div class="col-lg-12 col-sm-12 text-center">
 					<div class="main-menu-wrap">
 						<!-- logo -->
-						<div class="site-logo" id="ducklogo" style="margin-top: -30px"> 
-							 <img src="assets/img/oh2km.png"
-								alt="오리사진">
+						<div class="site-logo" id="ducklogo" style="margin-top: -30px">
+							<img src="assets/img/oh2km.png" alt="오리사진">
 						</div>
 						<!-- logo -->
 						<!-- menu start -->
@@ -48,26 +47,37 @@
 			<form class="validation-form" method="post"
 				action="RegisterMember.do">
 				<div class="row">
-					<div class="col-md-6 mb-3">
-						<label for="name">아이디</label> <input class="form-control"
-							type="text" name="user_id" placeholder="ori123"
-							required="required">
+					<div class="col-md-12">
+						<label for="name">아이디</label>
+						<div class="input-group">
+							<input class="form-control" type="text" name="user_id"
+								id="userId" placeholder="4~12자리의 영문 소문자와 숫자로 작성" required>
+							<div class="input-group-append">
+								<button class="btn btn-outline-secondary" type="button"
+									id="checkId" onclick="findById()">아이디 중복검사</button>
+							</div>
+						</div>
 					</div>
-					<div class="col-md-6 mb-3">
+				</div>
+
+				<div class="row">
+					<div class="col-md-12 ">
 						<label for="nickname">비밀번호</label> <input type="password"
-							class="form-control" name="password" placeholder="" required>
+							class="form-control" name="password"
+							placeholder="4~12자리의 영문 소문자와 숫자로 작성" required>
 					</div>
 				</div>
 				<div class="row">
 					<div class="col-md-6 mb-3">
 						<label for="name">전화번호</label> <input type="text"
 							class="form-control" name="user_phone"
-							placeholder="010-xxxx-xxxx" required>
+							placeholder="예) 01012345678" required>
 					</div>
 					<div class="col-md-6 mb-3">
 						<label for="nickname">생년월일</label> <input type="text"
-							class="form-control" name="user_birth" placeholder="1997-04-05"
-							required>
+							class="form-control" name="user_birth"
+							placeholder="예시 형식으로 입력해주세요 (예: 1997-04-05)"
+							pattern="\d{4}-\d{2}-\d{2}" required>
 					</div>
 				</div>
 				<div class="row">
@@ -96,7 +106,8 @@
 						<label for="address">주소</label>
 						<div class="input-group">
 							<input type="text" class="form-control" name="address"
-								id="address" placeholder="주소를 입력해주세요" required>
+								onclick="findAddress()" id="address" placeholder="주소를 검색해주세요"
+								required>
 							<div class="input-group-append">
 								<button class="btn btn-outline-secondary" type="button"
 									onclick="findAddress()" id="addressSearchButton">주소검색</button>
@@ -123,7 +134,6 @@
 			</form>
 		</div>
 	</div>
-	</div>
 	<script type="text/javascript">
 		function findAddress() {
 			new daum.Postcode({
@@ -133,6 +143,32 @@
 					input.value = address; // 버튼의 value 속성에 동적으로 주소 값을 설정
 				}
 			}).open();
+		}
+		function findById() {
+			let userIdInput = document.getElementById("userId");
+			if (userIdInput) {
+				let userId = userIdInput.value;
+				console.log(userId);
+				if (userId.length === 0 || userId === null
+						|| userId.trim() === "") {
+					alert("아이디를 입력하세요!");
+				} else {
+					let xhr = new XMLHttpRequest();
+					xhr.onreadystatechange = function() {
+						if (xhr.readyState == 4 && xhr.status == 200) {
+							let result = xhr.responseText;
+							console.log(result);
+							if (result === "true") {
+								alert("사용 가능한 아이디입니다.");
+							} else if (result === "false") {
+								alert("중복된 아이디입니다.");
+							}
+						}
+					};
+					xhr.open("GET", "FindById.do?user_id=" + userId);
+					xhr.send();
+				}
+			}
 		}
 	</script>
 </body>
