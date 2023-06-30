@@ -63,7 +63,8 @@
 				<div class="row">
 					<div class="col-md-12 ">
 						<label for="nickname">비밀번호</label> <input type="password"
-							class="form-control" name="password" placeholder="4~12자리의 영문 소문자와 숫자로 작성" required>
+							class="form-control" name="password"
+							placeholder="4~12자리의 영문 소문자와 숫자로 작성" required>
 					</div>
 				</div>
 				<div class="row">
@@ -74,7 +75,9 @@
 					</div>
 					<div class="col-md-6 mb-3">
 						<label for="nickname">생년월일</label> <input type="text"
-							class="form-control" name="user_birth" placeholder="예) 1997-04-05(- 포함하여 입력)" required>
+							class="form-control" name="user_birth"
+							placeholder="예시 형식으로 입력해주세요 (예: 1997-04-05)"
+							pattern="\d{4}-\d{2}-\d{2}" required>
 					</div>
 				</div>
 				<div class="row">
@@ -102,8 +105,9 @@
 					<div class="col-md-12" id="address1">
 						<label for="address">주소</label>
 						<div class="input-group">
-							<input type="text" class="form-control" name="address" onclick="findAddress()"
-								id="address" placeholder="주소를 검색해주세요" required>
+							<input type="text" class="form-control" name="address"
+								onclick="findAddress()" id="address" placeholder="주소를 검색해주세요"
+								required>
 							<div class="input-group-append">
 								<button class="btn btn-outline-secondary" type="button"
 									onclick="findAddress()" id="addressSearchButton">주소검색</button>
@@ -141,31 +145,31 @@
 			}).open();
 		}
 		function findById() {
-		    let userIdInput = document.getElementById("userId");
-		    if (userIdInput) {
-		        let userId = userIdInput.value;
-		        console.log(userId);
-		        if (userId.length === 0 || userId === null || userId.trim() === "") {
-		            alert("아이디를 입력하세요!");
-		        } else {
-		            let xhr = new XMLHttpRequest();
-		            xhr.onreadystatechange = function() {
-		                if (xhr.readyState == 4 && xhr.status == 200) {
-		                    let result = xhr.responseText;
-		                    console.log(result);
-		                    if (result === "true") {
-		                        alert("사용 가능한 아이디입니다.");
-		                    } else if (result === "false") {
-		                        alert("중복된 아이디입니다.");
-		                    }
-		                }
-		            };
-		            xhr.open("GET", "FindById.do?user_id=" + userId);
-		            xhr.send();
-		        }
-		    }
+			let userIdInput = document.getElementById("userId");
+			if (userIdInput) {
+				let userId = userIdInput.value;
+				console.log(userId);
+				if (userId.length === 0 || userId === null
+						|| userId.trim() === "") {
+					alert("아이디를 입력하세요!");
+				} else {
+					let xhr = new XMLHttpRequest();
+					xhr.onreadystatechange = function() {
+						if (xhr.readyState == 4 && xhr.status == 200) {
+							let result = xhr.responseText;
+							console.log(result);
+							if (result === "true") {
+								alert("사용 가능한 아이디입니다.");
+							} else if (result === "false") {
+								alert("중복된 아이디입니다.");
+							}
+						}
+					};
+					xhr.open("GET", "FindById.do?user_id=" + userId);
+					xhr.send();
+				}
+			}
 		}
-
 	</script>
 </body>
 </html>
