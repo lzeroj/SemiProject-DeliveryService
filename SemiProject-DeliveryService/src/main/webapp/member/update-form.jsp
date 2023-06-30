@@ -86,8 +86,8 @@ margin-top:13%;
 						</div>
 						<div class="col-md-6 mb-3">
 							<label for="userBirth">생년월일</label> <input type="text"
-								class="form-control" name="userBirth"
-								value="${sessionScope.member.userBirth}" readonly="readonly">
+								class="form-control" name="userBirth" id="Birthday"
+								value="${sessionScope.member.userBirth}" onchange="onchange()" readonly="readonly">
 						</div>
 					</div>
 					<div class="row">
@@ -98,7 +98,7 @@ margin-top:13%;
 								readonly="readonly">
 						</div>
 						<div class="col-md-6 mb-3">
-							<label for="userEmail">이메일</label> <input type="userEmail"
+							<label for="userEmail">이메일</label> <input type="text"
 								class="form-control" name="userEmail"
 								placeholder="you@example.com" required>
 						</div>
@@ -151,6 +151,14 @@ margin-top:13%;
 				}
 			}).open();
 		}
+		function onchange(){
+			let birth = document.getElementById("Birthday").value;
+			let date = birth.split(" ")[0];
+			document.getElementById("Birthday").value = date;
+		}
+	    document.addEventListener("DOMContentLoaded", function() {
+	        onchange();
+	      });
 	</script>
 </body>
 </html>
