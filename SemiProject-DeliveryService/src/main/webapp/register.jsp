@@ -51,7 +51,7 @@
 						<label for="name">아이디</label>
 						<div class="input-group">
 							<input class="form-control" type="text" name="user_id"
-								id="userId" placeholder="ori123" required="required">
+								id="userId" placeholder="4~12자리의 영문 소문자와 숫자로 작성" required>
 							<div class="input-group-append">
 								<button class="btn btn-outline-secondary" type="button"
 									id="checkId" onclick="findById()">아이디 중복검사</button>
@@ -63,19 +63,18 @@
 				<div class="row">
 					<div class="col-md-12 ">
 						<label for="nickname">비밀번호</label> <input type="password"
-							class="form-control" name="password" placeholder="" required>
+							class="form-control" name="password" placeholder="4~12자리의 영문 소문자와 숫자로 작성" required>
 					</div>
 				</div>
 				<div class="row">
 					<div class="col-md-6 mb-3">
 						<label for="name">전화번호</label> <input type="text"
 							class="form-control" name="user_phone"
-							placeholder="010-xxxx-xxxx" required>
+							placeholder="예) 01012345678" required>
 					</div>
 					<div class="col-md-6 mb-3">
 						<label for="nickname">생년월일</label> <input type="text"
-							class="form-control" name="user_birth" placeholder="1997-04-05"
-							required>
+							class="form-control" name="user_birth" placeholder="예) 1997-04-05(- 포함하여 입력)" required>
 					</div>
 				</div>
 				<div class="row">
